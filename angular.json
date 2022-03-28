@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "seller-admin-panel": "apps/seller-admin-panel",
+    "seller-admin-panel-e2e": "apps/seller-admin-panel-e2e"
+  }
+}

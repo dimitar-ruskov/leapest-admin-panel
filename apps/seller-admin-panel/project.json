@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/seller-admin-panel",
+  "sourceRoot": "apps/seller-admin-panel/src",
+  "prefix": "leapest-admin-panel",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/seller-admin-panel",
+        "index": "apps/seller-admin-panel/src/index.html",
+        "main": "apps/seller-admin-panel/src/main.ts",
+        "polyfills": "apps/seller-admin-panel/src/polyfills.ts",
+        "tsConfig": "apps/seller-admin-panel/tsconfig.app.json",
+        "inlineStyleLanguage": "less",
+        "assets": [
+          "apps/seller-admin-panel/src/favicon.ico",
+          "apps/seller-admin-panel/src/assets"
+        ],
+        "styles": ["apps/seller-admin-panel/src/styles.less"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/seller-admin-panel/src/environments/environment.ts",
+              "with": "apps/seller-admin-panel/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "seller-admin-panel:build:production"
+        },
+        "development": {
+          "browserTarget": "seller-admin-panel:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "seller-admin-panel:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/seller-admin-panel/src/**/*.ts",
+          "apps/seller-admin-panel/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/seller-admin-panel"],
+      "options": {
+        "jestConfig": "apps/seller-admin-panel/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

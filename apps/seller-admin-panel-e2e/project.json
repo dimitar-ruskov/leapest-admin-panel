@@ -1,0 +1,28 @@
+{
+  "root": "apps/seller-admin-panel-e2e",
+  "sourceRoot": "apps/seller-admin-panel-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/seller-admin-panel-e2e/cypress.json",
+        "devServerTarget": "seller-admin-panel:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "seller-admin-panel:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/seller-admin-panel-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["seller-admin-panel"]
+}
