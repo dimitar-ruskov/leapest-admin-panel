@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/seller-admin-panel",
   "sourceRoot": "apps/seller-admin-panel/src",
-  "prefix": "leapest-admin-panel",
+  "prefix": "leap",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "leapest-admin-panel",
+            "prefix": "leap",
             "style": "kebab-case"
           }
         ]
