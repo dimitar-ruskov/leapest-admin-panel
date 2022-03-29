@@ -1,0 +1,174 @@
+.leap-table-grid {
+  .ant-table-container {
+    border-radius: unset;
+  }
+
+  .ant-table {
+    background: transparent;
+    color: #26273b;
+
+    table {
+      border-radius: 0;
+      border-spacing: 0 2px;
+
+      tr {
+        &:focus,
+        &:active {
+          outline: none;
+        }
+
+        th, td {
+          background: transparent;
+          border: none;
+
+          &:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+
+          &:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+        }
+
+        &.ant-table-row {
+          height: 54px;
+          border-radius: 6px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+
+          td {
+            background: white;
+            position: initial;
+            transition: none;
+            padding: 0 16px;
+
+
+            &.leap-table-grid__title-cell {
+              padding: 0 20px 0 0;
+            }
+
+            &.leap-table-grid__details-cell {
+              padding: 0 16px 0 10px;
+
+              i {
+                font-size: 22px;
+              }
+            }
+          }
+        }
+      }
+
+      thead {
+        tr {
+          &.ant-table-row {
+            height: 40px;
+
+            th {
+              background: white;
+              padding: 0 16px;
+              font-size: 14px;
+
+              .ant-table-column-sorters {
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          &.ant-table-row {
+            &.leap-table-grid__spacer {
+              height: 8px;
+              box-shadow: none;
+            }
+
+            &.leap-table-grid__row {
+              &--clickable {
+                transition: box-shadow 0.2s;
+                will-change: box-shadow;
+                cursor: pointer;
+
+                &:hover {
+                  transform: scale(1, 1);
+                  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.32);
+
+                  .leap-table-grid__details-cell {
+                    i {
+                      color: #38b6a0;
+                    }
+                  }
+                }
+              }
+
+              &--disabled {
+                cursor: not-allowed;
+                color: #b6b7cc;
+              }
+
+            }
+          }
+        }
+
+        &.ant-table-tbody {
+          > tr {
+            &.ant-table-placeholder {
+              border-radius: 6px;
+
+              > td {
+                border-radius: inherit;
+                background: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__row-cta-button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    min-width: 0;
+    overflow: visible;
+    background: transparent;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+    cursor: pointer;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+
+    i {
+      color: #737394;
+    }
+
+    &:hover {
+      i {
+        color: #38b6a0;
+      }
+    }
+
+    &--danger {
+      &:hover {
+        i {
+          color: #f1736a;
+        }
+      }
+    }
+    &--disabled {
+      cursor: not-allowed !important;
+      &:hover {
+        i {
+          color: #737394 !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@slim-button-height: 26px;
+
+.admin-panel__slim-button {
+  &.ant-btn {
+    padding: 0 10px;
+    height: @slim-button-height;
+    font-size: 14px;
+    line-height: calc(@slim-button-height - 2px);
+  }
+}
+
+.admin-panel__reset-button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  min-width: 0;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  > i {
+    font-size: 16px;
+    color: currentColor;
+  }
+}

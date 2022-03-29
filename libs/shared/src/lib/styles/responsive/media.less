@@ -1,0 +1,91 @@
+@import (reference) 'breakpoints';
+
+// Helpers
+
+.media-until(@max; @rules) {
+  @media only screen and (max-width: @max) {
+    @rules();
+  }
+}
+
+.media-between(@min; @max; @rules) {
+  @media only screen and (min-width: @min) and (max-width: @max) {
+    @rules();
+  }
+}
+
+.media-from(@min; @rules) {
+  @media only screen and (min-width: @min) {
+    @rules();
+  }
+}
+
+// Sizes
+
+.media(@breakpoint; @rules) when (@breakpoint = xs) {
+  .media-until(@screen-xs-max; @rules);
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = sm) {
+  .media-between(@screen-sm-min; @screen-sm-max; @rules);
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = md) {
+  .media-between(@screen-md-min; @screen-md-max; @rules);
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = lg) {
+  .media-between(@screen-lg-min; @screen-lg-max; @rules);
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = xl) {
+  .media-between(@screen-xl-min; @screen-xl-max; @rules);
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = xxl) {
+  .media-from(@screen-xxl-min, @rules)
+}
+
+// Devices
+
+.media(@breakpoint; @rules) when (@breakpoint = mobile) {
+  .media-until(@screen-sm-max; @rules);
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = tablet) {
+  .media(md; @rules)
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = tablet-desktop) {
+  .media-from(@screen-md-min; @rules)
+}
+
+.media(@breakpoint; @rules) when (@breakpoint = desktop) {
+  .media-from(@screen-lg-min, @rules)
+}
+
+// Classes
+
+.desktop-only {
+  display: none;
+
+  .media-from(@screen-lg; {
+    display: block;
+  });
+}
+
+.tablet-only {
+  display: block;
+
+  .media-from(@screen-lg; {
+    display: none;
+  });
+}
+
+.mobile-only {
+  display: block;
+
+  .media-from(@screen-sm; {
+    display: none;
+  });
+}

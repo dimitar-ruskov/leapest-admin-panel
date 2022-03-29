@@ -1,0 +1,63 @@
+@tabset-background-color: #454560;
+@tabset-label-inactive-color: #b6b7cc;
+@tabset-label-active-color: #fff;
+@tabset-active-tab_underline-color: #38b6a0;
+
+@card-tabset-background-color: #fff;
+
+.ant-tabs {
+  &.ant-tabs-top {
+    &.admin-panel__tabset {
+      overflow: unset;
+
+      > .ant-tabs-nav {
+        margin: 0 0 10px;
+
+        > .ant-tabs-nav-wrap {
+          background-color: @tabset-background-color;
+          height: 40px;
+          border-radius: 6px;
+          padding: 0 20px;
+
+          .ant-tabs-tab {
+
+            &.ant-tabs-tab-active {
+              .ant-tabs-tab-btn {
+                color: @tabset-label-active-color;
+              }
+            }
+
+            .ant-tabs-tab-btn {
+              color: @tabset-label-inactive-color;
+            }
+          }
+
+          .ant-tabs-ink-bar {
+            height: 4px;
+          }
+        }
+      }
+    }
+
+    &.ant-tabs-card {
+      &.admin-panel__card-tabset {
+        .ant-tabs-nav,
+        .ant-tabs-content-holder {
+          background-color: @card-tabset-background-color;
+        }
+
+        .ant-tabs-nav {
+          border-radius: 6px 6px 0 0;
+          margin: 0;
+        }
+
+        .ant-tabs-content-holder {
+          border-radius: 0 0 6px 6px;
+          padding: 30px;
+        }
+      }
+    }
+  }
+
+
+}

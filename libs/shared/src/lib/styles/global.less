@@ -1,0 +1,252 @@
+@import './reference';
+@import 'responsive/media';
+@import 'admin-panel-components';
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+@import 'frameworks/tailwind';
+@import 'frameworks/ant-components';
+
+html {
+  overflow-y: scroll;
+}
+
+html,
+body,
+app-root,
+nz-layout.main {
+  min-height: 100%;
+}
+
+.layout {
+  height: 100%;
+}
+
+.layout-margin-bottom {
+  margin-bottom: @layout-margin-bottom;
+}
+
+.form-item-guidance {
+  color: @support-text-color;
+  font-size: @font-size-sm;
+  margin-bottom: 8px;
+}
+
+.radio-guidance {
+  .form-item-guidance();
+  display: block;
+  margin-left: @radio-size + @radio-span-padding;
+  line-height: 1.5em;
+}
+
+.base-line-height {
+  line-height: 1em !important;
+}
+
+
+// Profile Photo Start
+div.profile-photo-container {
+  text-align: center;
+
+  div.profile-photo-wrapper {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+
+      .default-profile-photo-placeholder {
+          width: 150px;
+          height: 150px;
+          background-color: #ebebeb;
+          background-size: cover;
+          border-radius: 50%;
+      }
+
+      img.profile-photo {
+          object-fit: cover;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+      }
+  }
+}
+// Profile Photo End
+
+p.textarea-limit-caption {
+  color: @support-text-color;
+  line-height: 2;
+  text-align: right;
+  font-size: @font-size-sm;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+//  Video Section Start
+.video-container {
+  margin: 0 10px;
+  display: inline-block;
+}
+//  Video Section End
+
+i.delete {
+  color: @support-text-color;
+  font-size: 22px;
+  &:hover {
+      cursor: pointer;
+      color: @danger-color;
+  }
+}
+
+.btn-container {
+  text-align: center;
+
+  &>button {
+    min-width: 100px;
+  }
+
+  &>button:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.box-container {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 4px !important;
+  background-color: white;
+}
+
+form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {
+  border: 1px solid @danger-color;
+}
+
+.sider-height-100 {
+  min-height: ~"calc(100vh - @{app-header-height})";
+}
+
+i.info-circle {
+  color: @primary-color;
+  cursor: pointer;
+}
+
+//Integration
+
+.action-section {
+  button {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  border-radius: 6px;
+  font-size: 14px;
+  }
+}
+
+.download-action {
+  margin-right: 10px;
+}
+
+.info-section{
+  border-radius: 6px;
+  background-color: #ffffff;
+  background-size: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+}
+
+leap-product-creation-report .ant-tabs-nav-container, leap-course-publishing-report .ant-tabs-nav-container {
+  margin: 20px 0;
+}
+
+leap-account-creation-report .ant-tabs-nav-container, leap-account-publishing-report .ant-tabs-nav-container {
+  margin: 20px 0;
+}
+
+leap-product-creation-report .ant-tabs-tab, leap-course-publishing-report .ant-tabs-tab {
+  min-width: 180px;
+  text-align: center;
+  border-bottom: none;
+}
+
+leap-account-creation-report .ant-tabs-tab, leap-account-publishing-report .ant-tabs-tab {
+  min-width: 180px;
+  text-align: center;
+  border-bottom: none;
+}
+
+leap-form-guidance {
+  min-width: 100%;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.hr-span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .hr {
+    height: 1px;
+    background-color: #b6b7cc;
+    flex-grow: 1;
+  }
+
+  &__title {
+    margin-right: 15px;
+    color: #737394;
+    font-size: 12px;
+    word-wrap: unset;
+  }
+}
+
+.key-value-table {
+  &__key {
+    color: #737394;
+  }
+
+  &__value {
+    color: #26273b;
+  }
+
+  &--size-m {
+    font-size: 16px;
+  }
+
+  &--size-s {
+    font-size: 14px;
+  }
+}
+
+button {
+  min-width: 120px;
+
+  &.ant-modal-close, &.ant-pagination-item-link {
+    min-width: auto;
+  }
+
+  &.ant-btn-lg {
+    font-size: @font-size-base;
+  }
+}
+
+.delete-certificate-modal, .bulk-upload-confirm-modal {
+  .ant-modal-confirm-title {
+    font-size: 24px;
+  }
+  .ant-modal-confirm-content {
+    margin-left: 0 !important;
+    margin-top: 20px;
+  }
+  .ant-modal-confirm-btns {
+    display: flex;
+    justify-content: center;
+    float: none;
+  }
+}
