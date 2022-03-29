@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "seller-admin-panel": "apps/seller-admin-panel"
+    "seller-admin-panel": "apps/seller-admin-panel",
+    "shared": "libs/shared"
   }
 }
