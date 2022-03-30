@@ -1,0 +1,24 @@
+<div>
+    <div class="main-label">{{mainExp}}</div>
+    <div *ngIf="boxLines?.length" class="info-box m-top">
+        <div *ngFor="let line of boxLines" class="main-label">{{line}}</div>
+    </div>
+    <div class="main-label m-top">{{subExp}}</div>
+    <div class="m-top" *ngIf="reasonRequired">
+        <form nz-form [formGroup]="form" nzLayout="vertical">
+            <div class="main-label">Rejection Reason</div>
+            <div class="sub-label">
+                Please, provide a reason for rejecting this learner. This message will be shared with the learner upon
+                being notified.
+            </div>
+            <nz-form-item class="m-top">
+                <nz-form-control>
+                    <textarea rows="4" formControlName="reason" maxlength="1500" nz-input></textarea>
+                </nz-form-control>
+            </nz-form-item>
+            <div class="reason-length">
+                {{form.get('reason').value ? form.get('reason').value.length : '0'}} / 1500
+            </div>
+        </form>
+    </div>
+</div>

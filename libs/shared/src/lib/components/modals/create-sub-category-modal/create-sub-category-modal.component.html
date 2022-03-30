@@ -1,0 +1,52 @@
+<form nz-form [formGroup]='form' nzLayout='vertical'>
+  <nz-form-item class='create-sub-category-modal__form-item'>
+    <leap-form-label [required]='true'>Category</leap-form-label>
+    <leap-form-hint-label>Sub-Categories allow you to refine your product classification and organize products with common characteristics.</leap-form-hint-label>
+    <p class='create-sub-category-modal__category-name'>{{ category.name }}</p>
+  </nz-form-item>
+
+  <nz-form-item class='create-sub-category-modal__form-item'>
+    <leap-form-label [required]='true'>Sub-Category Name</leap-form-label>
+    <leap-form-hint-label>Please provide a name for your sub-category. Be aware to use a name that is easy to understand for other users or your learners.</leap-form-hint-label>
+    <nz-form-control [nzErrorTip]="combineTpl" class='create-sub-category-modal__form-control'>
+      <input nz-input type="text" formControlName="name">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class='create-sub-category-modal__form-item'>
+    <leap-form-label>Description</leap-form-label>
+    <leap-form-hint-label>Please provide a (brief) description of your category.</leap-form-hint-label>
+    <nz-form-control class='create-sub-category-modal__form-control'>
+      <quill-editor class='admin-panel__quill-editor' [modules]='quillConfig' formControlName='description'></quill-editor>
+      <leap-editor-char-count [current]='descriptionControl.value?.length' [limit]='charLimit'></leap-editor-char-count>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class='create-sub-category-modal__form-item'>
+    <leap-form-label>Search Index Keywords (max 5)</leap-form-label>
+    <leap-form-hint-label>Keywords help in the discoverability of your courses. Please provide relevant keywords only.</leap-form-hint-label>
+    <nz-form-control class='create-sub-category-modal__form-control'>
+      <nz-select nzMode="multiple" nzPlaceHolder="Start typing..." nzAllowClear
+                 nzServerSearch formControlName="keywords" (nzOnSearch)="onInputKeyword($event)">
+        <ng-container *ngFor="let o of (keywordsControlOptions$ | async)">
+          <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+        </ng-container>
+      </nz-select>
+      <div class="keyword-tags-container">
+          <span *ngFor="let val of keywordsControl.value">
+              <nz-tag nzMode="closeable" nzColor="#38b6a0" (nzOnClose)="onRemoveKeyword(val)">{{val}}
+              </nz-tag>
+          </span>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('notUnique')">
+    This category already exists
+  </ng-container>
+</ng-template>

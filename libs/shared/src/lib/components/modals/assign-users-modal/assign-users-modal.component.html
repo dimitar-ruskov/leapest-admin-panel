@@ -1,0 +1,226 @@
+<div>
+  <nz-spin
+    [nzSpinning]="uploading"
+    [nzIndicator]="indicatorTemplate"
+    nzTip="This may take a while... Please do not close this window."
+  >
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+      <nz-form-item>
+        <leap-form-label [required]="true">User Type</leap-form-label>
+        <leap-form-hint-label>How do you wish to assign learners</leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="type">
+            <label *ngFor="let option of typeOptions" nz-radio [nzValue]="option.key">
+              <span class="t-label">{{ option.value }} -</span>
+              <span class="t-sub-label">{{ option.extra }}</span>
+            </label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="typeControl.value === 'csv'">
+        <leap-form-label [required]="true">Upload CSV file</leap-form-label>
+        <leap-form-hint-label>
+          Assign a multitude of learners through one action. For more information download our
+          <span class="csv-template" (click)="csvTemplateDownload()"><i class="fal fa-download"></i> CSV Template</span>
+        </leap-form-hint-label>
+
+        <nz-form-control>
+          <div class="upload-button" *ngIf="!bulkLearners">
+            <nz-upload
+              [nzBeforeUpload]="beforeUpload"
+              [nzCustomRequest]="uploadFile"
+              [nzAccept]="allowedUploadFormats"
+              [nzMultiple]="false"
+              [nzShowUploadList]="false"
+            >
+              <button nz-button [disabled]="uploading">
+                <img [src]="environmentService.assetsPath + '/upload.svg'" alt="Upload" class="mr-2" />
+                Upload File
+              </button>
+            </nz-upload>
+          </div>
+          <nz-alert
+            *ngIf="invalidCSV"
+            class="mt-2"
+            nzType="error"
+            nzMessage="Please check the file has correct headers and no duplicate entries, or it has not valid users"
+          ></nz-alert>
+          <div *ngIf="bulkLearners">
+            <div class="bulk-learners-file">
+              <span class="uploaded">{{ uploadedFile.name }}</span>
+              <span class="delete-icon" style="font-size: 16px;" (click)="removeCSV()"
+                ><i class="fal fa-trash-alt"></i
+              ></span>
+            </div>
+            <div class="bulk-learners-table">
+              <nz-table #bulkLearnersTable [nzData]="bulkLearners" [nzShowPagination]="false" class="csv-table">
+                <tbody>
+                  <tr *ngFor="let data of bulkLearnersTable.data; let i = index">
+                    <td>{{ data.username }}</td>
+                    <td class="text-right">{{ data.lxpUser ? 'LXP User' : 'Non LXP User' }}</td>
+                    <td>
+                      <span class="delete-icon" (click)="deleteCsvLearner(i)"><i class="fal fa-trash-alt"></i></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+            </div>
+            <ng-container
+              *ngTemplateOutlet="learnersCountContainer; context: { $implicit: numberOfUsersInCsv }"
+            ></ng-container>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="typeControl.value === 'lxp'">
+        <leap-form-label [required]="true">LXP Users</leap-form-label>
+        <leap-form-hint-label>
+          Please, type at least 3 letters of the users you wish to add for this session.
+        </leap-form-hint-label>
+
+        <nz-form-control class="form-control-non-flex">
+          <nz-select
+            nzMode="multiple"
+            nzPlaceHolder="Start typing the name of the learner..."
+            nzAllowClear
+            nzShowSearch
+            nzServerSearch
+            formControlName="lxpUsers"
+            (nzOnSearch)="onInputLxpUsers($event)"
+          >
+            <ng-container *ngFor="let o of lxpUsers$ | async">
+              <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+        <ng-container *ngTemplateOutlet="pillsContainer"></ng-container>
+        <ng-container *ngTemplateOutlet="learnersCountContainer; context: { $implicit: usersCount }"></ng-container>
+      </nz-form-item>
+      <nz-form-item *ngIf="typeControl.value === 'lxp_groups'">
+        <leap-form-label [required]="true">LXP Group</leap-form-label>
+        <leap-form-hint-label>
+          Please, type at least 3 letters of the group you wish to add for this session.
+        </leap-form-hint-label>
+
+        <nz-form-control class="form-control-non-flex">
+          <nz-select
+            nzPlaceHolder="Start typing the name of the group..."
+            nzAllowClear
+            nzShowSearch
+            nzServerSearch
+            formControlName="lxpGroups"
+            (nzOnSearch)="onInputLxpGroups($event)"
+          >
+            <ng-container *ngFor="let o of lxpGroups$ | async">
+              <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+
+        <div *ngIf="lxpGroupUsers.length">
+          <div class="bulk-learners-table bulk-learners-table--paginated">
+            <nz-table
+              #lxpGroupUsersTable
+              [nzData]="lxpGroupUsers"
+              [nzShowPagination]="true"
+              [nzPageSize]="5"
+              [nzShowQuickJumper]="true"
+              class="group-table"
+            >
+              <thead>
+                <tr class="caption">
+                  <th colspan="2">Group Members</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of lxpGroupUsersTable.data; let i = index">
+                  <td>{{ user.key }}</td>
+                  <td nzAlign="right">
+                    <span class="delete-icon" (click)="deleteLxpGroupLearner(i)">
+                      <i class="fal fa-trash-alt"></i>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+          <ng-container
+            *ngTemplateOutlet="learnersCountContainer; context: { $implicit: numberOfUsersInGroup }"
+          ></ng-container>
+        </div>
+      </nz-form-item>
+      <nz-form-item *ngIf="typeControl.value === 'mail'">
+        <leap-form-label [required]="true">User(s) Email(s)</leap-form-label>
+        <leap-form-hint-label>
+          Please, type the emails of the users you wish to add for this session.
+        </leap-form-hint-label>
+
+        <nz-form-control class="form-control-non-flex">
+          <input nz-input class="email-input" nzPlaceHolder="Enter email..." formControlName="email" type="email" />
+          <button
+            nz-button
+            nzSize="small"
+            class="add-email-btn"
+            (click)="addEmail($event)"
+            [disabled]="!form.get('email').valid"
+          >
+            Add Email
+          </button>
+        </nz-form-control>
+
+        <ng-container *ngTemplateOutlet="pillsContainer"></ng-container>
+        <ng-container *ngTemplateOutlet="learnersCountContainer; context: { $implicit: usersCount }"></ng-container>
+      </nz-form-item>
+    </form>
+    <p class="footer-label">
+      {{
+        waitingList
+          ? 'After assigning, an email will be sent to each user notifying them of the event and their assignment to its waiting list.'
+          : 'After assigning, an email will be sent to each user inviting them to access the event and its materials.'
+      }}
+    </p>
+  </nz-spin>
+</div>
+<ng-template #pillsContainer>
+  <nz-form-control class="form-control-non-flex" *ngIf="lxpUsersCount > 0 || emailUsersCount > 0">
+    <ng-container *ngIf="lxpUsersCount > 0">
+      <span *ngFor="let val of lxpUsersControl.value">
+        <nz-tag nzColor="default" class="lxp-user-tag"
+          >{{ val }} <i nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'lxp')"></i
+        ></nz-tag>
+      </span>
+    </ng-container>
+    <ng-container *ngIf="emailUsersCount > 0">
+      <span *ngFor="let val of emailUsersControl.value">
+        <nz-tag nzColor="default" class="lxp-user-tag"
+          >{{ val }} <i nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'email')"></i
+        ></nz-tag>
+      </span>
+    </ng-container>
+  </nz-form-control>
+</ng-template>
+<ng-template #learnersCountContainer let-maxCount>
+  <div class="seats-info-container">
+    <span class="span-black">{{ maxCount }} Users Selected</span>
+    <span> </span>
+    <span *ngIf="data.course?.format?.configKey !== 'selfPacedCourse'" class="span-light-grey">|</span>
+    <span> </span>
+    <span *ngIf="data.course?.format?.configKey !== 'selfPacedCourse'" class="span-grey"
+      >{{ (waitingList ? remainingWaitingListSeats : data.remainingSeats) - maxCount }} Available Seats</span
+    >
+  </div>
+
+  <nz-alert
+    *ngIf="(waitingList ? remainingWaitingListSeats : data.remainingSeats) === maxCount"
+    nzType="warning"
+    nzMessage="{{ waitingList ? waitingListSeatsMessages.warning : remainingSeatsMessages.warning }}"
+    class="mt-2"
+  ></nz-alert>
+  <nz-alert *ngIf="errorMessage" nzType="warning" nzMessage="{{ errorMessage }}" class="mt-2"></nz-alert>
+  <nz-alert
+    *ngIf="(waitingList ? remainingWaitingListSeats : data.remainingSeats) < maxCount"
+    nzType="error"
+    nzMessage="{{ waitingList ? waitingListSeatsMessages.error : remainingSeatsMessages.error }}"
+    class="mt-2"
+  ></nz-alert>
+</ng-template>
+<ng-template #indicatorTemplate><i nz-icon nzType="loading" class="loading-icon"></i></ng-template>

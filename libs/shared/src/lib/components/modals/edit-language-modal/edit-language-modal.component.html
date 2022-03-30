@@ -1,0 +1,25 @@
+<form nz-form [formGroup]='form' nzLayout='vertical'>
+
+  <nz-form-item class='create-language-variant-modal__form-item'>
+    <leap-form-label [required]='true'>Delivery language</leap-form-label>
+    <leap-form-hint-label>The language in which this event is going to be delivered. Please be aware of any differences
+      with the languages of the materials used.
+    </leap-form-hint-label>
+    <nz-form-control [nzErrorTip]='errorTemplate'>
+      <nz-select formControlName='language'
+                 nzPlaceHolder='Select...'
+                 [nzNotFoundContent]="'Item not found'"
+                 [nzLoading]='pending$ | async'
+      >
+        <nz-option *ngFor='let option of (iltLanguageDictionary$ | async); trackBy: trackByFn'
+                   [nzLabel]='option.value'
+                   [nzValue]='option.key'
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <ng-template #errorTemplate let-control>
+    <ng-container *ngIf="control.hasError('required')">This field is required</ng-container>
+  </ng-template>
+</form>

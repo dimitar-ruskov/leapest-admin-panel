@@ -1,0 +1,20 @@
+<form [formGroup]="form" nz-form nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label [required]="true">Timezone</leap-form-label>
+    <leap-form-hint-label
+      >Please define the timezone for which the event is going to take place. This will be used to convert the starting
+      times to the learners' timezone.</leap-form-hint-label
+    >
+    <nz-form-control>
+      <nz-select
+        nzShowSearch
+        formControlName="timezone"
+        [nzNotFoundContent]="'Item not found'"
+        nzPlaceHolder="Select a Timezone (click or type to search)"
+      >
+        <nz-option *ngFor="let option of timezonesDict$ | async" [nzLabel]="option.value" [nzValue]="option.key">
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>

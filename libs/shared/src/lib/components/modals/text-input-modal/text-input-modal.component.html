@@ -1,0 +1,25 @@
+<div *ngIf="modalExplanation" class="sub-label modal">{{ modalExplanation }}</div>
+<div>
+  <nz-form-item>
+    <leap-form-label [required]="true">{{ mainLabel }}</leap-form-label>
+    <leap-form-hint-label>{{ subLabel }}</leap-form-hint-label>
+  </nz-form-item>
+  <form nz-form [formGroup]="form" style="margin-top: 3px">
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="combineTpl">
+        <input nz-input type="text" formControlName="textInput" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    This field should be at least {{ minLength }} characters long
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

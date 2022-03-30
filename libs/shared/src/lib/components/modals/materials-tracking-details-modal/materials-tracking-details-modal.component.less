@@ -1,0 +1,40 @@
+@default-text-color: #26273b;
+@background-color: #f8f8fb;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border: none;
+  table-layout: fixed;
+}
+
+tr {
+  height: 40px;
+
+  &:nth-child(even) {
+    background-color: @background-color;
+  }
+}
+
+th,
+td {
+  padding-left: 5px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:first-child {
+    width: 40%;
+  }
+}
+
+
+.info {
+  font-size: 16px;
+  color: #26273b;
+}

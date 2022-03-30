@@ -1,0 +1,101 @@
+<form [formGroup]="form" nz-form nzLayout="vertical">
+  <nz-spin [nzSpinning]="pending$ | async">
+    <nz-form-item>
+      <leap-form-label [required]="true">Conferencing Tool</leap-form-label>
+      <leap-form-hint-label>What conferencing tool do you wish to use for this event?</leap-form-hint-label>
+      <nz-form-control>
+        <nz-radio-group formControlName="conferencingTool">
+          <label
+            *ngFor="let conferencingTool of conferencingToolsDictionary$ | async"
+            class="admin-panel__radio-option"
+            nz-radio
+            [nzDisabled]="!conferencingTool.tokenAvailable || _eventIsInProgress"
+            [nzValue]="conferencingTool.key"
+          >
+            <img class="zoom-icon-img" [src]="environmentService.assetsPath + '/zoom-icon-img.png'" alt="" />
+            {{ conferencingTool.value }}
+            <div class="auth-container" *ngIf="!conferencingTool.tokenAvailable">
+              <div class="auth-text">
+                To use this option, please activate your Zoom account.
+              </div>
+              <div>
+                <button
+                  class="auth-btn"
+                  nz-button
+                  nzType="primary"
+                  nzSize="small"
+                  (click)="activateConferencingTool(conferencingTool)"
+                >
+                  Activate Zoom Account
+                </button>
+              </div>
+            </div>
+          </label>
+          <label class="admin-panel__radio-option" nz-radio nzValue="manual" [nzDisabled]="_eventIsInProgress">
+            <i class="fal fa-cog"></i>
+            Manual
+          </label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <leap-form-label [required]="true">Instructor(s)</leap-form-label>
+      <leap-form-hint-label>
+        Who is going to present the contents of this course event? If you have Zoom as your Conferencing tool, please
+        make sure that the Instructors are part of your Zoom Account.
+      </leap-form-hint-label>
+      <div class="edit-instructors-modal__control-wrapper">
+        <nz-form-control>
+          <nz-select
+            nzMode="multiple"
+            nzPlaceHolder="Select an Instructor (click or type to search)"
+            nzShowSearch
+            [compareWith]="instructorCompareFn"
+            formControlName="instructors"
+          >
+            <ng-container *ngFor="let instructor of instructors$ | async">
+              <nz-option
+                [nzValue]="instructor"
+                [nzLabel]="instructor.firstName + ' ' + instructor.lastName + ' - ' + instructor.username"
+              >
+              </nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+        <button nz-button class="default-btn" (click)="onAddInstructor($event)">Add New</button>
+      </div>
+    </nz-form-item>
+    <ng-container *ngIf="instructorAccountError && conferencingToolControl.value !== 'manual'">
+      <div class="instructor-account-error">
+        The first instructor has to be in your {{ conferencingToolControl.value }} account
+      </div>
+    </ng-container>
+  </nz-spin>
+  <leap-instructors-collisions-warnings
+    [instructorCollisions]="instructorCollisions$ | async"
+  ></leap-instructors-collisions-warnings>
+  <ng-container formArrayName="sessions">
+    <leap-form-label [required]="true">Enable Session</leap-form-label>
+    <leap-form-hint-label
+      >The system will create unique sessions for each day of the course, for which the session was enabled via the
+      toggle button when the event is published
+    </leap-form-hint-label>
+    <div
+      *ngFor="let session of sessions.controls; trackBy: trackByFn; index as i"
+      [formGroupName]="i"
+      class="enable-session-container"
+    >
+      <nz-switch formControlName="enabled" [nzDisabled]="!session?.controls?.isEditable?.value"></nz-switch>
+      <div class="ml15">
+        <span>Day {{ i + 1 }} : {{ session?.controls?.date?.value | date: 'MMM d, yyyy' }}</span>
+        <div
+          class="manual-link-container"
+          *ngIf="conferencingToolControl.value === 'manual' && session?.controls?.enabled?.value"
+        >
+          <input class="manual-link-input" placeholder="Enter Conference Link" nz-input formControlName="link" />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</form>

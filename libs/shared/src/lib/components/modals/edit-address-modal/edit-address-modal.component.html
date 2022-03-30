@@ -1,0 +1,77 @@
+<nz-spin [nzSpinning]='pending$ | async'>
+  <form [formGroup]='form' nz-form nzLayout='vertical'>
+
+    <nz-form-item>
+      <leap-form-label [required]='true'>Event Venue</leap-form-label>
+      <leap-form-hint-label>Where the course will take place. Select from an existing venue, or add a new
+        one.
+      </leap-form-hint-label>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <nz-select nzShowSearch
+                   formControlName='country'
+                   nzNotFoundContent='Item not found'
+                   nzPlaceHolder='Select Country (click or type to search)'
+        >
+          <nz-option *ngFor='let country of (countries$ | async)'
+                     [nzLabel]='country.value'
+                     [nzValue]='country.key'>
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <nz-select nzShowSearch
+                   formControlName='city'
+                   nzNotFoundContent='Item not found'
+                   nzPlaceHolder='Select City (click or type to search)'
+                   [nzLoading]='citiesPending$ | async'
+                   [nzDisabled]='citiesPending$ | async'
+        >
+          <nz-option *ngFor='let city of (cities$ | async)'
+                     [nzLabel]='city.value'
+                     [nzValue]='city.key'>
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div class='edit-address-modal__control-wrapper'>
+        <nz-form-control>
+          <nz-select nzShowSearch
+                     formControlName='venue'
+                     nzNotFoundContent='Item not found'
+                     nzPlaceHolder='Select Venue (click or type to search)'
+                     [compareWith]='venueCompareFn'
+                     [nzLoading]='venuesPending$ | async'
+                     [nzDisabled]='venuesPending$ | async'
+          >
+            <nz-option *ngFor='let venue of (venues$ | async)'
+                       [nzLabel]='getFullAddress(venue)'
+                       [nzValue]='venue'>
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+        <button nz-button
+                class='default-btn'
+                [nzLoading]='allCountriesPending$ | async'
+                (click)='onAddVenue($event)'
+        >Add New</button>
+      </div>
+    </nz-form-item>
+
+  </form>
+
+  <div class='edit-address-modal__alert-wrapper'>
+    <nz-alert
+      *ngIf='form.dirty'
+      nzType='warning'
+      nzMessage='Changing the event venue will send updated calendar invitations to enrolled learners, course instructor and the training manager'>
+    </nz-alert>
+  </div>
+</nz-spin>

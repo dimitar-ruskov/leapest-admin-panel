@@ -1,0 +1,56 @@
+<form [formGroup]="form" nz-form nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label [required]="true">Attendance Tracking</leap-form-label>
+    <leap-form-hint-label>
+      Specify manual or automatic attendance tracking.
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="attendanceTracking">
+        <label
+          *ngFor="let option of attendanceTrackingOptions"
+          nz-radio
+          [nzValue]="option.key"
+          class="admin-panel__radio-option"
+        >
+          <span class="main-label">{{ option.value }}</span>
+          <span class="sub-label"> - {{ option.hint }}</span>
+        </label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="attendanceTrackingControl.value">
+    <leap-form-label [required]="true">Completion</leap-form-label>
+    <leap-form-hint-label>
+      Specify manual or automatic course completion
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="completion">
+        <label
+          *ngFor="let option of completionOptions"
+          nz-radio
+          [nzValue]="option.key"
+          class="admin-panel__radio-option"
+        >
+          <span class="main-label">{{ option.value }}</span>
+          <span class="sub-label"> - {{ option.hint }}</span>
+        </label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="attendanceTrackingControl.value && completionControl.value">
+    <leap-form-label [required]="true">Specify Participation Attendance</leap-form-label>
+    <leap-form-hint-label>
+      Specify percentage to automatically indicate Event Completion.
+    </leap-form-hint-label>
+    <leap-form-label [required]="true">Course is marked as completed if learner's attendance is over: </leap-form-label>
+    <nz-form-control>
+      <nz-input-number formControlName="completionPercent" [nzMin]="1" [nzMax]="100" [nzStep]="1"> </nz-input-number>
+      <span>%</span>
+    </nz-form-control>
+    <leap-form-hint-label>
+      Please input number between 0-100
+    </leap-form-hint-label>
+  </nz-form-item>
+</form>

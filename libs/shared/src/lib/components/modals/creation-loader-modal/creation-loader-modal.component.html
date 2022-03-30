@@ -1,0 +1,29 @@
+<div class="load-modal">
+  <div *ngIf="!longLoad; else longLoadInfo">
+    <nz-spin class="internal-repository-details__spinner" nzSimple nzSize="large"></nz-spin>
+    <div>
+      <div>We are completing the creation process.</div>
+      <div>You will be redirected to your content shortly.</div>
+      <div>This may take up to 20 seconds.</div>
+    </div>
+  </div>
+
+  <ng-template #longLoadInfo>
+    <div>
+      The creation process is taking longer than expected. Please come back later. If you still have trouble, please
+      contact <a href="mailto:support@edcast.com">support@edcast.com</a>.
+    </div>
+    <div>
+      You can copy the name if you wish to search for your content later.
+    </div>
+    <div class="button-container">
+      <span class="label">Name:</span>
+      <span class="name">{{ this.internalRepo?.name }}</span>
+
+      <button class="admin-panel__slim-button" nz-button nzType="primary" (click)="copyToClipboard()">
+        <i class="fal fa-copy"></i>
+        Copy to Clipboard
+      </button>
+    </div>
+  </ng-template>
+</div>

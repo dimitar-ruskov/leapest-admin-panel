@@ -1,0 +1,25 @@
+<form [formGroup]="form" nz-form nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label>Waiting List</leap-form-label>
+    <leap-form-hint-label
+      >When a seat becomes available, the first learner in the list will be automatically moved to the enrollment list.
+      If any approvals are required, you will be notified about it; otherwise the learner will be approved to the event.
+      Please note that enabling or disabling this list has no effect over waiting learners, only the ability for more to
+      join.</leap-form-hint-label
+    >
+    <nz-form-control>
+      <span class="switch-label">Enable Waiting List</span>
+      <nz-switch formControlName="enabled"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <leap-form-label>Waiting List Size</leap-form-label>
+    <leap-form-hint-label
+      >What is the maximum number of learners that can be added to a waiting list?
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-input-number formControlName="size" [nzMin]="minSize" [nzStep]="1"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+</form>

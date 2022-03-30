@@ -1,0 +1,31 @@
+<div>
+  <form nz-form [formGroup]="form" nzLayout="vertical" style="margin-top: 3px">
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="combineTpl">
+        <leap-form-label [required]="required">{{ mainLabel }}</leap-form-label>
+        <leap-form-hint-label>{{ subLabel }}</leap-form-hint-label>
+        <quill-editor [modules]="quillConfig" formControlName="quillInput"></quill-editor>
+        <leap-editor-char-count [current]="inputControl?.value?.length" [limit]="maxLength"> </leap-editor-char-count>
+      </nz-form-control>
+    </nz-form-item>
+    <ng-template #combineTpl let-control>
+      <ng-container *ngIf="control.hasError('required')">
+        This field is required
+      </ng-container>
+      <ng-container *ngIf="control.hasError('minlength')">
+        This field should be at least {{ minLength }} characters long
+      </ng-container>
+      <ng-container *ngIf="control.hasError('maxlength')">
+        Character limit exceeded
+      </ng-container>
+    </ng-template>
+    <nz-form-item>
+      <label class="main-label" nz-checkbox formControlName="propagateAttributes">
+        Apply changes to all events
+      </label>
+      <leap-form-hint-label>
+        The description of all (draft, active, and finished) events will be updated as well.
+      </leap-form-hint-label>
+    </nz-form-item>
+  </form>
+</div>

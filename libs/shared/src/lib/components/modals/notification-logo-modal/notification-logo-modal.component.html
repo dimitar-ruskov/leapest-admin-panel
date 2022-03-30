@@ -1,0 +1,27 @@
+<div>
+  Upload your company logo. This logo will be used for all your notifications.<br />
+  Make sure it is in .jpg or .png format.
+</div>
+
+<div class="uploaded-file" *ngIf="uploadedFile">
+  <img class="uploaded-file_preview" [src]="previewImage" alt="uploadedImg" />
+  <span class="uploaded-file_name">{{ uploadedFile.name }}</span>
+  <span class="delete-icon"><i class="fal fa-trash-alt" (click)="removeFile()"></i></span>
+</div>
+<div class="upload-button">
+  <nz-upload
+    [nzBeforeUpload]="beforeUpload"
+    [nzCustomRequest]="uploadFile"
+    [nzAccept]="allowedUploadFormats"
+    [nzMultiple]="false"
+    [nzShowUploadList]="false"
+  >
+    <button nz-button [disabled]="uploading || !!uploadedFile">
+      <img [src]="environmentService.assetsPath + '/upload.svg'" alt="Upload" class="mr-2" />
+      Upload Logo
+    </button>
+    <nz-spin *ngIf="uploading" [nzSpinning]="uploading">
+      <div>This may take up to a minute...</div>
+    </nz-spin>
+  </nz-upload>
+</div>

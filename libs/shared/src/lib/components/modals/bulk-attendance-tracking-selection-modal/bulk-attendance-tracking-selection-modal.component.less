@@ -1,0 +1,79 @@
+@default-text-color: #26273b;
+@hint-color: #8e8fa6;
+@border-color: #cfd0dd;
+
+p {
+  margin: 0;
+}
+
+form,
+.error-container {
+  margin-top: 20px;
+}
+
+.label {
+  font-size: 16px;
+  line-height: 30px;
+  color: @default-text-color;
+  font-weight: 600;
+}
+
+.hint-label {
+  font-size: 14px;
+  color: @hint-color;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.selected-learners-count {
+  font-size: 13px;
+  color: @default-text-color;
+}
+
+[nz-checkbox],
+[nz-radio] {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  color: @default-text-color;
+  margin: 0;
+}
+
+.attendance-day {
+  &__label {
+    color: @default-text-color;
+  }
+
+  &__not-started {
+    margin-left: 5px;
+    font-size: 14px;
+    color: @hint-color;
+  }
+}
+
+.override-options {
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.override-option {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+  &__label-wrapper {
+    margin-left: 5px;
+    p {
+      padding-top: 3px;
+    }
+  }
+
+  &__warning {
+    font-size: 11px;
+    color: #f79b42;
+  }
+}

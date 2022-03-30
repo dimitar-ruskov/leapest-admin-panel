@@ -1,0 +1,22 @@
+<div>
+  <form nz-form [formGroup]="form" nzLayout="vertical">
+    <nz-form-item>
+      <leap-form-label [required]="true">{{ userLabel }} Email</leap-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="username" type="email" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <leap-form-label [required]="true">First Name</leap-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="firstName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <leap-form-label [required]="true">Last Name</leap-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="lastName" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

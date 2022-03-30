@@ -1,0 +1,239 @@
+.t-label {
+  font-family: Open Sans;
+  font-size: 16px;
+  color: #26273b;
+  font-weight: 400;
+}
+
+.t-sub-label {
+  font-family: Open Sans;
+  font-size: 16px;
+  color: #737394;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+[nz-radio] {
+  display: block;
+}
+
+
+.default-btn {
+  color: #26273b;
+  border-color: #9c9db5;
+}
+
+.default-btn:hover {
+  background-color: #f0f0f5;
+  color: #26273b;
+  border-color: #9c9db5;
+}
+
+:host::ng-deep {
+  .ant-radio {
+    height: 15px !important;
+    margin-top: 5px !important;
+  }
+
+  .ant-radio-wrapper {
+    white-space: unset;
+    display: flex !important;
+  }
+
+  .ant-select-multiple .ant-select-selection-item {
+    display: none !important;
+  }
+
+  & .ant-select-multiple {
+    &::ng-deep nz-select-top-control {
+      &::ng-deep nz-select-search {
+        width: 97% !important;
+      }
+    }
+  }
+}
+
+.span-black {
+   font-size: 16px;
+   color: #26273b;
+ }
+
+.span-light-grey {
+  font-size: 16px;
+  color: #cfd0dd;
+}
+
+.span-grey {
+  font-size: 16px;
+  color: #8e8fa6;
+}
+
+.option-icon {
+  font-size: 16px;
+  color: #737394;
+  width: 35px;
+  min-width: 35px;
+}
+
+.form-label {
+  width: 95%;
+  text-align: left;
+  white-space: normal;
+}
+
+.upload-form-label {
+  height: 45px;
+}
+
+.create-btns-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.csv-template:hover {
+  color: #38b6a0;
+  cursor: pointer;
+}
+
+.upload-button {
+  margin-top: 10px;
+  width: 242px;
+  height: 40px;
+}
+
+.form-control-non-flex {
+  flex: none;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.footer-label {
+  margin: 10px 0;
+}
+
+.bulk-learners-file {
+  width: 100%;
+  margin: 5px 0;
+  display: inline-block;
+}
+
+.bulk-learners-table {
+  margin: 5px 0;
+  width: 100%;
+  height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #cfd0dd;
+  border-left: none;
+  border-right: none;
+  background-color: #f8f8fb;
+  background-size: cover;
+  -webkit-box-shadow: inset 0px 2px 4px rgba(0,0,0,0.1);
+  box-shadow: inset 0px 2px 4px rgba(0,0,0,0.1);
+  padding-left: 10px;
+  padding-top: 8px;
+
+  &--paginated {
+    height: auto;
+    max-height: 417px;
+    width: 640px;
+  }
+
+  .caption {
+    border: none;
+    height: 17px !important;
+
+    th {
+      border: none;
+      color: #737394;
+      font: 12px/17px Open Sans, sans-serif;
+      text-decoration: none solid rgb(115, 115, 148);
+      text-align: left;
+      text-transform: uppercase;
+      padding: 8px 16px 2px;
+    }
+  }
+
+  .csv-table,
+  .group-table {
+    tr {
+      height: 40px;
+
+      &:nth-child(odd) {
+        background-color: #f8f8fb;
+      }
+    }
+  }
+}
+
+:host::ng-deep {
+  .bulk-learners-table {
+    .ant-table-pagination.ant-pagination {
+      align-items: center;
+    }
+
+    .ant-pagination-item,
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link {
+      min-width: 32px;
+    }
+
+    .ant-pagination-options {
+      min-width: 119px;
+    }
+  }
+}
+
+.delete-icon {
+  color:#8e8fa6;
+
+  &:hover {
+    color: #f1736a;
+    cursor: pointer;
+  }
+}
+.email-input {
+  max-width: 75%;
+}
+.add-email-btn {
+  margin-left: 10px;
+  height: 34px;
+  padding-top: 3px;
+}
+.uploaded {
+   font-family: Open Sans;
+   font-size: 16px;
+   color: #26273b;
+  margin-right: 5px;
+ }
+
+.seats-info-container {
+  margin: 10px 0;
+}
+
+.loading-icon {
+  font-size: 60px;
+}
+
+.lxp-user-tag {
+  border-radius: 14px;
+  height: 28px;
+  padding: 0px 0px 0px 16px;
+  margin-bottom: 5px;
+
+  i {
+    font-size: 17px;
+    padding: 3px 9px 2px 9px;
+    top: 1px;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+

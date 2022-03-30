@@ -1,0 +1,92 @@
+<nz-spin [nzSpinning]='isValidating$ | async'>
+  <p class='selected-learners-count'>You have selected {{ selectedLearnersUsernames.length }} learners</p>
+
+  <div class='error-container'>
+    <nz-alert *ngIf='errorVisible && !areLearnersEligibleToComplete'
+              nzType='warning'
+              [nzMessage]='getError(selectedNotEligibleLearnersCount)'
+    ></nz-alert>
+  </div>
+
+  <form nz-form [formGroup]='form' nzLayout='vertical'>
+
+    <nz-form-item>
+      <nz-form-label class='label'>Completion Type</nz-form-label>
+      <p class='hint-label'>Mark a course as completed or specify the daily attendance.</p>
+      <nz-form-control>
+        <nz-radio-group formControlName='completionType'>
+          <label *ngFor='let completionType of completionTypeOptions; trackBy: keyValueTrackByFn'
+                 nz-radio [nzValue]='completionType.key'
+          >{{ completionType.value }}</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <ng-container *ngIf='completionTypeControl.value === completionTypes.COURSE_COMPLETION'>
+      <div class='override-options'>
+        <div class='override-option'>
+          <label nz-checkbox formControlName='markCompletionForAllEligibleLearners'></label>
+          <div class='override-option__label-wrapper'>
+            <p>Mark Completion for all {{selectedEligibleLearnersCount}} eligible learners</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf='completionTypeControl.value === completionTypes.DAILY_ATTENDANCE'
+                  formGroupName='dailyAttendance'
+    >
+      <nz-form-item>
+        <nz-form-label class='label'>Attendance Day</nz-form-label>
+        <p class='hint-label'>Select a day for which to mark attendance.</p>
+        <nz-form-control>
+          <nz-checkbox-wrapper (nzOnChange)='onSelectedAttendanceDaysChange($event)'>
+            <label *ngFor='let day of daysOptions; trackBy: checkBoxOptionTrackByFn'
+                   nz-checkbox
+                   [nzValue]='day.value'
+                   [nzDisabled]='day.disabled'
+            >
+              <span class='attendance-day__label'>{{ day.label }}</span>
+              <span *ngIf='day.disabled' class='attendance-day__not-started'>Day not started</span></label>
+          </nz-checkbox-wrapper>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label class='label'>Attendance Record</nz-form-label>
+        <p class='hint-label'>Select a learner attendance type for this day.</p>
+        <nz-form-control>
+          <nz-select formControlName='attendanceRecord'
+                     nzPlaceHolder='Select Attendance'
+                     [nzAllowClear]='true'
+          >
+            <nz-option *ngFor='let option of attendanceRecordOptions; trackBy: keyValueTrackByFn'
+                       [nzLabel]='option.value'
+                       [nzValue]='option.key'
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div class='override-options'>
+        <div class='override-option'>
+          <label nz-checkbox formControlName='markAttendanceForAllLearnersWithoutStatus'></label>
+          <div class='override-option__label-wrapper'>
+            <p>Mark Attendance for all {{ selectedNotEligibleLearnersCount }} learners without a record</p>
+          </div>
+        </div>
+        <div class='override-option'>
+          <label nz-checkbox formControlName='markAttendanceForAllLearners'></label>
+          <div class='override-option__label-wrapper'>
+            <p>Mark Attendance for all {{ selectedLearnersUsernames.length }} selected learners</p>
+            <p class='override-option__warning'>
+              <i class='fa fa-info-circle'></i>
+              <span> This action will overwrite existing records.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </form>
+</nz-spin>

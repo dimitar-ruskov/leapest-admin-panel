@@ -1,0 +1,45 @@
+<form [formGroup]="form" nz-form>
+  <nz-form-item>
+    <leap-form-label [required]="true">Number of Learners</leap-form-label>
+    <leap-form-hint-label
+      >Please, select the minimum number of Learners you need to take up this course event, and the maximum number of
+      seats available.
+    </leap-form-hint-label>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <div class="block-wrapper">
+        <div class="block-wrapper__label">
+          <leap-form-label [required]="true">Min:</leap-form-label>
+        </div>
+        <nz-input-number
+          type="number"
+          nzMin="1"
+          [nzMax]="form.get('maxLearners').value"
+          formControlName="minLearners"
+          id="minLearners"
+        ></nz-input-number>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <div class="block-wrapper">
+        <div class="block-wrapper__label">
+          <leap-form-label [required]="true">Max:</leap-form-label>
+        </div>
+        <nz-input-number
+          type="number"
+          [nzMin]="getMinValue(form.get('minLearners').value, learnerCount)"
+          [nzMax]="limit"
+          formControlName="maxLearners"
+          id="maxLearners"
+        ></nz-input-number>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<p class="learners-enrolled-counter">{{ learnerCount }} Learners Enrolled</p>

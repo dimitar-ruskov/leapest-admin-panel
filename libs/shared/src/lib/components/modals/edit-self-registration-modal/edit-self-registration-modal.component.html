@@ -1,0 +1,72 @@
+<form [formGroup]='form' nz-form nzLayout='vertical'>
+  <nz-form-item *ngIf='isSelfRegistrationEditable'>
+    <leap-form-label [required]='true'>Self-registration</leap-form-label>
+    <leap-form-hint-label>Can learners register for this course event?</leap-form-hint-label>
+    <nz-form-control>
+      <nz-radio-group formControlName='selfRegistration'>
+        <label *ngFor='let option of selfRegistrationOptions'
+               class='admin-panel__radio-option'
+               nz-radio
+               [nzValue]='option.key'
+        >{{ option.value }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <ng-container *ngIf='selfRegistrationControl.value'>
+    <ng-container *ngIf='withRegistrationPeriod' formGroupName='registrationPeriod'>
+      <nz-form-item>
+        <leap-form-label [required]='true'>Registration Period</leap-form-label>
+        <leap-form-hint-label>When can learners register for this course event?</leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName='registrationDeadlineDependsOnEventStartDate'>
+            <label *ngFor='let option of registrationPeriodOptions'
+                   class='admin-panel__radio-option'
+                   nz-radio
+                   [nzValue]='option.key'
+            >{{ option.value }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div class='edit-self-registration-modal__registration-period'
+           *ngIf='!registrationDeadlineDependsOnEventStartDateControl.value'>
+        <leap-form-label [required]='true'>Registration Period</leap-form-label>
+        <div class='edit-self-registration-modal__registration-period-controls-wrapper'>
+          <nz-form-item class='edit-self-registration-modal__registration-period-control'>
+            <nz-form-control>
+              <nz-date-picker formControlName='registrationPeriodEndDate'
+                              nzFormat='dd MMM yyyy'
+                              nzAllowClear='false'
+                              [nzDisabledDate]='disabledDate'>
+              </nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class='edit-self-registration-modal__registration-period-control'>
+            <nz-form-control>
+              <nz-time-picker formControlName='registrationPeriodEndTime'
+                              nzFormat='HH:mm'
+                              nzAllowEmpty='false'>
+              </nz-time-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </ng-container>
+
+    <nz-form-item>
+      <leap-form-label [required]='true'>Registration Approval</leap-form-label>
+      <leap-form-hint-label>Does your course require registration approval when learners sign up?
+      </leap-form-hint-label>
+      <nz-form-control>
+        <nz-radio-group formControlName='automaticApproval'>
+          <label *ngFor='let option of registrationApprovalOptions'
+                 class='admin-panel__radio-option'
+                 nz-radio
+                 [nzValue]='option.key'
+          >{{ option.value }}</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+</form>

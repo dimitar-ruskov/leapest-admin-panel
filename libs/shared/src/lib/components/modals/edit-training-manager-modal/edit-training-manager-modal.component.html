@@ -1,0 +1,26 @@
+<form [formGroup]='form' nz-form nzLayout='vertical'>
+  <nz-form-item>
+    <leap-form-label [required]='true'>Training Manager</leap-form-label>
+    <leap-form-hint-label>An employee of your company with the Training Manager role, who can manage this event and
+      is responsible for assigning learners or approving enrollment requests.
+      <a>Click here to create a new user.</a></leap-form-hint-label>
+    <div class='edit-training-manager-modal__selected-manager'>
+      <p>{{ selectedTrainingManager.name }}</p>
+      <p>{{ selectedTrainingManager.email }}</p>
+    </div>
+    <nz-form-control>
+      <nz-select formControlName='trainingManager'
+                 [nzLoading]='pending$ | async'
+                 nzShowSearch
+                 [nzNotFoundContent]="'Item not found'"
+                 [compareWith]='trainingManagerCompareFn'
+                 nzPlaceHolder='Select a Training Manager (click or type to search)'
+      >
+        <nz-option *ngFor='let trainingManager of (trainingManagers$ | async)'
+                   [nzLabel]="trainingManager.name + ' - ' + trainingManager.email"
+                   [nzValue]='trainingManager'>
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>

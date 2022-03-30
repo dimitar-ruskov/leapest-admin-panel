@@ -1,0 +1,67 @@
+<ng-container>
+  <form nz-form [formGroup]='form'>
+    <div>
+      <div class='main-label'>Name</div>
+      <div class='main-label'>
+        {{initFormValue.name}}
+      </div>
+    </div>
+
+    <div class='m-top15'>
+      <div class='main-label'>Language</div>
+      <div class='sub-label'> Select language variant you would like to use. If a language is missing from this list,
+        consider creating, first,
+        a variant via the Product Management or the Internal Repository tools.
+      </div>
+      <div>
+        <nz-form-item>
+          <nz-form-control>
+            <div class='languages-control'>
+              <nz-select
+                nzShowSearch
+                formControlName='language'
+                [nzNotFoundContent]="'Item not found'"
+                [nzDisabled]='languageList.length === 1'
+                nzPlaceHolder='Select Variant Language'
+              >
+                <nz-option
+                  *ngFor='let option of languageList'
+                  [nzLabel]='option.configValue'
+                  [nzValue]='option.configKey'
+                >
+                </nz-option>
+              </nz-select>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div class='m-top15'>
+      <div class='main-label'>Delivery Format</div>
+      <div class='sub-label'>Select a delivery format variant you would like to use.</div>
+      <div>
+        <nz-form-item>
+          <nz-form-control>
+            <div>
+              <nz-select
+                nzShowSearch
+                formControlName='delivery'
+                [nzNotFoundContent]="'Item not found'"
+                [nzDisabled]='deliveryFormatList.length === 1'
+                nzPlaceHolder='Select Delivery Format'
+              >
+                <nz-option
+                  *ngFor='let option of deliveryFormatList'
+                  [nzLabel]='option.configValue'
+                  [nzValue]='option.configKey'
+                >
+                </nz-option>
+              </nz-select>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+</ng-container>

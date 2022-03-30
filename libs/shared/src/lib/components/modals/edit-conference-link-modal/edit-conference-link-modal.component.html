@@ -1,0 +1,26 @@
+<form [formGroup]="form" nz-form nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label [required]="true">Conference Link</leap-form-label>
+    <leap-form-hint-label
+      >Please, provide a link to the a conferencing session. This link will be made available by the time of the
+      course's delivery through the Learning Portal.</leap-form-hint-label
+    >
+    <nz-form-control [nzErrorTip]="errorTemplate">
+      <input nz-input type="url" formControlName="conferenceLink" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div class="edit-conference-link-modal__alert-wrapper">
+  <nz-alert
+    *ngIf="form.dirty"
+    nzType="warning"
+    nzMessage="Changing the event conference link will send updated calendar invitations to enrolled learners, course instructor and the training manager"
+  >
+  </nz-alert>
+</div>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">This field is required</ng-container>
+  <ng-container *ngIf="control.hasError('custom')">{{ control.getError('invalidUrl').message }}</ng-container>
+</ng-template>

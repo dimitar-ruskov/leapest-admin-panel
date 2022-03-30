@@ -1,0 +1,62 @@
+<form nz-form [formGroup]='form' style='margin-top: 3px'>
+
+  <nz-form-item class='edit-category-modal__form-item'>
+    <leap-form-label [required]='true'>Select a Category</leap-form-label>
+    <leap-form-hint-label>Select the category that best suits your product. If none of these categories apply, please
+      contact ask@leapeast.com
+    </leap-form-hint-label>
+    <nz-form-control>
+      <div class='edit-category-modal__form-control'>
+        <nz-select formControlName='category'
+                   nzPlaceHolder='Select...'
+                   [nzNotFoundContent]="'Item not found'"
+                   [compareWith]='categoryCompareFn'
+        >
+          <nz-option *ngFor='let option of categoryDictionary; trackBy: trackByFn'
+                     [nzLabel]='option.name'
+                     [nzValue]='option'
+          ></nz-option>
+        </nz-select>
+        <button
+          nz-button
+          nzType='default'
+          nzSize='default'
+          (click)='addNewCategory.emit()'
+        >
+          Create New
+        </button>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class='edit-category-modal__form-item'>
+    <leap-form-label [required]='true'>Sub-Category</leap-form-label>
+    <leap-form-hint-label>Sub-Categories allow you to refine your product classification and organize those with common
+      characteristics. Select the Sub-Category that best fits your product, or create a new one.
+    </leap-form-hint-label>
+    <nz-form-control>
+      <div class='edit-category-modal__form-control'>
+        <nz-select formControlName='subCategory'
+                   nzPlaceHolder='Select...'
+                   [nzNotFoundContent]="'Item not found'"
+                   [compareWith]='subCategoryCompareFn'
+        >
+          <nz-option *ngFor='let option of subCategoryDictionary; trackBy: trackByFn'
+                     [nzLabel]='option.name'
+                     [nzValue]='option'
+          ></nz-option>
+        </nz-select>
+        <button
+          nz-button
+          nzType='default'
+          nzSize='default'
+          (click)='onAddNewSubCategory()'
+        >
+          Create New
+        </button>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>
+

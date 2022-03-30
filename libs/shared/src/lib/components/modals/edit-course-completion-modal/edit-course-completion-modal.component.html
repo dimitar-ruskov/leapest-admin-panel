@@ -1,0 +1,16 @@
+<form [formGroup]='form' nz-form nzLayout='vertical'>
+  <nz-form-item>
+    <leap-form-label [required]='true'>Course Completion</leap-form-label>
+    <leap-form-hint-label>Please specify how you wish for this course event to be considered completed.
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-radio-group formControlName='automaticCourseCompletion'>
+        <label *ngFor='let option of courseCompletionOptions'
+               class='admin-panel__radio-option'
+               nz-radio
+               [nzValue]='option.key'
+        >{{ option.value }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>

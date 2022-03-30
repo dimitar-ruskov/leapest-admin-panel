@@ -1,0 +1,23 @@
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label [required]="true">
+      Multiple Enrollments
+      <span class="grey">&nbsp;*</span>
+    </leap-form-label>
+    <leap-form-hint-label>
+      Can learners enroll in more than one event for this course?
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="enrollmentPolicy">
+        <label nz-radio [nzValue]="enrollmentPolicyKeys.MULTIPLE"
+          >Yes - Learners can enroll in more than one event</label
+        >
+        <label nz-radio [nzValue]="enrollmentPolicyKeys.SINGLE">No - Learners can only enroll to one event</label>
+      </nz-radio-group>
+    </nz-form-control>
+    <div *ngIf="showMessage" class="warning-message">
+      Please note that, while all enrollments will be listed on DOMO (EdGraph), only the most recent one will be
+      considered for a SmartCard completion.
+    </div>
+  </nz-form-item>
+</form>

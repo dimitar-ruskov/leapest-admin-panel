@@ -1,0 +1,63 @@
+<div>
+  <div *ngIf="selectedCourseId && selectedCourseName" style="margin-bottom: 15px;">
+    <div class="main-label">Selected Course</div>
+    <div class="sub-label">Selected Course for this Event.</div>
+    <div class="main-label">{{ selectedCourseName }}</div>
+  </div>
+  <form nz-form [formGroup]="eventCreationForm" nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-radio-group formControlName="historical">
+          <label *ngFor="let option of eventTypeOptions" nz-radio [nzValue]="option.key">
+            <div style="display: flex">
+              <div class="option-icon">
+                <i class="{{ option.iconClass }}"></i>
+              </div>
+              <div>
+                <div class="t-label">{{ option.value }}</div>
+                <div class="t-sub-label">{{ option.extra }}</div>
+              </div>
+            </div>
+          </label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="eventCreationFormHistoricalControl.value !== null">
+      <nz-form-control>
+        <nz-radio-group formControlName="virtual">
+          <label *ngFor="let option of eventDeliveryOptions" nz-radio [nzValue]="option.key">
+            <div style="display: flex">
+              <div class="option-icon">
+                <i class="{{ option.iconClass }}"></i>
+              </div>
+              <div>
+                <div class="t-label">{{ option.value }}</div>
+                <div class="t-sub-label">{{ option.extra }}</div>
+              </div>
+            </div>
+          </label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="eventCreationFormVirtualControl.value !== null && !selectedCourseId">
+      <leap-form-label [required]="true">Select Course</leap-form-label>
+      <leap-form-hint-label>
+        Please select Course for this Event.
+      </leap-form-hint-label>
+      <nz-form-control>
+        <div class="courseId-control">
+          <nz-select
+            nzShowSearch
+            formControlName="courseId"
+            [nzNotFoundContent]="'Item not found'"
+            nzPlaceHolder="Select..."
+          >
+            <nz-option *ngFor="let option of courseOptionsForEvent" [nzLabel]="option.value" [nzValue]="option.key">
+            </nz-option>
+          </nz-select>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

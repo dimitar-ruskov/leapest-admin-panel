@@ -1,0 +1,11 @@
+<p *ngIf="!isReset; else resetTemplate">
+  All changes applied to the Email Template on Domain level will be propagated to
+  <b>all new associated Courses</b>. Courses and Course Events with customized Email Templates (not Original) will not
+  be affected by these changes.
+</p>
+
+<ng-template #resetTemplate>
+  <p>
+    All the changes applied to the Email Template will be lost and the text will be restored to its {{ level }} state
+  </p>
+</ng-template>

@@ -1,0 +1,17 @@
+<div>
+  <div class="main-label">
+    You are about to cancel <strong>{{ name }}</strong> scheduled to start at <strong>{{ date }}</strong
+    >. Currently <strong>{{ learnerCount }}</strong> learners are enrolled to this Course Event. Please provide a
+    message to users below, this message will be included in the notification of this cancellation.
+  </div>
+  <div class="m-top">
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+      <nz-form-item class="m-top">
+        <nz-form-control>
+          <textarea rows="4" formControlName="reason" maxlength="1500" nz-input></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="reason-length">{{ form.get('reason').value ? form.get('reason').value.length : '0' }} / 1500</div>
+    </form>
+  </div>
+</div>

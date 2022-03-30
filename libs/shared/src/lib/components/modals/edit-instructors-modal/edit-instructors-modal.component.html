@@ -1,0 +1,37 @@
+<nz-spin [nzSpinning]="pending$ | async">
+  <form [formGroup]="form" nz-form nzLayout="vertical">
+    <nz-form-item>
+      <leap-form-label [required]="true">Add Instructor(s)</leap-form-label>
+      <leap-form-hint-label>
+        Who is going to present the contents of this course event? If you have Zoom as your Conferencing tool, please
+        make sure that the Instructors are part of your Zoom Account.
+      </leap-form-hint-label>
+      <div class="edit-instructors-modal__control-wrapper">
+        <nz-form-control>
+          <nz-select
+            nzMode="multiple"
+            nzPlaceHolder="Select an Instructor (click or type to search)"
+            nzShowSearch
+            [compareWith]="instructorCompareFn"
+            formControlName="instructors"
+          >
+            <ng-container *ngFor="let instructor of instructors$ | async">
+              <nz-option
+                [nzValue]="instructor"
+                [nzLabel]="instructor.firstName + ' ' + instructor.lastName + ' - ' + instructor.username"
+              >
+              </nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+        <button nz-button class="default-btn" (click)="onAddInstructor($event)">Add New</button>
+      </div>
+    </nz-form-item>
+  </form>
+  <div class="instructor-account-error" *ngIf="instructorAccountError">
+    The first instructor has to be in your {{ conferencingTool }} account
+  </div>
+  <leap-instructors-collisions-warnings
+    [instructorCollisions]="instructorCollisions$ | async"
+  ></leap-instructors-collisions-warnings>
+</nz-spin>

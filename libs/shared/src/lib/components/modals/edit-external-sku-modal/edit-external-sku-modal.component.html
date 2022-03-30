@@ -1,0 +1,27 @@
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label>{{ mainLabel }}</leap-form-label>
+    <leap-form-hint-label>{{ subLabel }}</leap-form-hint-label>
+    <nz-form-control [nzErrorTip]="errorTemplate">
+      <input nz-input type="text" formControlName="externalSKU" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('pattern')">
+    This field should contain only digits and alphabets in upper case.
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    This field should be at least {{ minLength }} characters long
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    This field should not be more than {{ maxLength }} characters long
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

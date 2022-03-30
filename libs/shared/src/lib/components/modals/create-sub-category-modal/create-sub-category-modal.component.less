@@ -1,0 +1,45 @@
+form {
+  margin-top: 3px;
+}
+
+.create-sub-category-modal {
+  &__category-name{
+    font-size: 18px;
+    margin: 0;
+  }
+
+  &__form-item {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+
+  &__form-control {
+    margin-top: 8px;
+  }
+}
+
+.keyword-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+:host(::ng-deep) {
+  .ant-select-multiple {
+    .ant-select-selection-item {
+      display: none;
+    }
+  }
+
+  .ant-tag {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 2px;
+  }
+
+  .ant-form-item {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}

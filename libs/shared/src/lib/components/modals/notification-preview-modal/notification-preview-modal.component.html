@@ -1,0 +1,11 @@
+<p class="center" *ngIf="(previewTemplate$ | async)?.error">
+  There was a problem generating the preview for this template. Please close the pop-up and try again.
+</p>
+<div
+  *ngIf="(previewTemplate$ | async)?.isSuccess; else defaultTemplate"
+  [innerHTML]="(previewTemplate$ | async).response | htmlBypass"
+></div>
+
+<ng-template #defaultTemplate>
+  <nz-skeleton [nzActive]="true"></nz-skeleton>
+</ng-template>

@@ -1,0 +1,17 @@
+<div class="info">Completion Status for {{ data?.materialName }} by {{ data?.fullName }}</div>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Time</th>
+    <th>Completed</th>
+    <th>Satisfaction</th>
+    <th>Score</th>
+  </tr>
+  <tr *ngFor="let contentReport of data?.contentReports">
+    <td>{{ contentReport.solarContent?.displayName }}</td>
+    <td>{{ contentReport.timeSpent ? formatTotalTime(contentReport.timeSpent) : 'N/A'}}</td>
+    <td>{{ contentReport.completed ? 'Yes' : 'No'}}</td>
+    <td>{{ contentReport.satisfaction ? contentReport.satisfaction : 'N/A' }}</td>
+    <td>{{ contentReport.score ? contentReport.score : 'N/A' }}</td>
+  </tr>
+</table>

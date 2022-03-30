@@ -1,0 +1,22 @@
+<p>Affiliated Courses</p>
+
+<nz-table #draftEventsTable [nzLoading]="loading" [nzData]="draftEvents">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of draftEventsTable.data">
+      <td>{{ event.sku }}</td>
+      <td>{{ formatDate(event.hierarchicalAgenda[0]?.startDateTime) }}</td>
+      <td>{{ formatDate(event.hierarchicalAgenda[event.hierarchicalAgenda.length - 1]?.endDateTime) }}</td>
+      <td>
+        {{ event.classEvent?.virtualVenue ? 'Virtual Venue' : 'Not vv' }}
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

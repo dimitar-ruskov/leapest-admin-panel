@@ -1,0 +1,27 @@
+<form nz-form [formGroup]='form' nzLayout='vertical'>
+  <nz-form-item class='create-category-modal__form-item'>
+    <leap-form-label [required]='true'>Category Name</leap-form-label>
+    <leap-form-hint-label>Please provide a name for your category. Be aware to use a name that is easy to understand for other users or your learners.</leap-form-hint-label>
+    <nz-form-control [nzErrorTip]="combineTpl">
+      <input nz-input formControlName='name' required>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class='create-category-modal__form-item'>
+    <leap-form-label>Description</leap-form-label>
+    <leap-form-hint-label>Please provide a (brief) description of your category.</leap-form-hint-label>
+    <nz-form-control>
+      <quill-editor class='admin-panel__quill-editor' [modules]='quillConfig' formControlName='description'></quill-editor>
+      <leap-editor-char-count [current]='descriptionControl.value?.length' [limit]='charLimit'></leap-editor-char-count>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('notUnique')">
+    This category already exists
+  </ng-container>
+</ng-template>

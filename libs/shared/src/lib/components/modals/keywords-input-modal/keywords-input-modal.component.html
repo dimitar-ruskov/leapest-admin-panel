@@ -1,0 +1,29 @@
+<div>
+  <div class="main-label">{{ mainLabel }}</div>
+  <div class="sub-label">{{ subLabel }}</div>
+  <form nz-form [formGroup]="form" style="margin-top: 3px">
+    <nz-form-item>
+      <nz-form-control>
+        <div>
+          <nz-select
+            nzMode="tags"
+            nzPlaceHolder="Start typing..."
+            nzAllowClear
+            nzServerSearch
+            formControlName="keywords"
+            (nzOnSearch)="onInputKeyword($event)"
+          >
+            <ng-container *ngFor="let o of keywordsControlOptions$ | async">
+              <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+            </ng-container>
+          </nz-select>
+          <div class="keyword-tags-container">
+            <span *ngFor="let val of keywordsControl.value">
+              <nz-tag nzMode="closeable" nzColor="#38b6a0" (nzOnClose)="onRemoveKeyword(val)">{{ val }} </nz-tag>
+            </span>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

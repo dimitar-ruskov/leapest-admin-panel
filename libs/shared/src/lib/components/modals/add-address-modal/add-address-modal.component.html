@@ -1,0 +1,92 @@
+<div>
+    <form nz-form [formGroup]="form">
+        <div style="display: flex">
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">Country *</nz-form-label>
+                    <nz-form-control>
+                        <nz-select nzShowSearch formControlName="country" [nzNotFoundContent]="'Item not found'"
+                            nzPlaceHolder="Select Country">
+                            <nz-option *ngFor="let option of (countries)" [nzLabel]="option.value"
+                                [nzValue]="option.key">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div style="width:2%"></div>
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">State *</nz-form-label>
+                    <nz-form-control>
+                        <nz-select nzShowSearch formControlName="state" [nzNotFoundContent]="'Item not found'"
+                            nzPlaceHolder="Select State">
+                            <nz-option *ngFor="let option of (states)" [nzLabel]="option.value" [nzValue]="option.key">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">Province</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="province">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div style="width:2%"></div>
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">City *</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="city">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">Zip Code *</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="postalCode">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div style="width:2%"></div>
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">Street Name *</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="address">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">House Number</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="houseNumber">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div style="width:2%"></div>
+            <div style="width: 50%">
+                <nz-form-item>
+                    <nz-form-label class="form-label">Room Number</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="room">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</div>
