@@ -1,0 +1,29 @@
+<div class='select-category-input__selected-category'
+     *ngIf='category; else noCategorySelectedTemplate'>
+  <div class='select-category-input__selected-category-label'>
+    <span>{{ categoryLabel }}: </span>
+    <span>{{ category.name }}</span>
+  </div>
+  <div class='select-category-input__selected-category-controls'>
+    <button class='admin-panel__reset-button select-category-input__selected-category-edit'
+            (click)='openSelectCategoryModal($event)'
+    >
+      <i class="fal fa-edit"></i>
+      <span>Edit</span>
+    </button>
+    <button class='admin-panel__reset-button select-category-input__selected-category-remove'
+            (click)='resetSelectedCategory($event)'
+    >
+      <i class="fal fa-times-circle"></i>
+      <span>Remove</span></button>
+  </div>
+</div>
+
+<ng-template #noCategorySelectedTemplate>
+  <button nz-button
+          nzType='primary'
+          [disabled]='isDisabled'
+          (click)='openSelectCategoryModal($event)'
+  >Select Category
+  </button>
+</ng-template>

@@ -1,0 +1,36 @@
+@panel-background-color: #fff;
+@default-text-color: #26273b;
+
+:host(::ng-deep) {
+
+  .ant-collapse {
+    border: none;
+    margin-bottom: 4px;
+
+    > .ant-collapse-item {
+      border: none;
+      border-radius: 6px;
+      background-color: @panel-background-color;
+
+      &:not(.ant-collapse-item-active) {
+        box-shadow: 0 2px 6px rgba(38, 39, 59, 0.14);
+      }
+
+      &:not(.ant-collapse-item-active):hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.32);
+      }
+    }
+  }
+
+  .ant-collapse-content {
+    border: none;
+    border-radius: 6px;
+  }
+
+  .ant-collapse-header {
+    font-size: 18px;
+    color: @default-text-color;
+    height: 54px;
+    border-radius: 6px;
+  }
+}

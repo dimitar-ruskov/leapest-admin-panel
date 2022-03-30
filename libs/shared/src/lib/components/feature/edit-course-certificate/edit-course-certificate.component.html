@@ -1,0 +1,19 @@
+<div *ngIf="certificatesDictionary$ | async as certificatesList">
+  <div class="main-label">Participation Certificate</div>
+  <div class="sub-label" [innerHTML]="description"></div>
+
+  <form nz-form nzLayout="vertical" [formGroup]="form" class="certificate-form">
+    <nz-form-item>
+      <nz-form-control>
+        <leap-certificate-select
+          formControlName="certificate"
+          [certificatesList]="certificatesList"
+          [hideSwitcher]="isCourse"
+          [hideSelect]="isEvent"
+          [switcherValue]="switcherValue"
+          (onSwitch)="onSwitch($event)"
+        ></leap-certificate-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

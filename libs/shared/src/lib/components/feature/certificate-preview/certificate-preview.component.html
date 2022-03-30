@@ -1,0 +1,20 @@
+<div>
+  <div class="label">
+    Please note that the information below is just a sample. All details will be replaced by the with the actual Learner
+    information.
+  </div>
+  <div class="certificate">
+    <ng-template #certificateSpinner>
+      <div class="loader-modal-body">
+        <nz-spin nzSimple nzSpinning nzSize="large"></nz-spin>
+      </div>
+    </ng-template>
+    <iframe
+      *ngIf="!isLoading; else certificateSpinner"
+      [src]="link | safeUrl"
+      width="800px"
+      class="preview"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>

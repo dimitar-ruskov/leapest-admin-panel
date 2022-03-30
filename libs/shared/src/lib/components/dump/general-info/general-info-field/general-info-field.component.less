@@ -1,0 +1,29 @@
+@field-title-color: #737394;
+
+.general-info-field {
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+
+    h3 {
+      font-size: 12px;
+      color: @field-title-color;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    button {
+      margin: 0 0 0 10px;
+
+      &:hover {
+        color: #38b6a0;
+      }
+
+      > i {
+        font-size: 16px;
+        color: currentColor;
+      }
+    }
+  }
+}

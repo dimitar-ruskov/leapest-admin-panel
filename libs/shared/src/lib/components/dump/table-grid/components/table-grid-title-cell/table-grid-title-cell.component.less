@@ -1,0 +1,36 @@
+@image-width: 72px;
+@image-margin: 20px;
+
+:host(::ng-deep) {
+  .leap-table-grid-title-cell {
+    &__container {
+      display: flex;
+      align-items: center;
+      border-radius: inherit;
+      height: 54px;
+    }
+
+    &__image {
+      border-radius: inherit;
+      margin-right: @image-margin;
+      width: 72px;
+      height: 100%;
+
+      > img {
+        border-radius: inherit;
+        height: inherit;
+        width: inherit;
+      }
+    }
+
+    &__title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+      min-width: 0;
+      max-width: calc(100% - (@image-width + @image-margin));
+    }
+  }
+}
+

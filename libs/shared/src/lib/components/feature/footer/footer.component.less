@@ -1,0 +1,44 @@
+@label-color: #737394;
+
+:host {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.footer-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &--logo {
+    label {
+      display: flex;
+      align-items: flex-end;
+
+      > span {
+        font-size: 14px;
+        color: #737394;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &--links {
+    justify-content: center;
+    flex: 1;
+  }
+
+  &--badges {
+    a {
+      img {
+        width: 93px;
+        height: 28px;
+      }
+    }
+
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}

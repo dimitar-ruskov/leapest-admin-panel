@@ -1,0 +1,12 @@
+<nz-input-group [nzSuffix]="suffixIcon">
+  <input
+    type="text"
+    nz-input
+    placeholder="{{ placeholder || 'You are looking for?' }}"
+    [ngModel]="filter"
+    (ngModelChange)="onSearchPhraseChange($event)"
+  />
+  <ng-template #suffixIcon>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+</nz-input-group>

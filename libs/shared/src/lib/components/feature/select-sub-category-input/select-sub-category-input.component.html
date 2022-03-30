@@ -1,0 +1,12 @@
+<nz-select [nzNotFoundContent]="'Item not found'"
+           nzPlaceHolder='Select...'
+           [(ngModel)]='subCategoryId'
+           (ngModelChange)='onSubCategorySelected($event)'
+>
+  <nz-option *ngFor='let option of subCategories; trackBy: trackByFn'
+             [nzLabel]='option.name'
+             [nzValue]='option.id'
+  ></nz-option>
+</nz-select>
+
+<button nz-button nzType='default' (click)='openSubCategoryModal()'>Create New</button>

@@ -1,0 +1,57 @@
+<div style="display: flex;width: 100%">
+  <div
+    class="{{ 'material-container ' + (selectMode ? 'selectable' : '') + (editable ? 'editable' : '') }}"
+    [class.selectable-active]="selected"
+    (click)="selectMode ? clickEvent() : null"
+  >
+    <div class="material-icon">
+      <img [src]="deliveryFormatSVGAssetURL(m_ir.types[0].configKey)" alt="Material Type" class="material-type-icon" />
+    </div>
+    <div class="material-details">
+      <div class="material-title">{{ m_ir?.name }}</div>
+      <div style="height: 10px"></div>
+      <div>
+        <i class="fal fa-book"></i>
+        <span style="margin-left: 5px;">{{ joinWithComma(m_ir.types) }}</span>
+      </div>
+      <div class="material-languages">
+        <i class="fal fa-comment-alt-lines"></i>
+        <span style="margin-left: 5px;">{{ languages }}</span>
+        <div
+          *ngIf="!expanded && !showOneLang && m_ir?.languages?.length >= maxCollapsedCount"
+          class="expand-container"
+          (click)="expand()"
+        >
+          <span>View {{ m_ir?.languages?.length - maxCollapsedCount }} more...</span>
+        </div>
+        <div *ngIf="expanded" class="collapse-container" (click)="collapse()">View less...</div>
+      </div>
+    </div>
+    <div class="edit-material-container" *ngIf="editable">
+      <button
+        *ngIf="selectingVariantsEnabled && hasMultipleVariants"
+        class="specific-btn"
+        nz-button
+        nzType="primary"
+        (click)="selectVariant.emit()"
+      >
+        Select Variant
+      </button>
+      <div class="delete-icon-container">
+        <i class="fal fa-trash-alt delete-icon" (click)="removeIndex.emit()"></i>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editable" class="arrows-container">
+    <div *ngIf="showUpArrow">
+      <button nz-button class="arrow-btn" nzShape="circle" (click)="moveUp.emit()">
+        <i class="far fa-angle-up"></i>
+      </button>
+    </div>
+    <div *ngIf="showDownArrow">
+      <button nz-button class="arrow-btn" nzShape="circle" (click)="moveDown.emit()">
+        <i class="far fa-angle-down"></i>
+      </button>
+    </div>
+  </div>
+</div>

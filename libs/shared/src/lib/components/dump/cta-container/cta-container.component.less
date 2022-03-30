@@ -1,0 +1,38 @@
+@cta-background-color: #fff;
+
+:host {
+  display: flex;
+  border-radius: 6px;
+  background-color: @cta-background-color;
+  padding: 10px 10px 20px 20px;
+}
+
+.cta-container {
+  &__image {
+    margin-right: 10px;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    &:first-child {
+      padding-top: 8px;
+    }
+  }
+
+  &__description {
+    margin-top: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,34 @@
+@infinite-scroll-container-border-color: #b6b7cc;
+@infinite-scroll-container-background-color: #f8f8fb;
+@infinite-scroll-container-height: 300px;
+
+.add-course-material-modal {
+  &__add-material-control,
+  &__infinite-scroll-container {
+    width: 100%;
+    margin-top: 11px;
+  }
+
+  &__infinite-scroll-container {
+    width: 100%;
+    height: @infinite-scroll-container-height;
+    max-height: @infinite-scroll-container-height;
+    overflow-y: auto;
+    border: 1px 0 solid @infinite-scroll-container-border-color;
+    background-color: @infinite-scroll-container-background-color;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px 0;
+  }
+
+  &__internal-repo-wrapper {
+    &:not(:first-child) {
+      margin-top: 7px;
+    }
+  }
+}
+
+leap-form-hint-label {
+  &.bottom-label {
+    margin-top: 10px;
+  }
+}

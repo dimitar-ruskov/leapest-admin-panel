@@ -1,0 +1,83 @@
+<p>{{ dayIndex | editAgendaDateTimeInfo }}</p>
+
+<form nz-form [formGroup]="dateTimeSelectionForm">
+  <nz-form-item *ngIf="dayIndex === null && isTimezoneEditable; else timezoneDetails">
+    <leap-form-label [required]="true">Timezone</leap-form-label>
+    <leap-form-hint-label
+      >Please define the timezone for which the event is going to take place. This will be used to convert the starting
+      times to the learners' timezone.</leap-form-hint-label
+    >
+    <nz-form-control>
+      <div class="timezone-control">
+        <nz-select
+          nzShowSearch
+          formControlName="timezone"
+          [nzNotFoundContent]="'Item not found'"
+          nzPlaceHolder="Select a Timezone (click or type to search)"
+        >
+          <nz-option *ngFor="let option of timezonesDict$ | async" [nzLabel]="option.value" [nzValue]="option.key">
+          </nz-option>
+        </nz-select>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <ng-container formArrayName="days">
+    <div
+      class="edit-agenda-date-time-modal__day"
+      *ngFor="let day of dateTimeSelectionDays.controls; trackBy: trackByFn; index as i"
+      [formGroupName]="i"
+    >
+      <ng-container *ngIf="dayIndex === null || dayIndex === i">
+        <label>Day {{ i + 1 }}</label>
+
+        <div class="edit-agenda-date-time-modal__inputs-wrapper">
+          <nz-form-item>
+            <nz-form-control>
+              <div class="edit-agenda-date-time-modal__date-input">
+                <nz-date-picker
+                  formControlName="date"
+                  [nzDefaultPickerValue]="getPage(i)"
+                  [nzDisabledDate]="dateConstraints[i]"
+                  nzFormat="dd MMM yyyy"
+                  nzAllowClear="false"
+                  [disabled]="!agendaDays[i]?.isEditable"
+                ></nz-date-picker>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <div class="edit-agenda-date-time-modal__time-input">
+                <nz-time-picker
+                  formControlName="time"
+                  nzFormat="HH:mm"
+                  nzAllowEmpty="false"
+                  [nzDisabledHours]="timeConstraints[i]"
+                  [disabled]="!agendaDays[i]?.isEditable"
+                ></nz-time-picker>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div class="edit-agenda-date-time-modal__controls">
+    <button nz-button nzSize="large" class="default-btn" (click)="closeModal($event)">{{ cancelButtonTitle }}</button>
+    <button
+      nz-button
+      nzSize="large"
+      nzType="primary"
+      [disabled]="dateTimeSelectionForm.pristine"
+      (click)="saveBulkDateTimeSelection($event)"
+    >
+      {{ saveChangesButtonTitle }}
+    </button>
+  </div>
+</form>
+
+<ng-template #timezoneDetails>
+  <span class="timezone-v"> Timezone: {{ timezone }} </span>
+</ng-template>

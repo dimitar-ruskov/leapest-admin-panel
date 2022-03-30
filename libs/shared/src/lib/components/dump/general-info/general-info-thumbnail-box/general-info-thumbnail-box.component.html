@@ -1,0 +1,27 @@
+<div class='general-info-thumbnail-box__header'>{{ header }}</div>
+<img class='general-info-thumbnail-box__thumbnail'
+     [src]='thumbnailUrl'
+     alt='Thumbnail'
+     width='280'
+     height='210'
+>
+<div class='general-info-thumbnail-box__buttons' *ngIf='editable'>
+  <button class='general-info-thumbnail-box__button'
+          nz-button
+          nzType='default'
+          nzSize='default'
+          (click)='onGenerateThumbnail($event)'
+  >
+    <img class='mr-2' [src]="environmentService.assetsPath + '/sync-arrow.svg'" alt='Generate' />
+    Generate Thumbnail
+  </button>
+  <button class='general-info-thumbnail-box__button'
+          nz-button
+          nzType='default'
+          nzSize='default'
+          (click)='onUploadThumbnail($event)'
+  >
+    <img class='mr-2' [src]="environmentService.assetsPath + '/upload.svg'" alt='Upload' />
+    Upload Thumbnail
+  </button>
+</div>

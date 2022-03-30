@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {AddAddressModalModule} from "./add-address-modal/add-address-modal.module";
+import {AddCourseMaterialModalModule} from "./add-course-material-modal/add-course-material-modal.module";
 import {AssignUsersModalModule} from "./assign-users-modal/assign-users-modal.module";
 import {BasicUserModalModule} from "./basic-user-modal/basic-user-modal.module";
 import {
@@ -44,13 +45,16 @@ import {NotificationPreviewModalModule} from "./notification-preview-modal/notif
 import {PublishToLxpModalModule} from "./publish-to-lxp-modal/publish-to-lxp-modal.module";
 import {QuillInputModalModule} from "./quill-input-modal/quill-input-modal.module";
 import {RemoveWaitingListModalModule} from "./remove-waiting-list-modal/remove-waiting-list-modal.module";
+import {SelectCategoryModalModule} from "./select-category-modal/select-category-modal.module";
 import {SelectInputModalModule} from "./select-input-modal/select-input-modal.module";
+import {SelectSubCategoryModalModule} from "./select-sub-category-modal/select-sub-category-modal.module";
 import {TextInputModalModule} from "./text-input-modal/text-input-modal.module";
 import {UploadThumbnailModalModule} from "./upload-thumbnail-modal/upload-thumbnail-modal.module";
 import {VariantSelectModalModule} from "./variant-select-modal/variant-select-modal.module";
 
 const modals = [
   AddAddressModalModule,
+  AddCourseMaterialModalModule,
   AssignUsersModalModule,
   BasicUserModalModule,
   BulkAttendanceTrackingSelectionModalModule,
@@ -89,7 +93,9 @@ const modals = [
   PublishToLxpModalModule,
   QuillInputModalModule,
   RemoveWaitingListModalModule,
+  SelectCategoryModalModule,
   SelectInputModalModule,
+  SelectSubCategoryModalModule,
   TextInputModalModule,
   UploadThumbnailModalModule,
   VariantSelectModalModule

@@ -1,0 +1,26 @@
+<ng-container *ngIf='instructorCollisions.length'>
+  <div class='instructors-collision-warning'>
+    <nz-alert nzType='warning' nzMessage='Following instructor(s) are already assigned to following course events. If you wish to proceed to assignment anyway, click Save Changes'></nz-alert>
+  </div>
+  <div class='instructor-collision' *ngFor='let instructorCollision of instructorCollisions'>
+    <p>{{ instructorCollision.userDTO.displayName }}</p>
+    <table>
+      <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Event Venue</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let collidingCourse of instructorCollision.collidingCourses">
+        <td>{{ collidingCourse.displayName }}</td>
+        <td>{{ collidingCourse?.virtualVenue ? 'Virtual' : collidingCourse?.venue?.city + ', ' + collidingCourse?.venue?.country}}</td>
+        <td>{{ collidingCourse?.startDate | date: 'dd MMM yyyy' }}</td>
+        <td>{{ collidingCourse?.endDate | date: 'dd MMM yyyy' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>

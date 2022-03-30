@@ -1,0 +1,110 @@
+<p class="explain" *ngIf="!editMode">
+  When adding a section, it will be added at the end of the selected day. You can then move it using the arrows at the
+  right-side of the section or its context menu (via the three dots).
+</p>
+<form nz-form [formGroup]="sectionForm" nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label [required]="true">Section Type</leap-form-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="type">
+        <label
+          *ngFor="let option of sectionTypeOptions"
+          nz-radio
+          [nzDisabled]="!dayEditable"
+          [nzValue]="option.key"
+          class="nz-radio-label"
+        >
+          <div class="nz-radio-label">
+            <span class="main-label">{{ option.value }} - </span>
+            <span class="sub-label-big" style="margin-left: 4px">{{ option.subInfo }}</span>
+          </div>
+        </label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div *ngIf="typeControl?.value">
+    <nz-form-item>
+      <leap-form-label [required]="true">Section Name</leap-form-label>
+      <leap-form-hint-label>
+        This will be the official name of your section as it will be displayed towards learners
+      </leap-form-hint-label>
+      <nz-form-control>
+        <input nz-input formControlName="name" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <leap-form-label [required]="true">Duration</leap-form-label>
+      <leap-form-hint-label>
+        This will be the duration of section
+      </leap-form-hint-label>
+
+      <div class="flex-display">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-select
+              formControlName="durationHours"
+              [nzNotFoundContent]="'Item not found'"
+              nzPlaceHolder="Hours"
+              [nzDisabled]="!dayEditable"
+              class="hoursDropdown"
+            >
+              <nz-option *ngFor="let option of hoursDict" [nzLabel]="option" [nzValue]="option"> </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <div class="gap7"></div>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-select
+              formControlName="durationMins"
+              [nzNotFoundContent]="'Item not found'"
+              nzPlaceHolder="Minutes"
+              [nzDisabled]="!dayEditable"
+              class="minsDropdown"
+            >
+              <nz-option *ngFor="let option of minutesDict" [nzLabel]="option" [nzValue]="option"> </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <leap-form-label>Description</leap-form-label>
+      <leap-form-hint-label>
+        Please provide a general description for your section
+      </leap-form-hint-label>
+
+      <nz-form-control>
+        <quill-editor
+          [modules]="quillConfig"
+          formControlName="description"
+          (onContentChanged)="onContentChanged($event)"
+        ></quill-editor>
+        <leap-editor-char-count [current]="pureText?.trim().length" [limit]="charLimit"> </leap-editor-char-count>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="!name">
+      <leap-form-label>Add section to</leap-form-label>
+      <leap-form-hint-label>
+        The section will be added at the end of the selected day. Please, be aware of any overtimes.
+      </leap-form-hint-label>
+
+      <nz-form-control>
+        <nz-radio-group formControlName="day">
+          <label
+            *ngFor="let option of sectionDayControlOptions"
+            [nzDisabled]="option.isDisabled"
+            nz-radio
+            [nzValue]="option.key"
+            class="nz-radio-label"
+          >
+            {{ option.value }}
+          </label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</form>

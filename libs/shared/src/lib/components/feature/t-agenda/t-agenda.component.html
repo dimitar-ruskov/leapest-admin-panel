@@ -1,0 +1,151 @@
+<div class="{{ 'main-container ' + (borderless ? 'borderless' : '') }}">
+  <div class="btns-container">
+    <button
+      *ngIf="isDateTimeEditable && templateAgenda?.days?.length"
+      nz-button
+      nzSize="large"
+      style="margin-right: 10px"
+      class="default-btn"
+      (click)="editDateTime()"
+      [disabled]=""
+    >
+      Edit Date & Time
+    </button>
+    <button *ngIf="isEditable" nz-button nzSize="large" class="default-btn" (click)="addDay()">Add New Day</button>
+    <button
+      *ngIf="isEditable"
+      nz-button
+      nzSize="large"
+      (click)="addSection()"
+      class="{{ templateAgenda?.days?.length || isDisabledAddSection ? 'default-btn' : 'default-btn-disabled' }}"
+      [disabled]="!templateAgenda?.days?.length || isDisabledAddSection"
+      style="margin-left: 10px"
+    >
+      Add New Section
+    </button>
+    <button
+      *ngIf="showSaveChanges"
+      nz-button
+      nzSize="large"
+      nzType="primary"
+      style="margin-left: 10px"
+      [disabled]="showSaveChanges === 'disabled'"
+      [nzLoading]="showSaveChanges === 'loading'"
+      (click)="onSaveChanges()"
+    >
+      Save Changes
+    </button>
+    <span *ngIf="isEvent" class="timezone-span">
+      <span class="timezone-d">Timezone:</span>
+      <span class="timezone-v">{{ templateTimezone }}</span>
+      <i *ngIf="isTimezoneEditable" (click)="editDateTime()" class="fal fa-edit edit-icon"></i>
+    </span>
+    <leap-no-materials *ngIf="!isEditable && !isCreating">
+      Your editing capabilities are limited. Agenda editing is disabled on the Parent Course.
+    </leap-no-materials>
+  </div>
+  <div style="height: 10px"></div>
+  <nz-collapse>
+    <nz-collapse-panel
+      *ngFor="let day of templateAgenda?.days; let i = index"
+      [nzHeader]="panelHeader"
+      [nzActive]="true"
+    >
+      <ng-template #panelHeader>
+        <span>Day {{ i + 1 }}</span>
+        <span *ngIf="isEvent" class="day-duration"> | </span>
+        <span *ngIf="isEvent && day.startDateTime"> {{ day.startDateTime | date: 'dd MMM yyyy, HH:mm' }} </span>
+        <span
+          class="day-duration select-dt"
+          *ngIf="isDateTimeEditable && day.startDateTime && !(day.startDateTime | hasDayPassed) && day.isEditable"
+          (click)="selectDateTime(i, $event)"
+        >
+          <i class="fal fa-edit"></i>
+        </span>
+        <span
+          class="day-duration select-dt"
+          *ngIf="isDateTimeEditable && !day.startDateTime"
+          (click)="selectDateTime(i, $event)"
+        >
+          Select Date & Time *
+        </span>
+        <span class="day-duration" *ngIf="calculateDayDurationAndItemCount(i) as dur"> | ({{ dur }})</span>
+      </ng-template>
+      <div
+        *ngFor="let section of day.items; let lastSection = last; let sectionIndex = index; let firstSection = first"
+      >
+        <div style="display: flex; background-color: inherit">
+          <div class="{{ 'section-container ' + (isEditable ? 'editable' : '') }}">
+            <div class="section-duration">
+              <i class="{{ section.type.configKey === 'break' ? 'fal fa-clock' : 'fal fa-book' }}"></i>
+              <span class="section-duration-label">{{ calculateDuration(section.duration) }}</span>
+            </div>
+            <div>
+              <div class="section-details">
+                <span class="section-title">{{ section.title }}</span>
+              </div>
+              <div *ngIf="section.description" [innerHtml]="section.description" class="section-description"></div>
+            </div>
+            <div class="delete-icon-container" *ngIf="isEditable">
+              <ng-container *ngIf="day.isEditable">
+                <i class="fal fa-trash-alt delete-icon" (click)="removeSection(i, sectionIndex)"></i>
+              </ng-container>
+              <i class="fal fa-edit edit-icon" (click)="editSection(i, sectionIndex, day.isEditable)"></i>
+            </div>
+          </div>
+          <div class="arrows-container" *ngIf="isEditable && day.isEditable">
+            <div *ngIf="!firstSection">
+              <button nz-button class="arrow-btn" nzShape="circle" (click)="moveSectionUp(i, sectionIndex)">
+                <i class="far fa-angle-up"></i>
+              </button>
+            </div>
+            <div *ngIf="!lastSection">
+              <button nz-button class="arrow-btn" nzShape="circle" (click)="moveSectionDown(i, sectionIndex)">
+                <i class="far fa-angle-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper" *ngIf="!lastSection && isEditable && day.isEditable">
+          <div class="hover-container"></div>
+          <div class="day-break-btns">
+            <button nz-button class="section-break-btn default-btn" (click)="addDayBreak(i, sectionIndex)">
+              <i class="fal fa-plus"></i> Add Day Break
+            </button>
+            <div class="day-break-btns-sep"></div>
+            <button
+              nz-button
+              nzType="primary"
+              class="section-break-btn"
+              (click)="addDayBreakSection(day, sectionIndex)"
+            >
+              <i class="fal fa-plus"></i> Add Section
+            </button>
+          </div>
+        </div>
+        <div *ngIf="!lastSection && (!isEditable || !day.isEditable)" style="height: 10px;"></div>
+      </div>
+      <div *ngIf="!day.items?.length" class="empty-day">
+        <div class="empty-day-img-container">
+          <img class="empty-day-img" [src]="environmentService.assetsPath + '/certified-white-copy.png'" alt="" />
+        </div>
+        <div class="empty-day-exp">
+          <div>This day has no sections yet.</div>
+          <div>Add one or more sections to describe the topics addressed in this course day and</div>
+          <div>their estimated duration.</div>
+        </div>
+        <div class="empty-day-btns" *ngIf="isEditable">
+          <button nz-button nzDanger [disabled]="templateAgenda.days.length < 2" (click)="deleteDay(i)">
+            Delete Day
+          </button>
+          <div style="width: 10px"></div>
+          <button nz-button nzType="primary" (click)="addSection(day, i)">Add New Section</button>
+        </div>
+      </div>
+    </nz-collapse-panel>
+  </nz-collapse>
+</div>
+
+<ng-template #warningModalContent>
+  <p style="color: #f79b42">{{ warningModalMessage }}</p>
+</ng-template>

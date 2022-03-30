@@ -1,0 +1,83 @@
+@import (reference) "../../../../../../styles/reference";
+
+:host::ng-deep{
+    .ql-editor{
+        height: 150px;
+    }
+    .ql-snow.ql-toolbar button, .ql-snow .ql-toolbar button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        float: left;
+        height: 24px;
+        padding: 3px 5px;
+        width: 28px;
+        min-width: auto;
+      }
+
+}
+
+.main-label{
+    font-family: Open Sans;
+    font-size: 16px;
+    color: #26273b;
+}
+.sub-label{
+    font-family: Open Sans;
+    font-size: 14px;
+    color: @leap-grey-text;
+}
+.sub-label-big{
+    font-family: Open Sans;
+    font-size: 16px;
+    color: #8e8fa6;
+}
+
+.tag {
+  margin-left: 6px;
+  color: @leap-grey-text;
+
+  &.optional {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  &.required {
+    font-style: normal;
+  }
+}
+
+.char-count{
+    font-family: Open Sans;
+    font-size: 14px;
+    color: @leap-grey-text;
+    text-align: right;
+  }
+
+.rich-text{
+    width: 500px;
+}
+.explain{
+    font-family: Open Sans;
+    font-size: 16px;
+    color: #26273b;
+}
+.nz-radio-label{
+    display: flex;
+    align-items: center;
+}
+.flex-display{
+    display: flex;
+}
+.gap7{
+    width: 7px;
+}
+.hoursDropdown{
+    width: 100px
+}
+.minsDropdown{
+    width: 110px
+}

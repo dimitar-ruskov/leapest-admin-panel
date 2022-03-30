@@ -1,0 +1,9 @@
+<div class='creation-stepper-step__header' *ngIf='header'>
+  <ng-content select='leap-creation-stepper-step-header'></ng-content>
+</div>
+<div class='creation-stepper-step__body' *ngIf='body'>
+  <ng-content select='leap-creation-stepper-step-body'></ng-content>
+</div>
+<div class='creation-stepper-step__buttons' *ngIf='buttons'>
+  <ng-content select='leap-creation-stepper-step-buttons'></ng-content>
+</div>

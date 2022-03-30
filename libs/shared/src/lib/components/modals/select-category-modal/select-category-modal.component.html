@@ -1,0 +1,42 @@
+<ng-container *ngIf='mode === "select"; else createCategoryTemplate'>
+  <leap-form-hint-label>Please select the category that best describes your course.</leap-form-hint-label>
+
+  <div class='select-category-modal__categories-list'>
+    <div class='select-category-modal__category-box'
+         *ngFor='let category of categoryDictionary; trackBy: trackByFn'
+         (click)='onCategorySelect(category)'
+    >
+      {{ category.name }}
+    </div>
+  </div>
+
+  <div class='select-category-modal__additional-actions'>
+    <span>Can not find what you need? </span>
+    <a (click)='switchToCreateMode()'>Create a new category</a>
+  </div>
+
+  <div class='select-category-modal__footer'>
+    <button nz-button nzType='default' (click)='onCancel()'>Cancel</button>
+  </div>
+</ng-container>
+
+<ng-template #createCategoryTemplate>
+  <leap-form-label [required]='true'>Create New Category</leap-form-label>
+  <leap-form-hint-label>You can add the category that best describes your course. Courses that belong to the same
+    category will be considered as being related. Please provide a name for this category.
+  </leap-form-hint-label>
+
+  <input class='select-category-modal__create-category-input' nz-input [(ngModel)]='newCategoryName' />
+
+  <div class='select-category-modal__footer'>
+    <button nz-button nzType='default' (click)='switchToSelectMode()'>Back</button>
+    <button nz-button
+            nzType='primary'
+            [nzLoading]='creatingCategory'
+            [disabled]='!newCategoryName?.trim().length'
+            (click)='createCategory()'
+    >
+      Add Category
+    </button>
+  </div>
+</ng-template>

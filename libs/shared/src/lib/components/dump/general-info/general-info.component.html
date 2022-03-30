@@ -1,0 +1,9 @@
+<div class='general-info__thumbnail-box-container' *ngIf='thumbnailBox'>
+  <ng-content select='leap-general-info-thumbnail-box'></ng-content>
+</div>
+<div class='general-info__fields'>
+  <div class='general-info__field-container' *ngFor='let field of fields'>
+    <ng-template [ngTemplateOutlet]='fieldTemplate' [ngTemplateOutletContext]='{$implicit: field}'></ng-template>
+  </div>
+</div>
+

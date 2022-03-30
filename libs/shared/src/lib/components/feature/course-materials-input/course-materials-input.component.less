@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.course-materials-input {
+  &__add-material-button {
+    margin-top: 12px;
+
+    &-label {
+      display: flex;
+      align-items: center;
+
+      > i {
+        font-size: 22px;
+      }
+
+      > span {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__material-wrapper {
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+  }
+}

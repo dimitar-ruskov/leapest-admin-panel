@@ -1,0 +1,23 @@
+@label-color: #737394;
+@default-text-color: #26273b;
+
+:host {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.creation-stepper-step-base-entry {
+  &__label {
+    color: @label-color;
+  }
+
+  &__value {
+    color: @default-text-color;
+    margin-left: 5px;
+  }
+}

@@ -1,0 +1,29 @@
+<ng-container *ngIf='!skeleton; else skeletonTemplate'>
+  <div class='cta-container__image' *ngIf='ctaContainerImage'>
+    <ng-content select='[leapCtaContainerImage]'></ng-content>
+  </div>
+  <div class='cta-container__content'>
+    <div class='cta-container__header'>
+      <div class='cta-container__title-wrapper'>
+        <div class='cta-container__type' *ngIf='ctaContainerEntityType'>
+          <ng-content select='leap-cta-container-entity-type'></ng-content>
+        </div>
+        <div class='cta-container__title'>
+          <ng-content select='[leap-cta-container-title]'></ng-content>
+        </div>
+      </div>
+      <div class='cta-container__buttons'>
+        <ng-content select='[slot=buttons]'></ng-content>
+      </div>
+    </div>
+    <div class='cta-container__description'>
+      <ng-content select='[leap-cta-container-description]'></ng-content>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</ng-container>
+
+<ng-template #skeletonTemplate>
+  <ng-content select='[slot=skeleton]'></ng-content>
+</ng-template>
+

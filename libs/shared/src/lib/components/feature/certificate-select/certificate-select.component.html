@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <div class="switch-container" *ngIf="!hideSwitcher">
+    <nz-switch [ngModel]="certificateEnabled" (ngModelChange)="showCertificates($event)"></nz-switch>
+    <div class="switch-label">Enable Certificate Delivery</div>
+  </div>
+
+  <div class="certificate-wrapper" *ngIf="certificateEnabled || hideSelect">
+    <div class="certificate-container" *ngIf="certificatesList?.length; else emptyMessage">
+      <div *ngIf="!hideSelect && !hideSwitcher">
+        <div class="certificate-label">Participation Certificate</div>
+        <div class="certificate-desc">
+          Use the option below to select an existing certificate or click
+          <a href="hw/admin/certificates">here upload a new one</a> (this will send you to a different page).
+        </div>
+      </div>
+
+      <div class="certificate-view">
+        <leap-certificate-view
+          *ngIf="selectedCertificate"
+          [settings]="selectedCertificate"
+          [disabled]="!certificateEnabled"
+          (download)="downloadCertificate()"
+        ></leap-certificate-view>
+      </div>
+
+      <nz-select
+        *ngIf="editable && !hideSelect"
+        nzPlaceHolder="Select a Certificate (Click or type to search)"
+        [nzShowSearch]="true"
+        [formControl]="control"
+      >
+        <nz-option
+          *ngFor="let certificate of certificatesList; trackBy: keyValueTrackByFn"
+          [nzLabel]="certificate.value"
+          [nzValue]="certificate.key"
+        ></nz-option>
+      </nz-select>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyMessage>
+  <div class="certificate-empty">
+    We can't find any certificate templates in your domain.
+  </div>
+</ng-template>

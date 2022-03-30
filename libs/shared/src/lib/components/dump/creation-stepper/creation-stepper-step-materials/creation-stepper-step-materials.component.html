@@ -1,0 +1,5 @@
+<ng-container *ngIf='materials?.length; else noMaterialsTemplate'>
+  <div class='creation-stepper-step__material' *ngFor='let material of materials; index as i; trackBy: trackByFn'>
+    <ng-template [ngTemplateOutlet]='materialTemplate' [ngTemplateOutletContext]='{$implicit: material, index: i}'></ng-template>
+  </div>
+</ng-container>

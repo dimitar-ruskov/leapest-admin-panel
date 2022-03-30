@@ -1,0 +1,84 @@
+<div *ngIf='showSearch' class='searchbar-container'>
+  <nz-input-group [nzSuffix]='suffixIcon'>
+    <input type='text' nz-input placeholder='You are looking for?' (keyup)='searchValueChange($event)'
+      [ngModel]='paginationData.filter' />
+  </nz-input-group>
+</div>
+<div class='grid-header-container'>
+  <nz-table *ngIf='refresh' (nzQueryParams)='onQueryParamsChange($event)'>
+    <thead>
+      <tr>
+        <th style='background-color:white;' *ngFor='let header of config?.headers' [nzColumnKey]='header.key'
+          [nzSortDirections]="header.sortable ? ['ascend', 'descend', null] : [null]" [nzSortFn]='header.sortable'
+          [nzFilters]='header.filters' [nzFilterFn]='header.filters && header.filters?.length'
+          [ngStyle]="{'width': header.weight + '%', 'cursor': header.sortable ? 'pointer' : 'default'}">
+          <span> {{header.value}}</span>
+        </th>
+        <th *ngFor='let a of config.actions' class='custom-action-header'></th>
+        <th *ngIf='config.rowCTA' class='action-header'></th>
+      </tr>
+    </thead>
+  </nz-table>
+</div>
+<div *ngIf='data.isPending' style='text-align: center;padding-top:20px'>
+  <nz-spin nzSimple nzSize='large'></nz-spin>
+</div>
+<div *ngIf='data?.response as dataSet'>
+  <div *ngIf='dataSet?.data?.length; else noData'>
+    <div *ngFor='let dataItem of dataSet?.data'
+      class="{{'data-row ' + ((config.actions?.length || config.rowCTA) ? 'row-clickable' : '')}}" nz-element
+      #dataRowElement='nzElement'>
+      <div *ngFor='let setter of config?.setters; let i=index; let last=last;' class='data-column'
+        [ngStyle]="{'width': config.headers[i].weight + '%'}" nz-tooltip nzTooltipPlacement='bottomRight'
+        nzTooltipColor='#26273b' [nzTooltipTitle]='(config.rowCTA) ? rowCTATooltip : null'
+        [nzTooltipOrigin]='dataRowElement?.elementRef' (click)='emitRowCTA(dataItem)'>
+        <div class='data-cell'>
+          <div *ngIf='setter(dataItem) as cellData'>
+            <img *ngIf='cellData.prefixImg' [src]='cellData.prefixImg'>
+            <span [ngStyle]='cellData.style'>{{cellData?.value}}</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf='config.actions?.length || config.rowCTA' class='actions-cell'>
+        <div *ngFor='let action of config.actions'
+          class="{{'custom-action ' + ((action.disabled && action.disabled(dataItem)) ? 'disabled-action' : action.dangerType ? 'd-action' : 'p-action') }}"
+          nz-tooltip nzTooltipPlacement='bottomRight' nzTooltipColor='#26273b'
+          [nzTooltipTitle]='action.tooltipText && action.tooltipText(dataItem) ? customActionTooltip : null'
+          (click)='(action.disabled && action.disabled(dataItem)) ? null : emitCustomActionEvent(dataItem,action.key)'>
+          <ng-template #customActionTooltip>
+            <div class='cta-tooltip'>{{action.tooltipText(dataItem)}}</div>
+          </ng-template>
+          <i class='{{action.icon}}'></i>
+        </div>
+        <div *ngIf='config.rowCTA' class='cta-action' nz-tooltip nzTooltipPlacement='bottomRight'
+          nzTooltipColor='#26273b' [nzTooltipTitle]='rowCTATooltip' (click)='emitRowCTA(dataItem)'>
+          <i class='fal fa-angle-right'></i>
+        </div>
+      </div>
+    </div>
+    <div *ngIf='paginationData' class='pagination-wrapper'>
+      <nz-pagination [nzHideOnSinglePage]='true' [nzPageIndex]='paginationData.page' [nzTotal]='dataSet.flags?.size'
+        [nzPageSize]='paginationData.limit' (nzPageIndexChange)='onChangePage($event)'>
+      </nz-pagination>
+    </div>
+  </div>
+</div>
+<ng-template #suffixIcon>
+  <i nz-icon nzType='search'></i>
+</ng-template>
+<ng-template #rowCTATooltip>
+  <div class='cta-tooltip'>{{config.rowCTATooltipText}}</div>
+</ng-template>
+<ng-template #noData>
+  <nz-empty *ngIf='config.emptyConfig as emptyConfig'
+    nzNotFoundImage='https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg' [nzNotFoundContent]='contentTpl'
+    [nzNotFoundFooter]='footerTpl'>
+    <ng-template #contentTpl>
+      <span>{{emptyConfig.emptyText}} </span>
+    </ng-template>
+    <ng-template #footerTpl>
+      <button *ngIf='emptyConfig.emptyAction as emptyAction' nz-button [nzType]='emptyAction.type'
+        (click)='emptyActionEvent.emit()'>{{emptyAction.label}}</button>
+    </ng-template>
+  </nz-empty>
+</ng-template>

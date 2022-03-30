@@ -1,0 +1,16 @@
+.general-info {
+  &__thumbnail-box-container {
+    float: right;
+    margin-left: 10px;
+
+    & + .general-info__fields {
+      display: inline;
+    }
+  }
+
+  &__field-container {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div class='general-info-field__title'>
+  <h3>{{ fieldTitle }}</h3>
+  <button class='admin-panel__reset-button'
+          *ngIf='editable'
+          (click)='edit.emit()'>
+    <i class="fal fa-edit edit-icon"></i>
+  </button>
+</div>
+<ng-content></ng-content>

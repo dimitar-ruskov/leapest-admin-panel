@@ -1,0 +1,5 @@
+<leap-form-label required='true'>Create New Sub-Category</leap-form-label>
+<leap-form-hint-label>Please provide a name for your sub-category. Be aware to use a name that is easy to
+  understand for other users or your learners.
+</leap-form-hint-label>
+<input nz-input [(ngModel)]="newSubCategoryName" (ngModelChange)='onValueChange($event)' />

@@ -1,0 +1,22 @@
+<div class="material-container">
+    <div class="material-icon">
+        <img [src]="deliveryFormatSVGAssetURL(ir?.type?.configKey)" alt="Material Type" class="material-type-icon" />
+    </div>
+    <div class="material-details">
+        <div class="material-title">{{ ir?.name }}</div>
+        <div style="height: 10px"></div>
+        <div>
+            <i class="fal fa-book"></i>
+            <span style="margin-left: 5px;">{{ ir?.type?.configValue }}</span>
+        </div>
+        <div>
+            <i class="fal fa-comment-alt-lines"></i>
+            <span style="margin-left: 5px;">{{ ir?.language?.configValue }}</span>
+        </div>
+    </div>
+    <div class="select-variant-btn-container" *ngIf="selectable">
+        <button nz-button nzType='primary' class="specific-btn" (click)="selectVariant.emit()">
+          {{ selectVariantLabel }}
+        </button>
+    </div>
+</div>

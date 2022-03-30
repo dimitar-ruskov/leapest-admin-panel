@@ -1,0 +1,77 @@
+@text-color: #26273b;
+
+:host {
+  font-size: 16px;
+  color: @text-color;
+}
+
+:host(::ng-deep) {
+  .edit-agenda-date-time-modal {
+    &__date-input {
+      .ant-picker {
+        width: 180px;
+      }
+    }
+
+    &__time-input {
+      margin-left: 15px;
+
+      .ant-picker {
+        width: 150px;
+      }
+    }
+  }
+}
+
+form {
+   margin-top: 10px;
+}
+
+label {
+  color: @text-color;
+}
+
+.edit-agenda-date-time-modal {
+  &__day {
+    margin-top: 10px;
+  }
+
+  &__inputs-wrapper {
+    display: flex;
+    margin-top: 10px;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      &:last-of-type {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.default-btn {
+  color:#26273b;
+  border-color:#9c9db5;
+}
+
+.default-btn:hover {
+  background-color: #f0f0f5;
+  color:#26273b;
+  border-color:#9c9db5;
+}
+
+.default-btn-disabled {
+  color:#26273b;
+  border-color:#9c9db5;
+  background-color: white;
+}
+.timezone-v{
+  font-family: Open Sans;
+  font-size: 16px;
+  color: #26273b;
+}

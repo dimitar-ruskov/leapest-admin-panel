@@ -1,0 +1,21 @@
+@label-color: #26273b;
+@label-modifier-color: #737394;
+
+:host {
+  display: block;
+  color: @label-color;
+  font-size: 16px;
+  padding-bottom: 2px;
+}
+
+.leap-form-label__indicator {
+  color: @label-modifier-color;
+
+  &--optional {
+    font-style: italic;
+  }
+
+  &--required {
+    font-style: normal;
+  }
+}

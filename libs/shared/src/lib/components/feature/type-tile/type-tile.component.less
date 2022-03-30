@@ -1,0 +1,81 @@
+.type-tile-container {
+  height: 100%;
+  width: 230px;
+  min-height: 245px;
+  border: 1px solid #babebf;
+  border-radius: 4px;
+  cursor: pointer;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.type-tile-container:hover {
+  border: 1px solid #babebf;
+  background-color: #f2f2f2;
+}
+
+.type-tile-content-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.type-tile-icon-wrapper {
+  display: flex;
+
+}
+
+.type-tile-title-wrapper {
+  padding-top: 25px;
+  font-size: 16px;
+  color: #26273b;
+  text-align: center;
+}
+.type-tile-description-wrapper {
+  padding-top: 25px;
+  font-size: 14px;
+  color: #8e8fa6;
+  text-align: center;
+}
+.type-tile-message-bottom-wrapper {
+  position: relative;
+  top: 45px;
+  color: #9ca4a6;
+}
+.type-tile-description-wrapper,
+.type-tile-title-wrapper,
+.type-tile-message-bottom-wrapper {
+  margin: 0 10px;
+  text-align: center;
+}
+.disabled {
+  cursor: not-allowed;
+}
+.disabled .type-tile-title-wrapper,
+.disabled .type-tile-description-wrapper,
+.disabled .type-tile-message-bottom-wrapper{
+  color: #d9d9d9;
+}
+.disabled.type-tile-container:hover {
+  background-color: #ffffff;
+}
+
+.fa-icon, i {
+  font-size:48px;
+  color: #8e8fa6;
+}
+
+svg {
+  height: 48px;
+}
+
+:host ::ng-deep svg {
+  fill: rgb(142, 143, 166) !important;
+}
+
+:host ::ng-deep svg g {
+  fill: rgb(142, 143, 166) !important;
+}
+
+:host ::ng-deep svg g path {
+  fill: rgb(142, 143, 166) !important;
+}

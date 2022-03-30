@@ -1,0 +1,32 @@
+<div class="certificate-view">
+  <div [ngClass]="disabled ? 'certificate-view__disabled' : 'certificate-view__link'">
+    <a
+      *ngIf="settings.s3Key; else templateName"
+      (click)="download.emit()"
+      [style.certificate-view__disabled__link]="disabled && !settings.s3Key"
+    >
+      <i class="fal fa-download"></i>
+      <span class="name">{{ settings.value }}</span>
+      <span *ngIf="!disabled || settings.s3Key" class="download">(download)</span>
+    </a>
+
+    <ng-template #templateName>
+      <img
+        [src]="environment.assetsPath + '/certificates/file-certificate-small.svg'"
+        alt="Certificate"
+        class="mr-2 icon-cog"
+      />
+      <span class="name">{{ settings.value }}</span>
+    </ng-template>
+  </div>
+
+  <div class="certificate-view__preview">
+    <button *ngIf="settings.preview" nz-button nzType="text" (click)="preview.emit()" class="preview">
+      <i nz-tooltip nzTooltipTitle="Preview Certificate" nzTooltipColor="#26273b" class="fal fa-eye"></i>
+    </button>
+
+    <button *ngIf="settings.delete" nz-button nzType="text" (click)="delete.emit()" class="trash">
+      <i nz-tooltip nzTooltipTitle="Delete Certificate" nzTooltipColor="#26273b" class="fal fa-trash-alt"></i>
+    </button>
+  </div>
+</div>

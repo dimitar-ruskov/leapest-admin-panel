@@ -1,0 +1,30 @@
+@input-text-color: #737394;
+@input-border-color: #9c9db5;
+@input-placeholder-color: #737394;
+
+:host(::ng-deep) {
+  display: block;
+  margin-right: 10px;
+  max-width: 620px;
+  flex-grow: 1;
+
+  .ant-input-affix-wrapper {
+    border: 1px solid @input-border-color;
+    border-radius: 6px;
+    height: 40px;
+  }
+
+  .ant-input {
+    font-size: 14px;
+    color: @input-text-color;
+
+    &::placeholder {
+      color: @input-placeholder-color;
+    }
+  }
+}
+
+i {
+  font-size: 28px;
+  color: @input-placeholder-color;
+}

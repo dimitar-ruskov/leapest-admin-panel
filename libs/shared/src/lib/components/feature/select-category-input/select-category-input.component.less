@@ -1,0 +1,55 @@
+@default-text-color: #26273b;
+@border-color: #9c9db5;
+@edit-button-hover-color: #38b6a0;
+@remove-button-hover-color: #f1736a;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.select-category-input {
+  &__selected-category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid @border-color;
+    border-radius: 6px;
+
+    &-label {
+      color: @default-text-color;
+    }
+
+    &-controls {
+      display: flex;
+      align-items: center;
+
+      button {
+        &:not(:first-of-type) {
+          &:not(:only-of-type) {
+            margin-left: 10px;
+          }
+        }
+      }
+
+      span {
+        margin-left: 5px;
+      }
+
+    }
+
+    &-edit {
+      &:hover {
+        color: @edit-button-hover-color;
+      }
+    }
+
+    &-remove {
+      &:hover {
+        color: @remove-button-hover-color;
+      }
+    }
+  }
+}

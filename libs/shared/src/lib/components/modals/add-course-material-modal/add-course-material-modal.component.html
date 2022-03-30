@@ -1,0 +1,48 @@
+<leap-form-label [required]="true">Internal Repository Material</leap-form-label>
+<leap-form-hint-label
+  >Click in to select or type in to search an existing material from your repository
+</leap-form-hint-label>
+
+<div class="add-course-material-modal__add-material-control">
+  <nz-input-group [nzSuffix]="suffixIcon">
+    <input
+      type="text"
+      nz-input
+      placeholder="Search for material"
+      [(ngModel)]="searchValue"
+      (ngModelChange)="searchValueChange($event)"
+    />
+  </nz-input-group>
+  <nz-spin [nzSpinning]="pending">
+    <div
+      class="add-course-material-modal__infinite-scroll-container"
+      infiniteScroll
+      (scrolled)="onScroll()"
+      [scrollWindow]="false"
+    >
+      <div
+        class="add-course-material-modal__internal-repo-wrapper"
+        *ngFor="let internalRepo of internalRepos; trackBy: trackByFn"
+      >
+        <leap-master-internal-repo-tile
+          [m_ir]="internalRepo"
+          [selected]="selectedInternalRepoIds.has(internalRepo.id)"
+          [selectMode]="true"
+          (selectIndex)="onSelectInternalRepo($event, internalRepo.id)"
+        >
+          >
+        </leap-master-internal-repo-tile>
+      </div>
+      <div *ngIf="!pending && !internalRepos?.length">
+        Not found
+      </div>
+    </div>
+  </nz-spin>
+  <leap-form-hint-label class="bottom-label"
+    >You have selected <span class="inner-text">{{ selectedIds.length }} Products</span> to add to {{ courseName }}
+  </leap-form-hint-label>
+</div>
+
+<ng-template #suffixIcon>
+  <i nz-icon nzType="search"></i>
+</ng-template>

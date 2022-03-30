@@ -1,0 +1,40 @@
+<ng-container *ngIf="repositories$ | async as repositories">
+  <ng-container *ngIf="repositories.length; else noMaterialsTemplate">
+    <div
+      class="course-materials-input__material-wrapper"
+      *ngFor="let repository of repositories; trackBy: trackByFn; index as i; first as first; last as last"
+    >
+      <leap-master-internal-repo-tile
+        [m_ir]="repository | materialRepoToMaster"
+        [editable]="!isDisabled && !readonly && isEditable"
+        [showUpArrow]="!first"
+        [showDownArrow]="!last"
+        [selectingVariantsEnabled]="selectingVariantsEnabled"
+        [showOneLang]="showOneLang"
+        (removeIndex)="onRemove(i)"
+        (moveUp)="onMoveUp(i)"
+        (moveDown)="onMoveDown(i)"
+        (selectVariant)="openSelectModal(i)"
+      >
+      </leap-master-internal-repo-tile>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-template #noMaterialsTemplate>
+  <leap-no-materials>{{ noMaterialsLabel }}</leap-no-materials>
+</ng-template>
+
+<button
+  *ngIf="isMaterialButtonEnabled && isEditable"
+  class="course-materials-input__add-material-button"
+  nz-button
+  nzType="primary"
+  nzSize="large"
+  [disabled]="isDisabled"
+  (click)="openMaterialModal()"
+>
+  <span class="course-materials-input__add-material-button-label">
+    <i class="fal fa-plus"></i><span>Add Material</span>
+  </span>
+</button>
