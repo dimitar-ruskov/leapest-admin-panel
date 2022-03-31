@@ -1,5 +1,3 @@
-export * from './lib/shared.module'; // All components
-
 /** Common Components */
 export * from './lib/components/common/creation-stepper/creation-stepper.module';
 export * from './lib/components/common/cta-container/cta-container.module';
