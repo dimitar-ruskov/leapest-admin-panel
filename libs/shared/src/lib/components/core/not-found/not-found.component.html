@@ -1,0 +1,71 @@
+<nz-breadcrumb nzSeparator=">" *ngIf="entityType">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', entityType]">{{ breadcrumbsTitle }}</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Error</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="outer" [ngClass]="!entityType ? 'absolute' : ''">
+  <div class="middle">
+    <div class="inner">
+      <div class="image-container">
+        <img
+          src="https://itpx-branded-portal-dev.s3.amazonaws.com/leapest-by-edcast-logo.svg"
+          alt="Leapest By EdCast"
+        />
+      </div>
+      <div class="row col-xs-12 header" id="orbit-container">
+        <img
+          class="orbit-container"
+          src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_1.svg"
+          alt=""
+          id="img1"
+        />
+        <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_2.svg" alt="" id="img2" />
+        <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_3.svg" alt="" id="img3" />
+        <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_4.svg" alt="" id="img4" />
+        <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_5.svg" alt="" id="img5" />
+        <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_6.svg" alt="" id="img6" />
+        <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_7.svg" alt="" id="img7" />
+        <!-- <img src="https://itpx-branded-portal-dev.s3.amazonaws.com/book_not_found_8.svg" alt="" id="img8"> -->
+        <span style="margin:0 40px">404</span>
+      </div>
+      <div class="row col-xs-12 title">
+        We're sorry, but this page does not exist
+      </div>
+      <div class="row col-xs-12 body-header" style="margin-top: 20px;">
+        Here are some suggestions:
+      </div>
+      <div class="body-core" style="text-align: center;margin-top:20px">
+        <ul class="suggestions-list">
+          <ng-container *ngIf="!entityType; else errorTypesBlockList">
+            <li>Check for any mistakes in the URL of the page (e.g., what's written before .leapest.com ... )</li>
+            <li>If you're certain that the URL is correct, try reloading the page</li>
+            <li>If you are trying to access materials from a learning portal, try contacting your training provider</li>
+            <li>
+              Otherwise, consider contacting us at
+              <a href="mailto:support@edcast.com" class="mail-link">support@edcast.com</a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="row col-xs-12 body-core center-spaced">
+        <ng-container *ngIf="!entityType; else goBackButton">
+          Our apologies for the inconvenience
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #errorTypesBlockList>
+  <li>If you copied or clicked on a link/URL to reach this page, confirm that it is correct</li>
+  <li>Confirm with your organization if any Administrator deleted the resource that you are looking for</li>
+  <li>Follow the option below and try searching for your resource by its name</li>
+  <li>
+    If none of the suggestions above apply, consider contacting us at
+    <a href="mailto:support@edcast.com" class="mail-link">support@edcast.com</a>
+  </li>
+</ng-template>
+<ng-template #goBackButton>
+  <button nz-button nzType="primary" (click)="goBack()">See all {{ typeTitle }}</button>
+</ng-template>

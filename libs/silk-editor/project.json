@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/silk-editor",
+  "sourceRoot": "libs/silk-editor/src",
+  "prefix": "leapest-admin-panel",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/silk-editor"],
+      "options": {
+        "jestConfig": "libs/silk-editor/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/silk-editor/src/**/*.ts",
+          "libs/silk-editor/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

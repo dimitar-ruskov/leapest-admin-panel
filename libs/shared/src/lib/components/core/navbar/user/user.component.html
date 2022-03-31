@@ -1,0 +1,51 @@
+<div class="user-component-container">
+  <div class="user-thumbnail" nz-dropdown [nzDropdownMenu]="menu">
+    <ng-container *ngTemplateOutlet="profilePhotoTemplate"></ng-container>
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu" nzTrigger="click" nzPlacement="bottomRight">
+    <ul class="user-component-menu" nz-menu>
+      <li class="user-details no-effect-on-hover" nz-menu-item>
+        <div class="user-thumbnail">
+          <ng-container *ngTemplateOutlet="profilePhotoTemplate"></ng-container>
+        </div>
+        <div class="user-detail-text">
+          {{ profile?.firstName }} {{ profile?.lastName }}
+          <div class="email">
+            {{ profile?.username }}
+          </div>
+        </div>
+      </li>
+
+      <li nz-menu-divider></li>
+
+      <li nz-menu-item class="sign-out-container">
+        <leap-user-menu-item
+          title="Order History"
+          [stickToRightEdge]="false"
+          [hoverClass]="'hover-leap-green-paste'"
+          (click)="redirectToOrderHistory()"
+        >
+        </leap-user-menu-item>
+      </li>
+      <li nz-menu-divider></li>
+
+      <li nz-menu-item class="sign-out-container">
+        <leap-user-menu-item
+          title="Sign Out"
+          [stickToRightEdge]="false"
+          [hoverClass]="'hover-leap-orance'"
+          (click)="redirectToLogout()"
+        >
+        </leap-user-menu-item>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>
+
+<ng-template #profilePhotoTemplate>
+  <nz-avatar
+    nzSize="large"
+    nzIcon="anticon anticon-user"
+    [nzSrc]="profile?.avatar ? profile?.avatar.tiny : defaultProfilePhotoUrl"
+  ></nz-avatar>
+</ng-template>

@@ -1,0 +1,93 @@
+@import (reference) '../../../../../styles';
+
+
+.user-component-container {
+  cursor: pointer;
+  width: 40px;
+}
+
+.user-thumbnail {
+
+}
+
+.user-component-menu {
+  padding: 5px 15px;
+  min-width: 550px;
+  overflow: hidden;
+
+  .user-details {
+    padding: 15px;
+    .apply-inline-flex;
+
+    .user-detail-text {
+      padding: 0px 10px;
+      .username {
+        font-size: 16px;
+        color:black;
+      }
+      .email {
+        color: #8e8fa6;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .user-routes {
+    .apply-inline-flex;
+    padding: 0px;
+    .section-left {
+      width: 49%;
+      padding: 5px 0px;
+      overflow: hidden;
+    }
+    .divider-inbetween {
+      height: 350px;
+      margin: 5px 0px 30px;
+    }
+    .section-right {
+      width: 49%;
+      padding: 5px 0px 5px 5px;
+      overflow: visible;
+      .user-route-sections {
+        overflow: visible;
+      }
+    }
+    .user-route-sections {
+      padding-bottom: 10px;
+    }
+
+    .section-title {
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #8e8fa6;
+    }
+  }
+
+  .sign-out-container {
+    background-color: white !important;
+  }
+
+  //HELPER CSS
+  .no-effect-on-hover {
+    &:hover {
+      background-color: inherit;
+      cursor: default;
+    }
+  }
+
+  .apply-inline-flex {
+    width: 100%;
+    display: inline-flex;
+    text-align: left;
+  }
+
+  .hover-leap-purple {
+
+  }
+}
+@screen-sm-min : 576px;
+@media only screen and (max-width: @screen-sm-min + 100px){
+  .user-component-menu{
+    min-width: 200px;
+  }
+}

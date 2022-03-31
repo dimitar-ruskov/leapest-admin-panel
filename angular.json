@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "seller-admin-panel": "apps/seller-admin-panel",
-    "shared": "libs/shared"
+    "shared": "libs/shared",
+    "silk-editor": "libs/silk-editor"
   }
 }

@@ -3,7 +3,7 @@ import { Venue } from '../../../models/ilt-course-list-item';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { IKeyValuePair } from '../../../../core/model/dictionary.model';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getFullAddress } from '../../../common/helpers/helpers';

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { IKeyValuePair } from 'src/app/core/model/dictionary.model';
 import { COURSE_PUBLISH_STATUS } from '../../../common/constants/course-publist-status';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 
 @Component({
   selector: 'leap-publish-to-lxp-modal',

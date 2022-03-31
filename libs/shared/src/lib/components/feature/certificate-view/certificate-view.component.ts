@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
-import { CertificateInfo } from '../../dump/general-info/models/general-info-field.model';
+import { CertificateInfo } from '../../../models/dump-components/general-info-field.model';
 import { EnvironmentService } from '../../../snatch/services';
 
 @Component({

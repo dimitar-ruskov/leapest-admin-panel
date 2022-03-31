@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, take } from 'rxjs/operators';
 
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
@@ -44,7 +44,7 @@ export class EditTrainingManagerModalComponent implements OnInit, OnDestroy {
     private readonly fb: FormBuilder,
     private readonly adminCoursesService: AdminCoursesService
   ) {
-  
+
   }
 
   ngOnInit(): void {

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, ChangeDet
 import * as moment from 'moment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ILTEvent } from '../../../models/ilt-event.model';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 
 @Component({
   selector: 'leap-delete-course-confirm-modal',

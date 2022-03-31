@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 
 @Component({
   selector: 'leap-edit-course-name-modal',

@@ -1,0 +1,52 @@
+<nz-header class="navbar ant-layout-header">
+  <div class="nav-wrapper">
+    <div *ngIf="domainData$ | async as domainData">
+      <div
+        *ngIf="environment.envName !== 'prodin' && domainData.name !== 'futureskillsprime'; else prodinLogo"
+        class="nav-left"
+      >
+        <div>
+          <img
+            *ngIf="domainData.logo; else domainDescription"
+            class="domain-logo"
+            style="height: 30px"
+            [src]="domainData.logo"
+          />
+          <ng-template #domainDescription>
+            <span class="description" rel="home">{{ domainData.platformName }}</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-right-group">
+      <div class="nav-center"></div>
+
+      <div class="nav-right">
+        <ul nz-menu nzTheme="dark" nzMode="horizontal" class="nav-menu" style="display: flex; margin: 0;">
+          <li
+            *ngIf="(authStateService.authState$ | async).isAuthenticated"
+            style="vertical-align: middle; padding: 0; display: flex; align-items: center;"
+          >
+            <leap-user
+              style="margin-left: 10px"
+              [isAdminPanel]="isAdminPanel"
+              [profile]="profile$ | async"
+              [getProfilePending]="getProfilePending$ | async"
+            ></leap-user>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nz-header>
+
+<ng-template #prodinLogo>
+  <div class="leapest-logo-container">
+    <img
+      src="https://leap-prodin-cdn.s3.ap-south-1.amazonaws.com/futureskillslogo.png"
+      class="futureskills-logo"
+      style="height: 50px"
+    />
+  </div>
+</ng-template>

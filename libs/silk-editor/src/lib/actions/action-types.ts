@@ -1,0 +1,10 @@
+export const ADD_IMAGE = 'add-image';
+export const ADD_LINK = 'add-link';
+export const ADD_PLACEHOLDER = 'add-placeholder';
+export const REMOVE_LINK = 'remove-link';
+export const TOGGLE_MARK = 'toggle-mark';
+export const TOGGLE_BLOCK = 'toggle-block';
+export const SET_TEXT_COLOR = 'set-text-color';
+export const SET_TEXT_SIZE = 'set-text-size';
+export const APPLY_CHANGE = 'apply-change';
+export const FOCUS = 'focus';

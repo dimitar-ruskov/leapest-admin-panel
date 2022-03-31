@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IKeyValuePair } from '../../../../core/model/dictionary.model';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -40,7 +40,7 @@ export class EditLanguageModalComponent implements OnInit {
 
   constructor(private readonly fb: FormBuilder,
     private readonly adminCoursesService: AdminCoursesService) {
-    
+
   }
 
   ngOnInit(): void {

@@ -9,4 +9,4 @@ import {NzAlertModule} from "ng-zorro-antd/alert";
   exports: [InstructorsCollisionsWarningsComponent],
   imports: [CommonModule, NzAlertModule]
 })
-export class CourseMaterialsInputModule { }
+export class InstructorsCollisionsWarningsModule { }

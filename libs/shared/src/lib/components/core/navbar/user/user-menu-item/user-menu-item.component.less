@@ -1,0 +1,45 @@
+@import (reference) '../../../../../../styles';
+
+.user-route-item {
+  border-radius: 5px 0px 0px 5px;
+  border-left: 5px solid white;
+  cursor: pointer;
+
+  padding: 5px;
+  display: flex;
+  width: 110%;
+  &.dont-stick-to-right-edge {
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: #f0f0f5;
+    border-left: 5px solid white;
+
+    &.hover-leap-violet {
+      border-left-color: @leap-violet !important;
+    }
+    &.hover-leap-green-paste {
+      border-left-color: @leap-green-paste !important;
+    }
+    &.hover-leap-blue {
+      border-left-color: @leap-blue !important;
+    }
+    &.hover-leap-orance {
+      border-left-color: @leap-orange !important;
+    }
+  }
+
+
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    margin: 4px;
+  }
+  .title {
+    color: #26273b;
+    padding: 4px;
+  }
+}

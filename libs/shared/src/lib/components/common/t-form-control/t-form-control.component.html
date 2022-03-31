@@ -1,0 +1,79 @@
+<div class="form-wrapper">
+    <nz-form-item>
+        <div>
+            <div *ngIf="config.label" class="t-label">
+                {{config.label}} {{config.required ? '*' : ''}}
+            </div>
+            <div *ngIf="config.subLabel" class="t-sub-label">
+                {{config.subLabel}}
+            </div>
+            <nz-form-control [nzErrorTip]="combineTpl">
+                <input *ngIf="config.type==='text'" nz-input [formControl]="ngControl.control"
+                    placeholder="{{config.placeHolder ? config.placeHolder : ''}}" />
+
+                <nz-input-number *ngIf="config.type==='number'" type="number" [formControl]="ngControl.control">
+                </nz-input-number>
+
+                <nz-radio-group *ngIf="config.type==='radio'" [formControl]="ngControl.control">
+                    <label *ngFor="let option of (config.options | async)" nz-radio [nzValue]="option.key"
+                        style="display: flex;">
+                        <div style="display: flex">
+                            <div *ngIf="option.iconClass" class="option-icon">
+                                <i class="{{option.iconClass}}"></i>
+                            </div>
+                            <div *ngIf="!option.extra" class="t-label">
+                                <span>{{option.value}}</span>
+                            </div>
+                            <div *ngIf="option.extra && option.extra.placement==='down'">
+                                <div class="t-label">{{option.value}}</div>
+                                <div class="t-sub-label">{{option.extra.value}}</div>
+                            </div>
+                            <div *ngIf="option.extra && option.extra.placement==='right'">
+                                <span class="t-label">{{option.value}} - </span>
+                                <span>{{option.extra.value}}</span>
+                            </div>
+                        </div>
+                    </label>
+                </nz-radio-group>
+                <div *ngIf="config.type==='select'" class="select-control-container">
+                    <nz-select [formControl]="ngControl.control" [nzNotFoundContent]="'Item not found'"
+                        nzPlaceHolder="Select...">
+                        <nz-option *ngFor="let option of (config.options | async)" [nzLabel]="option.value"
+                            [nzValue]="option.key">
+                        </nz-option>
+                    </nz-select>
+                    <button nz-button class="default-btn" *ngIf="config.showCreateNewOptionButton"
+                        style="margin-left: 15px;" (click)="createNewOption.emit()">Create New</button>
+                </div>
+
+                <div *ngIf="config.type==='rich-text'" class="rich-text">
+                    <quill-editor [modules]="config.quillConfig" [formControl]="ngControl.control"></quill-editor>
+                    <div class="char-count">
+                        {{ngControl.control.value?.length ? (config.charLimit - ngControl.control.value.length + 7) : config.charLimit}}
+                        /
+                        {{config.charLimit}} Left
+                    </div>
+                </div>
+
+                <nz-select *ngIf="config.type==='multi-select'" nzMode="multiple" nzPlaceHolder="Start typing..."
+                    nzAllowClear nzShowSearch nzServerSearch [formControl]="ngControl.control"
+                    (nzOnSearch)="onInput($event,config.serverSideFilterFn)">
+                    <ng-container *ngFor="let o of (options | async)">
+                        <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+                    </ng-container>
+                    <ng-container *ngFor="let tag of config.initialTags">
+                        <nz-option [nzValue]="tag" [nzLabel]="tag"></nz-option>
+                    </ng-container>
+                </nz-select>
+            </nz-form-control>
+        </div>
+    </nz-form-item>
+</div>
+
+<ng-template #combineTpl let-control>
+    <ng-container *ngFor="let errorMsg of config.errorMsgs">
+        <div *ngIf="control.hasError(errorMsg.key)">
+            {{errorMsg.value}}
+        </div>
+    </ng-container>
+</ng-template>

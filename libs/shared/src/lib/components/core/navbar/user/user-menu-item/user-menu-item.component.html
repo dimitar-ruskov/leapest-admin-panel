@@ -1,0 +1,5 @@
+<div class="user-route-item" [ngClass]="[hoverClass || '', !stickToRightEdge ? 'dont-stick-to-right-edge': '']">
+    <span class="icon" *ngIf="svgTemplate" [innerHTML]="securedSvg || ''"></span>
+    <span class="title">{{title}}</span>
+</div>
+      

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnDestroy, OnInit } from '@angular/core';
 import { CourseCategory } from '../../../models/course-category.model';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { LmsCategoriesService } from '../../../services/lms-categories.service';
+import { LmsCategoriesService } from '../../../utils/services/lms-categories.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({

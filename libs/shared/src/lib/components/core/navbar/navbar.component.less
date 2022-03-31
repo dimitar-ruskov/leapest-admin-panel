@@ -1,0 +1,84 @@
+@import (reference) 'reference';
+
+nz-header {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.nav-right-group {
+  display: flex;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.nav-center {
+  flex: 1;
+}
+
+.nav-left {
+  align-items: center;
+
+  svg {
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  a {
+    display: flex;
+    color: @text-color
+  }
+}
+
+ul {
+  &.nav-menu {
+    background: none;
+
+    li {
+      padding: 0 8px;
+      vertical-align: middle;
+      list-style: none;
+    }
+  }
+}
+
+.my-assignments-button {
+  width: auto;
+  height: 22px;
+  font-size: @font-size-base;
+  color: #394042;
+  text-align: right;
+  margin-right: 20px;
+  margin-left: 2px;
+}
+
+.separator {
+  height: 26px;
+  border-right: 1px solid #acadc1;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.description {
+  font-size: 18px;
+  color: #26273b;
+}

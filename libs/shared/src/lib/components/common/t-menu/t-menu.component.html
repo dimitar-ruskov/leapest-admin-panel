@@ -1,0 +1,30 @@
+<ul nz-menu nzMode="inline" class="sider-menu">
+  <div *ngFor="let item of config?.items; let $index = index">
+    <li
+      *ngIf="item.subItems?.length"
+      nz-submenu
+      nzOpen
+      class="sub-menu-item"
+      [class.border-bottom]="$index === config?.items.length - 1"
+    >
+      <span title>
+        <i *ngIf="item.iconClass" class="{{ item.iconClass }}" style="color:#8e8fa6 "></i>
+        <span style="margin-left: 22px;color:#26273b ">{{ item.value }}</span>
+      </span>
+      <ul>
+        <div *ngFor="let subItem of item.subItems" class="menu-item">
+          <div style="display: flex">
+            <nz-divider nzType="vertical"></nz-divider>
+            <nz-divider></nz-divider>
+          </div>
+          <li nz-menu-item [routerLink]="[subItem.key]" [nzMatchRouter]="true">
+            {{ subItem.value }}
+          </li>
+        </div>
+      </ul>
+    </li>
+    <li *ngIf="!item.subItems?.length" nz-menu-item [routerLink]="[item.key]" class="normal-li">
+      {{ item.value }}
+    </li>
+  </div>
+</ul>

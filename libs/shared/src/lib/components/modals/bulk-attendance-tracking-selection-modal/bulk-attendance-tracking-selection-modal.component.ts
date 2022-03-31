@@ -10,7 +10,7 @@ import {
 import * as moment from 'moment';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 import { take } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 

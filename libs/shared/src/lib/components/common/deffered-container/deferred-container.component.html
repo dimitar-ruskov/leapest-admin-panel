@@ -1,0 +1,18 @@
+<nz-spin [nzSpinning]="deferredResource.isReFetching" [nzIndicator]="loadingIndicatorTemplate">
+  <ng-container *ngIf="deferredResource.isPending && !deferredResource.isReFetching">
+    <ng-container *ngTemplateOutlet="skeletonRef || defaultSkeleton"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="deferredResource.isSuccess || deferredResource.isReFetching">
+    <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+  </ng-container>
+</nz-spin>
+
+<ng-template #loadingIndicatorTemplate>
+  <div class="flex items-center justify-center w-full h-full">
+    <i nz-icon nzType="loading" class="text-2xl"></i>
+  </div>
+</ng-template>
+
+<ng-template #defaultSkeleton>
+  <nz-skeleton [nzActive]="true" [nzParagraph]="nzSkeletonOpts"></nz-skeleton>
+</ng-template>

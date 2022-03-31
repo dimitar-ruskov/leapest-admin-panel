@@ -4,11 +4,11 @@ import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { concatMap, filter, map, take } from 'rxjs/operators';
 
 import { ILTInstructor } from '../../../models/ilt-event.model';
-import { AdminCoursesService } from '../../../services/admin-courses.service';
-import { CourseEventInstructorsCollisionService } from '../../../services/course-event-instructors-collision.service';
+import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
+import { CourseEventInstructorsCollisionService } from '../../../utils/services/course-event-instructors-collision.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CourseEventInstructorsCollision } from '../../../models/ilt-course-event-instructor-collisions.model';
-import { ConferencingToolService } from '../../../services/conferencing-tool.service';
+import { ConferencingToolService } from '../../../utils/services/conferencing-tool.service';
 
 @Component({
   selector: 'leap-edit-instructors-modal',
