@@ -1,23 +1,22 @@
 export const environment = {
-  production: true,
-  name: 'prod',
-  host: 'leapest.com',
-  saharaUrl: 'https://my.leapest.com',
-  instructorMarketUrl: 'https://instructors.leapest.com',
+  production: false,
+  name: 'stage',
+  host: 'congolo.com',
+  saharaUrl: 'https://my.congolo.com',
+  instructorMarketUrl: 'https://instructors.congolo.com',
 
-  amberBaseUrl: 'https://iamber.leapest.com',
-  amberUrl: 'https://iamber.leapest.com/api',
-  bouncerUrl: 'https://account.leapest.com',
-  sphinxUrl: 'https://downloads.leapest.com',
-  intershopUrl: 'https://leapest.com',
-  uploadsBucket: 'itpx-prod-product-marketplace-uploads',
+  amberBaseUrl: 'https://amber.congolo.com',
+  amberUrl: 'https://amber.congolo.com/api',
+  bouncerUrl: 'https://account.congolo.com',
+  sphinxUrl: 'https://downloads.congolo.com',
+  intershopUrl: 'https://congolo.com',
+  uploadsBucket: 'itpx-test-product-marketplace-uploads',
   s3Storage: 'itpx-uploads',
-  umbrellaUploadsBucket: 'itpx-umbrella',
 
   aws: {
     key: 'AKIAQ6EHUBLEURAGLSUZ',
     s3Url: 'https://s3-eu-west-1.amazonaws.com',
-    sellerProductUploadsBucket: 'itpx-public-product-images-prod',
+    sellerProductUploadsBucket: 'itpx-public-product-images-stage',
     brandedPortalBucket: 'itpx-branded-portal-dev',
   },
 
@@ -30,7 +29,7 @@ export const environment = {
       5q6Gj8c0aqa45jcHSwIDAQAB
       -----END PUBLIC KEY-----
       `,
-    clientKey: 'live_AB6UGXNCEBENTI45JT5EAO4ZTYMXYGVV',
+    clientKey: 'test_ZVI4LE36HVE2FCXGOAHXRIADDA7XNF5K',
   },
   paytm: {
     url: 'https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/',
@@ -42,6 +41,6 @@ export const environment = {
     },
   },
   assetsPath: 'assets',
-  virgoEndpoint: 'https://iamber.leapest.com/api/virgo/graphql',
-  graphqlEndpoint: 'https://iamber.leapest.com/api/bazaar/graphql',
+  virgoEndpoint: 'https://amber.congolo.com/api/virgo/graphql',
+  graphqlEndpoint: 'https://amber.congolo.com/api/bazaar/graphql',
 };

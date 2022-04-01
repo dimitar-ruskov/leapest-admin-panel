@@ -8,6 +8,16 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+const baseUrl = new URL(window.location.href);
+const [domain] = baseUrl.host.split('.');
+fetch(`${environment.amberBaseUrl}/api/bouncer/v2/domain/details/${domain}`)
+  .then(async (response) => response.json())
+  .then((response) => {
+    const ssoConfig = response.data.ssoConfig;
+    window.localStorage.setItem('okta-sso-config', JSON.stringify(ssoConfig));
+  })
+  .then(async () => {
+    return platformBrowserDynamic()
+      .bootstrapModule(AppModule)
+      .catch((err) => console.error(err));
+  });
