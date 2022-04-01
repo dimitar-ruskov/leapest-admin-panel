@@ -28,3 +28,4 @@ export * from './feature/courses/ilt-event-attendance.model';
 export * from './feature/conferencing-tool.model';
 export * from './feature/domain-data.model';
 export * from './feature/internal-repository.model';
+export * from './feature/profile-data.model';

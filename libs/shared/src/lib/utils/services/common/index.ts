@@ -3,7 +3,7 @@ export * from './bootstrap.service';
 export * from './download-sphinx.service';
 export * from './environment.service';
 export * from './form-util.service';
-export * from './misc.service';
+export * from './core.service';
 export * from './notification.service';
 export * from './storage.service';
 export * from './upload.service';

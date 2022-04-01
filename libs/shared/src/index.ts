@@ -90,7 +90,7 @@ export * from './lib/utils/services/common/bootstrap.service';
 export * from './lib/utils/services/common/download-sphinx.service';
 export * from './lib/utils/services/common/environment.service';
 export * from './lib/utils/services/common/form-util.service';
-export * from './lib/utils/services/common/misc.service';
+export * from './lib/utils/services/common/core.service';
 export * from './lib/utils/services/common/notification.service';
 export * from './lib/utils/services/common/storage.service';
 export * from './lib/utils/services/common/upload.service';
@@ -160,6 +160,7 @@ export * from './lib/models/interfaces/feature/courses/ilt-event-attendance.mode
 export * from './lib/models/interfaces/feature/conferencing-tool.model';
 export * from './lib/models/interfaces/feature/domain-data.model';
 export * from './lib/models/interfaces/feature/internal-repository.model';
+export * from './lib/models/interfaces/feature/profile-data.model';
 
 /** Constants */
 export * from './lib/models/constants/course-publist-status';
@@ -170,3 +171,7 @@ export * from './lib/models/constants/pagination-config';
 export * from './lib/models/constants/placeholder-course-thumbnail-url';
 export * from './lib/models/constants/url-regexp';
 export * from './lib/models/constants/wating-list-limit.const';
+
+/** State */
+export * from './lib/state/core/core.state';
+export * from './lib/state/core/core.actions';

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EnvironmentService } from 'src/app/snatch/services';
 import { HttpClient } from '@angular/common/http';
+import {EnvironmentService} from "./environment.service";
+import {IProfile} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root',
 })
-export class MiscService {
+export class CoreService {
   constructor(private readonly http: HttpClient, private readonly environment: EnvironmentService) {}
 
-  getLearnerProfile(): Observable<any> {
+  getLearnerProfile(): Observable<IProfile> {
     const url = `${this.environment.amberBaseUrl}/domain/api/solar/branded/profile`;
-    return this.http.get<any>(url);
+    return this.http.get<IProfile>(url);
   }
 }

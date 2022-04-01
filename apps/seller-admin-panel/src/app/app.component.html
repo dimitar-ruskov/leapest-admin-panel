@@ -1,0 +1,20 @@
+<router-outlet></router-outlet>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [nzBodyStyle]="{ height: '500px' }"
+  [nzVisible]="showNotSyncedUserModal$ | async"
+  nzClosable="false"
+  nzCancelText="false"
+  nzFooter="false"
+  nzWidth="80%"
+>
+  <ng-container *nzModalContent>
+    <div class="loading">
+      <span> We are preparing your account.</span>
+      <span> This should only take a few seconds.</span>
+      <span> (Please refresh the page)</span>
+      <button nz-button nzType="primary" (click)="reload()">Refresh</button>
+    </div>
+  </ng-container>
+</nz-modal>

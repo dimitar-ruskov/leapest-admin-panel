@@ -21,3 +21,10 @@ export interface IConfigKeyValuePair {
   configKey: string;
   configValue: string;
 }
+
+export interface IConfigCertificatesDictionary {
+  key: string;
+  value: string;
+  s3Key?: string;
+  s3Bucket?: string;
+}
