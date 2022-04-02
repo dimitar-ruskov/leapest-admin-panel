@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EnvironmentService } from 'src/app/snatch/services';
 
-
 @Injectable({
   providedIn: 'root'
 })

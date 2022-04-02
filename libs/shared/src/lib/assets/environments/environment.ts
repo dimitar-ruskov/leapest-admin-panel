@@ -41,7 +41,7 @@ export const environment = {
       redirect: true,
     },
   },
-  assetsPath: 'assets',
+  assetsPath: '../svg',
   virgoEndpoint: 'https://amber.itpx.one/api/virgo/graphql',
   graphqlEndpoint: 'https://amber.itpx.one/api/bazaar/graphql',
 };

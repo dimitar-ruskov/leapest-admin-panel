@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
-import { EnvironmentService } from '../services';
 import { OktaAuthStateService } from '@okta/okta-angular';
+import {EnvironmentService} from "../services/common";
 
 @Injectable({
   providedIn: 'root',

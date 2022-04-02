@@ -5,7 +5,9 @@ import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/commo
 import { map, switchMap } from 'rxjs/operators';
 import { EnvironmentService } from '../../snatch/services/environment.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UploadService {
   constructor(private readonly http: HttpClient, private readonly envService: EnvironmentService) {}
 

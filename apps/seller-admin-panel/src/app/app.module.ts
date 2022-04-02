@@ -16,8 +16,10 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
-import {environment} from "../environments/environment";
-import {AuthInterceptor, BootstrapService, ErrorInterceptor, SetDomainData} from "@leapest-admin-panel/shared";
+import {environment} from "../../../../libs/shared/src/lib/assets/environments/environment";
+import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
+import {CoreState, SetDomainData} from "../../../../libs/shared/src/lib/state";
+import {BootstrapService} from "../../../../libs/shared/src/lib/utils/services/common";
 
 
 const ngZorroConfig: NzConfig = {
@@ -37,7 +39,7 @@ const ngZorroConfig: NzConfig = {
     HttpClientModule,
     OktaAuthModule,
     AppRoutingModule,
-    NgxsModule.forRoot([], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([CoreState], { developmentMode: !environment.production }),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     NgxsFormPluginModule.forRoot(),

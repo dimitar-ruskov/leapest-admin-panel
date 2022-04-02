@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Observable, take} from "rxjs";
 import {Select} from "@ngxs/store";
 
-import {IDomainData} from "@leapest-admin-panel/shared";
+import {EnvironmentService} from "../../../../libs/shared/src/lib/utils/services/common";
+import {IDomainData} from "../../../../libs/shared/src/lib/models/interfaces";
+import {IGlobalStateModel} from "./state/global-state.model";
 
 @Component({
   selector: 'leap-root',
@@ -11,23 +13,20 @@ import {IDomainData} from "@leapest-admin-panel/shared";
 })
 export class AppComponent implements OnInit {
 
-  constructor() {
+  constructor(private readonly environmentService: EnvironmentService) {
   }
 
   @Select((state: IGlobalStateModel) => state.core.domainData)
   domainData$: Observable<IDomainData>;
-
-  @Select((state: IGlobalStateModel) => state.core.showNotSyncedUserModal)
-  showNotSyncedUserModal$: Observable<boolean>;
 
   favIcon: HTMLLinkElement = document.querySelector('#appFavicon');
 
   ngOnInit() {
     this.domainData$.pipe(take(1)).subscribe((domainData) => {
       if (domainData.name === 'futureskillsprime') {
-        this.favIcon.href = './assets/svg/primeicon.ico';
+        this.favIcon.href = `${this.environmentService.assetsPath}/svg/logo/primeicon.ico`;
       } else {
-        this.favIcon.href = './assets/svg/favicon.ico';
+        this.favIcon.href = `${this.environmentService.assetsPath}/svg/logo/favicon.ico`;
       }
     });
   }

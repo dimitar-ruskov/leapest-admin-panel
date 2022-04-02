@@ -13,8 +13,9 @@ import { CreateSubCategoryModalComponent } from '../../components/modals/create-
 import { AdminCoursesService } from '../../services/admin-courses.service';
 import { Observable } from 'rxjs';
 
-
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CourseCategoryAndSubcategoryHandlerService {
 
   static editableProps = [

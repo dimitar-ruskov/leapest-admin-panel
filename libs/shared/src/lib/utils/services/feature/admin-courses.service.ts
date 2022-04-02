@@ -43,7 +43,9 @@ import { AdminPanelApiService } from './admin-panel-api.service';
 import { S3BucketData } from '../models/course-thumbnail.model';
 import { ConferencingTool } from '../models/conferencing-tool.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AdminCoursesService {
   constructor(
     private readonly http: HttpClient,

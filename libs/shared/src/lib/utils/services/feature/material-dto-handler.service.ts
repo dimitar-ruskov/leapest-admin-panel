@@ -38,7 +38,7 @@ export interface SelectVariantModalComponentParams {
   };
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MaterialDtoHandlerService {
   private readonly _masterInternalRepositoriesSubject = new BehaviorSubject<InternalRepositoryMaterial[]>([]);
 

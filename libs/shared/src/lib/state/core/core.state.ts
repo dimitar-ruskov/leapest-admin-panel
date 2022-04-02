@@ -1,14 +1,11 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
 import {forkJoin} from "rxjs";
-import {map, catchError, tap, filter} from 'rxjs/operators';
+import {map, tap, filter} from 'rxjs/operators';
 import { OktaAuthStateService } from '@okta/okta-angular';
 
 import {
-  AmberError,
-  AmberResponse,
   IDomainData,
   IProfile,
   CoreService,
@@ -21,23 +18,19 @@ import {
 } from "@leapest-admin-panel/shared";
 import {
   GetLearnerProfile,
-  GetProfileSuccess,
-  GetProfileFailure,
   SetDomainData,
   GetCourseLevelDictionary,
   GetCustomAttendanceDictionary,
   GetILTLanguageDictionary,
-  GetIRLanguageDictionary, GetMaterialTypes, GetCertificatesDictionary, GetConferencingToolsDictionary,
+  GetIRLanguageDictionary,
+  GetMaterialTypes,
+  GetCertificatesDictionary,
+  GetConferencingToolsDictionary,
 } from './core.actions';
 
 export class CoreStateModel {
   profile?: IProfile;
-  getProfilePending: boolean;
-  getProfileSuccess: boolean;
-  getProfileError: AmberError;
-
   domainData: IDomainData;
-  showNotSyncedUserModal: boolean;
 
   iltLanguageDictionary: IKeyValuePair[];
   courseLevelDictionary: IKeyValuePair[];
@@ -53,12 +46,7 @@ export class CoreStateModel {
   name: 'core',
   defaults: {
     profile: undefined,
-    getProfilePending: false,
-    getProfileSuccess: false,
-    getProfileError: undefined,
-
     domainData: undefined,
-    showNotSyncedUserModal: false,
 
     iltLanguageDictionary: [],
     courseLevelDictionary: [],
@@ -88,45 +76,18 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetLearnerProfile)
-  getLearnerProfile({ patchState, dispatch }: StateContext<CoreStateModel>) {
-    patchState({ getProfilePending: true, getProfileSuccess: false, getProfileError: undefined });
+  getLearnerProfile({ patchState }: StateContext<CoreStateModel>) {
     return this.coreService.getLearnerProfile().pipe(
-      map((_) => _.data),
+      filter((response) => !response.error),
+      map((response) => response.data),
       map((learner: IProfile) => {
-        return dispatch(new GetProfileSuccess(learner));
-      }),
-      catchError((httpError: HttpErrorResponse) => {
-        const error = (<AmberResponse<any>>httpError.error).error;
-        return dispatch(new GetProfileFailure(error));
+        patchState({ profile: learner });
       }),
     );
   }
 
-  @Action(GetProfileSuccess)
-  getProfileSuccess({ patchState }: StateContext<CoreStateModel>, action: GetProfileSuccess) {
-    patchState({
-      getProfilePending: false,
-      getProfileSuccess: true,
-      getProfileError: undefined,
-      profile: action.payload,
-      showNotSyncedUserModal: false,
-    });
-  }
-
-  @Action(GetProfileFailure)
-  getProfileFailure({ patchState, getState }: StateContext<any>, action: GetProfileFailure) {
-    patchState({
-      ...getState(),
-      getProfilePending: false,
-      getProfileSuccess: false,
-      getProfileError: action.payload,
-      profile: undefined,
-      showNotSyncedUserModal: true,
-    });
-  }
-
   @Action(SetDomainData)
-  setDomainData({ getState, patchState }: StateContext<CoreStateModel>, { data }: SetDomainData) {
+  setDomainData({ patchState }: StateContext<CoreStateModel>, { data }: SetDomainData) {
     if (this.titleService.getTitle() === 'Admin Panel') {
       this.titleService.setTitle(data['buyerName']);
     }
@@ -135,7 +96,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetILTLanguageDictionary)
-  getILTLanguageDictionary({ patchState, getState }: StateContext<CoreStateModel>) {
+  getILTLanguageDictionary({ patchState }: StateContext<CoreStateModel>) {
     return this.adminCoursesService.getILTLanguageDictionary().pipe(
       tap((res: DeferredResource<IKeyValuePair[]>) => {
         if (res.isSuccess) {
@@ -146,7 +107,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetIRLanguageDictionary)
-  getIRLanguageDictionary({ patchState, getState }: StateContext<CoreStateModel>) {
+  getIRLanguageDictionary({ patchState }: StateContext<CoreStateModel>) {
     return this.adminCoursesService.getIRLanguageDictionary().pipe(
       tap((res) => {
         if (res.isSuccess) {
@@ -157,7 +118,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetCourseLevelDictionary)
-  getCourseLevelDictionary({ patchState, getState }: StateContext<CoreStateModel>) {
+  getCourseLevelDictionary({ patchState }: StateContext<CoreStateModel>) {
     return this.adminCoursesService.getCourseLevelDictionary().pipe(
       map((t) => t.data),
       tap((courseLevelDictionary: IKeyValuePair[]) => {
@@ -167,7 +128,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetMaterialTypes)
-  getMaterialTypes({ patchState, getState }: StateContext<CoreStateModel>) {
+  getMaterialTypes({ patchState }: StateContext<CoreStateModel>) {
     return forkJoin([
       this.adminCoursesService.getMaterialTypes(true),
       this.adminCoursesService.getMaterialTypes(false),
@@ -181,7 +142,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetCertificatesDictionary)
-  getCertificatesDictionary({ patchState, getState }: StateContext<CoreStateModel>) {
+  getCertificatesDictionary({ patchState }: StateContext<CoreStateModel>) {
     return this.adminCoursesService.getCertificatesList().pipe(
       map((t) => t.response),
       tap((certificatesDictionary: IConfigCertificatesDictionary[]) => {
@@ -191,7 +152,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetConferencingToolsDictionary)
-  getConferencingToolsDictionary({ patchState, getState }: StateContext<CoreStateModel>) {
+  getConferencingToolsDictionary({ patchState }: StateContext<CoreStateModel>) {
     return this.adminCoursesService.getConferencingToolsDictionary().pipe(
       filter((r) => r.isSuccess),
       map((t) => t.response),
@@ -202,7 +163,7 @@ export class CoreState implements NgxsOnInit {
   }
 
   @Action(GetCustomAttendanceDictionary)
-  getCustomAttendanceDictionary({ patchState, getState }: StateContext<CoreStateModel>) {
+  getCustomAttendanceDictionary({ patchState }: StateContext<CoreStateModel>) {
     return this.adminCoursesService.getCustomAttendanceDictionary().pipe(
       filter((r) => r.isSuccess),
       map((t) => t.response),

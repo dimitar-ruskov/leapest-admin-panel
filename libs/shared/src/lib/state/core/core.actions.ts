@@ -1,18 +1,8 @@
-import {AmberError, IDomainData, IProfile} from "@leapest-admin-panel/shared";
+import {IDomainData} from "@leapest-admin-panel/shared";
 
 export class GetLearnerProfile {
   static readonly type = '[Core] Get Learner Profile';
   constructor() {}
-}
-
-export class GetProfileSuccess {
-  static readonly type = '[Core] Get Profile success';
-  constructor(public payload: IProfile) {}
-}
-
-export class GetProfileFailure {
-  static readonly type = '[Core] Get Profile failure';
-  constructor(public payload: AmberError) {}
 }
 
 export class SetDomainData {

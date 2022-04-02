@@ -1,0 +1,42 @@
+@background-color: #fff;
+@box-shadow: 0px 2px 6px rgba(0,0,0,0.14);
+@header-height: 60px;
+@sidebar-padding-top: 40px;
+@footer-height: 82px;
+
+.logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 28px 16px 0;
+    float: left;
+}
+
+.page-layout {
+  min-height: 100vh;
+
+  &__sidebar {
+    padding-top: @sidebar-padding-top;
+    background: @background-color;
+    box-shadow: @box-shadow;
+
+    &-menu {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  &__main {
+    min-height: 100%;
+    padding: 10px 10px 0;
+  }
+
+  &__content {
+    min-height: calc(100% - @footer-height);
+  }
+
+  &__footer {
+    height: @footer-height;
+    padding: 20px 0;
+  }
+}

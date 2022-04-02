@@ -1,0 +1,8 @@
+<nz-spin [nzSpinning]="pending">
+  <div class="wrapper">
+    Waiting for Zoom to respond
+  </div>
+</nz-spin>
+<div class="wrapper" *ngIf="isError">
+  Something went wrong
+</div>
