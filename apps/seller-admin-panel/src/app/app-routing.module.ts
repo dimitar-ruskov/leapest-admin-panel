@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'zoom-auth-landing',
   loadChildren: async () =>
-  import('../../../../libs/shared/src/lib/components/core/zoom-auth-landing/zoom-auth-landing.module')
+    import('../../../../libs/shared/src/lib/components/core/zoom-auth-landing/zoom-auth-landing.module')
     .then((m) => m.ZoomAuthLandingModule)
   },
   {

@@ -3,7 +3,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import {OKTA_CONFIG, OktaAuthModule} from "@okta/okta-angular";
+import {OKTA_CONFIG, OktaAuthGuard, OktaAuthModule} from "@okta/okta-angular";
 import {OktaAuth} from "@okta/okta-auth-js";
 import {NgxsModule, Store} from "@ngxs/store";
 import {NgxsFormPluginModule} from "@ngxs/form-plugin";
@@ -11,8 +11,6 @@ import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {QuillModule} from "ngx-quill";
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
-import {NzButtonModule} from "ng-zorro-antd/button";
-import {NzModalModule} from "ng-zorro-antd/modal";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -20,6 +18,7 @@ import {environment} from "../../../../libs/shared/src/lib/assets/environments/e
 import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
 import {CoreState, SetDomainData} from "../../../../libs/shared/src/lib/state";
 import {BootstrapService} from "../../../../libs/shared/src/lib/utils/services/common";
+import {GroupGuard, HybridUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
 
 
 const ngZorroConfig: NzConfig = {
@@ -43,10 +42,7 @@ const ngZorroConfig: NzConfig = {
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     NgxsFormPluginModule.forRoot(),
-    QuillModule.forRoot(),
-
-    NzButtonModule,
-    NzModalModule
+    QuillModule.forRoot()
   ],
   providers: [
     { provide: NZ_CONFIG, useValue: ngZorroConfig },
@@ -82,6 +78,9 @@ const ngZorroConfig: NzConfig = {
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    OktaAuthGuard,
+    HybridUserGuard,
+    GroupGuard
   ],
 })
 export class AppModule {}

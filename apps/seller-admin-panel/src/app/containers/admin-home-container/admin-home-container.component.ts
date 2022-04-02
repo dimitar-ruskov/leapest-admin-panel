@@ -50,13 +50,13 @@ export class AdminHomeContainerComponent implements OnInit {
         new GetConferencingToolsDictionary(),
         new GetCustomAttendanceDictionary(),
       ]);
-      if (this.route.children?.length === 0) {
-        this.router.navigate(['ilt-courses'], { relativeTo: this.route });
-      }
+      // if (this.route.children?.length === 0) {
+      //   this.router.navigate(['ilt-courses'], { relativeTo: this.route });
+      // }
     } else {
-      if (this.route.children?.length === 0) {
-        this.router.navigate(['ilt-events'], { relativeTo: this.route });
-      }
+      // if (this.route.children?.length === 0) {
+      //   this.router.navigate(['ilt-events'], { relativeTo: this.route });
+      // }
     }
   }
 
