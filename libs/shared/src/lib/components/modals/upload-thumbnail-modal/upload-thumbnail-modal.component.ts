@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { EnvironmentService } from '../../../../snatch/services';
 import { Observable, Observer } from 'rxjs';
+import {EnvironmentService} from "../../../utils/services/common";
 
 @Component({
   selector: 'leap-upload-thumbnail-modal',
@@ -61,7 +61,7 @@ export class UploadThumbnailModalComponent implements OnInit {
 
   private getBase64(img: File, callback: (img: string) => void): void {
     const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result!.toString()));
+    reader.addEventListener('load', () => callback(reader.result?.toString()));
     reader.readAsDataURL(img);
   }
 

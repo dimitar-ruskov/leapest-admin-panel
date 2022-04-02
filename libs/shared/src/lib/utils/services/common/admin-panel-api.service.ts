@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { IPageable } from '../../snatch/models/page.model';
 import { Observable } from 'rxjs';
-import { DeferredResource } from '../../snatch/utils/deferred-resource';
-import DeferredResourceUtils from '../../snatch/utils/deferred-resource.utils';
-import { EnvironmentService } from '../../snatch/services';
-import { AmberResponse } from '../../snatch/models/amber-response.model';
+import {DeferredResource} from "../../common";
+import {EnvironmentService} from "./environment.service";
+import DeferredResourceUtils from "../../common/deferred-resource.utils";
+import {AmberResponse, IPageable} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root',

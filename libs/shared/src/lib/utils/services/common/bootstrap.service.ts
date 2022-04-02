@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AmberResponse } from '../../snatch/models/amber-response.model';
-import { EnvironmentService } from '../../snatch/services/environment.service';
-import { IDomainData } from 'src/app/shared/model/domain-data.model';
+import {EnvironmentService} from "./environment.service";
+import {AmberResponse, IDomainData} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root',

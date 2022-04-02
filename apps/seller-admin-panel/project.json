@@ -19,7 +19,10 @@
           "apps/seller-admin-panel/src/assets"
         ],
         "styles": ["apps/seller-admin-panel/src/styles.less"],
-        "scripts": []
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "core-js-pure"
+        ]
       },
       "configurations": {
         "production": {

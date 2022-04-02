@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AdminPanelApiService } from './admin-panel-api.service';
-import { CourseCategory } from '../models/course-category.model';
-import { DeferredResource } from '../../snatch/utils/deferred-resource';
 import { HttpHeaders } from '@angular/common/http';
+import {AdminPanelApiService} from "../common";
+import {DeferredResource} from "../../common";
+import {CourseCategory} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root',

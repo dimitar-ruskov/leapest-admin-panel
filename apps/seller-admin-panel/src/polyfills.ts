@@ -50,7 +50,3 @@ import 'zone.js'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-
-/** Evergreen browsers require these. **/
-import 'core-js/es/reflect';
-import 'core-js/es7/reflect';

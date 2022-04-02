@@ -7,6 +7,7 @@ import {EditCategoryModalComponent} from "./edit-category-modal.component";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 @NgModule({
   declarations: [EditCategoryModalComponent],
@@ -15,6 +16,7 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzSelectModule,
     NzButtonModule

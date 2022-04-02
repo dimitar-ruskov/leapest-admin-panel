@@ -1,9 +1,9 @@
 import { ILTCourseAgendaDay } from './ilt-course.model';
 import { InternalRepositoryMaterial } from '../internal-repository.model';
 import { Venue } from './ilt-course-list-item';
-import { ConfigDto } from './config-dto.model';
-import { Certificate } from '../../common/common-course/models/course.model';
-import { ExportLearnersTypes } from '../containers/ilt-events/containers/ilt-events-details/containers/ilt-event-learners/ilt-event-learners.model';
+import {ConfigDto} from "../../common/config-dto.model";
+import {Certificate} from "../ceritificate.model";
+import {ExportLearnersTypes} from "./ilt-event-learners.model";
 
 export class AssignLearnersResponse {
   username: string;

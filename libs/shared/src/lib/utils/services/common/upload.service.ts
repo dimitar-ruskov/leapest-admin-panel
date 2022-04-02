@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AmberResponse } from '../models/amber-response.model';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators';
-import { EnvironmentService } from '../../snatch/services/environment.service';
+import {EnvironmentService} from "./environment.service";
+import {AmberResponse} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,5 @@
-import { InternalRepositoryDTO } from '../../../models/internal-repository.model';
-import { PublishedILTCourse } from '../../../containers/ilt-courses-container/models/ilt-course.model';
+import {InternalRepositoryDTO} from "../feature/internal-repository.model";
+import {PublishedILTCourse} from "../feature/courses/ilt-course.model";
 
 export interface InfoField {
   id: string;

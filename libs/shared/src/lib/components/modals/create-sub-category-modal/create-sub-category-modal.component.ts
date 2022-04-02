@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { ILTCourseCategory } from '../../../models/ilt-course.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
+import {IKeyValuePair, ILTCourseCategory} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-create-sub-category-modal',

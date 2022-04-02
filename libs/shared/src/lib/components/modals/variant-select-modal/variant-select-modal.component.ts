@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { InternalRepositoryDTO } from 'src/app/admin-panel/models/internal-repository.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ConfigDto } from '../../../models/config-dto.model';
+import {ConfigDto, InternalRepositoryDTO} from "../../../models/interfaces";
 
 export interface VariantSelectModalFormValue {
   variantId: number;
@@ -17,7 +16,7 @@ export interface VariantSelectModalFormValue {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class VariantSelectModalComponent implements OnInit, OnDestroy {
+export class VariantSelectModalComponent implements OnInit {
   public form: FormGroup;
 
   @Input() public readonly variantOptions: InternalRepositoryDTO[];
@@ -80,9 +79,5 @@ export class VariantSelectModalComponent implements OnInit, OnDestroy {
         this.deliveryFormatList.push(dto.type);
       }
     });
-  }
-
-  ngOnDestroy() {
-    // Required by untilDestroyed hook
   }
 }

@@ -1,47 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { EnvironmentService } from 'src/app/snatch/services';
-import { Store } from '@ngxs/store';
-import { IPageable } from 'src/app/snatch/models/page.model';
-import DeferredResourceUtils from 'src/app/snatch/utils/deferred-resource.utils';
-import { DeferredResource } from 'src/app/snatch/utils/deferred-resource';
-import { Observable, timer, of } from 'rxjs';
-import { IConfigCertificatesDictionary, IKeyValuePair } from 'src/app/core/model/dictionary.model';
-import { AmberResponse } from 'src/app/snatch/models/amber-response.model';
-import {
-  MasterInternalRepository,
-  InternalRepositoryMaterial,
-  ExamShortInfo,
-  IRContent,
-} from '../models/internal-repository.model';
-import {
-  ILTEvent,
-  ILTEventBase,
-  TrainingManager,
-  ILTInstructor,
-  FlattenedCourseDetails,
-  AssignLearnersResponse,
-  MaterialCompletionReport,
-  ExamCompletionReport,
-  ILTEventLearner,
-  UploadLearnerResponse,
-  LearnersBulkImportResponse,
-  LearnersValidationResponse,
-} from '../models/ilt-event.model';
-import { map, switchMap } from 'rxjs/operators';
-import { Venue } from '../models/ilt-course-list-item';
 import { AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { Observable, timer, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import {DeferredResource} from "../../common";
+import DeferredResourceUtils from "../../common/deferred-resource.utils";
+import {AdminPanelApiService, EnvironmentService} from "../common";
 import {
+  AmberResponse,
+  AssignLearnersResponse,
+  ConferencingTool,
+  ExamCompletionReport,
+  ExamShortInfo,
+  FlattenedCourseDetails,
+  IConfigCertificatesDictionary,
+  IKeyValuePair,
+  ILTEvent,
   ILTEventAttendance,
   ILTEventAttendanceCompletionPayload,
   ILTEventAttendancesByUser,
   ILTEventAttendanceUpdatePayload,
+  ILTEventBase,
   ILTEventBulkMarkAttendancesPayload,
   ILTEventCustomAttendanceLight,
-} from '../models/ilt-event-attendance.model';
-import { AdminPanelApiService } from './admin-panel-api.service';
-import { S3BucketData } from '../models/course-thumbnail.model';
-import { ConferencingTool } from '../models/conferencing-tool.model';
+  ILTEventLearner,
+  ILTInstructor,
+  InternalRepositoryMaterial,
+  IPageable,
+  IRContent,
+  LearnersBulkImportResponse,
+  LearnersValidationResponse,
+  MasterInternalRepository,
+  MaterialCompletionReport,
+  S3BucketData,
+  TrainingManager,
+  UploadLearnerResponse,
+  Venue
+} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root',

@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { EditCategoryModalComponent } from '../../components/modals/edit-category-modal/edit-category-modal.component';
-import { CourseCategory } from '../../models/course-category.model';
-import { CourseSubCategory } from '../../models/course-sub-category.model';
-import { LmsCategoriesService } from '../../services/lms-categories.service';
 import { filter, map, switchMap, take, takeUntil } from 'rxjs/operators';
-import { ILTCourseCategory } from '../../models/ilt-course.model';
-import { LmsSubCategoriesService } from '../../services/lms-sub-categories.service';
-import { DeferredResource } from '../../../snatch/utils/deferred-resource';
-import { CreateCategoryModalComponent } from '../../components/modals/create-category-modal/create-category-modal.component';
-import { CreateSubCategoryModalComponent } from '../../components/modals/create-sub-category-modal/create-sub-category-modal.component';
-import { AdminCoursesService } from '../../services/admin-courses.service';
 import { Observable } from 'rxjs';
+
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import {CourseCategory, CourseSubCategory, ILTCourseCategory} from "../../../models/interfaces";
+import {
+  CreateSubCategoryModalComponent
+} from "../../../components/modals/create-sub-category-modal/create-sub-category-modal.component";
+import {DeferredResource} from "../../common";
+import {LmsSubCategoriesService} from "./lms-sub-categories.service";
+import {LmsCategoriesService} from "./lms-categories.service";
+import {EditCategoryModalComponent} from "../../../components/modals/edit-category-modal/edit-category-modal.component";
+import {
+  CreateCategoryModalComponent
+} from "../../../components/modals/create-category-modal/create-category-modal.component";
+import {AdminCoursesService} from "./admin-courses.service";
+
 
 @Injectable({
   providedIn: 'root',

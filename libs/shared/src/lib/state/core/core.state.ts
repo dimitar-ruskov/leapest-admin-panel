@@ -5,17 +5,16 @@ import {forkJoin} from "rxjs";
 import {map, tap, filter} from 'rxjs/operators';
 import { OktaAuthStateService } from '@okta/okta-angular';
 
+import {DeferredResource} from "../../utils/common";
+import {CoreService} from "../../utils/services/common";
+import {AdminCoursesService} from "../../utils/services/feature";
 import {
-  IDomainData,
-  IProfile,
-  CoreService,
-  AdminCoursesService,
-  DeferredResource,
-  IKeyValuePair,
-  ILTEventCustomAttendanceLight,
   ConferencingTool,
-  IConfigCertificatesDictionary
-} from "@leapest-admin-panel/shared";
+  IConfigCertificatesDictionary,
+  IDomainData,
+  IKeyValuePair,
+  ILTEventCustomAttendanceLight, IProfile
+} from "../../models/interfaces";
 import {
   GetLearnerProfile,
   SetDomainData,
@@ -29,7 +28,8 @@ import {
 } from './core.actions';
 
 export class CoreStateModel {
-  profile?: IProfile;
+  profile: IProfile;
+  getProfilePending: boolean;
   domainData: IDomainData;
 
   iltLanguageDictionary: IKeyValuePair[];
@@ -46,6 +46,7 @@ export class CoreStateModel {
   name: 'core',
   defaults: {
     profile: undefined,
+    getProfilePending: false,
     domainData: undefined,
 
     iltLanguageDictionary: [],
@@ -77,11 +78,12 @@ export class CoreState implements NgxsOnInit {
 
   @Action(GetLearnerProfile)
   getLearnerProfile({ patchState }: StateContext<CoreStateModel>) {
+    patchState({ getProfilePending: true });
     return this.coreService.getLearnerProfile().pipe(
       filter((response) => !response.error),
       map((response) => response.data),
       map((learner: IProfile) => {
-        patchState({ profile: learner });
+        patchState({ profile: learner, getProfilePending: false });
       }),
     );
   }

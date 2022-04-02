@@ -1,4 +1,4 @@
-import {IDomainData} from "@leapest-admin-panel/shared";
+import {IDomainData} from "../../models/interfaces";
 
 export class GetLearnerProfile {
   static readonly type = '[Core] Get Learner Profile';

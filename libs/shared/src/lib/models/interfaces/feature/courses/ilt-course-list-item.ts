@@ -1,4 +1,4 @@
-import { ConfigDto } from './config-dto.model';
+import {ConfigDto} from "../../common/config-dto.model";
 
 export interface ILTCourseListItem {
   id: string;

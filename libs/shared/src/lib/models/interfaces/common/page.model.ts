@@ -1,4 +1,4 @@
-import { IKeyValuePair } from 'src/app/core/model/dictionary.model';
+import {IKeyValuePair} from "./dictionary.model";
 
 export interface IPageable {
     limit?: number;

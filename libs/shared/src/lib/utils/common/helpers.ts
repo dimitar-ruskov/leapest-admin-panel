@@ -1,7 +1,5 @@
 import { NzTableQueryParams, NzTableSortOrder } from 'ng-zorro-antd/table';
-import { IPageable } from '../../../snatch/models/page.model';
-import { IKeyValuePair } from '../../../core/model/dictionary.model';
-import { IFilterSelectedDates, Venue } from '../../models/ilt-course-list-item';
+import {IFilterSelectedDates, IKeyValuePair, IPageable, Venue} from "../../models/interfaces";
 
 
 export function formatDate(date: Date, time: Date): string {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { CourseCategory } from '../../../models/course-category.model';
+import {CourseCategory} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-create-category-modal',

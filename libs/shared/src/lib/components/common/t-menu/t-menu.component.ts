@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { TMenuInputModel } from '../../../models/dump-components/t-menu-input-model';
+import {TMenuInputModel} from "../../../models/interfaces";
 
 
 @Component({

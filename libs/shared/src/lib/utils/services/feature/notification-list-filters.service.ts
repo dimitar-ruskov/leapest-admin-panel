@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { IKeyValuePair } from '../../core/model/dictionary.model';
+import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { AdminPanelApiService } from './admin-panel-api.service';
-import { DeferredResource } from '../../snatch/utils/deferred-resource';
 import { filter } from 'rxjs/operators';
+import {IKeyValuePair} from "../../../models/interfaces";
+import {AdminPanelApiService} from "../common";
+import {DeferredResource} from "../../common";
 
 export interface FilterParamList {
   text: string;

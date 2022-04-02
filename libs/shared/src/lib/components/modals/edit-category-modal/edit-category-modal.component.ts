@@ -8,9 +8,7 @@ import {
   TrackByFunction
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CourseCategory } from '../../../models/course-category.model';
-import { CourseSubCategory } from '../../../models/course-sub-category.model';
-
+import {CourseCategory, CourseSubCategory} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-edit-category-modal',

@@ -23,8 +23,10 @@ export * from './feature/courses/ilt-course-event-instructor-collisions.model';
 export * from './feature/courses/ilt-course-list-item';
 export * from './feature/courses/ilt-event.model';
 export * from './feature/courses/ilt-event-attendance.model';
+export * from './feature/courses/ilt-event-learners.model';
 
 // Other models
+export * from './feature/ceritificate.model';
 export * from './feature/conferencing-tool.model';
 export * from './feature/domain-data.model';
 export * from './feature/internal-repository.model';

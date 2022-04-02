@@ -1,4 +1,4 @@
-import { CoursePublishStatusModel } from 'src/app/snatch/models/course-publish-status.model';
+import {CoursePublishStatusModel} from "../interfaces";
 
 export const COURSE_PUBLISH_STATUS: CoursePublishStatusModel[] =
 [

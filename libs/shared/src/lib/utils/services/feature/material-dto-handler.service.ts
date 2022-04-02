@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { InternalRepositoryDTO, InternalRepositoryMaterial } from '../../models/internal-repository.model';
 import { Store } from '@ngxs/store';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import {
-  VariantSelectModalComponent,
-  VariantSelectModalFormValue,
-} from '../../components/modals/variant-select-modal/variant-select-modal.component';
 import produce, { Draft } from 'immer';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ConfigDto } from '../../models/config-dto.model';
+import {ConfigDto, InternalRepositoryDTO, InternalRepositoryMaterial} from "../../../models/interfaces";
+import {
+  VariantSelectModalComponent,
+  VariantSelectModalFormValue
+} from "../../../components/modals/variant-select-modal/variant-select-modal.component";
 
 export const NOT_ALL_EXAMS_CONFIGURED_TOOLTIP_TEXT = 'Please select the activation date for exams';
 

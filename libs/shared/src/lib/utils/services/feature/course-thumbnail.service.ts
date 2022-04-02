@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AdminPanelApiService } from './admin-panel-api.service';
 import { Observable } from 'rxjs';
-import { FlattenedCourseDetails } from '../models/ilt-event.model';
-import { DeferredResource } from '../../snatch/utils/deferred-resource';
-import { GenerateThumbnailPayload, S3BucketData, UploadThumbnailPayload } from '../models/course-thumbnail.model';
 import { HttpHeaders } from '@angular/common/http';
+import {AdminPanelApiService} from "../common";
+import {
+  FlattenedCourseDetails,
+  GenerateThumbnailPayload,
+  S3BucketData,
+  UploadThumbnailPayload
+} from "../../../models/interfaces";
+import {DeferredResource} from "../../common";
 
 @Injectable({
   providedIn: 'root',

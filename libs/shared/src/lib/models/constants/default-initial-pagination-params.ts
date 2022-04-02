@@ -1,4 +1,4 @@
-import { IPageable } from '../../../snatch/models/page.model';
+import {IPageable} from "../interfaces";
 
 export const DEFAULT_INITIAL_PAGINATION_PARAMS: IPageable = {
   limit: 10,

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EnvironmentService } from 'src/app/snatch/services';
 import { Router } from '@angular/router';
-import { IProfile } from 'src/app/core/state/core.state';
+import {EnvironmentService} from "../../../../utils/services/common";
+import {IProfile} from "../../../../models/interfaces";
 
 @Component({
   selector: 'leap-user',

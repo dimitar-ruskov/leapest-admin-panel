@@ -1,10 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IKeyValuePair } from '../../core/model/dictionary.model';
-import { AmberResponse } from '../../snatch/models/amber-response.model';
-import { EnvironmentService } from '../../snatch/services';
-import { AdminPanelApiService } from './admin-panel-api.service';
+import {AmberResponse, IKeyValuePair} from "../../../models/interfaces";
+import {EnvironmentService} from "../common";
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +10,7 @@ import { AdminPanelApiService } from './admin-panel-api.service';
 export class LxpUsersService {
   constructor(
     private readonly environment: EnvironmentService,
-    private readonly http: HttpClient,
-    private readonly adminPanelApiService: AdminPanelApiService,
+    private readonly http: HttpClient
   ) {}
 
   getLxpUsers(filter: string): Observable<IKeyValuePair[]> {
