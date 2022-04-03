@@ -14,10 +14,6 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": "."
-//    "paths": {
-//      "@leapest-admin-panel/shared": ["libs/shared/src/index.ts"],
-//      "@leapest-admin-panel/silk-editor": ["libs/silk-editor/src/index.ts"]
-//    }
   },
   "exclude": ["node_modules", "tmp"]
 }

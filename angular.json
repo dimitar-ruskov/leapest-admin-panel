@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "marketplace-repo": "libs/marketplace-repo",
     "seller-admin-panel": "apps/seller-admin-panel",
     "shared": "libs/shared",
     "silk-editor": "libs/silk-editor"

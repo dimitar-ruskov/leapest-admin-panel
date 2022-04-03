@@ -9,9 +9,9 @@ import {
   ResetMarketplaceRepositoriesState,
 } from '../../state/marketplace-repository-list.actions';
 import { IMarketplaceProduct } from '../../model/marketplace-repository-product.model';
-import {createPageableFromTableQueryParams} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
-import {CURRENCY_DICTIONARY} from "../../../../../../../../libs/shared/src/lib/models/constants";
+import {createPageableFromTableQueryParams} from "../../../../../shared/src/lib/utils/common";
+import {EnvironmentService} from "../../../../../shared/src/lib/utils/services/common";
+import {CURRENCY_DICTIONARY} from "../../../../../shared/src/lib/models/constants";
 
 @Component({
   selector: 'leap-marketplace-repository-list',

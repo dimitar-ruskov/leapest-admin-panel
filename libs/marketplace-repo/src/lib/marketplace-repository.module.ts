@@ -8,17 +8,13 @@ import { MarketplaceRepositoryRoutingModule } from './marketplace-repository-rou
 import { MarketplaceRepositoryComponent } from './marketplace-repository.component';
 import { MarketplaceRepositoryListComponent } from './containers/marketplace-repository-list/marketplace-repository-list.component';
 
-import {
-  TableSearchModule
-} from "../../../../../../libs/shared/src/lib/components/common/table-search/table-search.module";
-import {
-  CtaContainerModule
-} from "../../../../../../libs/shared/src/lib/components/common/cta-container/cta-container.module";
-import {TGridModule} from "../../../../../../libs/shared/src/lib/components/common/t-grid/t-grid.module";
-import {TableGridModule} from "../../../../../../libs/shared/src/lib/components/common/table-grid/table-grid.module";
+import {TableSearchModule} from "../../../shared/src/lib/components/common/table-search/table-search.module";
+import {CtaContainerModule} from "../../../shared/src/lib/components/common/cta-container/cta-container.module";
+import {TGridModule} from "../../../shared/src/lib/components/common/t-grid/t-grid.module";
+import {TableGridModule} from "../../../shared/src/lib/components/common/table-grid/table-grid.module";
 import {
   TableControlPanelModule
-} from "../../../../../../libs/shared/src/lib/components/common/table-control-panel/table-control-panel.module";
+} from "../../../shared/src/lib/components/common/table-control-panel/table-control-panel.module";
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -33,7 +29,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzInputModule } from 'ng-zorro-antd/input';
-
 
 @NgModule({
   declarations: [MarketplaceRepositoryComponent, MarketplaceRepositoryListComponent],

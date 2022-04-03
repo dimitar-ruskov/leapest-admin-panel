@@ -26,7 +26,8 @@ const routes: Routes = [
       {
         path: 'marketplace-repo',
         loadChildren: async () =>
-          import('../marketplace-repository/marketplace-repository.module').then(
+          // import('../marketplace-repository/marketplace-repository.module').then(
+          import('../../../../../../libs/marketplace-repo/src/lib/marketplace-repository.module').then(
             (m) => m.MarketplaceRepositoryModule,
           ),
       },
