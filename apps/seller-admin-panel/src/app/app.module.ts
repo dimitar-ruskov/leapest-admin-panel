@@ -14,12 +14,12 @@ import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
+import {GraphQLModule} from "./graphql.module";
 import {environment} from "../environments/environment";
 import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
 import {CoreState, SetDomainData} from "../../../../libs/shared/src/lib/state";
 import {BootstrapService} from "../../../../libs/shared/src/lib/utils/services/common";
 import {GroupGuard, HybridUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
-
 
 const ngZorroConfig: NzConfig = {
   notification: {
@@ -36,6 +36,7 @@ const ngZorroConfig: NzConfig = {
     BrowserModule,
     BrowserAnimationsModule, // delete?
     HttpClientModule,
+    GraphQLModule,
     OktaAuthModule,
     AppRoutingModule,
     NgxsModule.forRoot([CoreState], { developmentMode: !environment.production }),

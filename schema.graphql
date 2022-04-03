@@ -1,0 +1,866 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Account {
+  accountId: String!
+  buyer: Boolean
+  currency: String!
+  displayName: String
+  id: ID!
+  instructor: Boolean
+  logo: String
+  lxpConfigured: Boolean
+  name: String!
+  preferred: Boolean
+  seller: Boolean
+  sellerProfile: SellerProfile
+  vmsEnabled: Boolean
+  website: String
+}
+
+type AccountListingAggregation {
+  items: [AccountListingAggregationItem!]!
+  key: String!
+}
+
+type AccountListingAggregationItem {
+  count: Int!
+  key: String!
+}
+
+type AccountListingMetadata {
+  aggregations: [AccountListingAggregation!]!
+  totalCount: Int!
+}
+
+type AccountView {
+  accountId: String!
+  buyer: Boolean
+  currency: String!
+  displayName: String
+  id: ID!
+  instructor: Boolean
+  logo: String
+  name: String!
+  preferred: Boolean
+  seller: Boolean
+  sellerProfile: SellerProfile
+  website: String
+}
+
+type Address {
+  city: String
+  companyName: String
+  country: String
+  email: String
+  firstName: String
+  houseNumber: String
+  id: ID!
+  isCompany: Boolean
+  lastName: String
+  makeDefaultType: AddressType
+  phoneNumbers: [String!]!
+  province: String
+  state: String
+  streetName: String
+  zipCode: String
+}
+
+type AppliedPromoCodeView {
+  "The applied promo code"
+  code: String!
+  discountPercentage: Float!
+  id: ID!
+  promoCode: PromotionCode
+  "Not null if promo code was actually applied"
+  totalDiscount: Float
+}
+
+type AppliedSurcharge {
+  amount: Float!
+  key: String!
+  name: String!
+}
+
+type BasketItemView {
+  courseEventSnapshot: CourseEventSnapshot
+  discountTotal: Float!
+  id: ID!
+  lineItems: [LineItemView!]!
+  netAmount: Float!
+  netAmountWithSurcharges: Float!
+  netTotal: Float!
+  netTotalWithSurcharges: Float!
+  productVariant: ProductVariant
+  productVariantSnapshot: ProductVariantSnapshot!
+  purchaseOrderIds: [String]
+  quantity: Int!
+  shippingAmount: Float!
+  shippingMethodKey: String
+  surchargeTotal: Float!
+  surcharges: [AppliedSurcharge!]!
+  surchargesAmount: Float!
+}
+
+type BasketView {
+  appliedPromoCodes: [AppliedPromoCodeView!]!
+  currency: String!
+  defaultShippingAddress: Address
+  discountTotal: Float!
+  grossTotal: Float!
+  id: ID!
+  invalidPromoCodes: [AppliedPromoCodeView!]!
+  items: [BasketItemView!]!
+  netTotal: Float!
+  originalPriceForRegionTotal: Float
+  shippingGroups: [ShippingGroupView!]!
+  shippingTotal: Float!
+  surchargeTotal: Float!
+  taxPercentage: Float!
+  taxTotal: Float!
+}
+
+type Catalog {
+  catalogSvg: String
+  categories: [Category!]!
+  code: String!
+  name: String!
+}
+
+type Category {
+  code: String!
+  name: String!
+  topics: [Topic!]!
+}
+
+type Checkout {
+  allowedPaymentTypes: [PaymentMethod!]!
+  basket: BasketView!
+  basketId: ID!
+  billingAddress: Address
+  shippingAddress: Address
+}
+
+type CheckoutSnapshot {
+  checkout: Checkout!
+  signedToken: String!
+}
+
+type Configuration {
+  configKey: String!
+  configOrder: Int!
+  configType: String!
+  configValue: String!
+}
+
+type CourseEventSnapshot {
+  pricing: CourseEventVolumePricing
+  sellerName: String!
+  sku: String!
+}
+
+type CourseEventVolumePricing {
+  currency: String!
+  perLearnerFee: Float!
+}
+
+type CustomerSegment {
+  code: String!
+  name: String!
+}
+
+type Employee {
+  account: Account!
+  email: String!
+  firstName: String!
+  id: ID!
+  isAccountAdmin: Boolean!
+  lastName: String!
+}
+
+type FavouriteAccountsListingResult {
+  accounts: [Account]
+  metaData: AccountListingMetadata
+}
+
+type LatestProductListingResult {
+  products: [Product!]!
+}
+
+type LineItemView {
+  discountAmount: Float!
+  discountPercentage: Float!
+  netAmount: Float!
+  netAmountWithDiscount: Float!
+  netTotal: Float!
+  netTotalWithDiscount: Float!
+  promoCodes: [String!]!
+  quantity: Int!
+}
+
+type Mutation {
+  addAddress(input: AddAddress): Address!
+  addBasketItem(input: BasketAddItem!): BasketView!
+  addOrderTemplate(input: OrderTemplateAdd!): OrderTemplateAddView!
+  addOrderTemplateItem(input: OrderTemplateAddItem!): OrderTemplateView!
+  addOrderTemplateToBasket(input: OrderTemplateAddBasketView!): BasketView!
+  addPromoCode(input: BasketPromoCode!): BasketView!
+  cancelSalesOrder(salesOrderNumber: String!): SalesOrder!
+  checkout(input: CheckoutPay!): SalesOrder!
+  checkoutExternal(input: CheckoutPay!): SalesOrder!
+  checkoutLearner(input: CheckoutPay!): SalesOrder!
+  b2CCourseEventCheckout(input: CheckoutPay!): LearnerPreparedCheckout!
+  checkoutRecord(input: CheckoutRecord!): SalesOrder!
+  deleteAddress(id: ID!): Address
+  deleteOrderTemplate(input: OrderTemplate!): OrderTemplateAddView!
+  deleteOrderTemplateItem(input: OrderTemplateItemDelete!): OrderTemplateView!
+  editBasketItem(input: BasketEditItem!): BasketView!
+  editBasketItemPurchaseOrder(input: BasketPurchaseOrderItem!): BasketView!
+  editOrderTemplateName(input: OrderTemplateEditName!): OrderTemplateAddView!
+  editShippingMethod(input: BasketShippingMethodEdit): BasketView!
+  prepareCheckout(input: CheckoutPrepare): CheckoutSnapshot!
+  prepareLearnerB2CCourseEventCheckout(input: LearnerCheckoutPrepare!): LearnerPreparedCheckout!
+  prepareLearnerCheckout(input: LearnerCheckoutPrepare!): CheckoutSnapshot!
+  removeBasketItem(input: BasketRemoveItem!): BasketView!
+  removePromoCode(input: BasketPromoCode!): BasketView!
+  salesOrder(input: String!, payload: String): SalesOrder!
+  updateOrderTemplateItem(input: OrderTemplateItemEdit!): OrderTemplateView!
+}
+
+type OrderTemplateAddView {
+  id: ID!
+  name: String!
+}
+
+type OrderTemplateItemView {
+  certificateType: String
+  currency: String
+  delivery: ProductVariantDeliveryView
+  deliveryFormat: String
+  id: ID!
+  language: String
+  masterProductSku: String
+  name: String
+  pricing: ProductVariantPricingDetails
+  productType: String
+  quantity: Int
+  renders: [RenderDetails]
+  seller: AccountView!
+  sku: String
+  total: Float
+}
+
+type OrderTemplateListingResults {
+  templates: [OrderTemplateView]!
+  totalCount: Int
+}
+
+type OrderTemplateView {
+  currency: String
+  id: ID!
+  items: [OrderTemplateItemView!]!
+  name: String!
+  total: Float
+  totalItems: Int
+}
+
+type Product {
+  accessDuration: Float
+  accessDurationType: Configuration
+  courseDeliveryFormats: [String!]
+  courseDeliveryFormatsConfig: [Configuration]
+  currency: String @deprecated(reason : "No longer supported")
+  details: ProductDetails!
+  enabledForLxp: Boolean
+  id: String!
+  level: String!
+  levelConfig: Configuration
+  longDescription: String
+  name: String!
+  price: Float @deprecated(reason : "No longer supported")
+  pricing: ProductPricing
+  productVariants: [ProductVariant]!
+  promotionalMaterials: [ProductPromotionalMaterial]
+  publishedToLxp: Boolean
+  render: RenderDetails
+  restriction: ProductRestriction
+  reviews: [ProductReview!]!
+  seller: Account!
+  shortDescription: String
+  sku: String!
+  suffix: String
+  type: String!
+  typeConfig: Configuration
+  videos: [ProductVideo]
+}
+
+type ProductCourseInfo {
+  agenda: String
+  description: String
+  duration: Float
+  durationType: String
+  learningObjectives: String
+  outline: String
+  prerequisites: String
+  targetAudience: String
+}
+
+type ProductDetails {
+  accreditor: String
+  courseInfo: ProductCourseInfo
+  examInfo: ProductExamInfo
+  instructions: ProductInstructions
+  ipStatement: String
+  productSegment: ProductSegment
+  sellerStatement: String
+}
+
+type ProductExamInfo {
+  certificateAvailable: String
+  duration: Float
+  durationType: String
+  extraTime: String
+  fulfillment: String
+  openBookExam: Boolean
+  passGrade: Float
+  passGradeInstructors: Float
+  planning: String
+  questionFormat: String
+  questions: String
+}
+
+type ProductInstructions {
+  examLocations: String
+  instructorRequirements: String
+  openBookExamRequirements: String
+  prerequisites: String
+  technicalRequirements: String
+}
+
+type ProductListingAggregation {
+  items: [ProductListingAggregationItem!]!
+  key: String!
+}
+
+type ProductListingAggregationItem {
+  count: Int!
+  displayValue: String
+  key: String!
+}
+
+type ProductListingMetadata {
+  aggregations: [ProductListingAggregation!]!
+  maxPrice: Float @deprecated(reason : "No longer supported")
+  minPrice: Float @deprecated(reason : "No longer supported")
+  totalCount: Int!
+}
+
+type ProductListingResult {
+  metadata: ProductListingMetadata!
+  products: [Product!]!
+}
+
+type ProductPricing {
+  amount: Float
+  currency: String
+}
+
+type ProductPromotionalMaterial {
+  description: String
+  title: String
+  url: String
+}
+
+type ProductRestriction {
+  accreditationSegments: [CustomerSegment]
+  hasAccess: Boolean
+  isNotContractedSupplier: Boolean
+  restricted: Boolean!
+}
+
+type ProductReview {
+  anonymous: Boolean
+  id: ID!
+  message: String!
+  rating: Int!
+  reviewedAt: String
+  user: Employee
+}
+
+type ProductSegment {
+  accreditationProcess: String
+  accreditationRequirements: String
+  code: String
+  examInformation: String
+  name: String
+  restrictionMessage: String
+  sellerAccreditationStatus: String
+  sellerRole: String
+  trainerRequirements: String
+}
+
+type ProductVariant {
+  certificateType: String
+  certificateTypeConfig: Configuration
+  defaultVariant: Boolean
+  delivery: ProductVariantDelivery
+  deliveryFormat: String!
+  deliveryFormatConfig: Configuration
+  id: String!
+  language: String!
+  languageConfig: Configuration
+  name: String!
+  pricing: ProductVariantPricing
+  product: Product!
+  renders: [RenderDetails]
+  shipping: ShippingMethodView
+  sku: String!
+}
+
+type ProductVariantDelivery {
+  accessDuration: Float
+  accessDurationType: String
+  deliverables: Int
+  evaluationCopyAvailable: Boolean
+  freeReturn30Day: Boolean
+  freightClassId: String
+  manualFulfillment: Boolean
+  pageCount: Int
+  printedDeliverables: Int
+  quotation: Boolean
+  requiresVoucher: Boolean
+  surcharge: Boolean
+}
+
+type ProductVariantDeliveryView {
+  accessDuration: Float
+  accessDurationType: String
+  deliverables: Int
+  evaluationCopyAvailable: Boolean
+  freeReturn30Day: Boolean
+  freightClassId: String
+  manualFulfillment: Boolean
+  pageCount: Int
+  printedDeliverables: Int
+  quotation: Boolean
+  requiresVoucher: Boolean
+  surcharge: Boolean
+}
+
+type ProductVariantPricing {
+  basePrice: Float
+  currency: String!
+  subtotal: Float
+  surcharge: Float @deprecated(reason : "No longer supported")
+  surchargeTotalAmount: Float
+  surcharges: [SurchargePricing!]
+  total: Float
+}
+
+type ProductVariantPricingDetails {
+  basePrice: Float
+  currency: String!
+  subtotal: Float
+  surcharge: Float @deprecated(reason : "No longer supported")
+  surchargeTotalAmount: Float
+  surcharges: [SurchargePricingDetails!]
+  total: Float
+}
+
+type ProductVariantSnapshot {
+  certificateType: String
+  certificateTypeConfigValue: String
+  deliveryFormat: String!
+  deliveryFormatConfigValue: String
+  language: String!
+  languageConfigValue: String
+  logoUrl: String
+  name: String!
+  productType: String!
+  productTypeConfigValue: String
+  sellerName: String
+  sku: String!
+}
+
+type ProductVideo {
+  description: String
+  featured: Boolean
+  title: String
+  url: String
+}
+
+type PromotionCode {
+  code: String!
+  discountAmount: Float
+  discountPercentage: Float!
+  unitLimit: Int
+  unlimitedUsage: Boolean
+  validTill: String
+}
+
+type Query {
+  account(domain: String): Account!
+  addresses: [Address!]!
+  computeProductPrice(pricing: ProductPriceQuery): ProductVariantPricing
+  doGlobalSearch(input: SearchQuery): SearchResult!
+  getConfigurationsByType(configType: String!): [Configuration!]!
+  getMyBasketDetails: BasketView!
+  getMyEmployee: Employee
+  getStates: [State!]!
+  getStatesByCountryCode(configType: String!): [State!]!
+  learnerSalesOrder(salesOrderNumber: String): SalesOrder!
+  listAllCatalogs: [Catalog!]!
+  listAllCategories: [Category!]!
+  listCategories(input: CategoryListQuery!): [Category!]!
+  listFavouriteSellerAccounts(listing: FavouriteSellerAccountsQuery): FavouriteAccountsListingResult!
+  listLatestProducts(listing: LatestProductListingQuery): LatestProductListingResult!
+  listMySellerAccounts: [Account!]!
+  listOrderTemplates(listing: OrderTemplateListingQuery): OrderTemplateListingResults!
+  listProducts(listing: ProductListingQuery): ProductListingResult!
+  listRelatedProducts(listing: RelatedProductListingQuery!): RelatedProductListingResult!
+  listSellerAccounts: [Account!]!
+  listSellerAccountsWithProducts: [Account!]!
+  listTopics: [Topic!]!
+  orderTemplateDetails(orderTemplateId: ID!): OrderTemplateView!
+  promotionCodes(input: PromotionCodeListQuery): [PromotionCode!]!
+  readProduct(sku: String!): Product!
+  salesOrder(salesOrderNumber: String): SalesOrder!
+  salesOrders(input: SalesOrderListingQuery): SalesOrderListingResult!
+}
+
+type RelatedProductListingResult {
+  products: [Product!]!
+}
+
+type RenderDetails {
+  largeImageUri: String
+  mediumImageUri: String
+  smallImageUri: String
+}
+
+type SalesOrder {
+  checkout: Checkout
+  externalCheckoutId: String
+  externalId: String!
+  grossTotal: Float
+  orderDate: String
+  orderReference: String
+  orderStatus: String
+  paymentMethods: [PaymentMethod!]!
+  paymentRequired: Boolean!
+  paymentStatus: String
+  purchaseOrderId: String
+  salesOrder: JSON!
+  salesOrderId: String!
+  salesOrderNumber: String
+  transactionDate: String
+  type: SalesOrderType
+}
+
+type SalesOrderListingResult {
+  count: Int!
+  data: [SalesOrder!]!
+}
+
+type SearchProductHit {
+  highlight: String
+  product: Product!
+}
+
+type SearchResult {
+  productHits: [SearchProductHit!]!
+}
+
+type SellerProfile {
+  aboutInfo: String
+  supportEmail: String
+}
+
+type ShippingGroupView {
+  basketItemIds: [ID!]!
+  id: ID!
+  selectedMethod: ShippingMethodView!
+  shippingMethods: [ShippingMethodView!]!
+}
+
+type ShippingMethodView {
+  arrivesWithin: Int!
+  id: ID!
+  key: String!
+  name: String!
+  shipsToSelectedAddress: Boolean
+  shipsWithin: Int!
+  totalAmount: Float!
+  totalEstimatedArrival: Int!
+}
+
+type State {
+  code: String!
+  countryCode: String!
+  name: String!
+}
+
+type SurchargePricing {
+  amount: Float!
+  key: String!
+  name: String!
+}
+
+type SurchargePricingDetails {
+  amount: Float!
+  key: String!
+  name: String!
+}
+
+type Topic {
+  children: [Topic!]!
+  code: String!
+  imageSvg: String
+  title: String!
+}
+
+enum AddressType {
+  SHIPPING
+}
+
+enum CheckoutRecordType {
+  CATERING
+  COURSE
+  MATERIAL
+  OTHER
+  TNE
+  VENUE
+}
+
+enum PaymentMethod {
+  CC
+  INVOICE
+  PAYTM
+  PROFORMA
+  RECORD_TRANSACTION
+  ZERO_VALUE
+}
+
+enum SalesOrderSortingField {
+  ORDER_DATE
+  ORDER_ID
+  ORDER_REFERENCE
+  ORDER_STATUS
+  PAYMENT_STATUS
+  TOTAL
+  TRANSACTION_DATE
+}
+
+enum SalesOrderType {
+  COURSE
+  INSTRUCTOR
+  PRODUCT
+  TRANSACTION_RECORDING
+}
+
+input AddAddress {
+  city: String!
+  companyName: String
+  country: String!
+  email: String!
+  firstName: String!
+  houseNumber: String
+  lastName: String!
+  makeDefaultType: AddressType
+  phoneNumber: String
+  province: String
+  state: String
+  streetName: String!
+  zipCode: String!
+}
+
+input BasketAddItem {
+  quantity: Int!
+  sku: String!
+}
+
+input BasketEditItem {
+  id: ID!
+  quantity: Int!
+}
+
+input BasketPromoCode {
+  promoCode: String!
+}
+
+input BasketPurchaseOrderItem {
+  id: ID!
+  purchaseOrderIds: [String]
+}
+
+input BasketRemoveItem {
+  id: ID!
+}
+
+input BasketShippingMethodEdit {
+  shippingGroupId: ID!
+  shippingMethodId: ID!
+}
+
+input CategoryListQuery {
+  subtopic: String
+  topic: String
+}
+
+input CheckoutCreditCardData {
+  amount: Float!
+  currency: String!
+  encryptedPayload: String!
+  reference: String
+}
+
+input CheckoutPay {
+  accountId: String
+  ccData: CheckoutCreditCardData
+  orderReference: String
+  paymentMethod: String!
+  signedToken: String
+}
+
+input CheckoutPrepare {
+  billingAddressId: ID
+  shippingAddressId: ID
+}
+
+input CheckoutRecord {
+  currency: String!
+  customOrderId: String
+  items: [CheckoutRecordItem!]!
+  metadata: JSON
+  orderDate: String!
+  orderReference: String
+  poId: String
+  supplierName: String!
+}
+
+input CheckoutRecordItem {
+  metadata: JSON
+  netTotal: Float!
+  type: CheckoutRecordType!
+}
+
+input FavouriteSellerAccountsQuery {
+  filter: String
+  limit: Int
+  page: Int
+  sortDir: Int
+  sortField: String
+  type: String
+}
+
+input LatestProductListingQuery {
+  limit: Int!
+}
+
+input LearnerCheckoutPrepare {
+  accountId: String
+  items: [BasketAddItem!]!
+  promoCodes: [String]
+  coupons: [String]
+}
+
+input OrderTemplate {
+  id: ID
+  name: String
+}
+
+input OrderTemplateAdd {
+  name: String!
+}
+
+input OrderTemplateAddBasketView {
+  id: ID!
+}
+
+input OrderTemplateAddItem {
+  orderTemplate: String!
+  quantity: Int!
+  sku: String!
+}
+
+input OrderTemplateEditName {
+  id: ID!
+  name: String!
+}
+
+input OrderTemplateItemDelete {
+  itemId: ID!
+  orderTemplateId: ID!
+}
+
+input OrderTemplateItemEdit {
+  itemId: ID!
+  orderTemplateId: ID!
+  quantity: Int!
+}
+
+input OrderTemplateListingQuery {
+  limit: Int!
+  name: String
+  page: Int!
+  sortDir: Int
+  sortField: String
+}
+
+input ProductListingQuery {
+  catalogs: [String!]
+  category: [String!]
+  courseDeliveryFormats: [String!]
+  deliveryFormats: [String!]
+  filter: String
+  hideRestricted: Boolean
+  languages: [String!]
+  level: [String!]
+  limit: Int!
+  lxpProductStatus: [String]
+  page: Int!
+  productTypes: [String!]
+  sellers: [String!]
+  sortDir: Int
+  sortField: String
+  subtopic: String
+  topic: String
+}
+
+input ProductPriceQuery {
+  quantity: Int!
+  sku: String!
+}
+
+input PromotionCodeListQuery {
+  available: Boolean
+  showRelevant: Boolean
+}
+
+input RelatedProductListingQuery {
+  limit: Int!
+  sku: String!
+}
+
+input SalesOrderListingQuery {
+  endDate: String
+  filter: String
+  limit: Int!
+  page: Int!
+  sortDir: Int
+  sortField: SalesOrderSortingField
+  startDate: String
+  type: SalesOrderType
+}
+
+input SearchQuery {
+  limit: Int!
+  term: String!
+}
+
+
+scalar JSON
