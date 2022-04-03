@@ -14,11 +14,13 @@
         "polyfills": "apps/seller-admin-panel/src/polyfills.ts",
         "tsConfig": "apps/seller-admin-panel/tsconfig.app.json",
         "inlineStyleLanguage": "less",
-        "assets": [
-          "apps/seller-admin-panel/src/favicon.ico",
-          "apps/seller-admin-panel/src/assets"
+        "assets": ["apps/seller-admin-panel/src/assets"],
+        "styles": [
+          "node_modules/ng-zorro-antd/src/ng-zorro-antd.less",
+          "node_modules/quill/dist/quill.core.css",
+          "node_modules/quill/dist/quill.snow.css",
+          "apps/seller-admin-panel/src/styles.less"
         ],
-        "styles": ["apps/seller-admin-panel/src/styles.less"],
         "scripts": [],
         "allowedCommonJsDependencies": [
           "core-js-pure"

@@ -14,7 +14,7 @@ import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
-import {environment} from "../../../../libs/shared/src/lib/assets/environments/environment";
+import {environment} from "../environments/environment";
 import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
 import {CoreState, SetDomainData} from "../../../../libs/shared/src/lib/state";
 import {BootstrapService} from "../../../../libs/shared/src/lib/utils/services/common";
