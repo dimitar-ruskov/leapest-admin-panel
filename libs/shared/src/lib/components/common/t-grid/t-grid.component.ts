@@ -1,11 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { DeferredResource } from 'src/app/snatch/utils/deferred-resource';
-import { TGridInputModel } from '../../../models/dump-components/t-grid-input.model';
-import { IPageable } from 'src/app/snatch/models/page.model';
 import { debounceTime, filter } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
 import { BehaviorSubject } from 'rxjs';
+import {DeferredResource} from "../../../utils/common";
+import {IPageable, TGridInputModel} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-t-grid',

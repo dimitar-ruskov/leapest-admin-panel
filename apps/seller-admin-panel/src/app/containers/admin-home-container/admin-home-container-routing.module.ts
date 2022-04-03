@@ -23,13 +23,13 @@ const routes: Routes = [
       //   loadChildren: async () =>
       //     import('./containers/internal-repository/internal-repository.module').then((m) => m.InternalRepositoryModule),
       // },
-      // {
-      //   path: 'marketplace-repo',
-      //   loadChildren: async () =>
-      //     import('./containers/marketplace-repository/marketplace-repository.module').then(
-      //       (m) => m.MarketplaceRepositoryModule,
-      //     ),
-      // },
+      {
+        path: 'marketplace-repo',
+        loadChildren: async () =>
+          import('../marketplace-repository/marketplace-repository.module').then(
+            (m) => m.MarketplaceRepositoryModule,
+          ),
+      },
       // {
       //   path: 'self-paced-courses',
       //   loadChildren: async () =>

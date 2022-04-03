@@ -11,6 +11,7 @@ import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {QuillModule} from "ngx-quill";
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
+import {en_US, NZ_I18N} from "ng-zorro-antd/i18n";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -46,6 +47,7 @@ const ngZorroConfig: NzConfig = {
     QuillModule.forRoot()
   ],
   providers: [
+    { provide: NZ_I18N, useValue: en_US },
     { provide: NZ_CONFIG, useValue: ngZorroConfig },
     {
       provide: OKTA_CONFIG,

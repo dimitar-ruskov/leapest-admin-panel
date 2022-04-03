@@ -25,6 +25,10 @@ export * from './feature/courses/ilt-event.model';
 export * from './feature/courses/ilt-event-attendance.model';
 export * from './feature/courses/ilt-event-learners.model';
 
+// Courses
+export * from './feature/marketplace-repo/account.model';
+export * from './feature/marketplace-repo/product.model';
+
 // Other models
 export * from './feature/ceritificate.model';
 export * from './feature/conferencing-tool.model';

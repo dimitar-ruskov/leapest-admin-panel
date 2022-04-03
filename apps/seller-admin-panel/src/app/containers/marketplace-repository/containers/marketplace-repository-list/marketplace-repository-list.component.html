@@ -1,0 +1,81 @@
+<leap-cta-container>
+  <h1 leap-cta-container-title>Marketplace Repository</h1>
+  <h2 leap-cta-container-description>
+    Here, you can view materials from the EdCast Marketplace Storefront and distribute them to learners attending any
+    courses you create using these materials. Note that these materials will be distributed using Consumption Vouchers
+    and your company will be billed by the end of the month for every voucher used by the learners.
+  </h2>
+</leap-cta-container>
+
+<div class="p-t-10">
+  <leap-table-control-panel>
+    <leap-table-search data-section="right" (searchPhraseChange)="onSearchChange($event)"></leap-table-search>
+  </leap-table-control-panel>
+
+  <nz-table
+    nzTableLayout="fixed"
+    leapTableGrid
+    [nzFrontPagination]="false"
+    [nzData]="marketplaceRepositories$ | async"
+    [nzLoading]="loading$ | async"
+    [nzPageSize]="pageSize$ | async"
+    [nzTotal]="total$ | async"
+    [nzPageIndex]="pageIndex$ | async"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    #mrTable
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="name" nzWidth="35%" [nzEllipsis]="true">Product Name</th>
+        <th nzColumnKey="seller" nzWidth="20%" [nzEllipsis]="true">Seller</th>
+        <th nzColumnKey="type" nzWidth="20%" [nzEllipsis]="true">Type</th>
+        <th nzColumnKey="price" nzWidth="20%" [nzEllipsis]="true">Price</th>
+        <th nzColumnKey="details" nzWidth="5%"></th>
+      </tr>
+    </thead>
+    <tbody
+      nz-tooltip
+      nzTooltipTitle="Open Marketplace Repository Details"
+      nzTooltipPlacement="bottomRight"
+      nzTooltipColor="#26273b"
+      nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+      [nzTooltipTrigger]="null"
+      leapTableGridRowTooltip
+    >
+      <tr leapTableGridSpacer></tr>
+      <tr
+        *ngFor="let mpRepository of mrTable.data; trackBy: trackByFn"
+        leapTableGridRow
+        [leapTableGridRowClickable]="true"
+      >
+        <td leap-table-grid-title-cell>
+          <ng-container data-section="image" *ngIf="isImgAvailable(mpRepository)">
+            <img [src]="mpRepository.productVariants[0].renders[0].mediumImageUri" [alt]="'Logo'" />
+            <div
+              class="certificate"
+              *ngIf="mpRepository.productVariants[0] && mpRepository.productVariants[0].certificateType"
+            >
+              <img
+                [src]="environment.assetsPath + '/certificates/file-certificate-small.svg'"
+                alt="Certificate"
+                class="mr-2 icon-cog"
+              />
+            </div>
+          </ng-container>
+          <span data-section="title">{{ mpRepository.name }}</span>
+        </td>
+        <td [nzEllipsis]="true">
+          <span>{{ mpRepository.seller.displayName }}</span>
+        </td>
+        <td [nzEllipsis]="true">
+          <span>{{ mpRepository.typeConfig.configValue }}</span>
+        </td>
+        <td [nzEllipsis]="true">
+          <span> {{ CURRENCY_DICTIONARY[mpRepository.pricing.currency] }} {{ mpRepository.pricing.amount }} </span>
+        </td>
+
+        <td leap-table-grid-details-cell></td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
