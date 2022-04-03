@@ -24,9 +24,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.domainData$.pipe(take(1)).subscribe((domainData) => {
       if (domainData.name === 'futureskillsprime') {
-        this.favIcon.href = `${this.environmentService.assetsPath}/svg/logo/primeicon.ico`;
+        this.favIcon.href = `${this.environmentService.assetsPath}/logo/primeicon.ico`;
       } else {
-        this.favIcon.href = `${this.environmentService.assetsPath}/svg/logo/favicon.ico`;
+        this.favIcon.href = `${this.environmentService.assetsPath}/logo/favicon.ico`;
       }
     });
   }
