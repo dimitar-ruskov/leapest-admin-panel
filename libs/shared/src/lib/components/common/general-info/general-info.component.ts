@@ -1,8 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input, ContentChild, TemplateRef, TrackByFunction } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ContentChild, TemplateRef } from '@angular/core';
 import { GeneralInfoThumbnailBoxComponent } from './general-info-thumbnail-box/general-info-thumbnail-box.component';
-import { GeneralInfoField, MaterialsInfoField } from '../../../models/dump-components/general-info-field.model';
 import { GeneralInfoFieldComponent } from './general-info-field/general-info-field.component';
-
+import {GeneralInfoField, MaterialsInfoField} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-general-info',
@@ -16,5 +15,5 @@ export class GeneralInfoComponent {
   @ContentChild(GeneralInfoThumbnailBoxComponent) thumbnailBox: GeneralInfoThumbnailBoxComponent;
   @ContentChild('fieldTemplate') fieldTemplate: TemplateRef<GeneralInfoFieldComponent | any>;
 
-  constructor() { }
+  constructor() {}
 }

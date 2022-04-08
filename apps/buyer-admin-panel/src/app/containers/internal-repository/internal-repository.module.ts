@@ -3,6 +3,21 @@ import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+
 import { InternalRepositoryRoutingModule } from './internal-repository-routing.module';
 import { InternalRepositoryComponent } from './internal-repository.component';
 import { InternalRepositoryListComponent } from './containers/internal-repository-list/internal-repository-list.component';
@@ -34,21 +49,22 @@ import {TableGridModule} from "../../../../../../libs/shared/src/lib/components/
 import {
   TableControlPanelModule
 } from "../../../../../../libs/shared/src/lib/components/common/table-control-panel/table-control-panel.module";
+import {
+  TextInputModalModule
+} from "../../../../../../libs/shared/src/lib/components/modals/text-input-modal/text-input-modal.module";
+import {
+  QuillInputModalModule
+} from "../../../../../../libs/shared/src/lib/components/modals/quill-input-modal/quill-input-modal.module";
+import {
+  EditPassRateModalModule
+} from "../../../../../../libs/shared/src/lib/components/modals/edit-pass-rate-modal/edit-pass-rate-modal.module";
+import {
+  EditInternalRepoNameModalModule
+} from "../../../../../../libs/shared/src/lib/components/modals/edit-internal-repo-name-modal/edit-internal-repo-name-modal.module";
+import {
+  CreationLoaderModalModule
+} from "../../../../../../libs/shared/src/lib/components/modals/creation-loader-modal/creation-loader-modal.module";
 
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzStepsModule } from 'ng-zorro-antd/steps';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 
 @NgModule({
@@ -83,6 +99,13 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     TableSearchModule,
     TableControlPanelModule,
     FormLabelModule,
+
+    TextInputModalModule,
+    QuillInputModalModule,
+    EditPassRateModalModule,
+    EditInternalRepoNameModalModule,
+    CreationLoaderModalModule,
+    GeneralInfoModule,
 
     NzTableModule,
     NzTabsModule,

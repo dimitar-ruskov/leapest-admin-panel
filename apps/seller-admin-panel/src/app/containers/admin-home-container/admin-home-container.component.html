@@ -1,5 +1,10 @@
 <nz-layout class="page-layout">
-  <leap-navbar [isAdminPanel]="true"></leap-navbar>
+  <leap-navbar
+    [isAdminPanel]="true"
+    [domainData]="domainData$ | async"
+    [profile]="profile$ | async"
+    [getProfilePending]="getProfilePending$ | async"
+  ></leap-navbar>
   <nz-layout>
     <nz-sider nzWidth="330px" class="page-layout__sidebar">
       <div class="page-layout__sidebar-menu">

@@ -19,7 +19,8 @@
           "apps/buyer-admin-panel/src/assets"
         ],
         "styles": ["apps/buyer-admin-panel/src/styles.less"],
-        "scripts": []
+        "scripts": [],
+        "allowedCommonJsDependencies": ["core-js-pure"]
       },
       "configurations": {
         "production": {

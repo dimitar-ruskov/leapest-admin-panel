@@ -3,6 +3,23 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+
 import { CertificatesRoutingModule } from './certificates-routing.module';
 import {CertificatesState} from "./state/certificates.state";
 import { CertificatesListState } from './state/certificates-list/certificates-list.state';
@@ -37,23 +54,9 @@ import {TableGridModule} from "../../../../../../libs/shared/src/lib/components/
 import {
   TableControlPanelModule
 } from "../../../../../../libs/shared/src/lib/components/common/table-control-panel/table-control-panel.module";
-
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzEmptyModule } from 'ng-zorro-antd/empty';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzAlertModule } from 'ng-zorro-antd/alert';
+import {
+  TextInputModalModule
+} from "../../../../../../libs/shared/src/lib/components/modals/text-input-modal/text-input-modal.module";
 
 @NgModule({
   declarations: [
@@ -89,6 +92,8 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     TableSearchModule,
     CertificateViewModule,
     FormLabelModule,
+
+    TextInputModalModule,
 
     NzTableModule,
     NzTabsModule,

@@ -1,15 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { GetInternalRepositoryVariants } from '../../../containers/internal-repository/containers/internal-repository-details/state/internal-repository-variants.actions';
-import { GetInternalRepositoryDetails } from '../../../containers/internal-repository/containers/internal-repository-details/state/internal-repository-details.actions';
-import { InternalRepositoryService } from '../../../containers/internal-repository/service/internal-repository.service';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
-import { InternalRepository, InternalRepositoryDTO } from '../../../models/internal-repository.model';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, timer } from 'rxjs';
 import { delayWhen, filter, map, retryWhen } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { DeferredResource } from '../../../../snatch/utils/deferred-resource';
+import {InternalRepository, InternalRepositoryDTO} from "../../../models/interfaces";
+import {
+  GetInternalRepositoryDetails
+} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/state/internal-repository-details/internal-repository-details.actions";
+import {DeferredResource} from "../../../utils/common";
+import {
+  GetInternalRepositoryVariants
+} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/state/internal-repository-details/internal-repository-variants.actions";
+import {
+  InternalRepositoryService
+} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/service/internal-repository.service";
 
 @Component({
   selector: 'leap-creation-loader-modal',
@@ -18,7 +24,7 @@ import { DeferredResource } from '../../../../snatch/utils/deferred-resource';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class CreationLoaderModalComponent implements OnInit, OnDestroy {
+export class CreationLoaderModalComponent implements OnInit {
   @Input() internalRepo: InternalRepositoryDTO;
   public longLoad = false;
 
@@ -41,10 +47,6 @@ export class CreationLoaderModalComponent implements OnInit, OnDestroy {
         ]);
       }
     });
-  }
-
-  public ngOnDestroy() {
-    // for untilDestroyed
   }
 
   public isIRCreated(parentSKU: string): Observable<DeferredResource<InternalRepository>> {

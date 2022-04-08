@@ -44,10 +44,10 @@ export class InternalRepoExternalModalComponent implements OnInit {
   @Output() back: EventEmitter<void> = new EventEmitter();
   @Output() onClose: EventEmitter<void> = new EventEmitter();
 
-  @Select((state: IGlobalStateModel) => state.adminPanel.iltMaterialExternalTypes)
+  @Select((state: IGlobalStateModel) => state.core.iltMaterialExternalTypes)
   iltMaterialExternalTypes$: Observable<IKeyValuePair[]>;
 
-  @Select((state: IGlobalStateModel) => state.adminPanel.internalRepositoryLanguages)
+  @Select((state: IGlobalStateModel) => state.core.internalRepositoryLanguages)
   iltLanguageDictionary$: Observable<IKeyValuePair[]>;
 
   public form: FormGroup;

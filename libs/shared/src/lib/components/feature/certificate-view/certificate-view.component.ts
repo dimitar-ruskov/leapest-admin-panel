@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
-import { CertificateInfo } from '../../../models/dump-components/general-info-field.model';
-import { EnvironmentService } from '../../../snatch/services';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
+import {CertificateInfo} from "../../../models/interfaces";
+import {EnvironmentService} from "../../../utils/services/common";
 
 @Component({
   selector: 'leap-certificate-view',
@@ -8,7 +8,7 @@ import { EnvironmentService } from '../../../snatch/services';
   styleUrls: ['./certificate-view.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CertificateViewComponent implements OnInit {
+export class CertificateViewComponent {
   @Input() settings: CertificateInfo;
   @Input() disabled = false;
   @Output() download: EventEmitter<void> = new EventEmitter<void>();
@@ -16,6 +16,4 @@ export class CertificateViewComponent implements OnInit {
   @Output() preview: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(public readonly environment: EnvironmentService) {}
-
-  ngOnInit(): void {}
 }

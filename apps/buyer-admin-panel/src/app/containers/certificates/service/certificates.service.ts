@@ -12,7 +12,7 @@ import {DraftILTCourse, IPageable, S3Resource} from "../../../../../../../libs/s
   providedIn: 'root'
 })
 export class CertificatesService {
-  constructor(private readonly adminPanelApiService: AdminPanelApiService, private readonly http: HttpClient) {}
+  constructor(private readonly adminPanelApiService: AdminPanelApiService) {}
 
   getCertificates(
     pageable?: IPageable,
@@ -76,9 +76,5 @@ export class CertificatesService {
     const url = this.adminPanelApiService.prepareURL('/api/solar/partner/certificates/edit');
 
     return this.adminPanelApiService.post<Certificate, Certificate>(url, new HttpHeaders({}), certificate);
-  }
-
-  downloadPDF(url: string): Observable<Blob> {
-    return this.http.get<Blob>(url, { responseType: 'blob' as 'json' });
   }
 }

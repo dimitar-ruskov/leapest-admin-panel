@@ -1,6 +1,6 @@
 <nz-header class="navbar ant-layout-header">
   <div class="nav-wrapper">
-    <div *ngIf="domainData$ | async as domainData">
+    <div *ngIf="domainData">
       <div
         *ngIf="environment.envName !== 'prodin' && domainData.name !== 'futureskillsprime'; else prodinLogo"
         class="nav-left"
@@ -31,8 +31,8 @@
             <leap-user
               style="margin-left: 10px"
               [isAdminPanel]="isAdminPanel"
-              [profile]="profile$ | async"
-              [getProfilePending]="getProfilePending$ | async"
+              [profile]="profile"
+              [getProfilePending]="getProfilePending"
             ></leap-user>
           </li>
         </ul>

@@ -1,4 +1,4 @@
-import { ConfigDto } from 'src/app/admin-panel/models/config-dto.model';
+import {ConfigDto} from "../common/config-dto.model";
 
 export interface InternalRepositoryCourseListItem {
     id: string;

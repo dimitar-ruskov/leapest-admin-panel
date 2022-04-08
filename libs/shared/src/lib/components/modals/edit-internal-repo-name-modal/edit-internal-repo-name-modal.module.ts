@@ -6,6 +6,7 @@ import {EditInternalRepoNameModalComponent} from "./edit-internal-repo-name-moda
 
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 @NgModule({
   declarations: [EditInternalRepoNameModalComponent],
@@ -14,6 +15,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzInputModule
   ],

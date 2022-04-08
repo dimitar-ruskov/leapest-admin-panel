@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { DownloadSphinxService } from '../../../snatch/services/download-sphinx.service';
-import { CertificatesService } from '../../containers/certificates/service/certificates.service';
+import {DownloadSphinxService} from "../../../utils/services/common";
 
 @Component({
   selector: 'leap-certificate-preview',
@@ -16,7 +15,6 @@ export class CertificatePreviewComponent implements OnInit {
 
   constructor(
     private readonly downloadSphinxService: DownloadSphinxService,
-    private readonly certificateService: CertificatesService,
     private readonly cdr: ChangeDetectorRef,
   ) {}
 
@@ -24,7 +22,7 @@ export class CertificatePreviewComponent implements OnInit {
     const link = this.downloadSphinxService.getSphinxUrl(this.s3Bucket, this.s3Key);
 
     if (link) {
-      this.certificateService.downloadPDF(link).subscribe((res) => {
+      this.downloadSphinxService.downloadPDF(link).subscribe((res) => {
         const file = new Blob([res], { type: 'application/pdf' });
         this.link = URL.createObjectURL(file) + '#toolbar=0&navpanes=0&scrollbar=0&view=Fit';
         this.isLoading = false;

@@ -1,5 +1,5 @@
-import { ConfigDto } from 'src/app/admin-panel/models/config-dto.model';
-import { IRContent } from 'src/app/admin-panel/models/internal-repository.model';
+import {ConfigDto} from "../common/config-dto.model";
+import {IRContent} from "../internal-repository.model";
 
 export interface InternalRepositoryVariantDTO {
   language: ConfigDto;

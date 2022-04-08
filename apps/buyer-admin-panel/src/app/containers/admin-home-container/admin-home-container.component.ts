@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import {Select, Store} from '@ngxs/store';
+import {Observable} from "rxjs";
 import { OktaAuthStateService } from '@okta/okta-angular';
 
 import {EnvironmentService} from "../../../../../../libs/shared/src/lib/utils/services/common";
-import {TMenuInputModel} from "../../../../../../libs/shared/src/lib/models/interfaces";
+import {IDomainData, IProfile, TMenuInputModel} from "../../../../../../libs/shared/src/lib/models/interfaces";
 import {
   GetCertificatesDictionary,
   GetConferencingToolsDictionary,
@@ -12,6 +13,7 @@ import {
   GetCustomAttendanceDictionary,
   GetILTLanguageDictionary,
   GetIRLanguageDictionary,
+  GetLearnerProfile,
   GetMaterialTypes
 } from "../../state/core.actions";
 
@@ -22,6 +24,18 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminHomeContainerComponent implements OnInit {
+
+  @Select(state => state.core.getProfilePending)
+  getProfilePending$: Observable<boolean>;
+
+  @Select(state => state.core.profile)
+  profile$: Observable<IProfile>;
+
+  @Select(state => state.core.domainData)
+  domainData$: Observable<IDomainData>;
+
+  menuConfig: TMenuInputModel;
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -31,9 +45,8 @@ export class AdminHomeContainerComponent implements OnInit {
     private readonly cdr: ChangeDetectorRef,
   ) {}
 
-  menuConfig: TMenuInputModel;
-
   async ngOnInit() {
+    this.store.dispatch(new GetLearnerProfile());
     this.fetchDictionariesAndRedirect();
     this.setMenuItems();
   }
