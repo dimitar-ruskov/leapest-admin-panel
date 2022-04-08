@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import {DeferredResource} from "../../../utils/common";
-import {ConferencingToolService} from "../../../utils/services/feature";
+import {ConferencingToolService} from "../../../utils/services";
 
 type PageType = 'details' | 'create';
 

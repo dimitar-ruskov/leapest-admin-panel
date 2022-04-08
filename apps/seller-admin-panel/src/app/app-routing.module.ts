@@ -47,7 +47,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule],
-  // providers: [{ provide: APP_BASE_HREF, useValue: '/hw' }],
 })
 export class AppRoutingModule {
 }
