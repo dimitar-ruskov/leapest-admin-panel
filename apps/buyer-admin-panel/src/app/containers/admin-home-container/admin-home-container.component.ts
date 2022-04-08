@@ -16,7 +16,7 @@ import {
 } from "../../state/core.actions";
 
 @Component({
-  selector: 'seller-admin-home-container',
+  selector: 'buyer-admin-home-container',
   templateUrl: './admin-home-container.component.html',
   styleUrls: ['./admin-home-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

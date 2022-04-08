@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "seller",
+            "prefix": "buyer",
             "style": "kebab-case"
           }
         ]

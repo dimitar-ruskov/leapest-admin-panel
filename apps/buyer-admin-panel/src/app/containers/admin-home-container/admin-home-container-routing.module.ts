@@ -23,6 +23,20 @@ const routes: Routes = [
       //   loadChildren: async () =>
       //     import('./containers/internal-repository/internal-repository.module').then((m) => m.InternalRepositoryModule),
       // },
+      {
+        path: 'marketplace-repo',
+        loadChildren: async () =>
+          import('../marketplace-repository/marketplace-repository.module').then(
+            (m) => m.MarketplaceRepositoryModule,
+          ),
+      },
+      // {
+      //   path: 'self-paced-courses',
+      //   loadChildren: async () =>
+      //     import('./containers/self-paced-courses-container/self-paced-courses-container.module').then(
+      //       (m) => m.SelfPacedCoursesContainerModule,
+      //     ),
+      // },
       // {
       //   path: 'certificates',
       //   loadChildren: async () =>
@@ -38,14 +52,6 @@ const routes: Routes = [
       //   loadChildren: async () =>
       //     import('./containers/notifications-container/notifications-container.module').then(
       //       (m) => m.NotificationsContainerModule,
-      //     ),
-      //   canActivate: [AdminUserGuard],
-      // },
-      // {
-      //   path: 'publishing',
-      //   loadChildren: async () =>
-      //     import('./containers/publishing-container/publishing-container.module').then(
-      //       (m) => m.PublishingContainerModule,
       //     ),
       //   canActivate: [AdminUserGuard],
       // },

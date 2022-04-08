@@ -7,7 +7,7 @@ import {IDomainData} from "../../../../libs/shared/src/lib/models/interfaces";
 import {IGlobalStateModel} from "./state/global-state.model";
 
 @Component({
-  selector: 'seller-root',
+  selector: 'buyer-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
 })
