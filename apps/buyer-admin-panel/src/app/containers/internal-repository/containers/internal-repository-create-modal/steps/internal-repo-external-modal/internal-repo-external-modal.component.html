@@ -1,0 +1,109 @@
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-hint-label>Hosted</leap-form-hint-label>
+    <nz-form-label class="main-label">
+      <span>Linked material</span>
+    </nz-form-label>
+  </nz-form-item>
+
+  <nz-form-item>
+    <leap-form-label [required]="true"> {{ form.get('type')?.value?.value || 'Material Type ' }} Name </leap-form-label>
+    <leap-form-hint-label>
+      This name will be shown to learners to identify this material.
+    </leap-form-hint-label>
+    <nz-form-control [nzErrorTip]="combineTpl">
+      <input class="form-item-input" nz-input formControlName="name" placeholder="Start typing..." />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="!parentSKU">
+    <leap-form-label [required]="true">External Link Type</leap-form-label>
+    <leap-form-hint-label>
+      Please specify the type of content that you are linking to.
+    </leap-form-hint-label>
+
+    <nz-form-control [nzErrorTip]="combineTpl">
+      <div class="types-control">
+        <nz-select
+          formControlName="externalLinkType"
+          [nzNotFoundContent]="'Item not found'"
+          nzPlaceHolder="Select Material"
+        >
+          <nz-option
+            *ngFor="let option of iltMaterialExternalTypes$ | async"
+            [nzLabel]="option.value"
+            [nzValue]="option"
+          >
+          </nz-option>
+        </nz-select>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <leap-form-label [required]="true">Variant Language</leap-form-label>
+    <leap-form-hint-label>
+      Select the type of material to create. Unsure what these mean? <a class="clickable-green">Click here</a>
+    </leap-form-hint-label>
+    <nz-form-control>
+      <div class="languages-control">
+        <nz-select
+          nzShowSearch
+          formControlName="languages"
+          [nzNotFoundContent]="'Item not found'"
+          nzPlaceHolder="Select Variant Language"
+        >
+          <nz-option
+            *ngFor="let option of iltLanguageDictionary$ | async"
+            [nzLabel]="option.value"
+            [nzValue]="option.value"
+          >
+          </nz-option>
+        </nz-select>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <leap-form-label [required]="true">External Link</leap-form-label>
+    <leap-form-hint-label>
+      Please attach a link for your material.
+    </leap-form-hint-label>
+
+    <nz-form-control [nzErrorTip]="combineTpl">
+      <input
+        class="form-item-input"
+        nz-input
+        type="email"
+        formControlName="externalLink"
+        placeholder="https://www.example.com"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="create-btns-container">
+    <button nz-button class="default-btn upload-btn" (click)="goBack()">Back</button>
+    <div style="width: 10px"></div>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="onCreateRepository()"
+      [nzLoading]="createBtnLoading"
+      [disabled]="!form.valid"
+    >
+      Proceed
+    </button>
+  </div>
+</form>
+
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    Name too short
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

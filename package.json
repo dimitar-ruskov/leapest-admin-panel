@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve --host 0.0.0.0 --disableHostCheck --ssl",
+    "start": "nx serve buyer-admin-panel --host 0.0.0.0 --disableHostCheck --ssl",
     "build": "nx build",
     "test": "nx test"
   },

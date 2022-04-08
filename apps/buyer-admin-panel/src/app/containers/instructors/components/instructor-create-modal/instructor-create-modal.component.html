@@ -1,0 +1,29 @@
+<div>
+  <form nz-form [formGroup]="form">
+    <nz-form-item>
+      <leap-form-label [required]="true">Email</leap-form-label>
+      <leap-form-hint-label>
+        This email will be used to register and notify the Instructor about ongoing events.
+      </leap-form-hint-label>
+      <nz-form-control>
+        <input nz-input formControlName="username" type="email" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <leap-form-label [required]="true">First Name</leap-form-label>
+      <nz-form-control>
+        <div>
+          <input nz-input formControlName="firstName" />
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <leap-form-label [required]="true">Last Name</leap-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="lastName" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

@@ -1,0 +1,81 @@
+<div class="table-container">
+  <nz-content class="admin-panel__content">
+    <p class="section-header">
+      This certificate has been issued to the following learners:
+    </p>
+
+    <leap-table-control-panel>
+      <leap-table-search
+        data-section="right"
+        (searchPhraseChange)="onSearchChange($event)"
+        class="certificate-details-search"
+      ></leap-table-search>
+    </leap-table-control-panel>
+  </nz-content>
+
+  <nz-content class="admin-panel__content">
+    <nz-table
+      leapTableGrid
+      [nzFrontPagination]="false"
+      [nzShowQuickJumper]="true"
+      [nzData]="certificates$ | async"
+      [nzLoading]="loading$ | async"
+      [nzPageSize]="pageSize$ | async"
+      [nzTotal]="total$ | async"
+      [nzPageIndex]="pageIndex$ | async"
+      (nzQueryParams)="onQueryParamsChange($event)"
+      [nzNoResult]="noIssuedCertificates"
+      #certificateIssuedTable
+    >
+      <thead>
+        <tr>
+          <th nzColumnKey="id" nzWidth="40%" [nzSortFn]="true" [nzEllipsis]="true">Certificate ID</th>
+          <th nzColumnKey="participateName" nzWidth="20%" [nzSortFn]="true" [nzEllipsis]="true">Recipient</th>
+          <th nzColumnKey="eventDisplayName" nzWidth="20%" [nzSortFn]="true" [nzEllipsis]="true">Course</th>
+          <th nzColumnKey="createdAt" nzWidth="5%" [nzSortFn]="true" [nzEllipsis]="true">Issued</th>
+          <th nzColumnKey="expirationDate" nzWidth="5%" [nzSortFn]="true" [nzEllipsis]="true">Expires</th>
+          <th nzColumnKey="preview" nzWidth="5%"></th>
+          <th nzColumnKey="download" nzWidth="5%"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let certificate of certificateIssuedTable.data; trackBy: trackByFn">
+          <td [nzEllipsis]="true">{{ certificate.id | titlecase }}</td>
+          <td [nzEllipsis]="true">{{ certificate.participateName }}</td>
+          <td [nzEllipsis]="true">{{ certificate.eventDisplayName }}</td>
+          <td [nzEllipsis]="true">{{ certificate.createdAt | date: 'dd MMM yyyy' }}</td>
+          <td [nzEllipsis]="true">{{ formatDate(certificate.expirationDate) }}</td>
+          <td>
+            <button leapTableGridRowCtaButton (click)="previewCertificate(certificate.awsBucket, certificate.awsKey)">
+              <i
+                nz-tooltip
+                nzTooltipTitle="Preview Certificate"
+                nzTooltipColor="#26273b"
+                leapTableGridCellTooltip
+                class="fal fa-eye eye-tooltip"
+              ></i>
+            </button>
+          </td>
+          <td>
+            <button leapTableGridRowCtaButton (click)="downloadCertificate(certificate.awsBucket, certificate.awsKey)">
+              <i
+                nz-tooltip
+                nzTooltipTitle="Download Certificate"
+                nzTooltipColor="#26273b"
+                leapTableGridCellTooltip
+                class="fal fa-download download-tooltip"
+              ></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-content>
+</div>
+<ng-template #noIssuedCertificates>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="noResultsText"
+  ></nz-empty>
+</ng-template>

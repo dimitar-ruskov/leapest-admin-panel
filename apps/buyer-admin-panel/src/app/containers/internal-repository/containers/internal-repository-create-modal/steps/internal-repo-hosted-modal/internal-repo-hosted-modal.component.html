@@ -1,0 +1,293 @@
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-hint-label>
+      Hosted
+    </leap-form-hint-label>
+    <nz-form-label class="main-label">
+      <span>Uploaded material</span>
+    </nz-form-label>
+  </nz-form-item>
+  <nz-form-item *ngIf="!type">
+    <leap-form-label [required]="true">Material Type</leap-form-label>
+    <leap-form-hint-label>
+      Select the type of material to create
+    </leap-form-hint-label>
+
+    <nz-form-control>
+      <div class="types-control">
+        <nz-select formControlName="type" [nzNotFoundContent]="'Item not found'" nzPlaceHolder="Select Material Type">
+          <nz-option *ngFor="let option of iltMaterialTypes$ | async" [nzLabel]="option.value" [nzValue]="option">
+          </nz-option>
+        </nz-select>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <ng-container *ngIf="form.get('type')?.value?.key === 'exam'">
+    <nz-form-item>
+      <leap-form-label [required]="true">Exam</leap-form-label>
+      <leap-form-hint-label>
+        Please specify which exam or question set should be associated with this variant. You can search below by either
+        Name or ID.
+      </leap-form-hint-label>
+
+      <nz-form-control>
+        <div class="languages-control">
+          <nz-select
+            formControlName="exam"
+            nzShowSearch
+            [nzNotFoundContent]="'Item not found'"
+            nzPlaceHolder="Select Exam"
+          >
+            <nz-option *ngFor="let option of examList" [nzLabel]="option.value" [nzValue]="option.key"> </nz-option>
+          </nz-select>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <ng-container *ngIf="form.get('exam')?.value">
+      <nz-form-item>
+        <leap-form-label [required]="true">
+          {{ form.get('type')?.value?.value || 'Material Type ' }} Name
+        </leap-form-label>
+        <leap-form-hint-label>
+          This name will be shown to learners to identify this material.
+        </leap-form-hint-label>
+        <nz-form-control [nzErrorTip]="combineTpl">
+          <input class="form-item-input" nz-input formControlName="name" placeholder="Start typing..." />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Variant Language</leap-form-label>
+        <leap-form-hint-label>
+          Select the type of material to create. Unsure what these mean? Click here
+        </leap-form-hint-label>
+        <p class="exam-lang">{{ exam?.language?.configValue }}</p>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label class="main-label">
+          <span>Delivery Format</span>
+        </nz-form-label>
+        <leap-form-hint-label>
+          This is how your exam is going to be delivered.
+        </leap-form-hint-label>
+
+        <p class="exam-lang">Online Exam, AI Proctored Exam</p>
+      </nz-form-item>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="form.get('type')?.value && form.get('type').value?.key !== 'exam'">
+    <nz-form-item>
+      <leap-form-label [required]="true">
+        {{ form.get('type')?.value?.value || 'Material Type ' }} Name
+      </leap-form-label>
+      <leap-form-hint-label>
+        This name will be shown to learners to identify this material.
+      </leap-form-hint-label>
+
+      <nz-form-control [nzErrorTip]="combineTpl">
+        <input class="form-item-input" nz-input formControlName="name" placeholder="Start typing..." />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <leap-form-label [required]="true">Variant Language</leap-form-label>
+      <leap-form-hint-label>
+        Select the type of material to create. Unsure what these mean? <a class="clickable-green">Click here</a>
+      </leap-form-hint-label>
+
+      <nz-form-control>
+        <div class="languages-control">
+          <nz-select
+            nzShowSearch
+            formControlName="languages"
+            [nzNotFoundContent]="'Item not found'"
+            nzPlaceHolder="Select Variant Language"
+          >
+            <nz-option
+              *ngFor="let option of iltLanguageDictionary$ | async"
+              [nzLabel]="option.value"
+              [nzValue]="option.value"
+            >
+            </nz-option>
+          </nz-select>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div *ngIf="allowUpload && allowedUploadFormats" class="clearfix upload-section">
+      <leap-form-label [required]="true">Contents</leap-form-label>
+      <leap-form-hint-label>
+        Below follow the uploaded contents for your material, use the options provided below  to change their name,
+        order, and access permissions
+      </leap-form-hint-label>
+      <leap-form-hint-label>
+        You can upload <b>up to {{ maxFilesCount }} files</b> per Material.
+        <ul>
+          <li>The file is not larger than {{ maxFileSize }} Mb</li>
+          <li>The file is a {{ allowedUploadFormatsMessage }}</li>
+        </ul>
+      </leap-form-hint-label>
+
+      <div *ngIf="contents.length > 0" class="contents-block">
+        <span>File</span>
+        <div *ngFor="let content of contents.value; let index = index">
+          <div class="upload-file-wrapper">
+            <div class="upload-file-name-wrapper">
+              <span>
+                <svg
+                  version="1.2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  overflow="visible"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 512 512"
+                  xml:space="preserve"
+                  y="0px"
+                  x="0px"
+                  id="Layer_1_1552642704051"
+                  width="14"
+                  height="14"
+                >
+                  <g transform="translate(0, 0)">
+                    <path
+                      d="M452,432c0,11-9,20-20,20s-20-9-20-20s9-20,20-20S452,421,452,432z M368,412c-11,0-20,9-20,20s9,20,20,20s20-9,20-20&#10;&#9;S379,412,368,412z M512,364v104c0,24.3-19.7,44-44,44H44c-24.3,0-44-19.7-44-44V364c0-24.3,19.7-44,44-44h99.4L87,263.6&#10;&#9;c-25.2-25.2-7.3-68.3,28.3-68.3H168V40c0-22.1,17.9-40,40-40h96c22.1,0,40,17.9,40,40v155.3h52.7c35.6,0,53.4,43.1,28.3,68.3&#10;&#9;L368.6,320H468C492.3,320,512,339.7,512,364z M250.3,381.7c3.1,3.1,8.2,3.1,11.3,0L402.3,241c5-5,1.5-13.7-5.7-13.7H312V40&#10;&#9;c0-4.4-3.6-8-8-8h-96c-4.4,0-8,3.6-8,8v187.3h-84.7c-7.1,0-10.7,8.6-5.7,13.7L250.3,381.7L250.3,381.7z M480,364c0-6.6-5.4-12-12-12&#10;&#9;H336.6l-52.3,52.3c-15.6,15.6-41,15.6-56.6,0L175.4,352H44c-6.6,0-12,5.4-12,12v104c0,6.6,5.4,12,12,12h424c6.6,0,12-5.4,12-12V364z"
+                      style="fill: #737394; stroke-width: 0px;"
+                      vector-effect="non-scaling-stroke"
+                    />
+                  </g>
+                </svg>
+              </span>
+              <input
+                #inputName
+                class="content-name"
+                maxlength="60"
+                minlength="6"
+                [value]="content.name"
+                (blur)="saveContentName(inputName, content, index)"
+                disabled
+              />
+              <span class="menu-icon-wrapper">
+                <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                  <svg
+                    version="1.2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    overflow="visible"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 24 24"
+                    width="32"
+                    height="32"
+                  >
+                    <g>
+                      <path
+                        xmlns:default="http://www.w3.org/2000/svg"
+                        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                        style="fill: #737394;"
+                        vector-effect="non-scaling-stroke"
+                      />
+                    </g>
+                  </svg>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                  <ul nz-menu>
+                    <li nz-menu-item (click)="removeContent(index)">Remove Material</li>
+                    <li nz-menu-item (click)="enableContentName(inputName)">Edit Title</li>
+                  </ul>
+                </nz-dropdown-menu>
+              </span>
+            </div>
+            <div class="upload-file-arrows">
+              <span class="arrows arrow-up" *ngIf="index != 0" (click)="swapContent(index)">
+                <svg
+                  width="18"
+                  height="18"
+                  overflow="visible"
+                  preserveAspectRatio="none"
+                  version="1.2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      xmlns:default="http://www.w3.org/2000/svg"
+                      d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                      fill="#8e8fa6"
+                      vector-effect="non-scaling-stroke"
+                    />
+                  </g>
+                </svg>
+              </span>
+              <span class="arrows arrow-down" *ngIf="index != contents.length - 1" (click)="swapContent(index, false)">
+                <svg
+                  width="18"
+                  height="18"
+                  overflow="visible"
+                  preserveAspectRatio="none"
+                  version="1.2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      xmlns:default="http://www.w3.org/2000/svg"
+                      d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                      fill="#8e8fa6"
+                      vector-effect="non-scaling-stroke"
+                    />
+                  </g>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="contents-limit">
+          <span>{{ contents.length }}/{{ maxFilesCount }} Files uploaded</span>
+        </div>
+      </div>
+      <div class="upload-button">
+        <nz-upload
+          [nzBeforeUpload]="beforeUpload"
+          [nzCustomRequest]="uploadFile"
+          [nzAccept]="allowedUploadFormats"
+          [nzShowUploadList]="false"
+          nzListType="picture"
+        >
+          <button nz-button [nzLoading]="uploading" [disabled]="uploading || contents.length >= maxFilesCount">
+            <img [hidden]="uploading" [src]="environment.assetsPath + '/upload.svg'" alt="Upload" class="mr-2" />
+            Upload File
+          </button>
+        </nz-upload>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="create-btns-container">
+    <button nz-button class="default-btn upload-btn" (click)="goBack()">Back</button>
+    <div style="width: 10px"></div>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="onCreateRepository()"
+      [nzLoading]="createBtnLoading"
+      [disabled]="!form.valid || (allowUpload && !contents.length)"
+    >
+      Proceed
+    </button>
+  </div>
+</form>
+
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    Name too short
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

@@ -3,7 +3,7 @@ import {ApolloQueryResult} from '@apollo/client/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IApolloResp } from '../model/marketplace-repository-product.model';
+import { IApolloResp } from '../../../../../../../libs/shared/src/lib/models/interfaces/marketplace-repo/marketplace-repository-product.model';
 import {IPageable, Sort} from "../../../../../../../libs/shared/src/lib/models/interfaces";
 
 
@@ -96,7 +96,9 @@ const LIST_PRODUCTS = gql`
   }
 `;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MarketplaceRepositoryService {
   constructor(private readonly apollo: Apollo) {}
 

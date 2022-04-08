@@ -1,0 +1,19 @@
+.tiles-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.tile-wrapper {
+  margin: 10px 10px 0;
+  width: 225px;
+  min-height: 245px;
+}
+
+:host ::ng-deep {
+  .ant-steps {
+    pointer-events: none !important;
+    display: none;
+  }
+}

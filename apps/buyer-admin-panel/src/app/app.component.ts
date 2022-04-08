@@ -8,8 +8,7 @@ import {IGlobalStateModel} from "./state/global-state.model";
 
 @Component({
   selector: 'buyer-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent implements OnInit {
 

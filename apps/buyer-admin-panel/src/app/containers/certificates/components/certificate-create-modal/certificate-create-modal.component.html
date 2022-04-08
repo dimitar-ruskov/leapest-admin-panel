@@ -1,0 +1,47 @@
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-label [required]="true">Certificate Template Name</leap-form-label>
+    <leap-form-hint-label>
+      Used to identify this template, and as the basis of the file name sent to the Learner.
+    </leap-form-hint-label>
+    <nz-form-control [nzErrorTip]="combineTpl">
+      <input class="form-item-input" nz-input formControlName="displayName" placeholder="Certificate Name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <leap-form-label [required]="true">Certificate Validity</leap-form-label>
+    <leap-form-hint-label>
+      Please indicate validity period of a certificate after it is issued to a learner.
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-input-number [nzMin]="0" formControlName="validityPeriod"> </nz-input-number>
+      <span class="month"> Months</span>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-checkbox-wrapper>
+        <label nz-checkbox formControlName="agree" (nzCheckedChange)="expireChecked($event)">
+          <span>This certificate does not expire</span></label
+        >
+      </nz-checkbox-wrapper>
+    </nz-form-control>
+  </nz-form-item>
+
+  <leap-certificate-upload-file #uploadComponent></leap-certificate-upload-file>
+</form>
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    Name too short
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    Character limit exceeded
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

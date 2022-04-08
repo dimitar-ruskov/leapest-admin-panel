@@ -1,0 +1,22 @@
+<div>
+  <nz-steps [nzCurrent]="getStepIndex(step)" nzSize="default">
+    <nz-step [nzTitle]="stepLabels[steps.TYPE]"></nz-step>
+    <nz-step [nzTitle]="stepLabels[steps.HOSTED]"></nz-step>
+    <nz-step [nzTitle]="stepLabels[steps.EXTERNAL]"></nz-step>
+  </nz-steps>
+
+  <ng-container [ngSwitch]="step">
+    <leap-internal-repo-type-modal
+      *ngSwitchCase="steps.TYPE"
+      (selectType)="selectType($event)"
+      (onClose)="cancel()"
+    ></leap-internal-repo-type-modal>
+    <leap-internal-repo-hosted-modal
+      *ngSwitchCase="steps.HOSTED"
+      (back)="back()"
+      (onClose)="cancel()"
+    ></leap-internal-repo-hosted-modal>
+    <leap-internal-repo-external-modal *ngSwitchCase="steps.EXTERNAL" (back)="back()" (onClose)="cancel()">
+    </leap-internal-repo-external-modal>
+  </ng-container>
+</div>

@@ -1,0 +1,83 @@
+<leap-table-control-panel>
+  <leap-table-search data-section="right" (searchPhraseChange)="onSearchChange($event)"></leap-table-search>
+</leap-table-control-panel>
+
+<nz-table
+  nzTableLayout="fixed"
+  leapTableGrid
+  [nzFrontPagination]="false"
+  [nzData]="variants$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #variantsTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="30%" [nzEllipsis]="true">Name</th>
+      <th nzColumnKey="language" nzWidth="20%" [nzEllipsis]="true">Language</th>
+      <th nzColumnKey="contents" nzWidth="20%" [nzEllipsis]="true">Contents</th>
+      <th nzColumnKey="updatedAt" nzWidth="30%" [nzEllipsis]="true">Last Updated</th>
+      <th nzWidth="58px"></th>
+      <th nzWidth="58px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr leapTableGridSpacer></tr>
+    <tr *ngFor="let variant of variantsTable.data; trackBy: trackByFn" leapTableGridRow>
+      <td [nzEllipsis]="true">
+        <span>{{ variant.name }}</span>
+      </td>
+      <td [nzEllipsis]="true">{{ variant.language?.configValue }}</td>
+      <td [nzEllipsis]="true">
+        <span>{{ variant.contents?.length }}</span>
+      </td>
+      <td [nzEllipsis]="true">
+        <span>{{ formatDate(variant.lastUpdated) }}</span>
+      </td>
+      <td>
+        <button
+          leapTableGridRowCtaButton
+          [leapTableGridRowCtaButtonDanger]="true"
+          [leapTableGridRowCtaButtonDisabled]="(total$ | async) === 1 || !variant.deletable"
+          (click)="deleteVariant($event, variant)"
+        >
+          <i
+            class="fal fa-trash-alt cta-icon"
+            nz-tooltip
+            [nzTooltipTitle]="deleteVariantTooltip(variant, total$ | async)"
+            nzTooltipPlacement="bottomRight"
+            nzTooltipColor="#26273b"
+            nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+            leapTableGridCellTooltip
+          ></i>
+        </button>
+      </td>
+      <td>
+        <button
+          leapTableGridRowCtaButton
+          [leapTableGridRowCtaButtonDisabled]="!variant.deletable"
+          (click)="editVariant($event, variant)"
+        >
+          <i
+            class="fal fa-edit cta-icon"
+            nz-tooltip
+            [nzTooltipTitle]="
+              variant.deletable
+                ? 'Edit Internal Repository'
+                : 'This variant is already being used in ' +
+                  variant.occurrenceCounter +
+                  ' courses. To edit it, please remove it first from each course'
+            "
+            nzTooltipPlacement="bottomRight"
+            nzTooltipColor="#26273b"
+            nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+            leapTableGridCellTooltip
+          ></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

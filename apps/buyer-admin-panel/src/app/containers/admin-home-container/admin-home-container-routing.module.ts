@@ -19,39 +19,49 @@ const routes: Routes = [
       //   loadChildren: async () => import('./containers/ilt-events/ilt-events.module').then((m) => m.IltEventsModule),
       // },
       // {
-      //   path: 'internal-repository',
-      //   loadChildren: async () =>
-      //     import('./containers/internal-repository/internal-repository.module').then((m) => m.InternalRepositoryModule),
-      // },
-      {
-        path: 'marketplace-repo',
-        loadChildren: async () =>
-          import('../marketplace-repository/marketplace-repository.module').then(
-            (m) => m.MarketplaceRepositoryModule,
-          ),
-      },
-      // {
       //   path: 'self-paced-courses',
       //   loadChildren: async () =>
       //     import('./containers/self-paced-courses-container/self-paced-courses-container.module').then(
       //       (m) => m.SelfPacedCoursesContainerModule,
       //     ),
       // },
-      // {
-      //   path: 'certificates',
-      //   loadChildren: async () =>
-      //     import('./containers/certificates/certificates.module').then((m) => m.CertificatesModule),
-      // },
-      // {
-      //   path: 'instructors',
-      //   loadChildren: async () =>
-      //     import('./containers/instructors/instructors.module').then((m) => m.InstructorsModule),
-      // },
+      {
+        path: 'internal-repository',
+        loadChildren: async () =>
+          import('../internal-repository/internal-repository.module')
+            .then((m) => m.InternalRepositoryModule),
+      },
+      {
+        path: 'marketplace-repo',
+        loadChildren: async () =>
+          import('../marketplace-repository/marketplace-repository.module')
+            .then((m) => m.MarketplaceRepositoryModule),
+      },
+      {
+        path: 'certificates',
+        loadChildren: async () =>
+          import('../certificates/certificates.module')
+            .then((m) => m.CertificatesModule),
+      },
+      {
+        path: 'instructors',
+        loadChildren: async () =>
+          import('../instructors/instructors.module')
+            .then((m) => m.InstructorsModule),
+      },
       // {
       //   path: 'notifications',
       //   loadChildren: async () =>
       //     import('./containers/notifications-container/notifications-container.module').then(
       //       (m) => m.NotificationsContainerModule,
+      //     ),
+      //   canActivate: [AdminUserGuard],
+      // },
+      // {
+      //   path: 'publishing',
+      //   loadChildren: async () =>
+      //     import('./containers/publishing-container/publishing-container.module').then(
+      //       (m) => m.PublishingContainerModule,
       //     ),
       //   canActivate: [AdminUserGuard],
       // },

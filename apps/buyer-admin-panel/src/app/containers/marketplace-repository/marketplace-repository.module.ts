@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
 
-import { MarketplaceRepositoryService } from './service/marketplace-repository.service';
-import { MarketplaceRepositoryListState } from './state/marketplace-repository-list.state';
+import { MarketplaceRepositoryListState } from './state/marketplace-repository-list/marketplace-repository-list.state';
 import { MarketplaceRepositoryRoutingModule } from './marketplace-repository-routing.module';
 import { MarketplaceRepositoryComponent } from './marketplace-repository.component';
 import { MarketplaceRepositoryListComponent } from './containers/marketplace-repository-list/marketplace-repository-list.component';
@@ -62,6 +61,5 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzDropDownModule,
     NzToolTipModule,
   ],
-  providers: [MarketplaceRepositoryService],
 })
 export class MarketplaceRepositoryModule {}

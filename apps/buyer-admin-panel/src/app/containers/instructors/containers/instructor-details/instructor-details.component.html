@@ -1,0 +1,110 @@
+<nz-breadcrumb nzSeparator=">">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'instructors']">Instructors</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>{{ 'Instructor Details' }}</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="instructor$ | async as instructor">
+  <nz-content class="admin-panel__content">
+    <leap-cta-container [skeleton]="instructor.pending">
+      <h1 leap-cta-container-title>{{ instructor.response?.firstName }} {{ instructor.response?.lastName }}</h1>
+      <h4 leap-cta-container-title class="instructor-email">{{ instructor.response?.username }}</h4>
+      <ng-container slot="buttons">
+        <button
+          class="admin-panel__slim-button"
+          nz-button
+          nzType="default"
+          (click)="onEditInstructor(instructor.response)"
+        >
+          Edit
+        </button>
+      </ng-container>
+      <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 1 }" slot="skeleton"></nz-skeleton>
+    </leap-cta-container>
+  </nz-content>
+  <div *ngIf="events$ | async as events">
+    <div class="field-header">Course Events ({{ total$ | async }})</div>
+    <leap-table-control-panel class="filter-container">
+      <div data-section="left" class="filter-container-state">
+        <span class="label">Show Finished Events</span>
+        <nz-switch [(ngModel)]="showFinishedEvents" (ngModelChange)="filterEvents($event)"></nz-switch>
+      </div>
+
+      <div data-section="right">
+        <nz-range-picker
+          [(ngModel)]="datePickerModel"
+          (ngModelChange)="onFilterSelectedDatesChange()"
+          nzFormat="dd MMM yyyy"
+        ></nz-range-picker>
+      </div>
+
+      <leap-table-search data-section="right" (searchPhraseChange)="onSearchChange($event)"></leap-table-search>
+    </leap-table-control-panel>
+    <nz-table
+      nzTableLayout="fixed"
+      leapTableGrid
+      [nzFrontPagination]="false"
+      [nzData]="events"
+      [nzLoading]="loading$ | async"
+      [nzPageSize]="pageSize$ | async"
+      [nzTotal]="total$ | async"
+      [nzPageIndex]="pageIndex$ | async"
+      [nzNoResult]="noEvents"
+      (nzQueryParams)="onQueryParamsChange($event)"
+      #instructorEvents
+    >
+      <thead>
+        <tr>
+          <th nzColumnKey="name" nzWidth="37%" [nzSortFn]="true" [nzEllipsis]="true">Events</th>
+          <th
+            nzColumnKey="venue"
+            nzWidth="20%"
+            [nzSortFn]="true"
+            [nzEllipsis]="true"
+            [nzFilters]="filterVenue"
+            [nzFilterFn]="true"
+          >
+            Venue
+          </th>
+          <th nzColumnKey="startDate" [nzSortFn]="true" nzWidth="20%" [nzEllipsis]="true">Start</th>
+          <th nzColumnKey="endDate" [nzSortFn]="true" nzWidth="20%" [nzEllipsis]="true">End</th>
+          <th nzWidth="3%"></th>
+        </tr>
+      </thead>
+      <tbody
+        nz-tooltip
+        nzTooltipTitle="View Event"
+        nzTooltipPlacement="bottomRight"
+        nzTooltipColor="#26273b"
+        nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+        [nzTooltipTrigger]="null"
+        leapTableGridRowTooltip
+      >
+        <tr leapTableGridSpacer></tr>
+        <tr
+          *ngFor="let event of instructorEvents.data; trackBy: trackByFn"
+          leapTableGridRow
+          [leapTableGridRowClickable]="true"
+          (click)="goToEvent(event.id)"
+        >
+          <td leap-table-grid-title-cell>
+            <img data-section="image" [src]="event.thumbnailUrl" alt="" />
+            <span data-section="title">{{ event.name }}</span>
+          </td>
+          <td [nzEllipsis]="true">{{ event.virtualVenue ? 'Online (VILT)' : event.venue?.address }}</td>
+          <td>{{ event.startDate | date: 'dd MMM yyyy' }}</td>
+          <td>{{ event.endDate | date: 'dd MMM yyyy' }}</td>
+          <td leap-table-grid-details-cell></td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</ng-container>
+
+<ng-template #noEvents>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="noResultsText"
+  ></nz-empty>
+</ng-template>

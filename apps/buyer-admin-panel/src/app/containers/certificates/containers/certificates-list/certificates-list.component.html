@@ -1,0 +1,82 @@
+<leap-cta-container>
+  <h1 leap-cta-container-title>Certificate Templates</h1>
+  <ng-container slot="buttons">
+    <button class="admin-panel__slim-button" nz-button nzType="primary" (click)="onCreateCertificate()">
+      Create New Template
+    </button>
+  </ng-container>
+  <h2 leap-cta-container-description>
+    Here you can upload your own custom certificate templates. These are used to generate the certificates that Learners
+    receive upon the completion of a course. To upload a custom certificate, please make sure that you
+    <a [href]="guidelineLink" rel="noopener noreferrer" target="_blank">follow our guidelines</a>, to ensure that any
+    required placeholders are properly displayed to end users.
+    <br />
+    <br />
+    If you need help, please contact <a href="mailto:support@edcast.com">support@edcast.com</a>.
+  </h2>
+</leap-cta-container>
+<div class="p-t-10">
+  <leap-table-control-panel>
+    <leap-table-search
+      data-section="right"
+      (searchPhraseChange)="onSearchChange($event)"
+      class="certificate-search"
+    ></leap-table-search>
+  </leap-table-control-panel>
+
+  <nz-table
+    nzTableLayout="fixed"
+    leapTableGrid
+    [nzFrontPagination]="false"
+    [nzData]="certificates$ | async"
+    [nzLoading]="loading$ | async"
+    [nzPageSize]="pageSize$ | async"
+    [nzTotal]="total$ | async"
+    [nzPageIndex]="pageIndex$ | async"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    #certificateTable
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="displayName" nzWidth="40%" [nzSortFn]="true" [nzEllipsis]="true">Template Name</th>
+        <th nzColumnKey="createdAt" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Creation Date</th>
+        <th nzColumnKey="validityPeriod" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Validity</th>
+        <th nzColumnKey="updatedAt" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Last Updated</th>
+        <th nzWidth="34px"></th>
+      </tr>
+    </thead>
+    <tbody
+      nz-tooltip
+      nzTooltipTitle="Open Certificate Details"
+      nzTooltipPlacement="bottomRight"
+      nzTooltipColor="#26273b"
+      nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+      [nzTooltipTrigger]="null"
+      leapTableGridRowTooltip
+    >
+      <tr leapTableGridSpacer></tr>
+      <tr
+        *ngFor="let cert of certificateTable.data; trackBy: trackByFn"
+        leapTableGridRow
+        [leapTableGridRowClickable]="true"
+        [routerLink]="['details', cert.id]"
+      >
+        <td [nzEllipsis]="true">
+          <span>{{ cert.displayName }}</span>
+        </td>
+        <td [nzEllipsis]="true">
+          <span>{{ formatDate(cert?.createdAt) }}</span>
+        </td>
+        <td [nzEllipsis]="true">
+          <span class="validity" [class.no-expire]="!cert.validityPeriod">
+            {{ getValidity(cert.validityPeriod) }}
+          </span>
+        </td>
+        <td [nzEllipsis]="true">
+          <span>{{ formatDate(cert?.updatedAt) }}</span>
+        </td>
+        <td leap-table-grid-details-cell></td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

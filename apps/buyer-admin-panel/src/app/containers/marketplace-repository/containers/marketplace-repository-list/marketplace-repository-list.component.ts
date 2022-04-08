@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { MarketplaceRepositoryListState } from '../../state/marketplace-repository-list.state';
+import { MarketplaceRepositoryListState } from '../../state/marketplace-repository-list/marketplace-repository-list.state';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import {
   ChangeMarketplaceRepositoriesPaginationParams,
   GetMarketplaceRepositories,
   ResetMarketplaceRepositoriesState,
-} from '../../state/marketplace-repository-list.actions';
-import { IMarketplaceProduct } from '../../model/marketplace-repository-product.model';
+} from '../../state/marketplace-repository-list/marketplace-repository-list.actions';
+import { IMarketplaceProduct } from '../../../../../../../../libs/shared/src/lib/models/interfaces/marketplace-repo/marketplace-repository-product.model';
 import {createPageableFromTableQueryParams} from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
 import {CURRENCY_DICTIONARY} from "../../../../../../../../libs/shared/src/lib/models/constants";

@@ -1,0 +1,10 @@
+<div *ngIf="tiles" class="tiles-wrapper">
+  <ng-container *ngFor="let tile of tiles">
+    <div class="tile-wrapper" (click)="onTileClicked(tile)">
+      <leap-type-tile [data]="tile"></leap-type-tile>
+    </div>
+  </ng-container>
+  <div class='create-btns-container'>
+    <button nz-button class='default-btn' (click)='onCancel()'>Cancel</button>
+  </div>
+</div>

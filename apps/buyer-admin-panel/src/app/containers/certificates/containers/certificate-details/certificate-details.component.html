@@ -1,0 +1,55 @@
+<nz-breadcrumb nzSeparator=">" style="margin-bottom: 8px;">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'certificates']">Certificates Templates</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Certificate Details Details</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="certificate$ | async as resource">
+  <nz-content class="admin-panel__content">
+    <leap-cta-container [skeleton]="resource.isPending" style="padding-bottom: 5px">
+      <leap-cta-container-entity-type>CERTIFICATE</leap-cta-container-entity-type>
+      <h1 leap-cta-container-title><span [innerHTML]="resource.response?.displayName"></span></h1>
+
+      <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 1 }" slot="skeleton"></nz-skeleton>
+    </leap-cta-container>
+  </nz-content>
+
+  <nz-content class="admin-panel__content">
+    <nz-tabset class="admin-panel__tabset" [nzAnimated]="false" nzLinkRouter>
+      <nz-tab>
+        <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">Details</a>
+        <leap-certificate-details-info *ngIf="!resource.isPending; else spinnerTemplate">
+        </leap-certificate-details-info>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'courses' }"
+          queryParamsHandling="merge"
+          >Courses</a
+        >
+        <leap-certificate-courses *ngIf="!resource.isPending; else spinnerTemplate"> </leap-certificate-courses>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'issued' }"
+          queryParamsHandling="merge"
+          >Certificates Issued</a
+        >
+        <leap-certificate-issued *ngIf="!resource.isPending; else spinnerTemplate"> </leap-certificate-issued>
+      </nz-tab>
+    </nz-tabset>
+  </nz-content>
+</ng-container>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="certificate-details__spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

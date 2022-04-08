@@ -1,0 +1,25 @@
+<div class="top-label">
+  Please be aware that any changes to this information will only be reflected in future courses issuing this
+  certificate. No changes will be done to already released certificates.
+</div>
+<form nz-form [formGroup]="form" nzLayout="vertical" style="margin-top: 3px">
+  <nz-form-item>
+    <leap-form-label [required]="true">Certificate Validity</leap-form-label>
+    <leap-form-hint-label>
+      Please indicate validity period of a certificate after it is issued to a learner.
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-input-number [nzMin]="0" formControlName="validityPeriod"></nz-input-number>
+      <span class="month"> Months</span>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-checkbox-wrapper>
+        <label nz-checkbox formControlName="agree" (nzCheckedChange)="expireChecked($event)">
+          <span>This certificate does not expire</span></label
+        >
+      </nz-checkbox-wrapper>
+    </nz-form-control>
+  </nz-form-item>
+</form>

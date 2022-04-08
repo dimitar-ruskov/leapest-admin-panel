@@ -1,0 +1,43 @@
+<div class="top-label" *ngIf="displayLabel">
+  Please be aware that any changes to this information will only be reflected in future courses issuing this
+  certificate. No changes will be done to already released certificates.
+</div>
+
+<div>
+  <nz-form-item>
+    <leap-form-label [required]="true">Certificate Template File</leap-form-label>
+    <leap-form-hint-label>
+      <span>
+        To upload a custom certificate (.pdf), please make sure to
+        <a [href]="guidelineLink" rel="noopener noreferrer" target="_blank">follow our guidelines</a>, to ensure that
+        any required data placeholders are properly displayed to end users. If you need help, please contact
+        <a href="mailto:support@edcast.com">support@edcast.com</a>.
+      </span>
+    </leap-form-hint-label>
+  </nz-form-item>
+
+  <div class="bulk-learners-file" *ngIf="uploadedFile">
+    <span class="uploaded">{{ uploadedFile.name }}</span>
+    <span class="delete-icon" style="font-size: 16px;"
+      ><i class="fal fa-trash-alt" (click)="removeTemplate()"></i
+    ></span>
+  </div>
+  <div class="upload-button">
+    <nz-upload
+      [nzBeforeUpload]="beforeUpload"
+      [nzCustomRequest]="uploadFile"
+      [nzAccept]="allowedUploadFormats"
+      [nzMultiple]="false"
+      [nzShowUploadList]="false"
+    >
+      <button nz-button [disabled]="uploading || uploadedFile">
+        <img [src]="environmentService.assetsPath + '/upload.svg'" alt="Upload" class="mr-2" />
+        Upload File
+      </button>
+      <nz-spin *ngIf="uploading" [nzSpinning]="uploading">
+        <div>This may take up to a minute...</div>
+      </nz-spin>
+    </nz-upload>
+  </div>
+  <nz-alert *ngIf="invalidTemplate" class="mt-2" nzType="error" nzMessage="{{ invalidTemplate }}"></nz-alert>
+</div>

@@ -1,0 +1,7 @@
+<leap-general-info [fields]='fields'>
+    <ng-template #fieldTemplate let-field>
+        <leap-general-info-field [fieldTitle]='field.title' [editable]='field.editable' (edit)='onEdit(field.id)'>
+            <leap-general-info-field-value [fieldValue]='field.value'></leap-general-info-field-value>
+        </leap-general-info-field>
+    </ng-template>
+</leap-general-info>

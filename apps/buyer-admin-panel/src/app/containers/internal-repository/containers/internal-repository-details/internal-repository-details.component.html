@@ -1,0 +1,68 @@
+<nz-breadcrumb nzSeparator=">">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'internal-repository']">Internal Repository</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Material Details</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="internalRepository$ | async as resource">
+  <nz-content class="admin-panel__content">
+    <leap-cta-container [skeleton]="resource.isPending">
+      <h1 leap-cta-container-title>{{ resource.response?.name }}</h1>
+      <ng-container slot="buttons">
+        <button
+          class="admin-panel__slim-button"
+          nz-button
+          nzType="primary"
+          (click)="onCreateNewVariant(resource.response)"
+        >
+          Create New Variant
+        </button>
+      </ng-container>
+      <h2 leap-cta-container-description><span [innerHTML]="resource.response?.description"></span></h2>
+      <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 1 }" slot="skeleton"></nz-skeleton>
+    </leap-cta-container>
+  </nz-content>
+
+  <nz-content class="admin-panel__content">
+    <nz-tabset class="admin-panel__tabset" [nzAnimated]="false" nzLinkRouter>
+      <nz-tab>
+        <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">Details</a>
+        <leap-internal-repository-details-info *ngIf="!resource.isPending; else spinnerTemplate">
+        </leap-internal-repository-details-info>
+      </nz-tab>
+      <nz-tab [nzForceRender]="true">
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'variants' }"
+          queryParamsHandling="merge"
+          >Variants</a
+        >
+        <ng-template nz-tab>
+          <leap-internal-repository-details-variants> </leap-internal-repository-details-variants>
+        </ng-template>
+      </nz-tab>
+      <nz-tab [nzForceRender]="true">
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'courses' }"
+          queryParamsHandling="merge"
+          >Courses</a
+        >
+        <ng-template nz-tab>
+          <leap-internal-repository-details-courses></leap-internal-repository-details-courses>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+  </nz-content>
+</ng-container>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="internal-repository-details__spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

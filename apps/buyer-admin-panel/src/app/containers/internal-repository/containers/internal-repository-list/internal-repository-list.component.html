@@ -1,0 +1,59 @@
+<leap-cta-container>
+    <h1 leap-cta-container-title>Internal Repository</h1>
+    <ng-container slot='buttons'>
+        <button class='admin-panel__slim-button' nz-button nzType='primary' (click)='onCreateIR()'>Create New
+        </button>
+    </ng-container>
+    <h2 leap-cta-container-description>Here, you can create, view, and manage all of your company's internal repository
+        materials. Please note that
+        these materials are NOT listed in the Leapest storefront, however, they can be distributed to learners
+        attending any courses you create, using these materials.</h2>
+</leap-cta-container>
+<div class="p-t-10">
+    <leap-table-control-panel>
+        <leap-table-search data-section='right' (searchPhraseChange)='onSearchChange($event)'></leap-table-search>
+    </leap-table-control-panel>
+
+    <nz-table nzTableLayout='fixed' leapTableGrid [nzFrontPagination]='false' [nzData]='internalRepositories$ | async'
+        [nzLoading]='loading$ | async' [nzPageSize]='pageSize$ | async' [nzTotal]='total$ | async'
+        [nzPageIndex]='pageIndex$ | async' (nzQueryParams)='onQueryParamsChange($event)' #irTable>
+        <thead>
+            <tr>
+                <th nzColumnKey='name' nzWidth='40%' [nzSortFn]='true' [nzEllipsis]='true'>Name</th>
+                <th nzColumnKey='type' nzWidth='30%' [nzSortFn]='true' [nzEllipsis]='true'>Type</th>
+                <th nzColumnKey='lastUpdated' nzWidth='30%' [nzEllipsis]='true'>Last Updated</th>
+                <th nzWidth='58px'></th>
+                <th nzWidth='34px'></th>
+            </tr>
+        </thead>
+        <tbody nz-tooltip nzTooltipTitle='Open Internal Repository Details' nzTooltipPlacement='bottomRight'
+            nzTooltipColor='#26273b' nzTooltipOverlayClassName='admin-panel__cta-tooltip' [nzTooltipTrigger]='null'
+            leapTableGridRowTooltip>
+            <tr leapTableGridSpacer></tr>
+            <tr *ngFor='let ir of irTable.data; trackBy: trackByFn' leapTableGridRow [leapTableGridRowClickable]='true'
+                [routerLink]='["details", ir.sku]'>
+                <td [nzEllipsis]='true'>
+                    <span>{{ ir.name }}</span>
+                </td>
+                <td [nzEllipsis]='true'>{{ ir.type?.configValue }}</td>
+                <td [nzEllipsis]='true'>
+                    <span>{{ formatDate(ir?.lastUpdated) }}</span>
+                </td>
+                <td>
+                    <button leapTableGridRowCtaButton [leapTableGridRowCtaButtonDanger]='true'
+                        [leapTableGridRowCtaButtonDisabled]='!ir.deletable'
+                        (click)="deleteInternalRepository($event,ir)">
+                        <i class='fal fa-trash-alt delete-ir-icon' nz-tooltip
+                            [nzTooltipTitle]="ir.deletable ? 'Delete Internal Repository' : ('This material is already being used in ' + ir.occurrenceCounter + ' courses. To delete it, please remove it first from each course')"
+                            nzTooltipPlacement='bottomRight' nzTooltipColor='#26273b'
+                            nzTooltipOverlayClassName='admin-panel__cta-tooltip' leapTableGridCellTooltip></i>
+                    </button>
+                </td>
+                <td leap-table-grid-details-cell></td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+
+
+</div>
