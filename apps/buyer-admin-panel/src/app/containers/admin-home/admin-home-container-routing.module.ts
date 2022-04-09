@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminHomeContainerComponent} from "./admin-home-container.component";
+import {AdminUserGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
 
 const routes: Routes = [
   {
@@ -11,8 +12,7 @@ const routes: Routes = [
         path: 'ilt-courses',
         loadChildren: async () =>
           import('../ilt-courses/ilt-courses-container.module').then(
-            (m) => m.IltCoursesContainerModule,
-          ),
+            (m) => m.IltCoursesContainerModule),
       },
       // {
       //   path: 'ilt-events',
@@ -49,22 +49,22 @@ const routes: Routes = [
           import('../instructors/instructors.module')
             .then((m) => m.InstructorsModule),
       },
-      // {
-      //   path: 'notifications',
-      //   loadChildren: async () =>
-      //     import('./containers/notifications-container/notifications-container.module').then(
-      //       (m) => m.NotificationsContainerModule,
-      //     ),
-      //   canActivate: [AdminUserGuard],
-      // },
-      // {
-      //   path: 'publishing',
-      //   loadChildren: async () =>
-      //     import('./containers/publishing-container/publishing-container.module').then(
-      //       (m) => m.PublishingContainerModule,
-      //     ),
-      //   canActivate: [AdminUserGuard],
-      // },
+      {
+        path: 'notifications',
+        loadChildren: async () =>
+          import('../notifications/notifications-container.module').then(
+            (m) => m.NotificationsContainerModule,
+          ),
+        canActivate: [AdminUserGuard],
+      },
+      {
+        path: 'publishing',
+        loadChildren: async () =>
+          import('../publishing/publishing-container.module').then(
+            (m) => m.PublishingContainerModule,
+          ),
+        canActivate: [AdminUserGuard],
+      },
       {
         path: ':type/404',
         loadChildren: async () =>

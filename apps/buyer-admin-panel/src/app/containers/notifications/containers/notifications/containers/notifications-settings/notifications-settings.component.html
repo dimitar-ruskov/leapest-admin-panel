@@ -1,0 +1,148 @@
+<div class="wrapper">
+  <div class="header">General Settings</div>
+
+  <div class="item-wrapper">
+    <div class="item-label">
+      Notifications Logo
+      <i class="fal fa-edit" (click)="openEditLogo()"></i>
+    </div>
+    <div class="item-description">
+      Upload your company logo. This logo will be used for all your notifications.
+    </div>
+    <div class="item-value _logo">
+      <img *ngIf="logoLink; else defaultLogo" [src]="logoLink" alt="logo" />
+    </div>
+  </div>
+
+  <div class="item-wrapper">
+    <div
+      class="item-label"
+      nz-tooltip="If you wish to edit the sender of your notifications, please contact support@edcast.com."
+      nzTooltipPlacement="bottomLeft"
+    >
+      Email Sender
+    </div>
+    <div class="item-value">Sender: {{ settings?.emailSender || 'EdCast' }}</div>
+  </div>
+
+  <div class="item-wrapper">
+    <div
+      class="item-label"
+      nz-tooltip="If you wish to edit the sender name of your notifications, please contact support@edcast.com."
+      nzTooltipPlacement="bottomLeft"
+    >
+      Sender Name
+    </div>
+    <div class="item-value">
+      {{ settings?.senderName || 'N/A' }}
+    </div>
+  </div>
+
+  <div class="item-wrapper">
+    <div
+      class="item-label"
+      nz-tooltip="If you wish to edit the placeholder value for your notifications, please contact support@edcast.com."
+      nzTooltipPlacement="bottomLeft"
+    >
+      Customized Placeholders
+    </div>
+    <div class="item-description">
+      Define a default value for your customized placeholder(s).
+    </div>
+    <div class="item-value" *ngFor="let customValuePlaceholder of settings?.customValuePlaceholders">
+      {{ customValuePlaceholder.placeholder.configValue + ': ' + customValuePlaceholder.customValue }}
+    </div>
+    <div *ngIf="!settings?.customValuePlaceholders?.length">
+      There is no customized placeholders.
+    </div>
+  </div>
+
+  <div class="item-wrapper">
+    <div
+      class="item-label"
+      nz-tooltip="If you wish to edit the footer content of your notifications, please contact support@edcast.com."
+      nzTooltipPlacement="bottomLeft"
+    >
+      Default Notification Footer
+    </div>
+    <div class="item-description">
+      The default notification footer is displayed under the notification body with every notification.
+    </div>
+    <div *ngIf="settings?.footer" class="item-value _footer">
+      {{ settings.footer }}
+    </div>
+    <div *ngIf="!settings?.footer">
+      There is no default footer.
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultLogo>
+  <svg
+    version="1.2"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    overflow="visible"
+    preserveAspectRatio="none"
+    viewBox="0 0 613.2999877929688 172.55999755859375"
+    id="Layer_1_1581599632188"
+    width="340"
+    height="94"
+  >
+    <g transform="translate(1, 1)">
+      <defs>
+        <style>
+          .cls-1_1581599632188 {
+            fill: #454560;
+          }
+          .cls-2_1581599632188 {
+            fill: #56e7ce;
+          }
+          .cls-3_1581599632188 {
+            fill: #6f708b;
+          }
+        </style>
+      </defs>
+      <path
+        d="M342.8,143.77a34.74,34.74,0,0,1-10.58,6.95A33.25,33.25,0,0,1,289,132.94a32.07,32.07,0,0,1-2.58-12.82A32.63,32.63,0,0,1,289,107.19a33.15,33.15,0,0,1,43.24-17.87,38.91,38.91,0,0,1,10.56,6.53,8.4,8.4,0,0,0,11.6.29A7.31,7.31,0,0,0,357,90.59a10.56,10.56,0,0,0-3-6.16,34.3,34.3,0,0,0-7.55-6.67A56.12,56.12,0,0,0,335,72.05a43.33,43.33,0,0,0-15.13-2.53h0a54.84,54.84,0,0,0-20,4.44,52,52,0,0,0-16,10.8,49.8,49.8,0,0,0-10.6,15.83,49.26,49.26,0,0,0-3.86,19.46,50.1,50.1,0,0,0,4,20,49.11,49.11,0,0,0,10.85,15.83,52.09,52.09,0,0,0,63,6.42,28.16,28.16,0,0,0,7.47-6.67,11,11,0,0,0,2.75-6.06,7.87,7.87,0,0,0-2.69-6,8.63,8.63,0,0,0-11.86.16"
+        class="cls-1_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M450.16,84.34a52.33,52.33,0,0,0-15.87-10.89,49.91,49.91,0,0,0-55.2,10.67,51.79,51.79,0,0,0-10.49,55.73,48.43,48.43,0,0,0,10.85,15.83,50.17,50.17,0,0,0,35.33,14.15,41.89,41.89,0,0,0,21.11-5.57,65.67,65.67,0,0,0,12.18-8.89v6.26a8.54,8.54,0,0,0,17.07,0V119.92a48.09,48.09,0,0,0-4.07-19.6,52.83,52.83,0,0,0-10.91-16m-2.09,35.56A36.89,36.89,0,0,1,445,133.23,33.09,33.09,0,0,1,402,150.63a34,34,0,0,1-10.56-7.13,33.66,33.66,0,0,1-7.11-10.56,32.07,32.07,0,0,1-2.58-12.82,33.38,33.38,0,0,1,9.69-23.58A34,34,0,0,1,402,89.41a32.1,32.1,0,0,1,12.82-2.58,33.19,33.19,0,0,1,33.32,33.25"
+        class="cls-1_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M8.34,49.29A8.35,8.35,0,0,1,2.45,35,121,121,0,0,1,80.23,0,8.36,8.36,0,0,1,81.3,16.67a104.46,104.46,0,0,0-67,30.2,8.31,8.31,0,0,1-5.89,2.42"
+        class="cls-2_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M30.58,71.34A8.35,8.35,0,0,1,24.72,57a90,90,0,0,1,55.22-25.6,8.35,8.35,0,0,1,1.47,16.64,73.33,73.33,0,0,0-45,20.85,8.33,8.33,0,0,1-5.87,2.42"
+        class="cls-2_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M245.11,41.14a8.66,8.66,0,0,0-12.11,0,8.26,8.26,0,0,0-2.47,6V84.12a70.12,70.12,0,0,0-12.09-8.73,45.46,45.46,0,0,0-21.4-6,46.1,46.1,0,0,0-19.11,4.09,52.42,52.42,0,0,0-26.78,26.86,49.08,49.08,0,0,0-.11,38.89,52,52,0,0,0,10.71,15.87A49.83,49.83,0,0,0,177.66,166a51.76,51.76,0,0,0,39.11.2,50.15,50.15,0,0,0,13.76-8.34v3.76a8.53,8.53,0,1,0,17,.87,6.32,6.32,0,0,0,0-.87V47.18a8.26,8.26,0,0,0-2.46-6m-14.58,78.78A32.41,32.41,0,0,1,228,132.74a33.27,33.27,0,0,1-54.18,10.65,33.1,33.1,0,0,1-7.13-10.56A32.07,32.07,0,0,1,164.06,120a33.29,33.29,0,0,1,9.71-23.58,33.64,33.64,0,0,1,10.62-7.13,33.13,33.13,0,0,1,13-2.58,32.15,32.15,0,0,1,22.87,9.42,34,34,0,0,1,7.13,10.56A38.09,38.09,0,0,1,230.44,120"
+        class="cls-3_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M134.1,100a54.65,54.65,0,0,0-11-15.85,51.59,51.59,0,0,0-15.91-10.8,46.68,46.68,0,0,0-19-4h0a55.15,55.15,0,0,0-20,4.45,52.52,52.52,0,0,0-16,10.8,50.27,50.27,0,0,0-10.62,15.82,49.5,49.5,0,0,0-3.84,19.47,50.1,50.1,0,0,0,4,20,48.65,48.65,0,0,0,10.85,15.82A50.28,50.28,0,0,0,87.92,169.9a56.68,56.68,0,0,0,19.78-3.22,39.71,39.71,0,0,0,15.56-11,8.54,8.54,0,0,0-12.07-12.09,34.89,34.89,0,0,1-10.58,7,33.48,33.48,0,0,1-41.67-14.27c-.24-.42-.42-.87-.64-1.31h-.18a32.54,32.54,0,0,1-1.24-26.67h0a33.58,33.58,0,0,1,2.33-5.11,31.49,31.49,0,0,1,7.18-8.58,36.14,36.14,0,0,1,9.84-5.75,32.68,32.68,0,0,1,23,0,36.14,36.14,0,0,1,9.84,5.75,33.63,33.63,0,0,1,10.69,16.49H77.59a8.54,8.54,0,0,0,0,17h52.16a8.9,8.9,0,0,0,5.66-2.22,7.85,7.85,0,0,0,2.87-6.43A46.35,46.35,0,0,0,134.1,100"
+        class="cls-3_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M516.32,169.7c-16.11,0-33.09-7.33-40-22.84A8.37,8.37,0,0,1,491.59,140c5.11,11.42,22.22,15.31,34.2,11.65,7.82-2.36,11.24-6.8,10.18-13.16-1.63-9.65-8.56-11.38-25.16-13.33-14.22-1.6-33.69-3.83-36.58-24.69-1.73-12.47,5-22.94,18-28,17.24-6.67,43.8-2.69,56.6,15.67a8.36,8.36,0,0,1-13.71,9.56c-7.78-11.12-25.62-14.05-36.8-9.67-8.47,3.33-7.76,8.47-7.51,10.18.95,7,5.8,8.55,21.91,10.37,15.13,1.74,35.87,4.07,39.76,27.09,2.48,14.87-5.87,27.12-21.83,31.94a49.52,49.52,0,0,1-14.26,2"
+        class="cls-1_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+      <path
+        d="M591.88,128.08V86H602.7a8.38,8.38,0,0,0,6.09-2.47,8.55,8.55,0,0,0,0-12.1h0A8.38,8.38,0,0,0,602.7,69H591.88V47.18a8.36,8.36,0,0,0-2.47-6,8.66,8.66,0,0,0-12.11,0,8.31,8.31,0,0,0-2.49,6V69H564.12a8.53,8.53,0,0,0-6,14.58A8.38,8.38,0,0,0,564.19,86H575v58.56c0,15.55,8.89,25.09,23,25.09A8.36,8.36,0,1,0,598,153c-2.93,0-6.22,0-6.22-8.38V128.17"
+        class="cls-1_1581599632188"
+        vector-effect="non-scaling-stroke"
+      />
+    </g>
+  </svg>
+</ng-template>

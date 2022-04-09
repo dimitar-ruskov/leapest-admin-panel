@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {AdminHomeContainerRoutingModule} from "./admin-home-container-routing.module";
 import {AdminHomeContainerComponent} from "./admin-home-container.component";
+import {AdminUserGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
 import {NavbarModule} from "../../../../../../libs/shared/src/lib/components/core/navbar/navbar.module";
 import {TMenuModule} from "../../../../../../libs/shared/src/lib/components/common/t-menu/t-menu.module";
 import {FooterModule} from "../../../../../../libs/shared/src/lib/components/core/footer/footer.module";
@@ -23,5 +24,6 @@ import {NzSliderModule} from "ng-zorro-antd/slider";
     NzLayoutModule,
     NzSliderModule
   ],
+  providers: [AdminUserGuard]
 })
 export class AdminHomeContainerModule {}

@@ -1,4 +1,6 @@
-import { NotificationPayloadModel } from '../../../models/notifications.model';
+import {
+  NotificationPayloadModel
+} from "../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
 
 export class GetNotificationDetails {
   static readonly type = '[AP Notifications] Get Notification Details';

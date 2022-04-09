@@ -1,0 +1,26 @@
+<leap-cta-container>
+  <h1 leap-cta-container-title>Notifications</h1>
+  <h2 leap-cta-container-description>
+    Manage all notifications used for the delivery of V/ILT & Self-paced courses for your organization.
+  </h2>
+</leap-cta-container>
+
+<nz-content class="admin-panel__content">
+  <nz-tabset
+    class="admin-panel__tabset"
+    [nzSelectedIndex]="activeTab$ | async"
+    [nzAnimated]="false"
+    (nzSelectedIndexChange)="onSelectTab($event)"
+  >
+    <nz-tab nzTitle="General Settings">
+      <ng-template nz-tab>
+        <leap-notifications-settings></leap-notifications-settings>
+      </ng-template>
+    </nz-tab>
+    <nz-tab nzTitle="Notifications">
+      <ng-template nz-tab>
+        <leap-notifications-listing></leap-notifications-listing>
+      </ng-template>
+    </nz-tab>
+  </nz-tabset>
+</nz-content>

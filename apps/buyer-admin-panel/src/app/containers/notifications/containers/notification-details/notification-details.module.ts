@@ -2,22 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgxsFormPluginModule } from '@ngxs/form-plugin';
-
-import { NotificationDetailsComponent } from './notification-details.component';
-
-import { SharedModule } from '../../../../../shared/shared.module';
-import { TemplateComposerModule } from '../../../../../common/common-ilt-notifications/template-composer/template-composer.module';
-import { CertificateViewModule } from '../../../../components/certificate-view/certificate-view.module';
-import { CertificatePreviewModule } from '../../../../components/certificate-preview/certificate-preview.module';
-import { SnatchModule } from '../../../../../snatch/snatch.module';
-import { GeneralInfoModule } from '../../../../components/general-info/general-info.module';
-import { TableGridModule } from '../../../../components/table-grid/table-grid.module';
-import { TableControlPanelModule } from '../../../../components/table-control-panel/table-control-panel.module';
-import { TableSearchModule } from '../../../../components/table-search/table-search.module';
-import { CtaContainerModule } from '../../../../components/cta-container/cta-container.module';
-import { FormLabelModule } from '../../../../components/form-label/form-label.module';
-import { TAgendaModule } from '../../../../components/t-agenda/t-agenda.module';
 
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -35,16 +19,45 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 
+import { NotificationDetailsComponent } from './notification-details.component';
+
+import {
+  TableSearchModule
+} from "../../../../../../../../libs/shared/src/lib/components/common/table-search/table-search.module";
+import {
+  FormLabelModule
+} from "../../../../../../../../libs/shared/src/lib/components/common/form-label/form-label.module";
+import {
+  CtaContainerModule
+} from "../../../../../../../../libs/shared/src/lib/components/common/cta-container/cta-container.module";
+import {
+  GeneralInfoModule
+} from "../../../../../../../../libs/shared/src/lib/components/common/general-info/general-info.module";
+import {
+  CertificateViewModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/certificate-view/certificate-view.module";
+import {TAgendaModule} from "../../../../../../../../libs/shared/src/lib/components/feature/t-agenda/t-agenda.module";
+import {
+  CertificatePreviewModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.module";
+import {
+  TableControlPanelModule
+} from "../../../../../../../../libs/shared/src/lib/components/common/table-control-panel/table-control-panel.module";
+import {
+  TableGridModule
+} from "../../../../../../../../libs/shared/src/lib/components/common/table-grid/table-grid.module";
+
 @NgModule({
   declarations: [NotificationDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
+    RouterModule.forChild([{
+        path: '',
+        component: NotificationDetailsComponent
+      }]),
 
-    SnatchModule,
-    SharedModule,
     GeneralInfoModule,
     FormLabelModule,
     TableControlPanelModule,
@@ -54,9 +67,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     TAgendaModule,
     CertificateViewModule,
     CertificatePreviewModule,
-    TemplateComposerModule,
+    // TemplateComposerModule,
 
-    NgxsFormPluginModule,
     NzButtonModule,
     NzTabsModule,
     NzSpinModule,
@@ -72,7 +84,6 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzBreadCrumbModule,
     NzMessageModule,
     NzModalModule,
-  ],
-  providers: [],
+  ]
 })
 export class NotificationDetailsModule {}

@@ -26,6 +26,17 @@ import {CertificateDetailsStateModel} from "../containers/certificates/state/cer
 import {CertificateCoursesStateModel} from "../containers/certificates/state/certificates-details/certificate-courses.state";
 import {CertificateIssuedStateModel} from "../containers/certificates/state/certificates-details/certificate-issued.state";
 
+import {
+  NotificationDetailsStateModel
+} from "../containers/notifications/containers/notification-details/state/notification-details.state";
+import {
+  NotificationsListStateModel
+} from "../containers/notifications/containers/notifications/state/notifications-list.state";
+import {
+  NotificationsSettingsStateModel
+} from "../containers/notifications/containers/notifications/state/notifications-settings.state";
+import {PublishingStateModel} from "../containers/publishing/state/publishing.state";
+
 export interface IGlobalStateModel {
   core: CoreStateModel;
 
@@ -34,13 +45,19 @@ export interface IGlobalStateModel {
     iltCoursesList: ILTCoursesListModel;
     iltCourseDetails: IltCourseDetailsModel;
   }
-
   certificates: {
     certificatesList: CertificatesListStateModel;
     certificateDetails: CertificateDetailsStateModel;
     certificateCourses: CertificateCoursesStateModel;
     certificateIssued: CertificateIssuedStateModel;
   }
+  notifications: {
+    activeTab: number;
+    notificationsSettings: NotificationsSettingsStateModel;
+    notificationsList: NotificationsListStateModel;
+    notificationDetails: NotificationDetailsStateModel;
+  };
+  publishing: PublishingStateModel;
 }
 
 interface ILTCoursesListModel extends ILTCoursesListStateModel {

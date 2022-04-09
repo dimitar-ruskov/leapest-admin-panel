@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { Sort, SortObj } from '../../../../snatch/models/sort.model';
-import { IPageable } from '../../../../snatch/models/page.model';
 import { Observable } from 'rxjs';
-import { DeferredResource } from '../../../../snatch/utils/deferred-resource';
+
+import {ISearchParams} from "../containers/notifications/state/notifications-list.state";
+
+import {IPageable, Sort, SortObj} from "../../../../../../../libs/shared/src/lib/models/interfaces";
+import {AdminPanelApiService, EnvironmentService} from "../../../../../../../libs/shared/src/lib/utils/services/common";
+import {DeferredResource} from "../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  ISearchParams,
-  NotificationModel,
-  NotificationPayloadModel,
-  NotificationsListModel,
-  NotificationsSettingsModel,
-  ReportingDomainsMap,
-} from '../models/notifications.model';
-import { AdminPanelApiService } from '../../../services/admin-panel-api.service';
-import { EnvironmentService } from '../../../../snatch/services';
+  NotificationModel, NotificationPayloadModel,
+  NotificationsListModel, NotificationsSettingsModel, ReportingDomainsMap
+} from "../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+
 
 @Injectable({
   providedIn: 'root',

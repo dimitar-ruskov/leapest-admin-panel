@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
+import { tap } from 'rxjs/operators';
 
 import { NotificationsService } from '../../../service/notifications.service';
-import { DeferredResource } from '../../../../../../snatch/utils/deferred-resource';
-import { tap } from 'rxjs/operators';
 import {
   ClearNotificationDetails,
   ClearNotificationDetailsPartial,
@@ -14,7 +13,12 @@ import {
   TestEmail,
   UpdateNotificationTemplate,
 } from './notification-details.action';
-import { NotificationModel, NotificationPayloadModel, ReportingDomainsMap } from '../../../models/notifications.model';
+
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  NotificationModel, NotificationPayloadModel,
+  ReportingDomainsMap
+} from "../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
 
 export class NotificationDetailsStateModel {
   details: DeferredResource<NotificationModel>;

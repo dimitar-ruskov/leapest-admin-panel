@@ -1,0 +1,197 @@
+<div class="wrapper">
+  <form class="publishing-form" nzLayout="vertical" nz-form [formGroup]="form">
+    <nz-form-item>
+      <leap-form-label [required]="false">LXP Channels</leap-form-label>
+      <leap-form-hint-label>
+        In which channels do you wish this event to be published?
+      </leap-form-hint-label>
+      <nz-form-control class="form-control-non-flex">
+        <nz-select
+          nzAllowClear
+          nzShowSearch
+          nzServerSearch
+          nzMode="multiple"
+          nzShowArrow="true"
+          formControlName="channels"
+          nzPlaceHolder="Select Channels (click or type to search)"
+          (nzOnSearch)="getLxpChannels($event)"
+        >
+          <ng-container *ngFor="let o of lxpChannels$ | async">
+            <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
+          </ng-container>
+        </nz-select>
+      </nz-form-control>
+      <ng-container *ngTemplateOutlet="channelsPillsContainer"></ng-container>
+    </nz-form-item>
+
+    <nz-form-item class="mt-3">
+      <leap-form-label [required]="false"> LXP Groups</leap-form-label>
+      <leap-form-hint-label>
+        In which groups do you wish this event to be published?
+      </leap-form-hint-label>
+      <nz-form-control class="form-control-non-flex">
+        <nz-select
+          nzAllowClear
+          nzShowSearch
+          nzServerSearch
+          nzShowArrow="true"
+          nzMode="multiple"
+          formControlName="groups"
+          nzPlaceHolder="Select Groups (click or type to search)"
+          (nzOnSearch)="onInputLxpGroups($event)"
+        >
+          <ng-container *ngFor="let o of lxpGroups$ | async">
+            <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
+          </ng-container>
+        </nz-select>
+      </nz-form-control>
+      <ng-container *ngTemplateOutlet="publishGroupsPillsContainer"></ng-container>
+    </nz-form-item>
+
+    <nz-form-item class="mt-3">
+      <leap-form-label [required]="false"> Default Language Variant </leap-form-label>
+      <nz-form-control>
+        <div class="languages-control">
+          <nz-select
+            nzShowSearch
+            formControlName="language"
+            [nzNotFoundContent]="'Item not found'"
+            nzPlaceHolder="Select Variant Language"
+          >
+            <nz-option
+              *ngFor="let option of iltLanguageDictionary$ | async"
+              [nzLabel]="option.value"
+              [nzValue]="option.value"
+            >
+            </nz-option>
+          </nz-select>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mt-3">
+      <leap-form-label [required]="true">Privacy Settings</leap-form-label>
+      <leap-form-hint-label>
+        Please specify the level of access for this Course's SmartCard on the LXP.
+      </leap-form-hint-label>
+      <nz-radio-group formControlName="lxpPrivate" class="flex-display">
+        <label nz-radio [nzValue]="o.value" *ngFor="let o of coursePublishStatus">
+          {{ o.label }}
+          <i class="fal fa-info-circle" nz-tooltip nzTooltipTitle="{{ o.tooltip }}"></i>
+        </label>
+      </nz-radio-group>
+    </nz-form-item>
+
+    <div *ngIf="lxpPrivateControl.value === true">
+      <nz-form-item class="mt-3">
+        <leap-form-label [required]="false">Restrict to Users</leap-form-label>
+        <leap-form-hint-label>
+          Please, type at least 3 letters of the users you wish to select to share this course with.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <nz-select
+            nzMode="multiple"
+            nzPlaceHolder="Type to search and select"
+            nzAllowClear
+            nzShowSearch
+            nzServerSearch
+            formControlName="lxpRestrictUsers"
+            (nzOnSearch)="onInputLxpUsers($event)"
+          >
+            <ng-container *ngFor="let o of lxpUsers$ | async">
+              <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+        <ng-container *ngTemplateOutlet="usersPillsContainer"></ng-container>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label [required]="false">Restrict to Groups</leap-form-label>
+        <leap-form-hint-label>
+          Select the groups that you want to share this course with.
+        </leap-form-hint-label>
+        <nz-form-control class="form-control-non-flex">
+          <nz-select
+            nzMode="multiple"
+            nzPlaceHolder="Type to search and select"
+            nzAllowClear
+            nzShowSearch
+            nzServerSearch
+            formControlName="lxpRestrictGroups"
+            (nzOnSearch)="onInputLxpGroups($event)"
+          >
+            <ng-container *ngFor="let o of lxpGroups$ | async">
+              <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+        <ng-container *ngTemplateOutlet="groupsPillsContainer"></ng-container>
+      </nz-form-item>
+    </div>
+
+    <nz-form-item *ngIf="type === 'exam'" class="mt-3">
+      <leap-form-label [required]="true">Pass Rate</leap-form-label>
+      <leap-form-hint-label>
+        This information is shown to Learners on the Learning Portal and will determine whether the user has passed the
+        exam.
+      </leap-form-hint-label>
+      <nz-form-control class="form-control-non-flex">
+        <nz-input-number
+          class="pass-rate"
+          type="number"
+          [nzMin]="0"
+          [nzMax]="100"
+          formControlName="passRate"
+        ></nz-input-number>
+        <span class="rate-percent">%</span>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div class="flex justify-center mt-5">
+    <button [disabled]="!form.dirty" nz-button nzType="default" nzSize="large" class="mr-2" (click)="formInit()">
+      Cancel
+    </button>
+    <button [disabled]="!form.dirty || form.invalid" nz-button nzType="primary" nzSize="large" (click)="saveChanges()">
+      Save Changes
+    </button>
+  </div>
+</div>
+
+<ng-template #usersPillsContainer>
+  <div class="pill-container" *ngIf="lxpUsersCount > 0">
+    <span *ngFor="let val of lxpRestrictUsersControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val }} <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'user')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+<ng-template #groupsPillsContainer>
+  <div class="pill-container" *ngIf="lxpGroupsCount > 0">
+    <span *ngFor="let val of lxpRestrictGroupsControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val.value }} <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'group')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+<ng-template #channelsPillsContainer>
+  <div class="pill-container" *ngIf="lxpChannelsCount > 0">
+    <span *ngFor="let val of lxpRestrictChannelsControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val.value }} <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'channel')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+<ng-template #publishGroupsPillsContainer>
+  <div class="pill-container" *ngIf="lxpPublishGroupsCount > 0">
+    <span *ngFor="let val of lxpRestrictPublishGroupsControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val.value }}
+        <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'publishGroup')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>

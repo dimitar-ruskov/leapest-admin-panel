@@ -1,0 +1,21 @@
+<ng-container *ngIf="internalRepoTabs$ | async as tabs">
+  <nz-tabset *ngIf="tabs.length" nzType="card" class="admin-panel__card-tabset" [nzAnimated]="false" nzLinkRouter>
+    <nz-tab *ngFor="let type of tabs; let i = index">
+      <a
+        class="sub-tab"
+        *nzTabLink
+        nz-tab-link
+        [routerLink]="['.']"
+        [queryParams]="i === 0 ? { tab: 'internal-repo' } : { tab: 'internal-repo', sub: type.key }"
+        >{{ type.text }}</a
+      >
+      <ng-template nz-tab>
+        <leap-publishing-settings
+          [type]="type.key"
+          (editSetting)="editSettings($event)"
+          [settings]="type.value"
+        ></leap-publishing-settings>
+      </ng-template>
+    </nz-tab>
+  </nz-tabset>
+</ng-container>

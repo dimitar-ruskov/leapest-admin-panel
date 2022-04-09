@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { NzUploadFile } from 'ng-zorro-antd/upload/interface';
-import { EnvironmentService, UploadService } from '../../../../snatch/services';
-import { DownloadSphinxService } from '../../../../snatch/services/download-sphinx.service';
+import {DownloadSphinxService, EnvironmentService, UploadService} from "../../../utils/services/common";
 
 @Component({
   selector: 'leap-notification-logo-modal',
@@ -11,7 +10,7 @@ import { DownloadSphinxService } from '../../../../snatch/services/download-sphi
   styleUrls: ['./notification-logo-modal.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotificationLogoModalComponent implements OnInit {
+export class NotificationLogoModalComponent {
   uploading: boolean;
   s3Key: string;
   s3Bucket: string;
@@ -31,8 +30,6 @@ export class NotificationLogoModalComponent implements OnInit {
     public readonly environmentService: EnvironmentService,
     private readonly downloadSphinxService: DownloadSphinxService,
   ) {}
-
-  ngOnInit(): void {}
 
   beforeUpload = (file: NzUploadFile): boolean => {
     const parts = file.name.split('.');

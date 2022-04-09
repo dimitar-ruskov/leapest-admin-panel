@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { NotificationsContainerComponent } from './notifications-container.component';
-import { NotificationsComponent } from './containers/notifications/notifications.component';
-import { NotificationDetailsComponent } from './containers/notification-details/notification-details.component';
 
 const routes: Routes = [
   {
@@ -12,11 +9,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: NotificationsComponent,
+        loadChildren: async () =>
+          import('./containers/notifications/notifications.module').then(
+            (m) => m.NotificationsModule),
       },
       {
         path: 'details/:trigger/:recipient/:venue',
-        component: NotificationDetailsComponent,
+        loadChildren: async () =>
+          import('./containers/notification-details/notification-details.module').then(
+            (m) => m.NotificationDetailsModule),
       },
     ],
   },

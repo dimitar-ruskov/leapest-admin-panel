@@ -1,0 +1,29 @@
+<leap-cta-container>
+  <h1 leap-cta-container-title>Publishing</h1>
+</leap-cta-container>
+<nz-content class="admin-panel__content">
+  <nz-tabset class="admin-panel__tabset" [nzAnimated]="false" nzLinkRouter>
+    <nz-tab>
+      <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">General Settings</a>
+      <ng-container *ngIf="generalSettings$ | async as generalSettings">
+        <leap-publishing-settings
+          type="globalSettings"
+          (editSetting)="editSettings($event)"
+          [settings]="generalSettings"
+        ></leap-publishing-settings>
+      </ng-container>
+    </nz-tab>
+    <nz-tab>
+      <a
+        class="tab"
+        *nzTabLink
+        nz-tab-link
+        [routerLink]="['.']"
+        [queryParams]="{ tab: 'internal-repo' }"
+        queryParamsHandling="merge"
+        >Internal Repository</a
+      >
+      <leap-publishing-internal-repository (editSetting)="editSettings($event)"></leap-publishing-internal-repository>
+    </nz-tab>
+  </nz-tabset>
+</nz-content>

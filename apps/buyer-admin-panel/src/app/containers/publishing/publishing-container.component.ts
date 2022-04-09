@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'leap-notifications',
+  selector: 'leap-publish-settings-container',
   template: '<router-outlet></router-outlet>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotificationsContainerComponent {}
+export class PublishingContainerComponent {}
