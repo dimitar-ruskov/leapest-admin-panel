@@ -70,7 +70,10 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
+    RouterModule.forChild([{
+      path: '',
+      component: IltCourseCreateComponent
+    }]),
 
     QuillModule,
     NgxsModule.forFeature([ILTCourseCreateState]),
@@ -101,7 +104,6 @@ import {
     NzButtonModule,
     NzFormModule,
     NzInputNumberModule,
-  ],
-  exports: [IltCourseCreateComponent],
+  ]
 })
 export class IltCourseCreateModule {}

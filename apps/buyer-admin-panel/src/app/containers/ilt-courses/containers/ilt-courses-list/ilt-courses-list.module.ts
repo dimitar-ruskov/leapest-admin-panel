@@ -44,7 +44,10 @@ import {
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule.forChild([{
+      path: '',
+      component: IltCoursesListComponent
+    }]),
 
     NgxsModule.forFeature([
       IltCoursesListState,
@@ -63,9 +66,6 @@ import {
     NzTabsModule,
     NzTableModule,
     NzToolTipModule,
-  ],
-  exports: [
-    IltCoursesListComponent
   ]
 })
 export class IltCoursesListModule { }

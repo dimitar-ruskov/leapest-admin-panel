@@ -131,20 +131,20 @@
           </leap-t-agenda>
         </ng-container>
       </nz-tab>
-<!--      <nz-tab>-->
-<!--        <a-->
-<!--          class="tab"-->
-<!--          *nzTabLink-->
-<!--          nz-tab-link-->
-<!--          [routerLink]="['.']"-->
-<!--          [queryParams]="{ tab: 'notifications', sub: null }"-->
-<!--          queryParamsHandling="merge"-->
-<!--          >Notifications</a-->
-<!--        >-->
-<!--        <leap-ilt-course-notifications-->
-<!--          *ngIf="!resource.isPending; else spinnerTemplate"-->
-<!--        ></leap-ilt-course-notifications>-->
-<!--      </nz-tab>-->
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'notifications', sub: null }"
+          queryParamsHandling="merge"
+          >Notifications</a
+        >
+        <leap-ilt-course-notifications
+          *ngIf="!resource.isPending; else spinnerTemplate"
+        ></leap-ilt-course-notifications>
+      </nz-tab>
       <nz-tab>
         <a
           class="tab"

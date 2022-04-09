@@ -19,15 +19,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: IltCoursesListComponent,
+        loadChildren: async () =>
+          import('./containers/ilt-courses-list/ilt-courses-list.module')
+            .then((m) => m.IltCoursesListModule)
       },
       {
         path: 'create/:id',
-        component: IltCourseCreateComponent,
+        loadChildren: async () =>
+          import('./containers/ilt-course-create/ilt-course-create.module')
+            .then((m) => m.IltCourseCreateModule)
       },
       {
         path: 'details/:id',
-        component: IltCourseDetailsComponent,
+        loadChildren: async () =>
+          import('./containers/ilt-course-details/ilt-course-details.module')
+            .then((m) => m.IltCourseDetailsModule),
         canDeactivate: [CourseAgendaUnsavedChangesGuard, CourseMaterialsUnsavedChangesGuard],
       },
       {

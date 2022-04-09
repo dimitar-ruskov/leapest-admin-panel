@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
@@ -22,7 +21,10 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzUploadModule} from "ng-zorro-antd/upload";
 
+import {IltCourseDetailsRoutingModule} from "./ilt-course-details-routing.module";
 import { IltCourseDetailsState } from './state/ilt-course-details.state';
 import { IltCourseDetailsComponent } from './ilt-course-details.component';
 import { IltCourseGeneralInfoComponent } from './containers/ilt-course-general-info/ilt-course-general-info.component';
@@ -136,8 +138,7 @@ import {
 import {
   CancelEventConfirmModalModule
 } from "../../../../../../../../libs/shared/src/lib/components/modals/cancel-event-confirm-modal/cancel-event-confirm-modal.module";
-import {NzFormModule} from "ng-zorro-antd/form";
-import {NzUploadModule} from "ng-zorro-antd/upload";
+
 
 @NgModule({
   declarations: [
@@ -164,7 +165,7 @@ import {NzUploadModule} from "ng-zorro-antd/upload";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
+    IltCourseDetailsRoutingModule,
 
     NgxsFormPluginModule,
     NgxsModule.forFeature([
@@ -222,7 +223,6 @@ import {NzUploadModule} from "ng-zorro-antd/upload";
     NzSpinModule,
     NzSelectModule,
     NzUploadModule
-  ],
-  exports: [IltCourseDetailsComponent],
+  ]
 })
 export class IltCourseDetailsModule {}

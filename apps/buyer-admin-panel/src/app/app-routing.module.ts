@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: async () =>
       import('./containers/admin-home/admin-home-container.module')
-      .then((m) => m.AdminHomeContainerModule),
+        .then((m) => m.AdminHomeContainerModule),
     canActivate: [OktaAuthGuard, HybridUserGuard, GroupGuard],
     data: {roles: ['buyer-admin', 'solar-partner', 'training-manager']}
   },
@@ -20,9 +20,9 @@ const routes: Routes = [
   },
   {
     path: 'zoom-auth-landing',
-  loadChildren: async () =>
-    import('../../../../libs/shared/src/lib/components/core/zoom-auth-landing/zoom-auth-landing.module')
-    .then((m) => m.ZoomAuthLandingModule)
+    loadChildren: async () =>
+      import('../../../../libs/shared/src/lib/components/core/zoom-auth-landing/zoom-auth-landing.module')
+        .then((m) => m.ZoomAuthLandingModule)
   },
   {
     path: '401',
