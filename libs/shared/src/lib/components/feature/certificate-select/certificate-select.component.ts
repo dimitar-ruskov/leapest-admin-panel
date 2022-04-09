@@ -2,7 +2,6 @@ import {
   Component,
   ChangeDetectionStrategy,
   TrackByFunction,
-  OnDestroy,
   Input,
   forwardRef,
   OnChanges,
@@ -13,9 +12,11 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IKeyValuePair } from '../../../core/model/dictionary.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { DownloadSphinxService } from '../../../snatch/services/download-sphinx.service';
+import {IConfigCertificatesDictionary, IKeyValuePair} from "../../../models/interfaces";
+import {DownloadSphinxService} from "../../../utils/services/common";
+import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
+import {CertificatePreviewComponent} from "../certificate-preview/certificate-preview.component";
 
 export interface SelectedCertificate {
   key: string;
@@ -38,16 +39,18 @@ export interface SelectedCertificate {
   ],
 })
 @UntilDestroy()
-export class CertificateSelectComponent implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
+export class CertificateSelectComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() formControlName: string;
-  @Input() certificatesList: IKeyValuePair[];
+  @Input() certificatesList: IConfigCertificatesDictionary[];
   @Input() editable = true;
   @Input() hideSwitcher = false;
   @Input() hideSelect = false;
+  @Input() hideTitleDownload = false;
+  @Input() hidePreview = false;
   @Input() switcherValue = true;
   @Output() onSwitch = new EventEmitter<boolean>();
 
-  selectedCertificate: SelectedCertificate;
+  selectedCertificate: IConfigCertificatesDictionary;
   certificateEnabled: boolean;
 
   keyValueTrackByFn: TrackByFunction<IKeyValuePair> = (index, item) => item.key;
@@ -68,24 +71,23 @@ export class CertificateSelectComponent implements OnInit, OnChanges, OnDestroy,
     private readonly controlContainer: ControlContainer,
     private readonly cdr: ChangeDetectorRef,
     private readonly downloadSphinxService: DownloadSphinxService,
-  ) {}
+    private readonly modalService: NzModalService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.certificateEnabled = this.hideSwitcher;
 
     if (this.hideSwitcher && this.control?.value) {
-      const { key, value } = this.control.value;
-      this.selectedCertificate = { key, value };
+      const {key, value} = this.control.value;
+      this.selectedCertificate = {key, value};
     }
 
-    this.control.valueChanges
-      .pipe(untilDestroyed(this))
-      .subscribe(
-        (certificateId) =>
-          (this.selectedCertificate = this.certificatesList?.find(
-            (certificate: IKeyValuePair) => certificateId === certificate.key,
-          )),
+    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe((certificateId) => {
+      this.selectedCertificate = this.certificatesList?.find(
+        (certificate: IConfigCertificatesDictionary) => certificateId === certificate.key,
       );
+    });
     this.cdr.detectChanges();
   }
 
@@ -108,19 +110,15 @@ export class CertificateSelectComponent implements OnInit, OnChanges, OnDestroy,
     if (changes.certificatesList?.currentValue !== changes.certificatesList?.previousValue) {
       if (this.control.value) {
         this.selectedCertificate = this.certificatesList.find(
-          (certificate: IKeyValuePair) => this.control.value === certificate.key,
+          (certificate: IConfigCertificatesDictionary) => this.control.value === certificate.key,
         );
       }
     }
   }
 
-  ngOnDestroy(): void {
-    //  for untilDestroyed
-  }
-
   onCertificateSelected(certificateId: string): void {
     this.selectedCertificate = this.certificatesList?.find(
-      (certificate: IKeyValuePair) => certificateId === certificate.key,
+      (certificate: IConfigCertificatesDictionary) => certificateId === certificate.key,
     );
     this.onChange(certificateId);
   }
@@ -142,5 +140,30 @@ export class CertificateSelectComponent implements OnInit, OnChanges, OnDestroy,
     }
 
     this.onSwitch.emit(this.certificateEnabled);
+  }
+
+  public previewCertificate(): void {
+    const modal: NzModalRef = this.modalService.create({
+      nzTitle: 'Template Preview',
+      nzContent: CertificatePreviewComponent,
+      nzComponentParams: {
+        s3Bucket: this.selectedCertificate.s3Bucket,
+        s3Key: this.selectedCertificate.s3Key,
+      },
+      nzWrapClassName: 'modal-class',
+      nzWidth: 900,
+      nzFooter: [
+        {
+          label: 'Close',
+          type: 'default',
+          onClick: () => modal.destroy(),
+        },
+        {
+          label: 'Download',
+          type: 'primary',
+          onClick: () => this.downloadCertificate(),
+        },
+      ],
+    });
   }
 }

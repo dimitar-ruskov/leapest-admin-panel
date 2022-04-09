@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { EnrollmentPolicyKeys } from '../../../models/enrollment-policy.model';
+import {EnrollmentPolicyKeys} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-edit-enroll-policy-modal',

@@ -1,0 +1,85 @@
+@material-button-text-color: #26273b;
+@material-button-border-color: #9c9db5;
+@material-button-background-color: #ffffff;
+@material-button-color-hover: #f0f0f5;
+
+&__material-wrapper {
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+}
+
+:host ::ng-deep {
+  .course-materials-input {
+    &__add-material-button {
+      border-color: @material-button-border-color;
+      background: @material-button-background-color;
+      color: @material-button-text-color;
+      text-shadow: none;
+
+      &:hover {
+        background-color: @material-button-color-hover;
+      }
+    }
+  }
+}
+
+.btns-container {
+  margin-bottom: 10px;
+  .warning-msg {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    width: 881px;
+    height: 22px;
+    font-family: Open Sans;
+    font-size: 16px;
+    color: #737394;
+    text-decoration: none solid rgb(115, 115, 148);
+  }
+}
+
+.ilt-course-materials {
+  &__section {
+    margin-top: 20px;
+
+    &-title {
+      font-size: 12px;
+      color: #737394;
+    }
+  }
+
+  &__empty {
+    margin-top: 10px;
+  }
+
+  &__item {
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+}
+
+.course-materials-input {
+  &__add-material-button {
+    margin-top: 12px;
+
+    &-label {
+      display: flex;
+      align-items: center;
+
+      > i {
+        font-size: 22px;
+      }
+
+      > span {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__material-wrapper {
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+  }
+}

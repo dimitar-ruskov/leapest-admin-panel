@@ -1,0 +1,20 @@
+<div *ngIf="data">
+  <nz-card>
+    <div nz-col class="column">
+      <div class="column-title">Column Name</div>
+      <div>{{ data.columnName }}</div>
+    </div>
+    <div nz-col class="column">
+      <div class="column-title">Issue</div>
+      <div>{{ data.errorMessage }}</div>
+    </div>
+    <div nz-col class="column">
+      <div class="column-title">Issue Type</div>
+      <div>{{ data.errorType }}</div>
+    </div>
+  </nz-card>
+  <div nz-col class="column">
+    <div class="affected-rows">Affected Rows</div>
+    <div>{{ data.rows.join(', ') }}</div>
+  </div>
+</div>

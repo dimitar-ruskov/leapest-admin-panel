@@ -1,0 +1,40 @@
+:host(::ng-deep) {
+    .ant-table-thead>tr>th {
+      background: #fff;
+      font-weight: bold;
+    }
+    .ant-table-row:hover {
+        cursor: pointer;
+    }
+}
+
+tbody {
+    tr {
+        border: 1px solid #b6b7cc;
+      &.ant-table-row {
+        &:hover {
+            > td {
+              background: #fafafa;
+            }
+            .fa-angle-right {
+              color: #38b6a0;
+            }
+          }
+        }
+    }
+    .fa-angle-right {
+      color: #8e8fa6;
+    }
+}
+
+nz-alert {
+  text-align: center;
+  margin: 10px 0;
+  a {
+    color: #f79b42;
+    text-decoration: underline;
+  }
+  a:hover {
+    cursor: pointer;
+  }
+}

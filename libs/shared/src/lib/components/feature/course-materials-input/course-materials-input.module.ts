@@ -10,12 +10,14 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MasterInternalRepoTileModule } from '../master-internal-repo-tile/master-internal-repo-tile.module';
 import { CourseMaterialsInputComponent } from './course-materials-input.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { FormLabelModule } from '../../dump/form-label/form-label.module';
-import { NoMaterialsModule } from '../../dump/no-materials/no-materials.module';
-
+import {FormLabelModule} from "../../common/form-label/form-label.module";
+import {NoMaterialsModule} from "../../common/no-materials/no-materials.module";
+import {MaterialRepoToMasterPipe} from "./pipes/material-repo-to-master.pipe";
+import {VariantSelectModalModule} from "../../modals/variant-select-modal/variant-select-modal.module";
+import {AddCourseMaterialModalModule} from "../../modals/add-course-material-modal/add-course-material-modal.module";
 
 @NgModule({
-  declarations: [CourseMaterialsInputComponent],
+  declarations: [CourseMaterialsInputComponent, MaterialRepoToMasterPipe],
   exports: [
     CourseMaterialsInputComponent
   ],
@@ -23,10 +25,11 @@ import { NoMaterialsModule } from '../../dump/no-materials/no-materials.module';
     CommonModule,
     FormsModule,
 
+    AddCourseMaterialModalModule,
+    VariantSelectModalModule,
     MasterInternalRepoTileModule,
     FormLabelModule,
     NoMaterialsModule,
-
     InfiniteScrollModule,
     NzButtonModule,
     NzIconModule,

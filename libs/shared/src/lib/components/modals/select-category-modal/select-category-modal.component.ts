@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnDestroy, OnInit } from '@angular/core';
-import { CourseCategory } from '../../../models/course-category.model';
+import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { LmsCategoriesService } from '../../../utils/services/lms-categories.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import {CourseCategory} from "../../../models/interfaces";
+import {LmsCategoriesService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-select-category-modal',
@@ -11,7 +11,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class SelectCategoryModalComponent implements OnInit, OnDestroy {
+export class SelectCategoryModalComponent implements OnInit {
   creatingCategory: boolean;
   newCategoryName: string;
 
@@ -32,8 +32,6 @@ export class SelectCategoryModalComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  ngOnDestroy(): void {}
 
   onCategorySelect(category: CourseCategory): void {
     this.modalRef.close(prepareCategory(category));

@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy, Input, forwardRef, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CourseCategory } from '../../models/course-category.model';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { SelectCategoryModalComponent } from '../../modals/select-category-modal/select-category-modal.component';
-import { LmsCategoriesService } from '../../services/lms-categories.service';
+import {CourseCategory} from "../../../models/interfaces";
+import {LmsCategoriesService} from "../../../utils/services";
 
 
 @Component({

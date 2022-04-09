@@ -12,6 +12,7 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {QuillModule} from "ngx-quill";
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 import {en_US, NZ_I18N} from "ng-zorro-antd/i18n";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -36,7 +37,8 @@ const ngZorroConfig: NzConfig = {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, // delete?
+    BrowserAnimationsModule, // @TODO Are we using animations?
+    NzModalModule, // @TODO Fix for Modals in services Provided in root
     HttpClientModule,
     GraphQLModule,
     OktaAuthModule,

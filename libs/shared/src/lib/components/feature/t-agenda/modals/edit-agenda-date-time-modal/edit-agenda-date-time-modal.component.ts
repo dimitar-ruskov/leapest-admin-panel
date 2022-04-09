@@ -1,14 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, TrackByFunction } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ILTCourseAgendaDay } from '../../../../models/ilt-course.model';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Select } from '@ngxs/store';
-import { IGlobalStateModel } from '../../../../../shared/global-state.model';
 import { Observable } from 'rxjs';
-import { IKeyValuePair } from '../../../../../core/model/dictionary.model';
+import {IKeyValuePair, ILTCourseAgendaDay} from "../../../../../models/interfaces";
 
 const CANCEL_BUTTON_TEXT = 'Cancel';
 const SAVE_CHANGES_BUTTON_TEXT = 'Save Changes';
@@ -20,15 +18,13 @@ const SAVE_CHANGES_BUTTON_TEXT = 'Save Changes';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class EditAgendaDateTimeModalComponent implements OnInit, OnDestroy {
+export class EditAgendaDateTimeModalComponent implements OnInit {
   @Input() isTimezoneEditable = false;
   @Input() dayIndex: number | null = null;
   @Input() agendaDays: ILTCourseAgendaDay[] = [];
   @Input() isHistorical: boolean;
   @Input() timezone: string;
-
-  @Select((state: IGlobalStateModel) => state.core.dictionaries.timezones)
-  timezonesDict$: Observable<IKeyValuePair[]>;
+  @Input() timezones: IKeyValuePair[];
 
   dateTimeSelectionForm: FormGroup;
   dateConstraints: ((d: Date) => boolean)[] = [];
@@ -74,8 +70,6 @@ export class EditAgendaDateTimeModalComponent implements OnInit, OnDestroy {
       this.checkForConstraints();
     });
   }
-
-  ngOnDestroy(): void {}
 
   private buildDateTimeSelectionForm(days: ILTCourseAgendaDay[]): FormGroup {
     return this.fb.group({

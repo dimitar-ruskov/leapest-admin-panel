@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
-
 @Component({
   selector: 'leap-select-sub-category-modal',
   templateUrl: './select-sub-category-modal.component.html',

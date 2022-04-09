@@ -4,12 +4,13 @@ import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
 import {forkJoin} from "rxjs";
 import {map, tap, filter} from 'rxjs/operators';
 import { OktaAuthStateService } from '@okta/okta-angular';
+import {NzTableFilterList} from "ng-zorro-antd/table";
 
 import {DeferredResource} from "../../../../../libs/shared/src/lib/utils/common";
 import {CoreService} from "../../../../../libs/shared/src/lib/utils/services/common";
 import {AdminCoursesService} from "../../../../../libs/shared/src/lib/utils/services";
 import {
-  ConferencingTool,
+  ConferencingTool, ICauseType,
   IConfigCertificatesDictionary,
   IDomainData,
   IKeyValuePair,
@@ -25,6 +26,9 @@ import {
   GetMaterialTypes,
   GetCertificatesDictionary,
   GetConferencingToolsDictionary,
+  GetIRTypeList,
+  GetUnenrollmentCauseTypeDictionary,
+  GetEnrollmentCauseTypeDictionary,
 } from './core.actions';
 
 export class CoreStateModel {
@@ -37,9 +41,12 @@ export class CoreStateModel {
   iltMaterialTypes: IKeyValuePair[];
   iltMaterialExternalTypes: IKeyValuePair[];
   internalRepositoryLanguages: IKeyValuePair[];
+  internalRepositoryTypes: IKeyValuePair[];
   certificatesDictionary: IConfigCertificatesDictionary[];
   conferencingToolsDictionary: ConferencingTool[];
   customAttendanceDictionary: ILTEventCustomAttendanceLight[];
+  enrollmentCauseTypes: NzTableFilterList[];
+  unenrollmentCauseTypes: NzTableFilterList[];
 }
 
 @State<CoreStateModel>({
@@ -54,9 +61,12 @@ export class CoreStateModel {
     iltMaterialTypes: [],
     iltMaterialExternalTypes: [],
     internalRepositoryLanguages: [],
+    internalRepositoryTypes: [],
     certificatesDictionary: [],
     conferencingToolsDictionary: [],
     customAttendanceDictionary: [],
+    enrollmentCauseTypes: [],
+    unenrollmentCauseTypes: [],
   },
 })
 @Injectable()
@@ -171,6 +181,40 @@ export class CoreState implements NgxsOnInit {
       map((t) => t.response),
       tap((customAttendanceDictionary: ILTEventCustomAttendanceLight[]) => {
         patchState({ customAttendanceDictionary: customAttendanceDictionary });
+      }),
+    );
+  }
+
+  @Action(GetIRTypeList)
+  getIRTypeList({ patchState }: StateContext<CoreStateModel>) {
+    return this.adminCoursesService.getIRDictionary('internalRepositorySettingsType').pipe(
+      tap((res) => {
+        if (res.isSuccess) {
+          const data = res.response.data.filter((type: IKeyValuePair) => type.key !== 'globalSettings');
+          patchState({ internalRepositoryTypes: data });
+        }
+      }),
+    );
+  }
+
+  @Action(GetEnrollmentCauseTypeDictionary)
+  getEnrollmentCauseTypeDictionary({ patchState }) {
+    return this.adminCoursesService.getCauseTypeDictionary('enrollment-cause').pipe(
+      map((t) => t.data),
+      tap((res: ICauseType[]) => {
+        const enrollmentCauseTypes = res.map((item) => ({ text: item.configValue, value: item.configKey }));
+        patchState({ enrollmentCauseTypes });
+      }),
+    );
+  }
+
+  @Action(GetUnenrollmentCauseTypeDictionary)
+  getUnnrollmentCauseTypeDictionary({ patchState }) {
+    return this.adminCoursesService.getCauseTypeDictionary('unenrollment-cause').pipe(
+      map((t) => t.data),
+      tap((res: ICauseType[]) => {
+        const unenrollmentCauseTypes = res.map((item) => ({ text: item.configValue, value: item.configKey }));
+        patchState({ unenrollmentCauseTypes });
       }),
     );
   }

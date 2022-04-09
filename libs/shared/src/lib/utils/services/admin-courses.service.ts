@@ -13,7 +13,7 @@ import {
   ConferencingTool,
   ExamCompletionReport,
   ExamShortInfo,
-  FlattenedCourseDetails,
+  FlattenedCourseDetails, ICauseType,
   IConfigCertificatesDictionary,
   IKeyValuePair,
   ILTEvent,
@@ -78,6 +78,25 @@ export class AdminCoursesService {
     params = params.append('$configValue', '1');
 
     return this.adminPanelApiService.getWithFlags<IKeyValuePair[]>(url, new HttpHeaders({}), params);
+  }
+
+  getIRDictionary(type: string): Observable<DeferredResource<{ data: IKeyValuePair[]; flags: { size: number } }>> {
+    const url = this.adminPanelApiService.prepareURL('/api/solar/configuration/query/dictionary');
+
+    let params = this.adminPanelApiService.prepareParams();
+
+    params = params.append('@configType', type);
+    params = params.append('showKeys', 'true');
+    params = params.append('$configValue', '1');
+
+    return this.adminPanelApiService.getWithFlags<IKeyValuePair[]>(url, new HttpHeaders({}), params);
+  }
+
+  getCauseTypeDictionary(configType): Observable<AmberResponse<ICauseType[]>> {
+    const url = `${this.environment.amberBaseUrl}/api/solar/configuration/list/specific?typesOfConfig=${configType}`;
+
+    const params = new HttpParams();
+    return this.http.get<AmberResponse<ICauseType[]>>(url, { params });
   }
 
   getCustomAttendanceDictionary(): Observable<DeferredResource<ILTEventCustomAttendanceLight[]>> {

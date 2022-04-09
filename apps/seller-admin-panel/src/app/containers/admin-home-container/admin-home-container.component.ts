@@ -15,7 +15,12 @@ import {
   GetIRLanguageDictionary,
   GetMaterialTypes
 } from "../../state/core.actions";
-import {GetLearnerProfile} from "../../../../../buyer-admin-panel/src/app/state/core.actions";
+import {
+  GetEnrollmentCauseTypeDictionary,
+  GetIRTypeList,
+  GetLearnerProfile,
+  GetUnenrollmentCauseTypeDictionary
+} from "../../../../../buyer-admin-panel/src/app/state/core.actions";
 
 @Component({
   selector: 'seller-admin-home-container',
@@ -62,6 +67,9 @@ export class AdminHomeContainerComponent implements OnInit {
         new GetCertificatesDictionary(),
         new GetConferencingToolsDictionary(),
         new GetCustomAttendanceDictionary(),
+        new GetEnrollmentCauseTypeDictionary(),
+        new GetUnenrollmentCauseTypeDictionary(),
+        new GetIRTypeList(),
       ]);
       // if (this.route.children?.length === 0) {
       //   this.router.navigate(['ilt-courses'], { relativeTo: this.route });
@@ -103,7 +111,10 @@ export class AdminHomeContainerComponent implements OnInit {
           key: 'settings',
           value: 'Settings',
           iconClass: 'fal fa-cog',
-          subItems: [{ key: 'notifications', value: 'Notifications' }],
+          subItems: [
+            { key: 'notifications', value: 'Notifications' },
+            { key: 'publishing', value: 'Publishing' }
+          ],
         });
       }
       if (this.environment.envName === 'test' || this.environment.envName === 'preview') {

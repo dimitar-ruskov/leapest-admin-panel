@@ -7,18 +7,18 @@ import {
   Input,
   ChangeDetectorRef,
   TrackByFunction,
-  OnDestroy,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { LmsSubCategoriesService } from '../../services/lms-sub-categories.service';
-import { CourseSubCategory } from '../../models/course-sub-category.model';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { filter, map, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
   SelectSubCategoryModalComponent
 } from "../../modals/select-sub-category-modal/select-sub-category-modal.component";
+
+import {LmsSubCategoriesService} from "../../../utils/services";
+import {CourseSubCategory} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-select-sub-category-input',
@@ -34,7 +34,7 @@ import {
   ],
 })
 @UntilDestroy()
-export class SelectSubCategoryInputComponent implements OnChanges, ControlValueAccessor, OnDestroy {
+export class SelectSubCategoryInputComponent implements OnChanges, ControlValueAccessor {
   isDisabled: boolean;
   subCategory: CourseSubCategory;
   subCategoryId: string;
@@ -84,8 +84,6 @@ export class SelectSubCategoryInputComponent implements OnChanges, ControlValueA
       this.onChange(null);
     }
   }
-
-  ngOnDestroy(): void {}
 
   openSubCategoryModal(): void {
     this.modalService.create({

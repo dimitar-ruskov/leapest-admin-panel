@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: async () =>
-      import('./containers/admin-home-container/admin-home-container.module')
+      import('./containers/admin-home/admin-home-container.module')
       .then((m) => m.AdminHomeContainerModule),
     canActivate: [OktaAuthGuard, HybridUserGuard, GroupGuard],
     data: {roles: ['buyer-admin', 'solar-partner', 'training-manager']}

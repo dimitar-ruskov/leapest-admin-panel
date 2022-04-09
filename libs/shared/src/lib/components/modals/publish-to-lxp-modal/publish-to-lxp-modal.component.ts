@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IKeyValuePair } from 'src/app/core/model/dictionary.model';
-import { COURSE_PUBLISH_STATUS } from '../../../common/constants/course-publist-status';
-import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
+import {IKeyValuePair} from "../../../models/interfaces";
+import {COURSE_PUBLISH_STATUS} from "../../../models/constants";
+import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-publish-to-lxp-modal',
@@ -27,7 +27,11 @@ export class PublishToLxpModalComponent implements OnInit {
   lxpGroups$: Observable<IKeyValuePair[]>;
   lxpChannels$: Observable<IKeyValuePair[]>;
 
-  constructor(private readonly fb: FormBuilder, private readonly adminCoursesService: AdminCoursesService) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly adminCoursesService: AdminCoursesService,
+    private readonly lxpUsersService: LxpUsersService
+  ) {}
 
   ngOnInit(): void {
     const group: any = {
@@ -59,7 +63,7 @@ export class PublishToLxpModalComponent implements OnInit {
 
   onInputLxpUsers(filter: string): void {
     if (filter && filter.length > 2) {
-      this.lxpUsers$ = this.adminCoursesService.getLxpUsers(filter);
+      this.lxpUsers$ = this.lxpUsersService.getLxpUsers(filter);
     }
   }
 
@@ -70,11 +74,11 @@ export class PublishToLxpModalComponent implements OnInit {
   }
 
   getLxpChannels(filter: string): void {
-    this.lxpChannels$ = this.adminCoursesService.getLxpChannels(filter);
+    this.lxpChannels$ = this.lxpUsersService.getLxpChannels(filter);
   }
 
   getLxpGroups(filter: string): void {
-    this.lxpGroups$ = this.adminCoursesService.getLxpGroups(filter);
+    this.lxpGroups$ = this.lxpUsersService.getLxpGroups(filter);
   }
 
   get lxpUsersCount(): number {

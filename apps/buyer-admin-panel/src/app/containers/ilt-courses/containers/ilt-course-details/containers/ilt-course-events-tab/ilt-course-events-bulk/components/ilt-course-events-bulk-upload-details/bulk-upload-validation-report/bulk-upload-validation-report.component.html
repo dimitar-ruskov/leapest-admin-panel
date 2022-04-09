@@ -1,0 +1,110 @@
+<div *ngIf="data">
+  <nz-card>
+    <div class="container">
+      <div nz-row nzJustify="space-between">
+        <div nz-col nzLg="19">
+          <h2 style="font-size: 18px;"><i (click)="downloadCSV()" class="fal fa-download"></i> {{ data.fileName }}</h2>
+        </div>
+        <div nz-col>
+          <span class="data-info"
+            >Uploaded: <span>{{ data.createdAt | date: 'dd MMM yyyy, HH:mm:ss' }}</span></span
+          >
+        </div>
+      </div>
+      <div nz-row>
+        <span class="font-highlights">Statistics:</span>
+      </div>
+      <div nz-row>
+        <div class="icon-wrapper">
+          <i class="fal fa-check"></i>
+        </div>
+        <div nz-row nzJustify="space-between" class="value-wrapper">
+          <label>Validated: </label>
+          <div>
+            <span class="font-highlights">{{ data.validatedRows }}</span
+            >/<span>{{ data.totalRows }}</span>
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div class="icon-wrapper">
+          <i class="fal fa-exclamation-circle"></i>
+        </div>
+        <div nz-row nzJustify="space-between" class="value-wrapper">
+          <label>Warnings: </label>
+          <div>
+            <span class="font-highlights">{{ data.warnings }}</span
+            >/<span>{{ data.totalRows }}</span>
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div class="icon-wrapper">
+          <i class="fal fa-times-circle"></i>
+        </div>
+        <div nz-row nzJustify="space-between" class="value-wrapper">
+          <label>Errors: </label>
+          <div>
+            <span class="font-highlights">{{ data.numberOfBrokenRows }}</span
+            >/<span>{{ data.totalRows }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="data.validatedRows === data.totalRows">
+      <nz-alert
+        class="alert-message"
+        nzType="success"
+        nzMessage="All events have passed the validation process, you can initiate their scheduling by clicking on Start Event Scheduling"
+      ></nz-alert>
+    </ng-container>
+    <ng-container *ngIf="data.numberOfBrokenRows > 0 || data.warnings > 0">
+      <p>
+        Below follows a list of all warnings and errors detected during the validation process. If you wish, you can
+        initiate the scheduling of all validated events, by clicking on <i>Start Event Scheduling</i>. Please note that
+        events listed with Errors and Warnings will be excluded. After fixing the issues listed below, you can re-upload
+        your csv through the
+        <a [routerLink]="['/', 'admin', 'ilt-courses', 'details', courseId]">Bulk Upload</a> process. This will generate
+        a new validation process and a new report.
+      </p>
+      <nz-table #table [nzData]="data.errors" [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th nzWidth="25%">Column Name</th>
+            <th nzWidth="25%">Issue</th>
+            <th nzWidth="10%">Issue Type</th>
+            <th nzWidth="35%" nzAlign="right">Affected Rows</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let error of table.data">
+            <td nzWidth="25%">{{ error.columnName }}</td>
+            <td nzWidth="25%">{{ error.errorMessage }}</td>
+            <td nzWidth="10%">{{ error.errorType }}</td>
+            <td nzWidth="35%" [nzBreakWord]="true" *ngIf="error.rows.length <= 10" nzAlign="right">
+              <div nz-row nzJustify="end">
+                <div>
+                  {{ error.rows.slice(0, 10).join(', ') }}
+                </div>
+                <button class="error-detail-btn" nz-button nzType="default" (click)="openErrorDetailsModal(error)">
+                  View
+                </button>
+              </div>
+            </td>
+            <td nzWidth="35%" [nzBreakWord]="true" *ngIf="error.rows.length > 10" nzAlign="right">
+              <div nz-row nzJustify="end">
+                <div>
+                  {{ error.rows.slice(0, 10).join(', ') }} ...
+                  <span class="table-text">and {{ error.rows.length - 10 }} more</span>
+                </div>
+                <button class="error-detail-btn" nz-button nzType="default" (click)="openErrorDetailsModal(error)">
+                  View
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </ng-container>
+  </nz-card>
+</div>

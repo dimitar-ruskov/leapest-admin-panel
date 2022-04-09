@@ -15,7 +15,7 @@
           [nzNotFoundContent]="'Item not found'"
           nzPlaceHolder="Select a Timezone (click or type to search)"
         >
-          <nz-option *ngFor="let option of timezonesDict$ | async" [nzLabel]="option.value" [nzValue]="option.key">
+          <nz-option *ngFor="let option of timezones" [nzLabel]="option.value" [nzValue]="option.key">
           </nz-option>
         </nz-select>
       </div>

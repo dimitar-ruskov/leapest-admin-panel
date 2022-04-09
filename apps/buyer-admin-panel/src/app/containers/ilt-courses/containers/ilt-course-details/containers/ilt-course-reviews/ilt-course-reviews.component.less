@@ -1,0 +1,100 @@
+
+@page-background-color: #f0f2f5;
+@table-cell-background-color: #fff;
+@star-border-color: #737394;
+@star-filled-color: orange;
+@text-color: #26273b;
+
+::ng-deep .event-reviews .ant-table .ant-table-row td {
+  padding: 16px 16px !important;
+  border-radius: 6px !important;
+}
+
+::ng-deep .leap-table-grid .ant-table table {
+  border-spacing: 0 4px;
+}
+
+:host::ng-deep{
+  .ant-table-filter-trigger-container{
+      right: unset !important;
+      left: 100px !important;
+  }
+}
+
+.profile-thumbnail {
+  vertical-align: top;
+  margin-right: 10px;
+}
+
+.table-container {
+  background-color: @page-background-color;
+  padding-top: 10px;
+}
+
+.div-header{
+  font-family: Open Sans;
+  font-size: 12px;
+  color: @star-border-color;
+}
+
+.fa-star-o{
+    color: @star-border-color;
+    padding: 10px;
+}
+.fa-star{
+  color: @star-filled-color;
+  padding: 10px;
+}
+.fa-star-half-o{
+  color: @star-filled-color;
+  padding: 10px;
+}
+.review-date{
+  margin-left: 6px;
+  font-family: Open Sans;
+  font-size: 14px;
+  color: @star-border-color;
+}
+.reviewer-name{
+  font-family: Open Sans;
+  font-size: 14px;
+  color: @text-color;
+}
+.review-msg{
+  font-family: Open Sans;
+  font-size: 16px;
+  color: @text-color;
+}
+.review-section {
+  width: 100%;
+}
+.flex {
+  display:flex;
+  width:100%;
+  align-items: center;
+}
+.course-event-section {
+  margin:16px 0;
+  border:1px solid #b6b7cc;
+  border-radius: 6px;
+  vertical-align: center;
+  .thumbnail-section {
+    margin-right: 20px;
+    width: 72px;
+    height: 100%;
+    img {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+  }
+  .course-event-content {
+    width: 30%;
+  }
+}
+.course-event {
+  border-radius: 6px;
+}
+
+.float-right {
+  float:right;
+}

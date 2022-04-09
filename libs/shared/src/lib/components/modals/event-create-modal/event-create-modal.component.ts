@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { TFormControlConfigOption } from 'src/app/shared/component/t-form-control/t-form-input.model';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
+import {IKeyValuePair, TFormControlConfigOption} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-event-create-modal',

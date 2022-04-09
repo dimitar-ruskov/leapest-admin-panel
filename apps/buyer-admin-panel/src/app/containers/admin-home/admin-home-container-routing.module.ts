@@ -7,13 +7,13 @@ const routes: Routes = [
     path: '',
     component: AdminHomeContainerComponent,
     children: [
-      // {
-      //   path: 'ilt-courses',
-      //   loadChildren: async () =>
-      //     import('./containers/ilt-courses-container/ilt-courses-container.module').then(
-      //       (m) => m.IltCoursesContainerModule,
-      //     ),
-      // },
+      {
+        path: 'ilt-courses',
+        loadChildren: async () =>
+          import('../ilt-courses/ilt-courses-container.module').then(
+            (m) => m.IltCoursesContainerModule,
+          ),
+      },
       // {
       //   path: 'ilt-events',
       //   loadChildren: async () => import('./containers/ilt-events/ilt-events.module').then((m) => m.IltEventsModule),

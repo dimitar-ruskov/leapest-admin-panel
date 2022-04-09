@@ -1,0 +1,62 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Course Materials">
+    Here, you can specify which deliverables are to be associated with your course.
+  </leap-creation-stepper-step-header>
+
+  <leap-creation-stepper-step-body>
+    <form nz-form nzLayout="vertical" [formGroup]="form" class="self-paced-course-create__step-form">
+      <ng-container formGroupName="internalRepositories">
+        <nz-form-item>
+          <leap-form-label>Learner Materials</leap-form-label>
+          <leap-form-hint-label
+            >Participants of the course will get access to the materials below in the order they are listed:
+          </leap-form-hint-label>
+          <nz-form-control>
+            <leap-course-materials-input
+              formControlName="learner"
+              [noMaterialsLabel]="noLearnerMaterialsLabel"
+              [userType]="'learner'"
+              [courseName]="preCourse.name"
+            ></leap-course-materials-input>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <leap-form-label>Instructor Materials</leap-form-label>
+          <leap-form-hint-label
+            >Instructors of the course will get access to the materials below (instructors will also have access to the
+            Learner Materials):
+          </leap-form-hint-label>
+          <nz-form-control>
+            <leap-course-materials-input
+              formControlName="instructor"
+              [noMaterialsLabel]="noInstructorMaterialsLabel"
+              [userType]="'instructor'"
+              [courseName]="preCourse.name"
+            ></leap-course-materials-input>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+
+      <nz-form-item>
+        <leap-form-label>Participation Certificate Delivery</leap-form-label>
+        <leap-form-hint-label
+          >Do you wish to deliver a certificate for Learners participating in this course event? <br />
+          The selected certificate will be automatically sent to learners at the end of the course event.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <leap-certificate-select
+            formControlName="certificate"
+            [certificatesList]="certificatesDictionary$ | async"
+            [hideTitleDownload]="true"
+          ></leap-certificate-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons>
+    <button nz-button (click)="onCancel($event)">Cancel</button>
+    <button nz-button nzType="primary" [nzLoading]="updating" (click)="onProceed($event)">Proceed</button>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>

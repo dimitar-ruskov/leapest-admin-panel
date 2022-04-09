@@ -14,7 +14,7 @@ import {
   IKeyValuePair,
   InternalRepositoryDTO
 } from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {IGlobalStateModel} from "../../../../../../state/global-state.model";
+import {IGlobalStateModel} from "../../../../../../state/state.model";
 import {
   EnvironmentService,
   NotificationService

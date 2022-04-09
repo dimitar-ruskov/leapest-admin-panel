@@ -1,0 +1,50 @@
+<nz-tabset nzType="card" class="admin-panel__card-tabset" [nzAnimated]="false" nzLinkRouter>
+  <nz-tab>
+    <a class="sub-tab" *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'events' }">Active</a>
+    <ng-template nz-tab>
+      <leap-ilt-course-events-active [parentId]="parentId"> </leap-ilt-course-events-active>
+    </ng-template>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'draft' }"
+      queryParamsHandling="merge"
+      >Draft</a
+    >
+    <ng-template nz-tab>
+      <leap-ilt-course-events-draft [parentId]="parentId"> </leap-ilt-course-events-draft>
+    </ng-template>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'finished' }"
+      queryParamsHandling="merge"
+      >Finished</a
+    >
+    <ng-template nz-tab>
+      <leap-ilt-course-events-finished [parentId]="parentId"> </leap-ilt-course-events-finished>
+    </ng-template>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'bulk-uploads' }"
+      queryParamsHandling="merge"
+      >Bulk Uploads</a
+    >
+    <ng-template nz-tab>
+      <leap-ilt-course-events-bulk [sku]="sku" [parentId]="parentId"> </leap-ilt-course-events-bulk>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>

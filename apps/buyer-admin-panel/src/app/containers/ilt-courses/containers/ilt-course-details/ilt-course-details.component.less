@@ -1,0 +1,45 @@
+.ilt-course-details {
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+}
+
+.admin-panel__slim-button:not(:first-child) {
+  margin-left: 10px;
+}
+
+.published {
+  display: inline-flex;
+  align-items: center;
+
+  &__icon {
+    height: 20px;
+    margin-right: 5px;
+  }
+
+  &__text {
+    white-space: nowrap;
+  }
+}
+
+:host(::ng-deep) {
+  .ant-tabs-top {
+    > .ant-tabs-nav {
+      .ant-tabs-nav-wrap {
+        .ant-tabs-nav-list {
+          .tab {
+            color: #b6b7cc;
+          }
+        }
+        .ant-tabs-tab-active {
+          .tab {
+           color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

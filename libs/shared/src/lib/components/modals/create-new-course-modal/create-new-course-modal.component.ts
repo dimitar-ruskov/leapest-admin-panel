@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, TrackByFunction, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
-import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
+import {IKeyValuePair} from "../../../models/interfaces";
+import {AdminCoursesService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-create-new-course-modal',

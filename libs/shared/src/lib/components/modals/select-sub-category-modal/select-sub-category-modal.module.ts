@@ -3,7 +3,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 import {SelectSubCategoryModalComponent} from "./select-sub-category-modal.component";
-
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 import {NzInputModule} from "ng-zorro-antd/input";
 
 @NgModule({
@@ -13,6 +13,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
     CommonModule,
     FormsModule,
 
+    FormLabelModule,
     NzInputModule
   ],
 })

@@ -1,0 +1,66 @@
+.bulk-uploads-header {
+    width: 100%;
+        padding: 20px;
+        background: #FFF;
+    p {
+        font-size: 14px;
+    }
+    .bulk-uploads-buttons {
+        display: flex;
+        justify-content: flex-end;
+        .fa-download {
+            margin-right: 5px;
+        }
+        .admin-panel__slim-button:not(:first-child) {
+            margin-left: 10px;
+          }
+    }
+    a {
+      text-decoration: underline;
+    }
+}
+
+.bulk-uploads-table {
+  .status-icon {
+    margin-right: 5px;
+  }
+  .calendar-icon {
+    margin-bottom: 4px;
+  }
+}
+
+:host::ng-deep {
+
+    .leap-table-grid {
+      margin-top: -4px;
+    }
+
+    .ant-table-thead .ant-table-row {
+      border-radius: 0 0 6px 6px !important;
+      box-shadow: 0 4px 6px #00000024 !important;
+    }
+
+    .leap-table-grid .ant-table table tr {
+      th {
+        &:first-child {
+          border-radius: 0 0 0 6px !important;
+        }
+        &:last-child {
+          border-radius: 0 0 6px 0 !important;
+        }
+      }
+    }
+
+    .ant-table-filter-trigger-container{
+      right: unset !important;
+      left: 130px !important;
+    }
+    .ant-modal-confirm-body {
+      margin-left: 0!important;
+    }
+    .ant-modal-confirm-btns {
+      display: flex;
+      justify-content: center;
+      float: none;
+    }
+  }

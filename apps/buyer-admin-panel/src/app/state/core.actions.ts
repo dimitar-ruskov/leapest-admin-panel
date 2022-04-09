@@ -37,3 +37,20 @@ export class GetConferencingToolsDictionary {
 export class GetCustomAttendanceDictionary {
   static readonly type = '[Core] Get Custom Attendance Dictionary';
 }
+
+export class GetIRTypeList {
+  static readonly type = '[Core] Get IR Type List';
+}
+
+export class GetEnrollmentCauseTypeDictionary {
+  static readonly type = '[Core] Get Enrollment Cause Type Dictionary';
+}
+
+export class GetUnenrollmentCauseTypeDictionary {
+  static readonly type = '[Core] Get Unenrollment Cause Type Dictionary';
+}
+
+export class FetchTimezones {
+  static readonly type = '[Core] Fetch Timezones';
+  constructor() {}
+}

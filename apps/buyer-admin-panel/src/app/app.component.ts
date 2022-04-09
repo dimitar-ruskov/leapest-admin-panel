@@ -4,7 +4,7 @@ import {Select} from "@ngxs/store";
 
 import {EnvironmentService} from "../../../../libs/shared/src/lib/utils/services/common";
 import {IDomainData} from "../../../../libs/shared/src/lib/models/interfaces";
-import {IGlobalStateModel} from "./state/global-state.model";
+import {IGlobalStateModel} from "./state/state.model";
 
 @Component({
   selector: 'buyer-root',

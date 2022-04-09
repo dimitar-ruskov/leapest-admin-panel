@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { IKeyValuePair } from '../../../core/model/dictionary.model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Select } from '@ngxs/store';
-import { IGlobalStateModel } from '../../../shared/global-state.model';
 import { Observable } from 'rxjs';
+import {IKeyValuePair} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-edit-course-certificate',
@@ -23,7 +22,7 @@ export class EditCourseCertificateComponent implements OnInit {
     certificate: [null],
   });
 
-  @Select((state: IGlobalStateModel) => state.adminPanel.certificatesDictionary)
+  @Select(state => state.core.certificatesDictionary)
   certificatesDictionary$: Observable<IKeyValuePair[]>;
 
   constructor(private readonly fb: FormBuilder) {}

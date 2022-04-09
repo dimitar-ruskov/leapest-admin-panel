@@ -1,0 +1,106 @@
+@remove-field-button-color: #8e8fa6;
+@remove-field-button-hover-color: #f1736a;
+
+:host(::ng-deep) {
+
+  .ant-select-multiple {
+    .ant-select-selection-item {
+      display: none;
+    }
+  }
+
+  .ant-tag {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 2px;
+  }
+
+  .ant-form-item {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+
+  .ant-input {
+    height: 40px;
+  }
+
+  .ilt-course-create-details {
+    &__number-of-learners {
+      .ant-form-item {
+        margin-top: 10px;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+    }
+
+    &__additional-fields {
+      padding: 5px 0 0;
+    }
+  }
+}
+
+form {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.admin-panel__clear-button {
+  font-size: 14px;
+  color: #737394;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
+  width: 100px;
+
+  &:hover {
+    color: #f1736a;
+  }
+
+  &.disabled, &.disabled:hover {
+    cursor: default;
+    text-decoration: none;
+    color: #B6B7CCFF;
+  }
+}
+
+button {
+  &.add-field {
+    i {
+      font-size: 20px;
+      color: #000000;
+    }
+
+    span {
+      margin-left: 5px;
+      color: #26273b;
+    }
+
+    &:not(:first-of-type) {
+      &:not(:only-of-type) {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &.remove-additional-field {
+    margin: 0 0 0 10px;
+    color: @remove-field-button-color;
+
+    &:hover {
+      color: @remove-field-button-hover-color;
+    }
+  }
+}
+
+.flex-label {
+  display: flex;
+  align-items: center;
+}
+
+.keyword-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+}

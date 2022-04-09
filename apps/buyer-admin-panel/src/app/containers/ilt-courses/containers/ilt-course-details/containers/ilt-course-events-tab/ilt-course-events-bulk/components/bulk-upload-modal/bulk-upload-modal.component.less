@@ -1,0 +1,97 @@
+.main-label {
+    height: 22px;
+    width: 100%;
+    text-align: left;
+  
+    span {
+      font-family: Open Sans;
+      font-size: 16px;
+      color: #26273b;
+    }
+    .italic {
+        font-style: italic;
+        color: #737394;
+    }
+  }
+  
+  .sub-label {
+    height: 22px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+  
+    span {
+      font-family: Open Sans;
+      font-size: 14px;
+      color: #737394;
+    }
+  
+    &.upload-label {
+      height: 47px;
+      margin-bottom: 6px;
+    }
+  
+    &.upload-info {
+      height: 75px;
+      margin: 0;
+  
+      ul {
+        font-size: 14px;
+        color: #737394;
+        padding: 0 0 0 20px;
+      }
+    }
+  }
+
+  .delete-icon {
+    color:#8e8fa6;
+    font-size: 21px;
+    &:hover {
+      color: #f1736a;
+      cursor: pointer;
+    }
+  }
+
+  .contents-block {
+
+    span {
+      font-size: 14px;
+      color: #737394;
+    }
+
+    .upload-file-wrapper {
+      position: relative;
+      margin: 5px 0;
+      display: flex;
+      height: 40px;
+      margin-bottom: 10px;
+
+      .upload-file-name-wrapper {
+        width: 95%;
+        display: inline-block;
+        padding: 5px 10px;
+        height: 40px;
+        border: 1px solid #9c9db5;
+        border-radius: 6px;
+        background-color: #ffffff;
+        background-size: cover;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+        position: relative;
+
+        .content-name {
+          display: inline-block;
+          width: 90%;
+          border: none;
+          margin-left: 5px;
+          background: none;
+        }
+
+        span:first-child {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .ant-form-item {
+    margin-bottom: 20px;
+  }

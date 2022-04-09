@@ -1,0 +1,105 @@
+<div class="tab-header-content"></div>
+<nz-table
+  nzTableLayout="fixed"
+  leapTableGrid
+  [nzFrontPagination]="false"
+  [nzData]="courseEvents$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #courseEventsActiveTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Course Name</th>
+      <th
+        nzColumnKey="venue"
+        nzWidth="20%"
+        [nzSortFn]="true"
+        [nzEllipsis]="true"
+        [nzFilters]="filterVenue"
+        [nzFilterFn]="true"
+      >
+        Event Venue
+      </th>
+
+      <th nzColumnKey="classEvent.startDate" nzWidth="15%" [nzSortFn]="true" [nzEllipsis]="true">Start</th>
+      <th nzColumnKey="classEvent.endDate" nzWidth="15%" [nzSortFn]="true" [nzEllipsis]="true">End</th>
+      <th nzColumnKey="classEvent.seats" nzWidth="7%" [nzEllipsis]="true">Seats</th>
+      <th nzWidth="5%"></th>
+      <th nzColumnKey="publishStatus" [nzSortFn]="true" nzWidth="5%"></th>
+      <th nzWidth="3%"></th>
+    </tr>
+  </thead>
+  <tbody
+    nz-tooltip
+    nzTooltipTitle="Open Course Event Details"
+    nzTooltipPlacement="bottomRight"
+    nzTooltipColor="#26273b"
+    nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+    [nzTooltipTrigger]="null"
+    leapTableGridRowTooltip
+  >
+    <tr leapTableGridSpacer></tr>
+    <tr
+      *ngFor="let courseEvent of courseEventsActiveTable.data; trackBy: trackByFn"
+      leapTableGridRow
+      [leapTableGridRowClickable]="true"
+      [routerLink]="['/admin', 'ilt-events', 'details', courseEvent.sku]"
+    >
+      <td leap-table-grid-title-cell>
+        <img data-section="image" [src]="courseEvent.thumbnailUrl" alt="" />
+        <span data-section="title">{{ courseEvent.name }}</span>
+      </td>
+      <td [nzEllipsis]="true">{{ courseEvent.virtualVenue ? 'Online (VILT)' : courseEvent.venue.address }}</td>
+      <td [nzEllipsis]="true">{{ courseEvent.startDate | date: 'd MMM yyyy' }}</td>
+      <td [nzEllipsis]="true">{{ courseEvent.endDate | date: 'd MMM yyyy' }}</td>
+      <td
+        [nzEllipsis]="true"
+        [ngStyle]="{ color: courseEvent.enrolledLearnerCounter === courseEvent.maxSeats ? '#f1736a' : '#38b6a0' }"
+      >
+        {{ courseEvent.enrolledLearnerCounter }} / {{ courseEvent.maxSeats }}
+      </td>
+      <td>
+        <button
+          leapTableGridRowCtaButton
+          [leapTableGridRowCtaButtonDanger]="true"
+          (click)="cancelEvent($event, courseEvent)"
+        >
+          <i
+            class="fal fa-times-circle cancel-event-icon"
+            nz-tooltip
+            nzTooltipTitle="Cancel event"
+            nzTooltipPlacement="bottomRight"
+            nzTooltipColor="#26273b"
+            nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+            leapTableGridCellTooltip
+          ></i>
+        </button>
+      </td>
+      <td>
+        <img
+          [src]="
+            environmentService.assetsPath +
+            (courseEvent.publishStatus === 'published' ? '/published-to-lxp.svg' : '/not-published-to-lxp.svg')
+          "
+          alt="Published"
+          class="published-event-icon"
+          nz-tooltip
+          [nzTooltipTitle]="
+            courseEvent.publishStatus === 'published'
+              ? 'Associated Course is published to the LXP'
+              : 'Associated Course is not published to the LXP'
+          "
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+          leapTableGridCellTooltip
+        />
+      </td>
+      <td leap-table-grid-details-cell></td>
+    </tr>
+  </tbody>
+</nz-table>

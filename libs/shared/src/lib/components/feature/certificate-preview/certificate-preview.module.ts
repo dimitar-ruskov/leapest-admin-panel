@@ -8,7 +8,6 @@ import {NzSpinModule} from "ng-zorro-antd/spin";
 @NgModule({
   declarations: [CertificatePreviewComponent],
   imports: [CommonModule, NzButtonModule, NzSpinModule],
-  exports: [CertificatePreviewComponent],
-  providers: [CertificatesService],
+  exports: [CertificatePreviewComponent]
 })
 export class CertificatePreviewModule {}

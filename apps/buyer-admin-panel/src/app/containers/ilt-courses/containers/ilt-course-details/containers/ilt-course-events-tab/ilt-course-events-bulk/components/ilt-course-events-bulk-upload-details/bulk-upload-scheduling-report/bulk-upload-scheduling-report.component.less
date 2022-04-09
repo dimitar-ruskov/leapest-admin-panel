@@ -1,0 +1,63 @@
+.fa-download {
+    color: #737394;
+    font-size: 16px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.container {
+    border: #b6b7cc 1px solid;
+    padding: 10px;
+    border-radius: 6px;
+    color: #737394;
+    margin-bottom: 10px;
+    min-width: 100%;
+    .data-info {
+        font-size: 14px;
+        color: #737394;
+        span {
+            color: #26273b;
+        }
+    }
+    .value-wrapper {
+        width: 150px;
+    }
+    .fa-check, .fa-hourglass-half, .fa-times-circle {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+    .fa-hourglass-half {
+        margin-right: 14px;
+    }
+    .fa-check {
+        margin-right: 11px;
+    }
+    .font-highlights {
+        color: #26273b;
+    }
+}
+.summary-message {
+    font-size: 14px;
+    color: #737394;
+}
+
+:host ::ng-deep  {
+    .ant-tabs-tab {
+        min-width: 180px;
+        justify-content: center;
+        background-color: white !important;
+        &:hover {
+            background-color: #fafafa !important;
+        }
+    }
+    .ant-tabs {
+        &.ant-tabs-card {
+          &.admin-panel__card-tabset {
+            .ant-tabs-content-holder {
+              padding: 10px 0 !important;
+            }
+          }
+        }
+      }
+}

@@ -9,19 +9,23 @@ import {
   TemplateRef,
   OnChanges,
   SimpleChanges,
-  OnDestroy,
 } from '@angular/core';
-import { ILTCourseAgenda, ILTCourseAgendaDay, ILTCourseAgendaDaySection } from '../../models/ilt-course.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { EnvironmentService } from 'src/app/snatch/services';
-
-import produce from 'immer';
-import { EditAgendaDateTimeModalComponent } from './modals/edit-agenda-date-time-modal/edit-agenda-date-time-modal.component';
 import { take } from 'rxjs/operators';
-import { formatDate } from '../../common/helpers/helpers';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import produce from 'immer';
+
+import { EditAgendaDateTimeModalComponent } from './modals/edit-agenda-date-time-modal/edit-agenda-date-time-modal.component';
 import { TAgendaSectionModalComponent } from './modals/t-agenda-section-modal/t-agenda-section-modal.component';
-import { TimezoneService } from '../../../shared/service/timezone.service';
+import {
+  IKeyValuePair,
+  ILTCourseAgenda,
+  ILTCourseAgendaDay,
+  ILTCourseAgendaDaySection
+} from "../../../models/interfaces";
+import {EnvironmentService} from "../../../utils/services/common";
+import {TimezoneService} from "../../../utils/services/common/timezone.service";
+import {formatDate} from "../../../utils/common";
 
 const WARNING_MODAL_MESSAGE =
   'Warning: Changing the agenda will send updated calendar invitations to enrolled learners, course instructor and the training manager';
@@ -35,7 +39,7 @@ export type ButtonState = 'loading' | 'active' | 'disabled';
   styleUrls: ['./t-agenda.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TAgendaComponent implements OnInit, OnChanges, OnDestroy {
+export class TAgendaComponent implements OnInit, OnChanges {
   warningModalMessage = WARNING_MODAL_MESSAGE;
   @ViewChild('warningModalContent') warningModalContent: TemplateRef<HTMLParagraphElement>;
 
@@ -47,6 +51,7 @@ export class TAgendaComponent implements OnInit, OnChanges, OnDestroy {
   @Input() isHistorical = false;
   @Input() openDateTimeModalAuto = false;
   @Input() showSaveChanges: ButtonState;
+  @Input() timezones: IKeyValuePair[];
   @Input() timezone: string;
   @Input() isTimezoneEditable = false;
   @Input() isCreating = false;
@@ -358,6 +363,7 @@ export class TAgendaComponent implements OnInit, OnChanges, OnDestroy {
         dayIndex: selectedDayIndex,
         agendaDays: this.templateAgenda.days,
         isHistorical: this.isHistorical,
+        timezones: this.timezones,
         timezone: this.templateTimezone,
         isTimezoneEditable: this.isTimezoneEditable,
       },
@@ -410,9 +416,5 @@ export class TAgendaComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       this.saveChanges.emit();
     }
-  }
-
-  ngOnDestroy() {
-    // onDestroy
   }
 }

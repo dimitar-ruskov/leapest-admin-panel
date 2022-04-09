@@ -1,0 +1,32 @@
+<div>
+  <div class="main-label">{{ mainLabel }}</div>
+  <div class="sub-label">{{ subLabel }}</div>
+  <form nz-form [formGroup]="form" style="margin-top: 3px">
+    <nz-form-item>
+      <nz-form-control>
+        <div class="level-control">
+          <nz-radio-group formControlName="levelId">
+            <label
+              *ngFor="let option of options; first as first"
+              [hidden]="first"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </div>
+        <span
+          class="admin-panel__clear-button"
+          nz-tooltip
+          nzTooltipPlacement="right"
+          [ngClass]="isDisabledClearSection ? 'disabled' : ''"
+          [nzTooltipOverlayStyle]="{ 'font-size': '10px' }"
+          [nzTooltipTitle]="isDisabledClearSection ? 'Not level selected yet' : ''"
+          (click)="clearSection()"
+          >Clear section</span
+        >
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { MasterInternalRepository } from '../../models/internal-repository.model';
-import { EnvironmentService } from 'src/app/snatch/services';
-import { ConfigDto } from '../../models/config-dto.model';
+import {ConfigDto, MasterInternalRepository} from "../../../models/interfaces";
+import {EnvironmentService} from "../../../utils/services/common";
 
 @Component({
   selector: 'leap-master-internal-repo-tile',

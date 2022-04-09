@@ -20,7 +20,10 @@
         ],
         "styles": ["apps/buyer-admin-panel/src/styles.less"],
         "scripts": [],
-        "allowedCommonJsDependencies": ["core-js-pure"]
+        "allowedCommonJsDependencies": [
+          "core-js-pure",
+          "moment-timezone"
+        ]
       },
       "configurations": {
         "production": {

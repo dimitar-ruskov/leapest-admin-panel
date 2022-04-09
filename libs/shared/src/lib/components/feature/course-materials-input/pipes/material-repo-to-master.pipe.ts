@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { InternalRepositoryMaterial, MasterInternalRepository } from '../../../models/internal-repository.model';
+import {InternalRepositoryMaterial, MasterInternalRepository} from "../../../../models/interfaces";
 
 @Pipe({
   name: 'materialRepoToMaster',

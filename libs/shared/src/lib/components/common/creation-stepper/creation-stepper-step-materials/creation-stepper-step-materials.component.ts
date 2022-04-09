@@ -1,6 +1,4 @@
 import { Component, ChangeDetectionStrategy, Input, TemplateRef, ContentChild, TrackByFunction } from '@angular/core';
-import { MaterialDTO } from '../../../common/handlers/material-dto-handler.service';
-import { InternalRepositoryDTO } from '../../../models/internal-repository.model';
 
 
 @Component({

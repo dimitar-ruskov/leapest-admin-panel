@@ -1,0 +1,38 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Course Agenda">
+    Below you can organize your Course Agenda across multiple days and sections. You will be able to change this
+    information when scheduling a session. Therefore, we encourage you to use as much reusable information as possible.
+    This step is completely optional.
+  </leap-creation-stepper-step-header>
+  <leap-creation-stepper-step-body>
+    <leap-t-agenda
+      [agenda]="{ days: preCourse?.expressCourse?.agenda }"
+      [isEditable]="true"
+      (valueChange)="onAgendaValueAndValidityChange($event)"
+    ></leap-t-agenda>
+
+    <div class="checkbox-input">
+      <leap-form-label>Event Customization</leap-form-label>
+      <leap-form-hint-label class="checkbox-hint">
+        Do you wish to allow changes to be made on this agenda when scheduling an event?<br />
+        Note:&nbsp;Changes to the agenda in events are ONLY applied to that specific event.
+      </leap-form-hint-label>
+      <label nz-checkbox name="agendaEditable" [(ngModel)]="agendaEditable">
+        <span class="checkbox-label">Allow changes to this agenda on event scheduling</span>
+      </label>
+    </div>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons>
+    <button nz-button (click)="onBack($event)">Back</button>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="!agendaValueAndValidity?.valid"
+      [nzLoading]="updating"
+      (click)="onProceed($event)"
+    >
+      Proceed
+    </button>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>

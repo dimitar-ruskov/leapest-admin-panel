@@ -24,7 +24,7 @@ import {
   IKeyValuePair,
   InternalRepositoryDTO, IRContent
 } from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {IGlobalStateModel} from "../../../../../../state/global-state.model";
+import {IGlobalStateModel} from "../../../../../../state/state.model";
 import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   EnvironmentService, NotificationService,

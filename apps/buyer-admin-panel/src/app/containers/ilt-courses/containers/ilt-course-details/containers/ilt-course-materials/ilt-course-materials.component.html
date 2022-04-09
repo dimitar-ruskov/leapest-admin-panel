@@ -1,0 +1,49 @@
+<div>
+  <div class="btns-container" *ngIf="showSaveChanges && !iltCourse.editLock">
+    <button
+      nz-button
+      nzSize="large"
+      nzType="primary"
+      [disabled]="showSaveChanges === 'disabled'"
+      [nzLoading]="showSaveChanges === 'loading'"
+      (click)="onSaveChanges()"
+    >
+      Save Changes
+    </button>
+    <div class="warning-msg">
+      Changes will only be applied to this course and newly scheduled events. Past and current events will not be
+      affected.
+    </div>
+  </div>
+  <form nz-form nzLayout="vertical" [formGroup]="form" class="self-paced-course-create__step-form">
+    <ng-container formGroupName="internalRepositories">
+      <nz-form-item>
+        <leap-form-label [required]="true">LEARNER MATERIALS</leap-form-label>
+        <nz-form-control>
+          <leap-course-materials-input
+            formControlName="learner"
+            [noMaterialsLabel]="noLearnerMaterialsLabel"
+            [userType]="'learner'"
+            [showOneLang]="true"
+            [courseName]="iltCourse.name"
+            [isEditable]="!iltCourse.editLock"
+          ></leap-course-materials-input>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">INSTRUCTOR MATERIALS</leap-form-label>
+        <nz-form-control>
+          <leap-course-materials-input
+            formControlName="instructor"
+            [noMaterialsLabel]="noInstructorMaterialsLabel"
+            [userType]="'instructor'"
+            [showOneLang]="true"
+            [courseName]="iltCourse.name"
+            [isEditable]="!iltCourse.editLock"
+          ></leap-course-materials-input>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-container>
+  </form>
+</div>

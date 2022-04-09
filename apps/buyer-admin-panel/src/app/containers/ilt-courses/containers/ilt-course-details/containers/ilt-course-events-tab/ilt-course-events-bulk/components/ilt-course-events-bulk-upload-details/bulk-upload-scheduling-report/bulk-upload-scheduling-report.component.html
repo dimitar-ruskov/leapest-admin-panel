@@ -1,0 +1,109 @@
+<div *ngIf="data">
+  <nz-card *ngIf="schedulingSummary$ | async as schedulingSummary">
+    <div class="container">
+      <nz-spin [nzSpinning]="schedulingSummaryLoading$ | async">
+        <div nz-row nzJustify="space-between">
+          <div nz-col nzLg="19">
+            <h2 style="font-size: 18px;">
+              <i (click)="downloadCSV()" class="fal fa-download"></i> {{ data.fileName }}
+            </h2>
+          </div>
+          <div nz-col>
+            <span class="data-info"
+              >Uploaded: <span>{{ schedulingSummary.createdAt | date: 'dd MMM yyyy, HH:mm:ss' }}</span></span
+            >
+          </div>
+        </div>
+        <div nz-row>
+          <span class="font-highlights">Statistics:</span>
+        </div>
+        <div nz-row>
+          <div class="icon-wrapper">
+            <i class="fal fa-check"></i>
+          </div>
+          <div nz-row nzJustify="space-between" class="value-wrapper">
+            <label>Scheduled: </label>
+            <div>
+              <span class="font-highlights">{{ schedulingSummary.createdCourseEvents }}</span
+              >/
+              <span>{{
+                schedulingSummary.totalNumberOfCourseEvents ? schedulingSummary.totalNumberOfCourseEvents : 0
+              }}</span>
+            </div>
+          </div>
+        </div>
+        <div nz-row>
+          <div class="icon-wrapper">
+            <i class="fal fa-hourglass-half"></i>
+          </div>
+          <div nz-row nzJustify="space-between" class="value-wrapper">
+            <label>In Progress: </label>
+            <div>
+              <span class="font-highlights">{{ schedulingSummary.pendingCourseEvents }}</span
+              >/
+              <span>{{
+                schedulingSummary.totalNumberOfCourseEvents ? schedulingSummary.totalNumberOfCourseEvents : 0
+              }}</span>
+            </div>
+          </div>
+        </div>
+        <div nz-row>
+          <div class="icon-wrapper">
+            <i class="fal fa-times-circle"></i>
+          </div>
+          <div nz-row nzJustify="space-between" class="value-wrapper">
+            <label>Failed: </label>
+            <div>
+              <span class="font-highlights">{{ schedulingSummary.failedCourseEvents }}</span
+              >/
+              <span>{{
+                schedulingSummary.totalNumberOfCourseEvents ? schedulingSummary.totalNumberOfCourseEvents : 0
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </nz-spin>
+    </div>
+    <ng-container *ngIf="schedulingSummary.pendingCourseEvents">
+      <p class="summary-message">
+        The scheduling process may take a while. The status will be updated once the process is completed.<br />
+        To see the latest updates, please select <a (click)="refreshSchedulingSummary()">Refresh</a>.
+      </p>
+    </ng-container>
+    <ng-container *ngIf="schedulingSummary.createdCourseEvents === schedulingSummary.totalNumberOfCourseEvents">
+      <p class="summary-message">All events are successfully scheduled.</p>
+    </ng-container>
+    <ng-container *ngIf="schedulingSummary.pendingCourseEvents < 1 && schedulingSummary.failedCourseEvents > 0">
+      <p class="summary-message">
+        Scheduling process has been completed. Some errors has been detected. Please visit the Failed tab for more
+        details.
+      </p>
+    </ng-container>
+    <nz-tabset nzType="card" class="admin-panel__card-tabset" [nzAnimated]="false">
+      <nz-tab nzTitle="Scheduled">
+        <ng-template nz-tab>
+          <leap-bulk-upload-scheduling-report-list
+            status="completed"
+            [csvId]="csvId"
+          ></leap-bulk-upload-scheduling-report-list>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="In Progress">
+        <ng-template nz-tab>
+          <leap-bulk-upload-scheduling-report-list
+            status="pending"
+            [csvId]="csvId"
+          ></leap-bulk-upload-scheduling-report-list>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Failed">
+        <ng-template nz-tab>
+          <leap-bulk-upload-scheduling-report-list
+            status="failed"
+            [csvId]="csvId"
+          ></leap-bulk-upload-scheduling-report-list>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+  </nz-card>
+</div>

@@ -1,0 +1,11 @@
+<div class="ant-table-filter-dropdown">
+  <ul nz-menu>
+    <li nz-menu-item *ngFor="let item of filterList" [nzSelected]="item.selected">
+      <label nz-checkbox [ngModel]="item.selected" (ngModelChange)="itemChanged($event, item)">{{ item.text }}</label>
+    </li>
+  </ul>
+  <div class="ant-table-filter-dropdown-btns">
+    <button nz-button nzSize="small" nzType="link" [disabled]="resetDisabled" (click)="resetFilter()">Reset</button>
+    <button nz-button nzSize="small" nzType="primary" (click)="setFilters()">OK</button>
+  </div>
+</div>

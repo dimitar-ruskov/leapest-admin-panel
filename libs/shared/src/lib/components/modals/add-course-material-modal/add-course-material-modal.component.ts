@@ -3,17 +3,16 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   TrackByFunction,
-  OnDestroy,
   ChangeDetectorRef,
   Input,
 } from '@angular/core';
-import { MasterInternalRepository } from '../../../../models/internal-repository.model';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { IPageable } from '../../../../../snatch/models/page.model';
 import { debounceTime, distinctUntilChanged, map, skipUntil, switchMap, take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { AdminCoursesService } from '../../../../services/admin-courses.service';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+
+import {IPageable, MasterInternalRepository} from "../../../models/interfaces";
+import {AdminCoursesService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-add-course-material-modal',
@@ -22,7 +21,7 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class AddCourseMaterialModalComponent implements OnInit, OnDestroy {
+export class AddCourseMaterialModalComponent implements OnInit {
   private readonly searchValueSubject = new BehaviorSubject<string>('');
   private readonly initializedSubject: Subject<void> = new Subject<void>();
 
@@ -90,8 +89,6 @@ export class AddCourseMaterialModalComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       });
   }
-
-  ngOnDestroy(): void {}
 
   searchValueChange(searchValue: string): void {
     this.searchValueSubject.next(searchValue);

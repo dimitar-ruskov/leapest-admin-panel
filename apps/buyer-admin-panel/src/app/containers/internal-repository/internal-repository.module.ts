@@ -17,6 +17,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzModalModule } from "ng-zorro-antd/modal";
 
 import { InternalRepositoryRoutingModule } from './internal-repository-routing.module';
 import { InternalRepositoryComponent } from './internal-repository.component';
@@ -64,8 +65,6 @@ import {
 import {
   CreationLoaderModalModule
 } from "../../../../../../libs/shared/src/lib/components/modals/creation-loader-modal/creation-loader-modal.module";
-
-
 
 @NgModule({
   declarations: [
@@ -121,6 +120,7 @@ import {
     NzDropDownModule,
     NzToolTipModule,
     NzStepsModule,
+    NzModalModule
   ]
 })
 export class InternalRepositoryModule {}

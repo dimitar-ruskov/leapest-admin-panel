@@ -7,14 +7,15 @@ import { OktaAuthStateService } from '@okta/okta-angular';
 import {EnvironmentService} from "../../../../../../libs/shared/src/lib/utils/services/common";
 import {IDomainData, IProfile, TMenuInputModel} from "../../../../../../libs/shared/src/lib/models/interfaces";
 import {
+  FetchTimezones,
   GetCertificatesDictionary,
   GetConferencingToolsDictionary,
   GetCourseLevelDictionary,
-  GetCustomAttendanceDictionary,
+  GetCustomAttendanceDictionary, GetEnrollmentCauseTypeDictionary,
   GetILTLanguageDictionary,
-  GetIRLanguageDictionary,
+  GetIRLanguageDictionary, GetIRTypeList,
   GetLearnerProfile,
-  GetMaterialTypes
+  GetMaterialTypes, GetUnenrollmentCauseTypeDictionary
 } from "../../state/core.actions";
 
 @Component({
@@ -55,6 +56,7 @@ export class AdminHomeContainerComponent implements OnInit {
     const adminPermissions = await this.checkGroups(['buyer-admin', 'solar-partner']);
     if (adminPermissions) {
       this.store.dispatch([
+        new FetchTimezones(),
         new GetILTLanguageDictionary(),
         new GetIRLanguageDictionary(),
         new GetCourseLevelDictionary(),
@@ -62,6 +64,9 @@ export class AdminHomeContainerComponent implements OnInit {
         new GetCertificatesDictionary(),
         new GetConferencingToolsDictionary(),
         new GetCustomAttendanceDictionary(),
+        new GetEnrollmentCauseTypeDictionary(),
+        new GetUnenrollmentCauseTypeDictionary(),
+        new GetIRTypeList(),
       ]);
       // if (this.route.children?.length === 0) {
       //   this.router.navigate(['ilt-courses'], { relativeTo: this.route });
@@ -103,7 +108,10 @@ export class AdminHomeContainerComponent implements OnInit {
           key: 'settings',
           value: 'Settings',
           iconClass: 'fal fa-cog',
-          subItems: [{ key: 'notifications', value: 'Notifications' }],
+          subItems: [
+            { key: 'notifications', value: 'Notifications' },
+            { key: 'publishing', value: 'Publishing' }
+          ],
         });
       }
       if (this.environment.envName === 'test' || this.environment.envName === 'preview') {

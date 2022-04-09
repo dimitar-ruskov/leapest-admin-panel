@@ -10,3 +10,9 @@ export interface Configuration {
   updatedAt: number;
   updatedBy: string;
 }
+
+export interface ICauseType {
+  configKey: string;
+  configType: string;
+  configValue: string;
+}

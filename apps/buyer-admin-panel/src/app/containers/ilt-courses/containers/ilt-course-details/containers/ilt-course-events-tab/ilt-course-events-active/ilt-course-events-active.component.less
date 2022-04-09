@@ -1,0 +1,42 @@
+.cancel-event-icon {
+  font-size: 24px;
+}
+.published-event-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.tab-header-content {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  background: #FFF;
+}
+
+:host::ng-deep {
+
+  .leap-table-grid {
+    margin-top: -4px;
+  }
+
+  .ant-table-thead .ant-table-row {
+    border-radius: 0 0 6px 6px !important;
+    box-shadow: 0 4px 6px #00000024 !important;
+  }
+
+  .leap-table-grid .ant-table table tr {
+    th {
+      &:first-child {
+        border-radius: 0 0 0 6px !important;
+      }
+      &:last-child {
+        border-radius: 0 0 6px 0 !important;
+      }
+    }
+  }
+
+  .ant-table-filter-trigger-container{
+    right: unset !important;
+    left: 130px !important;
+  }
+}

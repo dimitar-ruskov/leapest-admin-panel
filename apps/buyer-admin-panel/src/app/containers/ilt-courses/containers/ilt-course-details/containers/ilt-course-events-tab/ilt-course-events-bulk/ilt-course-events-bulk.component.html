@@ -1,0 +1,112 @@
+<div class="bulk-uploads-header">
+  <p>
+    The Bulk Upload functionality allows you to schedule multiple single-day course events at once. For more information
+    download our
+    <a href="{{ templateLink }}"> <i class="fal fa-download"></i> Template Guide</a>.<br />
+    To see the latest status update, please select <a (click)="refreshTable()">Refresh.</a>
+  </p>
+  <div class="bulk-uploads-buttons">
+    <ng-container slot="buttons">
+      <button class="admin-panel__slim-button" nz-button nzType="default" (click)="downloadTemplate()">
+        <i class="fal fa-download"></i>
+        Download Template
+      </button>
+    </ng-container>
+    <ng-container slot="buttons">
+      <button class="admin-panel__slim-button" nz-button nzType="primary" (click)="bulkUpload()">
+        Bulk Upload
+      </button>
+    </ng-container>
+  </div>
+</div>
+<div class="bulk-uploads-table">
+  <nz-table
+    nzTableLayout="fixed"
+    leapTableGrid
+    [nzFrontPagination]="false"
+    [nzData]="bulkUploads$ | async"
+    [nzLoading]="loading$ | async"
+    [nzTotal]="total$ | async"
+    [nzPageIndex]="pageIndex$ | async"
+    [nzNoResult]="noResult"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    #bulkUploadsTable
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="name" nzWidth="35%" [nzEllipsis]="true">Bulk Upload</th>
+        <th nzColumnKey="classEvent.venue" nzWidth="35%" [nzEllipsis]="true">Status</th>
+        <th nzColumnKey="classEvent.startDate" nzWidth="30%" [nzEllipsis]="true">Update Date</th>
+        <th nzWidth="34px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr leapTableGridSpacer></tr>
+      <tr
+        *ngFor="let bulkUpload of bulkUploadsTable.data; trackBy: trackByFn"
+        leapTableGridRow
+        [leapTableGridRowClickable]="
+          !(bulkUpload.status.configKey === 'pending-validation' || bulkUpload.status.configKey === 'validation-failed')
+        "
+        [routerLink]="
+          !(bulkUpload.status.configKey === 'pending-validation' || bulkUpload.status.configKey === 'validation-failed')
+            ? ['/admin', 'ilt-courses', 'details', parentId, 'report', bulkUpload.id]
+            : []
+        "
+      >
+        <td [nzEllipsis]="true">{{ bulkUpload.fileName }}</td>
+        <td [nzEllipsis]="true">
+          <ng-container *ngIf="bulkUpload.status.configKey === 'course-events-partly-created'; else icons">
+            <img
+              [src]="environment.assetsPath + '/event-calendar-exclamation.svg'"
+              alt="Certificate"
+              class="mr-2 calendar-icon"
+            />
+          </ng-container>
+          <ng-template #icons>
+            <i [class]="getStatusIcon(bulkUpload.status.configKey)"></i>
+          </ng-template>
+          {{ bulkUpload.status.configValue }}
+          <ng-container *ngIf="bulkUpload.status.configKey === 'pending-validation'">
+            <i
+              class="fal fa-info-circle"
+              nz-tooltip
+              nzTooltipTitle="The upload summary will be available after validation is completed"
+              nzTooltipPlacement="bottomCenter"
+              nzTooltipColor="#26273b"
+            ></i>
+          </ng-container>
+          <ng-container *ngIf="bulkUpload.status.configKey === 'validation-failed'">
+            <i
+              class="fal fa-info-circle"
+              nz-tooltip
+              nzTooltipTitle="It appears that something has gone wrong. For more information, please contact support@edcast.com"
+              nzTooltipPlacement="bottomCenter"
+              nzTooltipColor="#26273b"
+            ></i>
+          </ng-container>
+        </td>
+        <td [nzEllipsis]="true">{{ bulkUpload.createdAt | date: 'dd MMM yyyy, hh:mm:ss' }}</td>
+        <td
+          *ngIf="
+            !(
+              bulkUpload.status.configKey === 'pending-validation' ||
+              bulkUpload.status.configKey === 'validation-failed'
+            );
+            else noDetailsAccess
+          "
+          leap-table-grid-details-cell
+        ></td>
+        <ng-template #noDetailsAccess><td></td></ng-template>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<ng-template #noResult>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="'There are no Events Bulk Uploads for this course'"
+  >
+  </nz-empty>
+</ng-template>

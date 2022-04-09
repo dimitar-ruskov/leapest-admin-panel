@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import * as moment from 'moment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ILTEvent } from '../../../models/ilt-event.model';
-import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
+
+import {ILTEvent} from "../../../models/interfaces";
+import {AdminCoursesService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-delete-course-confirm-modal',
@@ -11,7 +12,7 @@ import { AdminCoursesService } from '../../../utils/services/admin-courses.servi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class DeleteCourseConfirmModalComponent implements OnInit, OnDestroy {
+export class DeleteCourseConfirmModalComponent implements OnInit {
   @Input() courseId: string;
 
   draftEvents: ILTEvent[] = [];
@@ -34,10 +35,6 @@ export class DeleteCourseConfirmModalComponent implements OnInit, OnDestroy {
           this.detector.detectChanges();
         }
       });
-  }
-
-  ngOnDestroy() {
-    //od
   }
 
   formatDate(dt: string) {

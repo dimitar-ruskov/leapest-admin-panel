@@ -1,0 +1,31 @@
+@import (reference) '../../../styles/reference';
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  color: #394042;
+}
+.info-container {
+  display: contents;
+
+  .result-count-container {
+    font-size: @font-size-sm;
+    margin: auto 5px;
+  }
+
+  .clear-filters-btn {
+    width: 26px;
+    height: 26px;
+    margin: auto 5px;
+    color: #394042;
+    cursor: pointer;
+
+    & > svg {
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #de393d;
+      }
+    }
+  }
+}

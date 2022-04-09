@@ -1,0 +1,45 @@
+<div class="tab-header-content"></div>
+
+<nz-table
+  nzTableLayout="fixed"
+  leapTableGrid
+  [nzFrontPagination]="false"
+  [nzData]="courseEvents$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #courseEventsDraftTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="50%" [nzEllipsis]="true">Course Name</th>
+      <th nzColumnKey="type" nzWidth="50%" [nzEllipsis]="true">Type</th>
+      <th nzWidth="34px"></th>
+    </tr>
+  </thead>
+  <tbody
+    nz-tooltip
+    nzTooltipTitle="Continue Creating"
+    nzTooltipPlacement="bottomRight"
+    nzTooltipColor="#26273b"
+    nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+    [nzTooltipTrigger]="null"
+    leapTableGridRowTooltip
+  >
+    <tr leapTableGridSpacer></tr>
+    <tr
+      *ngFor="let event of courseEventsDraftTable.data; trackBy: trackByFn"
+      leapTableGridRow
+      [leapTableGridRowClickable]="true"
+      [routerLink]="['/admin', 'ilt-events', 'create', event.sku]"
+    >
+      <td [nzEllipsis]="true">
+        {{ event.name }}
+      </td>
+      <td [nzEllipsis]="true">{{ event.historical ? 'Past Event' : 'Future Event' }}</td>
+      <td leap-table-grid-details-cell></td>
+    </tr>
+  </tbody>
+</nz-table>

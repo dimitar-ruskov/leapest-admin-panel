@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { startWith } from 'rxjs/operators';
-import { IKeyValuePair } from '../../../../../core/model/dictionary.model';
 import * as moment from 'moment';
+import {IKeyValuePair} from "../../../../../models/interfaces";
 
 @Component({
   selector: 'leap-t-agenda-section-modal',
@@ -12,7 +12,7 @@ import * as moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class TAgendaSectionModalComponent implements OnInit, OnDestroy {
+export class TAgendaSectionModalComponent implements OnInit {
   @Input() type: string;
   @Input() name: string;
   @Input() description: string;
@@ -113,10 +113,6 @@ export class TAgendaSectionModalComponent implements OnInit, OnDestroy {
         };
       },
     );
-  }
-
-  ngOnDestroy() {
-    // OnDestroy
   }
 
   onContentChanged({ quill, html, text }) {

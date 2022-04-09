@@ -1,0 +1,78 @@
+<form nz-form [formGroup]="form">
+  <div class="bulk-upload-modal">
+    <p>
+      Upload a CSV file with your events, so we can proceed to their automatic scheduling. Use our
+      <a href="{{ templateLink }}"><i class="fal fa-download"></i> Template</a>
+      to fill the information and export it as a CSV.
+    </p>
+
+    <nz-form-item>
+      <nz-form-label class="main-label">
+        <span>Bulk file name <span class="italic">*</span></span>
+      </nz-form-label>
+      <nz-form-label class="sub-label">
+        <span>This name will be used to identify this upload.</span>
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="combineTpl">
+        <input class="form-item-input" nz-input formControlName="fileName" placeholder="Start typing..." />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="main-label">
+        <span>Contents <span class="italic">*</span></span>
+      </nz-form-label>
+      <div class="sub-label upload-label">
+        <span
+          >Please, provide the csv file with your event information. Make sure that it respects the conditions listed
+          below and that it follows our template.
+        </span>
+      </div>
+      <div class="sub-label upload-info">
+        <span> You can upload <b>one file for validation</b>. </span>
+        <ul>
+          <li>The file is not larger than {{ maxFileSize }} Mb</li>
+          <li>The file is .csv format</li>
+          <li>The file consists up to 700 events</li>
+        </ul>
+      </div>
+    </nz-form-item>
+    <div *ngIf="fileList?.length > 0" class="contents-block">
+      <div *ngFor="let content of fileList; let index = index">
+        <div class="upload-file-wrapper">
+          <div class="upload-file-name-wrapper">
+            <i class="fal fa-upload"></i>
+            <input #inputName class="content-name" maxlength="60" minlength="6" [value]="content.name" disabled />
+            <span (click)="removeCSV()"><i class="fal fa-trash-alt delete-icon"></i></span>
+            <span> </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-button">
+      <nz-upload
+        [nzBeforeUpload]="beforeUpload"
+        (nzChange)="handleChange($event)"
+        [nzMultiple]="false"
+        [nzCustomRequest]="uploadFile"
+        [nzAccept]="allowedUploadFormat"
+        [nzFileList]="fileList"
+        [nzShowUploadList]="false"
+      >
+        <button nz-button [disabled]="fileList?.length >= 1">Upload File</button>
+      </nz-upload>
+    </div>
+  </div>
+</form>
+
+<ng-template #combineTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    This field is too short
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    This field is too long
+  </ng-container>
+</ng-template>

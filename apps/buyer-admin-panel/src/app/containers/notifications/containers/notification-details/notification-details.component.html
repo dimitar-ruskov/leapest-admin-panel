@@ -1,0 +1,156 @@
+<nz-breadcrumb nzSeparator=">" class="breadcrumbs">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'notifications']">Organisation Notifications</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'notifications']" (click)="changeNotificationTab(1)">Notifications</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Template Details</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="(details$ | async)?.response as details">
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzLg="15">
+        <h2 class="header">{{ details.subject }}</h2>
+      </div>
+      <div class="buttons-wrapper" nz-col nzLg="9">
+        <button class="mr-10" nz-button nzType="default" nzSize="small" (click)="openResetTemplate()">
+          Reset to default
+        </button>
+        <button nz-button nzType="default" nzSize="small" (click)="sendTestEmail()">Send to me</button>
+      </div>
+    </div>
+    <div nz-row>
+      <div class="icon-wrapper">
+        <svg
+          version="1.2"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          overflow="visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 514 514"
+          xml:space="preserve"
+          y="0px"
+          x="0px"
+          id="Layer_1_1621921560227"
+          width="14"
+          height="14"
+        >
+          <g transform="translate(1, 1)">
+            <path
+              d="M256,0.1c-90.3,0-163.5,73.2-163.5,163.5c0,65.9,23,84.3,146.7,263.7c8.1,11.7,25.5,11.7,33.6,0  c123.7-179.4,146.7-197.8,146.7-263.7C419.5,73.3,346.3,0.1,256,0.1z M256,403.7C137.4,232.1,119.8,218.5,119.8,163.6  c0-36.4,14.2-70.6,39.9-96.3s59.9-39.9,96.3-39.9s70.6,14.2,96.3,39.9s39.9,59.9,39.9,96.3C392.2,218.5,374.6,232.1,256,403.7z"
+              vector-effect="non-scaling-stroke"
+              style="fill: rgb(115, 115, 148);"
+            />
+            <path
+              d="M387.6,363.5c-6.1,8.7-12.5,17.9-19.3,27.6c62.1,8.4,103.8,23.6,103.8,41c0,26.5-96.7,48-216,48S40,458.5,40,432  c0-17.4,41.6-32.5,103.8-41c-6.8-9.7-13.2-18.9-19.3-27.6C49.9,377.4,0,402.9,0,432c0,44.2,114.6,80,256,80s256-35.8,256-80  C512,402.9,462.1,377.4,387.6,363.5z"
+              vector-effect="non-scaling-stroke"
+              style="fill: rgb(115, 115, 148);"
+            />
+            <path
+              d="M256,243.2c-44.8,0-81.2-36.4-81.2-81.2s36.4-81.2,81.2-81.2c44.8,0,81.2,36.4,81.2,81.2S300.8,243.2,256,243.2z M256,105.8  c-31,0-56.2,25.2-56.2,56.2s25.2,56.2,56.2,56.2c31,0,56.2-25.2,56.2-56.2S287,105.8,256,105.8z"
+              vector-effect="non-scaling-stroke"
+              style="fill: rgb(115, 115, 148);"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="value-wrapper">
+        <label>Venue: </label> <span>{{ details.venue?.configValue }}</span>
+      </div>
+    </div>
+    <div nz-row>
+      <div class="icon-wrapper">
+        <svg
+          version="1.2"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          overflow="visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 642 514"
+          width="16"
+          height="12"
+        >
+          <g transform="translate(1, 1)">
+            <path
+              d="M625.941 293.823L421.823 497.941c-18.746 18.746-49.138 18.745-67.882 0l-1.775-1.775 22.627-22.627 1.775 1.775c6.253 6.253 16.384 6.243 22.627 0l204.118-204.118c6.238-6.239 6.238-16.389 0-22.627L391.431 36.686A15.895 15.895 0 0 0 380.117 32h-19.549l-32-32h51.549a48 48 0 0 1 33.941 14.059L625.94 225.941c18.746 18.745 18.746 49.137.001 67.882zM252.118 32H48c-8.822 0-16 7.178-16 16v204.118c0 4.274 1.664 8.292 4.686 11.314l211.882 211.882c6.253 6.253 16.384 6.243 22.627 0l204.118-204.118c6.238-6.239 6.238-16.389 0-22.627L263.431 36.686A15.895 15.895 0 0 0 252.118 32m0-32a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.746 18.746-49.138 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118V48C0 21.49 21.49 0 48 0h204.118zM144 124c-11.028 0-20 8.972-20 20s8.972 20 20 20 20-8.972 20-20-8.972-20-20-20m0-28c26.51 0 48 21.49 48 48s-21.49 48-48 48-48-21.49-48-48 21.49-48 48-48z"
+              vector-effect="non-scaling-stroke"
+              style="fill: rgb(115, 115, 148);"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="value-wrapper">
+        <label>Type: </label> <span>{{ details.trigger?.configValue }}</span>
+      </div>
+    </div>
+    <div nz-row>
+      <div class="icon-wrapper">
+        <svg
+          version="1.2"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          overflow="visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 450 514"
+          xml:space="preserve"
+          y="0px"
+          x="0px"
+          id="Layer_1_1623932784056"
+          width="14"
+          height="16"
+        >
+          <g transform="translate(1, 1)">
+            <path
+              d="M400,64h-48V12c0-6.6-5.4-12-12-12h-8c-6.6,0-12,5.4-12,12v52H128V12c0-6.6-5.4-12-12-12h-8c-6.6,0-12,5.4-12,12v52H48  C21.5,64,0,85.5,0,112v352c0,26.5,21.5,48,48,48h352c26.5,0,48-21.5,48-48V112C448,85.5,426.5,64,400,64z M48,96h352  c8.8,0,16,7.2,16,16v48H32v-48C32,103.2,39.2,96,48,96z M400,480H48c-8.8,0-16-7.2-16-16V192h384v272C416,472.8,408.8,480,400,480z"
+              vector-effect="non-scaling-stroke"
+              style="fill: rgb(115, 115, 148);"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="value-wrapper">
+        <label>Last Updated: </label> <span>{{ details.updatedAt | date: 'dd MMM yyyy' }}</span>
+      </div>
+    </div>
+    <div nz-row>
+      <div class="icon-wrapper">
+        <svg
+          version="1.2"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          overflow="visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 450 514"
+          width="14"
+          height="16"
+        >
+          <g transform="translate(1, 1)">
+            <path
+              d="M313.6 288c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4zM416 464c0 8.8-7.2 16-16 16H48c-8.8 0-16-7.2-16-16v-41.6C32 365.9 77.9 320 134.4 320c19.6 0 39.1 16 89.6 16 50.4 0 70-16 89.6-16 56.5 0 102.4 45.9 102.4 102.4V464zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm0-224c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"
+              fill="currentColor"
+              vector-effect="non-scaling-stroke"
+              style="fill: rgb(115, 115, 148);"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="value-wrapper">
+        <label>Recipient: </label> <span>{{ details.recipient?.configValue }}</span>
+      </div>
+    </div>
+  </nz-card>
+
+  <leap-template-composer
+    [details]="details"
+    [showCC]="
+      recipient === 'learner' &&
+      (reportingManagerMapping$ | async)?.isSuccess &&
+      ((reportingManagerMapping$ | async)?.response)[domain]
+    "
+    (cancel)="onCancel()"
+    (submit)="updateTemplate($event)"
+    (previewClicked)="openPreviewTemplate($event)"
+  ></leap-template-composer>
+</ng-container>

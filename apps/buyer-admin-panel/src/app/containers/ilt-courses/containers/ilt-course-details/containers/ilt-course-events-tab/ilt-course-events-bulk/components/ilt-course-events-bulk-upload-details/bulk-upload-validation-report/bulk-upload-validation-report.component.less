@@ -1,0 +1,79 @@
+@slim-button-height: 26px;
+
+.fa-download {
+    color: #737394;
+    font-size: 16px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.container {
+    border: #b6b7cc 1px solid;
+    padding: 10px;
+    border-radius: 6px;
+    color: #737394;
+    margin-bottom: 10px;
+    min-width: 100%;
+    .data-info {
+        font-size: 14px;
+        color: #737394;
+        span {
+            color: #26273b;
+        }
+    }
+    .value-wrapper {
+        width: 150px;
+    }
+    .fa-check, .fa-exclamation-circle, .fa-times-circle {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+    .fa-check {
+        color: #38b6a0;
+        margin-right: 11px;
+    }
+    .font-highlights {
+        color: #26273b;
+    }
+}
+
+.alert-message {
+    text-align: center;
+}
+
+:host(::ng-deep) {
+    .ant-table-thead>tr>th {
+      background: #fff;
+      font-weight: bold;
+    }
+}
+tbody {
+    tr {
+        border: 1px solid #b6b7cc;
+      &.ant-table-row {
+        &:hover {
+            > td {
+              background: #fafafa;
+            }
+          }
+    }}
+}
+
+.table-text {
+    color: #737394;
+    font-size: 16px;
+}
+
+::ng-deep {
+    .ant-table-cell {
+        .error-detail-btn {
+            min-width: 70px!important;
+            padding: 0 10px;
+            height: @slim-button-height;
+            font-size: 14px;
+            line-height: calc(@slim-button-height - 2px);
+            margin-left: 20px;
+        }
+    }
+}

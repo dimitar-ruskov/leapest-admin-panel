@@ -1,0 +1,59 @@
+<ng-container *ngIf="validationReport$ | async as validationReport">
+  <nz-breadcrumb nzSeparator=">" style="margin-bottom: 8px;">
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/', 'admin', 'ilt-courses']">Instructor-led Courses</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/', 'admin', 'ilt-courses', 'details', courseId]">Course Details</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>{{ validationReport.fileName }}</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <leap-cta-container>
+    <h1 leap-cta-container-title>{{ validationReport.fileName }}</h1>
+    <ng-container *ngIf="schedulingSummary$ | async as schedulingSummary" slot="buttons">
+      <button
+        class="admin-panel__slim-button"
+        nz-button
+        nzType="primary"
+        (click)="startEventScheduling($event)"
+        [disabled]="
+          validationReport.numberOfBrokenRows === validationReport.totalRows ||
+          schedulingSummary.totalNumberOfCourseEvents
+        "
+      >
+        Start Event Scheduling
+      </button>
+    </ng-container>
+    <h2 leap-cta-container-description>Status: {{ validationReport?.csvStatus?.configValue }}</h2>
+  </leap-cta-container>
+
+  <nz-content class="admin-panel__content">
+    <nz-tabset
+      class="admin-panel__tabset"
+      [nzSelectedIndex]="activeTab$ | async"
+      [nzAnimated]="false"
+      (nzSelectedIndexChange)="onSelectTab($event)"
+      nzLinkRouter
+    >
+      <nz-tab>
+        <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">Validation Report</a>
+        <leap-bulk-upload-validation-report
+          [data]="validationReport"
+          [courseId]="courseId"
+        ></leap-bulk-upload-validation-report>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'scheduling' }"
+          queryParamsHandling="merge"
+          >Scheduling Report</a
+        >
+        <leap-bulk-upload-scheduling-report [data]="validationReport"></leap-bulk-upload-scheduling-report>
+      </nz-tab>
+    </nz-tabset>
+  </nz-content>
+</ng-container>

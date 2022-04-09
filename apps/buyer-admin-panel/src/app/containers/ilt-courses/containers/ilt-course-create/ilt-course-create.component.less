@@ -1,0 +1,42 @@
+@background-color: #fff;
+
+.ilt-course-create {
+  &__wrapper {
+    padding: 40px 65px 20px;
+    background-color: @background-color;
+    box-shadow: 0 2px 4px rgba(38,39,59,0.1);
+    border-radius: 6px;
+  }
+
+  &__spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  &__summary-header {
+    margin-top: 40px;
+  }
+}
+
+i {
+  &.step-icon {
+    font-size: 16px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+
+    &-svg {
+      font-size: 22px;
+    }
+
+    > svg {
+      fill: currentColor;
+    }
+  }
+
+  &.fa-calendar {
+    margin-right: 1px;
+  }
+}

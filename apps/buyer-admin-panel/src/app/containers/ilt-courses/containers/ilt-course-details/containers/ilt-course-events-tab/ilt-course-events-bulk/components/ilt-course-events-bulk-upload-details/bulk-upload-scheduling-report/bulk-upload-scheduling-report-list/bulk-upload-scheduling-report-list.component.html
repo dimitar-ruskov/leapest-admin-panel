@@ -1,0 +1,130 @@
+<ng-container [ngSwitch]="status">
+  <ng-container *ngSwitchCase="'completed'">
+    <ng-container *ngIf="schedulingReport$ | async as schedulingReport">
+      <nz-table
+        #table
+        [nzData]="schedulingReport"
+        [nzFrontPagination]="false"
+        [nzLoading]="loading$ | async"
+        [nzNoResult]="noResult"
+        [nzTotal]="total$ | async"
+        [nzPageIndex]="pageIndex$ | async"
+        (nzQueryParams)="onQueryParamsChange($event)"
+      >
+        <thead>
+          <tr>
+            <th nzWidth="35%">Internal SKU</th>
+            <th nzWidth="30%">Event Date</th>
+            <th nzWidth="30%">Venue</th>
+            <th nzWidth="34px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let data of table.data"
+            [routerLink]="['/admin', 'ilt-events', 'details', data.courseEventId]"
+            nz-tooltip
+            nzTooltipTitle="See Event Details"
+            nzTooltipPlacement="bottomRight"
+          >
+            <td>{{ data.courseEventExternalSku }}</td>
+            <td>{{ data.courseEventDate | date: 'dd MMM yyyy, HH:mm:ss' }}</td>
+            <td>{{ data.venue }}</td>
+            <td><i class="far fa-angle-right"></i></td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <ng-template #noResult>
+        <nz-empty
+          nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+          [nzNotFoundContent]="noContentMsg"
+        >
+          <ng-template #noContentMsg>
+            <nz-alert nzType="info" nzMessage="No events have been scheduled yet."> </nz-alert>
+          </ng-template>
+        </nz-empty>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'pending'">
+    <nz-table
+      #table
+      [nzData]="schedulingReport$ | async"
+      [nzFrontPagination]="false"
+      [nzLoading]="loading$ | async"
+      [nzTotal]="total$ | async"
+      [nzPageIndex]="pageIndex$ | async"
+      [nzNoResult]="noResult"
+      (nzQueryParams)="onQueryParamsChange($event)"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="40%">Internal SKU</th>
+          <th nzWidth="30%">Event Date</th>
+          <th nzWidth="30%">Venue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data">
+          <td>{{ data.courseEventExternalSku }}</td>
+          <td>{{ data.courseEventDate | date: 'dd MMM yyyy, HH:mm:ss' }}</td>
+          <td>{{ data.venue }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <ng-template #noResult>
+      <nz-empty
+        nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+        [nzNotFoundContent]="noContentMsg"
+      >
+        <ng-template #noContentMsg>
+          <nz-alert nzType="info" nzMessage="There are no events left to be scheduled."> </nz-alert>
+        </ng-template>
+      </nz-empty>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngSwitchCase="'failed'">
+    <nz-alert *ngIf="table.data.length" nzType="warning" [nzMessage]="errorMessage"></nz-alert>
+    <nz-table
+      #table
+      [nzData]="schedulingReport$ | async"
+      [nzFrontPagination]="false"
+      [nzLoading]="loading$ | async"
+      [nzTotal]="total$ | async"
+      [nzPageIndex]="pageIndex$ | async"
+      [nzNoResult]="noResult"
+      (nzQueryParams)="onQueryParamsChange($event)"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="40%">Internal SKU</th>
+          <th nzWidth="30%">Event Date</th>
+          <th nzWidth="30%">Venue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data">
+          <td>{{ data.courseEventExternalSku }}</td>
+          <td>{{ data.courseEventDate | date: 'dd MMM yyyy, HH:mm:ss' }}</td>
+          <td>{{ data.venue }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <ng-template #noResult>
+      <nz-empty
+        nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+        [nzNotFoundContent]="noContentMsg"
+      >
+        <ng-template #noContentMsg>
+          <nz-alert nzType="info" nzMessage="We have not detected any issues with the event scheduling."> </nz-alert>
+        </ng-template>
+      </nz-empty>
+    </ng-template>
+  </ng-container>
+</ng-container>
+
+<ng-template #errorMessage>
+  <span class="error-message"
+    >Please contact <a href="mailto:support@edcast.com">support@edcast.com</a> to resolve the issues below.</span
+  >
+</ng-template>
