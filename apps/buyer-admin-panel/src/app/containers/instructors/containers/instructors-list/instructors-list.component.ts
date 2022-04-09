@@ -10,8 +10,8 @@ import {
   ChangeInstructorsPaginationParams,
   GetInstructors,
   ResetInstructorsState,
-} from '../../state/instructor-list/instructors-list.actions';
-import { InstructorsListState } from '../../state/instructor-list/instructors-list.state';
+} from './state/instructors-list.actions';
+import { InstructorsListState } from './state/instructors-list.state';
 import { InstructorCreateModalComponent } from '../../components/instructor-create-modal/instructor-create-modal.component';
 import { InstructorsService } from '../../service/instructors.service';
 

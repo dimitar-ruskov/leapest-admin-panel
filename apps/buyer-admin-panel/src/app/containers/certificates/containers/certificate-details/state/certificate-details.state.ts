@@ -7,10 +7,10 @@ import produce from 'immer';
 import { GetCertificateDetails, UpdateCertificateFields } from './certificate-details.actions';
 import { CertificateCoursesState } from './certificate-courses.state';
 import { CertificateIssuedState } from './certificate-issued.state';
-import { CertificatesService } from '../../service/certificates.service';
+import { CertificatesService } from '../../../service/certificates.service';
 
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { Certificate } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
 
 
 export class CertificateDetailsStateModel {

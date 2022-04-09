@@ -4,12 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
 
-import { CertificateCoursesState } from '../../../../state/certificates-details/certificate-courses.state';
+import { CertificateCoursesState } from '../../state/certificate-courses.state';
 import {
   ChangeCertCoursesPaginationParams,
   GetCertificateCourses,
   ResetCertificateCoursesState,
-} from '../../../../state/certificates-details/certificate-courses.actions';
+} from '../../state/certificate-courses.actions';
 
 import {
   createPageableFromTableQueryParams,

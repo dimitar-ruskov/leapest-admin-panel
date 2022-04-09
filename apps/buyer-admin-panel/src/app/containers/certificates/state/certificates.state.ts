@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { State } from '@ngxs/store';
-import {CertificatesListState} from "./certificates-list/certificates-list.state";
-import {CertificateCoursesState} from "./certificates-details/certificate-courses.state";
-import {CertificateDetailsState} from "./certificates-details/certificate-details.state";
-import {CertificateIssuedState} from "./certificates-details/certificate-issued.state";
+import {CertificatesListState} from "../containers/certificates-list/state/certificates-list.state";
+import {CertificateCoursesState} from "../containers/certificate-details/state/certificate-courses.state";
+import {CertificateDetailsState} from "../containers/certificate-details/state/certificate-details.state";
+import {CertificateIssuedState} from "../containers/certificate-details/state/certificate-issued.state";
 
 @State({
   name: 'certificates',

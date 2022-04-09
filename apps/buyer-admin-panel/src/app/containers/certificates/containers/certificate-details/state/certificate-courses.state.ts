@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { CertificatesService } from '../../service/certificates.service';
+import { CertificatesService } from '../../../service/certificates.service';
 import {
   ChangeCertCoursesPaginationParams,
   GetCertificateCourses,
   ResetCertificateCoursesState,
 } from './certificate-courses.actions';
 
-import {DraftILTCourse, IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../libs/shared/src/lib/models/constants";
+import {DraftILTCourse, IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
 
 export class CertificateCoursesStateModel {
   courses: DraftILTCourse[] | null;

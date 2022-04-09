@@ -1,5 +1,5 @@
-import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
-import {IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class GetInstructor {
   static readonly type = '[AP Instructor Details] Get Instructor Details';

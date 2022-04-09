@@ -12,8 +12,8 @@ import {
   DeleteInternalRepository,
   GetInternalRepositories,
   ResetInternalRepositoriesState,
-} from '../../state/internal-repository-list/internal-repository-list.actions';
-import { InternalRepositoryListState } from '../../state/internal-repository-list/internal-repository-list.state';
+} from './state/internal-repository-list.actions';
+import { InternalRepositoryListState } from './state/internal-repository-list.state';
 import { InternalRepositoryCreateModalComponent } from '../internal-repository-create-modal/internal-repository-create-modal.component';
 
 import {InternalRepository} from "../../../../../../../../libs/shared/src/lib/models/interfaces";

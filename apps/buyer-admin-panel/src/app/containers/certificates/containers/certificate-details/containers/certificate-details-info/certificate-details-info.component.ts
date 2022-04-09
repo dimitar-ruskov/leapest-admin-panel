@@ -5,7 +5,7 @@ import { filter, map } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
-import { CertificateDetailsState } from '../../../../state/certificates-details/certificate-details.state';
+import { CertificateDetailsState } from '../../state/certificate-details.state';
 import { CertificateEditInfoHandlerService } from '../../../../service/certificate-edit-info-handler.service';
 
 import { Certificate } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';

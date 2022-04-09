@@ -4,7 +4,7 @@ import produce from 'immer';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { InternalRepositoryService } from '../../service/internal-repository.service';
+import { InternalRepositoryService } from '../../../service/internal-repository.service';
 import { InternalRepositoryCoursesState } from './internal-repository-courses.state';
 import {
   GetInternalRepositoryDetails,
@@ -13,8 +13,8 @@ import {
 } from './internal-repository-details.actions';
 import { InternalRepositoryVariantsState } from './internal-repository-variants.state';
 
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {InternalRepository} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {InternalRepository} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class InternalRepositoryDetailsStateModel {
   internalRepository: DeferredResource<InternalRepository> | null;

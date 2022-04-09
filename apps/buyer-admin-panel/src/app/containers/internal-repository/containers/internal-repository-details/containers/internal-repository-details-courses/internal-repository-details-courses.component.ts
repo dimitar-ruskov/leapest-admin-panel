@@ -11,10 +11,10 @@ import {
 import {
   ChangeInternalRepositoryCoursesPaginationParams,
   GetInternalRepositoryCourses
-} from '../../../../state/internal-repository-details/internal-repository-courses.actions';
+} from '../../state/internal-repository-courses.actions';
 import {
   InternalRepositoryCoursesState
-} from '../../../../state/internal-repository-details/internal-repository-courses.state';
+} from '../../state/internal-repository-courses.state';
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {TGridInputModel} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
 

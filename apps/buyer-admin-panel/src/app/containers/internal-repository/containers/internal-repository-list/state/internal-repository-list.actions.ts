@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class GetInternalRepositories {
   static readonly type = '[Internal Repository List] Get Internal Repositories';

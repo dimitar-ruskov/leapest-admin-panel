@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class GetCertificateCourses {
   static readonly type = '[Certificate Courses] Get Certificate Courses';

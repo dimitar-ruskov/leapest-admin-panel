@@ -11,8 +11,8 @@ import {
   ChangeInternalRepositoryVariantsPaginationParams,
   DeleteInternalRepositoryVariant,
   GetInternalRepositoryVariants,
-} from '../../../../state/internal-repository-details/internal-repository-variants.actions';
-import { InternalRepositoryVariantsState } from '../../../../state/internal-repository-details/internal-repository-variants.state';
+} from '../../state/internal-repository-variants.actions';
+import { InternalRepositoryVariantsState } from '../../state/internal-repository-variants.state';
 import { InternalRepoExternalModalComponent } from '../../../internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
 import { InternalRepoHostedModalComponent } from '../../../internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
 

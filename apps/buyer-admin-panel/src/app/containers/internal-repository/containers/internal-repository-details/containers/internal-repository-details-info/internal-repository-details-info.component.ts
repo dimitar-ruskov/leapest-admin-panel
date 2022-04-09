@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { InternalRepositoryEditInfoHandlerService } from '../../../../service/internal-repository-edit-info-handler.service';
-import { InternalRepositoryDetailsState } from '../../../../state/internal-repository-details/internal-repository-details.state';
+import { InternalRepositoryDetailsState } from '../../state/internal-repository-details.state';
 
 import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {

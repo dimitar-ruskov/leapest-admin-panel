@@ -4,7 +4,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import {
   UpdateAssessmentDetails,
   UpdateParentInternalRepository,
-} from '../state/internal-repository-details/internal-repository-details.actions';
+} from '../containers/internal-repository-details/state/internal-repository-details.actions';
 import * as moment from 'moment';
 import {
   EditPassRateModalComponent

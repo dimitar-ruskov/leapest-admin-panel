@@ -22,14 +22,14 @@ import { NzModalModule } from "ng-zorro-antd/modal";
 import { InternalRepositoryRoutingModule } from './internal-repository-routing.module';
 import { InternalRepositoryComponent } from './internal-repository.component';
 import { InternalRepositoryListComponent } from './containers/internal-repository-list/internal-repository-list.component';
-import { InternalRepositoryListState } from './state/internal-repository-list/internal-repository-list.state';
+import { InternalRepositoryListState } from './containers/internal-repository-list/state/internal-repository-list.state';
 import { InternalRepositoryDetailsComponent } from './containers/internal-repository-details/internal-repository-details.component';
 import { InternalRepositoryDetailsInfoComponent } from './containers/internal-repository-details/containers/internal-repository-details-info/internal-repository-details-info.component';
 import { InternalRepositoryDetailsVariantsComponent } from './containers/internal-repository-details/containers/internal-repository-details-variants/internal-repository-details-variants.component';
 import { InternalRepositoryDetailsCoursesComponent } from './containers/internal-repository-details/containers/internal-repository-details-courses/internal-repository-details-courses.component';
-import { InternalRepositoryDetailsState } from './state/internal-repository-details/internal-repository-details.state';
-import { InternalRepositoryVariantsState } from './state/internal-repository-details/internal-repository-variants.state';
-import { InternalRepositoryCoursesState } from './state/internal-repository-details/internal-repository-courses.state';
+import { InternalRepositoryDetailsState } from './containers/internal-repository-details/state/internal-repository-details.state';
+import { InternalRepositoryVariantsState } from './containers/internal-repository-details/state/internal-repository-variants.state';
+import { InternalRepositoryCoursesState } from './containers/internal-repository-details/state/internal-repository-courses.state';
 import { InternalRepositoryCreateModalComponent } from './containers/internal-repository-create-modal/internal-repository-create-modal.component';
 import { InternalRepoHostedModalComponent } from './containers/internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
 import { InternalRepoTypeModalComponent } from './containers/internal-repository-create-modal/steps/internal-repo-type-modal/internal-repo-type-modal.component';
@@ -65,6 +65,7 @@ import {
 import {
   CreationLoaderModalModule
 } from "../../../../../../libs/shared/src/lib/components/modals/creation-loader-modal/creation-loader-modal.module";
+import {InternalRepositoryState} from "./state/internal-repository.state";
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import {
     InternalRepositoryRoutingModule,
 
     NgxsModule.forFeature([
+      InternalRepositoryState,
       InternalRepositoryListState,
       InternalRepositoryDetailsState,
       InternalRepositoryVariantsState,

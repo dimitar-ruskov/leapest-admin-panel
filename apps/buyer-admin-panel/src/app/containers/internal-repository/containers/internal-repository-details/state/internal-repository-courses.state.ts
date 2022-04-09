@@ -4,11 +4,11 @@ import { tap } from 'rxjs/operators';
 
 import { ChangeInternalRepositoryCoursesPaginationParams, GetInternalRepositoryCourses, ResetInternalRepositoryCoursesState } from './internal-repository-courses.actions';
 
-import { InternalRepositoryCourseListItem } from '../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-course-list-item.model';
-import { InternalRepositoryService } from '../../service/internal-repository.service';
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { InternalRepositoryCourseListItem } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-course-list-item.model';
+import { InternalRepositoryService } from '../../../service/internal-repository.service';
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class InternalRepositoryCoursesStateModel {
     loading: boolean;

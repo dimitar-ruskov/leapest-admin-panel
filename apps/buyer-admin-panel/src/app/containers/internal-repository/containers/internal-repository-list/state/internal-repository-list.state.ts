@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { InternalRepositoryService } from '../../service/internal-repository.service';
+import { InternalRepositoryService } from '../../../service/internal-repository.service';
 import {
   ChangeInternalRepositoriesPaginationParams,
   DeleteInternalRepository,
   GetInternalRepositories,
   ResetInternalRepositoriesState,
 } from './internal-repository-list.actions';
-import {InternalRepository, IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../libs/shared/src/lib/models/constants";
+import {InternalRepository, IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
 
 export class InternalRepositoryListStateModel {
   loading: boolean;

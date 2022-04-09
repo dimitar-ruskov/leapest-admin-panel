@@ -6,14 +6,14 @@ import * as moment from 'moment';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
-import { CertificatesListState } from '../../state/certificates-list/certificates-list.state';
+import { CertificatesListState } from './state/certificates-list.state';
 import { CertificateCreateModalComponent } from '../../components/certificate-create-modal/certificate-create-modal.component';
 import { CertificatesService } from '../../service/certificates.service';
 import {
   ChangeCertificatesPaginationParams,
   GetCertificates,
   ResetCertificatesState,
-} from '../../state/certificates-list/certificates-list.actions';
+} from './state/certificates-list.actions';
 
 import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
 import {

@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import * as moment from 'moment';
 
-import { UpdateCertificateFields } from '../state/certificates-details/certificate-details.actions';
+import { UpdateCertificateFields } from '../containers/certificate-details/state/certificate-details.actions';
 import { EditCertificatePeriodComponent } from '../components/edit-certificate-period/edit-certificate-period.component';
 import { CertificateUploadFileComponent } from '../components/certificate-upload-file/certificate-upload-file.component';
 

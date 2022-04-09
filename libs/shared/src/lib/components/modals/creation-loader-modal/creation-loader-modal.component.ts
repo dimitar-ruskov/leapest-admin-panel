@@ -8,11 +8,11 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {InternalRepository, InternalRepositoryDTO} from "../../../models/interfaces";
 import {
   GetInternalRepositoryDetails
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/state/internal-repository-details/internal-repository-details.actions";
+} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/containers/internal-repository-details/state/internal-repository-details.actions";
 import {DeferredResource} from "../../../utils/common";
 import {
   GetInternalRepositoryVariants
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/state/internal-repository-details/internal-repository-variants.actions";
+} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/containers/internal-repository-details/state/internal-repository-variants.actions";
 import {
   InternalRepositoryService
 } from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/service/internal-repository.service";

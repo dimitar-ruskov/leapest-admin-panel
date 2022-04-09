@@ -4,8 +4,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { CertificateDetailsState } from '../../state/certificates-details/certificate-details.state';
-import { GetCertificateDetails } from '../../state/certificates-details/certificate-details.actions';
+import { CertificateDetailsState } from './state/certificate-details.state';
+import { GetCertificateDetails } from './state/certificate-details.actions';
 
 import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";

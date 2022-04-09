@@ -22,10 +22,10 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 import { CertificatesRoutingModule } from './certificates-routing.module';
 import {CertificatesState} from "./state/certificates.state";
-import { CertificatesListState } from './state/certificates-list/certificates-list.state';
-import { CertificateDetailsState } from './state/certificates-details/certificate-details.state';
-import { CertificateCoursesState } from './state/certificates-details/certificate-courses.state';
-import { CertificateIssuedState } from './state/certificates-details/certificate-issued.state';
+import { CertificatesListState } from './containers/certificates-list/state/certificates-list.state';
+import { CertificateDetailsState } from './containers/certificate-details/state/certificate-details.state';
+import { CertificateCoursesState } from './containers/certificate-details/state/certificate-courses.state';
+import { CertificateIssuedState } from './containers/certificate-details/state/certificate-issued.state';
 import { CertificatesComponent } from './certificates.component';
 import { CertificatesListComponent } from './containers/certificates-list/certificates-list.component';
 import { CertificateCreateModalComponent } from './components/certificate-create-modal/certificate-create-modal.component';
@@ -78,11 +78,11 @@ import {
     CertificatesRoutingModule,
 
     NgxsModule.forFeature([
-      CertificatesState
-      // CertificatesListState,
-      // CertificateDetailsState,
-      // CertificateCoursesState,
-      // CertificateIssuedState,
+      CertificatesState,
+      CertificatesListState,
+      CertificateDetailsState,
+      CertificateCoursesState,
+      CertificateIssuedState,
     ]),
     GeneralInfoModule,
     CtaContainerModule,

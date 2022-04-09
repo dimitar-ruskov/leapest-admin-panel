@@ -21,10 +21,10 @@ import {
   IltCourseReviewsStateModel
 } from "../containers/ilt-courses/containers/ilt-course-details/containers/ilt-course-reviews/state/ilt-course-reviews.state";
 
-import {CertificatesListStateModel} from "../containers/certificates/state/certificates-list/certificates-list.state";
-import {CertificateDetailsStateModel} from "../containers/certificates/state/certificates-details/certificate-details.state";
-import {CertificateCoursesStateModel} from "../containers/certificates/state/certificates-details/certificate-courses.state";
-import {CertificateIssuedStateModel} from "../containers/certificates/state/certificates-details/certificate-issued.state";
+import {CertificatesListStateModel} from "../containers/certificates/containers/certificates-list/state/certificates-list.state";
+import {CertificateDetailsStateModel} from "../containers/certificates/containers/certificate-details/state/certificate-details.state";
+import {CertificateCoursesStateModel} from "../containers/certificates/containers/certificate-details/state/certificate-courses.state";
+import {CertificateIssuedStateModel} from "../containers/certificates/containers/certificate-details/state/certificate-issued.state";
 
 import {
   NotificationDetailsStateModel
@@ -36,6 +36,25 @@ import {
   NotificationsSettingsStateModel
 } from "../containers/notifications/containers/notifications/state/notifications-settings.state";
 import {PublishingStateModel} from "../containers/publishing/state/publishing.state";
+import {InstructorsListState} from "../containers/instructors/containers/instructors-list/state/instructors-list.state";
+import {
+  InstructorDetailsState
+} from "../containers/instructors/containers/instructor-details/state/instructor-details.state";
+import {
+  InternalRepositoryListState
+} from "../containers/internal-repository/containers/internal-repository-list/state/internal-repository-list.state";
+import {
+  InternalRepositoryDetailsState
+} from "../containers/internal-repository/containers/internal-repository-details/state/internal-repository-details.state";
+import {
+  InternalRepositoryVariantsState
+} from "../containers/internal-repository/containers/internal-repository-details/state/internal-repository-variants.state";
+import {
+  InternalRepositoryCoursesState
+} from "../containers/internal-repository/containers/internal-repository-details/state/internal-repository-courses.state";
+import {
+  MarketplaceRepositoryListState
+} from "../containers/marketplace-repository/containers/marketplace-repository-list/state/marketplace-repository-list.state";
 
 export interface IGlobalStateModel {
   core: CoreStateModel;
@@ -44,19 +63,36 @@ export interface IGlobalStateModel {
     iltCourseCreate: ILTCourseCreateStateModel;
     iltCoursesList: ILTCoursesListModel;
     iltCourseDetails: IltCourseDetailsModel;
-  }
+  };
+
+  internalRepository: {
+    internalRepositoryList: InternalRepositoryListState;
+    internalRepositoryDetails: InternalRepositoryDetailsState;
+    internalRepositoryVariants: InternalRepositoryVariantsState;
+    internalRepositoryCourses: InternalRepositoryCoursesState;
+  };
+
+  marketplaceRepository: MarketplaceRepositoryListState;
+
+  instructors: {
+    instructorsList: InstructorsListState;
+    instructorDetails: InstructorDetailsState;
+  };
+
   certificates: {
     certificatesList: CertificatesListStateModel;
     certificateDetails: CertificateDetailsStateModel;
     certificateCourses: CertificateCoursesStateModel;
     certificateIssued: CertificateIssuedStateModel;
-  }
+  };
+
   notifications: {
     activeTab: number;
     notificationsSettings: NotificationsSettingsStateModel;
     notificationsList: NotificationsListStateModel;
     notificationDetails: NotificationDetailsStateModel;
   };
+
   publishing: PublishingStateModel;
 }
 

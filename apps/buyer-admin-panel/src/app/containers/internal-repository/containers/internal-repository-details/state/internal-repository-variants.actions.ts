@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class GetInternalRepositoryVariants {
   static readonly type = '[AP Internal Repository Variants] Get InternalRepository Variants';

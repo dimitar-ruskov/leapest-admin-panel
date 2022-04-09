@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
 
-import { MarketplaceRepositoryListState } from './state/marketplace-repository-list/marketplace-repository-list.state';
+import { MarketplaceRepositoryListState } from './containers/marketplace-repository-list/state/marketplace-repository-list.state';
 import { MarketplaceRepositoryRoutingModule } from './marketplace-repository-routing.module';
 import { MarketplaceRepositoryComponent } from './marketplace-repository.component';
 import { MarketplaceRepositoryListComponent } from './containers/marketplace-repository-list/marketplace-repository-list.component';
@@ -32,6 +32,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import {MarketplaceRepositoryState} from "./state/marketplace-repository.state";
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     CommonModule,
     MarketplaceRepositoryRoutingModule,
 
-    NgxsModule.forFeature([MarketplaceRepositoryListState]),
+    NgxsModule.forFeature([MarketplaceRepositoryState, MarketplaceRepositoryListState]),
     CtaContainerModule,
     TGridModule,
     TableGridModule,

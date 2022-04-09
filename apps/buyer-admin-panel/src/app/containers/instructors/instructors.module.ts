@@ -7,10 +7,10 @@ import { QuillModule } from 'ngx-quill';
 import { InstructorsComponent } from './instructors.component';
 import { InstructorsListComponent } from './containers/instructors-list/instructors-list.component';
 import { InstructorsRoutingModule } from './instructors-routing.module';
-import { InstructorsListState } from './state/instructor-list/instructors-list.state';
+import { InstructorsListState } from './containers/instructors-list/state/instructors-list.state';
 import { InstructorCreateModalComponent } from './components/instructor-create-modal/instructor-create-modal.component';
 import { InstructorDetailsComponent } from './containers/instructor-details/instructor-details.component';
-import { InstructorDetailsState } from './state/instructor-details/instructor-details.state';
+import { InstructorDetailsState } from './containers/instructor-details/state/instructor-details.state';
 
 import {
   TableSearchModule
@@ -41,6 +41,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import {InstructorsState} from "./state/instructors.state";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     InstructorsRoutingModule,
 
     QuillModule,
-    NgxsModule.forFeature([InstructorsListState, InstructorDetailsState]),
+    NgxsModule.forFeature([InstructorsState, InstructorsListState, InstructorDetailsState]),
     TGridModule,
     TableGridModule,
     TableControlPanelModule,

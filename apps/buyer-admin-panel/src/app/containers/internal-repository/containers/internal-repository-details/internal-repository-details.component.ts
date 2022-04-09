@@ -4,10 +4,10 @@ import { Select, Store } from '@ngxs/store';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { ResetInternalRepositoryCoursesState } from '../../state/internal-repository-details/internal-repository-courses.actions';
-import { GetInternalRepositoryDetails } from '../../state/internal-repository-details/internal-repository-details.actions';
-import { InternalRepositoryDetailsState } from '../../state/internal-repository-details/internal-repository-details.state';
-import { ResetInternalRepositoryVariantsState } from '../../state/internal-repository-details/internal-repository-variants.actions';
+import { ResetInternalRepositoryCoursesState } from './state/internal-repository-courses.actions';
+import { GetInternalRepositoryDetails } from './state/internal-repository-details.actions';
+import { InternalRepositoryDetailsState } from './state/internal-repository-details.state';
+import { ResetInternalRepositoryVariantsState } from './state/internal-repository-variants.actions';
 import { InternalRepoHostedModalComponent } from '../internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
 import { InternalRepoExternalModalComponent } from '../internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
 

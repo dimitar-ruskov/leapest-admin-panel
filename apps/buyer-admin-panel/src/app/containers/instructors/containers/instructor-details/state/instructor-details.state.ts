@@ -9,12 +9,12 @@ import {
   ResetInstructorDetailsState,
   UpdateInstructor,
 } from './instructor-details.actions';
-import { InstructorsService } from '../../service/instructors.service';
+import { InstructorsService } from '../../../service/instructors.service';
 
-import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
-import {ILTEventListItem, IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../libs/shared/src/lib/models/constants";
+import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
+import {ILTEventListItem, IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
 
 export class InstructorDetailsStateModel {
   loading: boolean;

@@ -7,14 +7,14 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import { InstructorDetailsState } from '../../state/instructor-details/instructor-details.state';
+import { InstructorDetailsState } from './state/instructor-details.state';
 import {
   ChangeInstructorDetailsPaginationParams,
   GetEvents,
   GetInstructor,
   ResetInstructorDetailsState,
   UpdateInstructor,
-} from '../../state/instructor-details/instructor-details.actions';
+} from './state/instructor-details.actions';
 import { InstructorCreateModalComponent } from '../../components/instructor-create-modal/instructor-create-modal.component';
 
 import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { InternalRepositoryVariantDTO } from '../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-variant-dto.model';
-import { InternalRepositoryService } from '../../service/internal-repository.service';
+import { InternalRepositoryVariantDTO } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-variant-dto.model';
+import { InternalRepositoryService } from '../../../service/internal-repository.service';
 import {
   ChangeInternalRepositoryVariantsPaginationParams,
   DeleteInternalRepositoryVariant,
@@ -11,9 +11,9 @@ import {
   ResetInternalRepositoryVariantsState,
 } from './internal-repository-variants.actions';
 
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 
 export class InternalRepositoryVariantsStateModel {
   loading: boolean;

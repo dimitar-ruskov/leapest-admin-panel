@@ -1,4 +1,4 @@
-import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import { Certificate } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
 
 export class GetCertificateDetails {
   static readonly type = '[Certificate Details] Get Certificate Details';
