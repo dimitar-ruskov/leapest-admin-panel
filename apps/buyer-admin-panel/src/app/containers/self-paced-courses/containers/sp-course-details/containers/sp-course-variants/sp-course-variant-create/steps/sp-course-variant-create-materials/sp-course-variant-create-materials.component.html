@@ -1,0 +1,40 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Course Materials & Certificates">
+    Here, you can specify which deliverables are to be associated with your course.
+  </leap-creation-stepper-step-header>
+
+  <leap-creation-stepper-step-body *ngIf="materialDTOsMap$ | async as materialDTOsMap">
+    <leap-creation-stepper-step-section>
+      <leap-form-label [required]="true">Specify Learner Materials</leap-form-label>
+      <leap-form-hint-label>Participants of the course will get access to the materials below:</leap-form-hint-label>
+      <leap-creation-stepper-step-materials [materials]="materialDTOsMap.learner">
+        <ng-template #materialTemplate let-material let-index="index">
+          <leap-internal-repo-tile
+            [ir]="material.dto"
+            [selectable]="material.selectable"
+            (selectVariant)="onSelectVariant('learner', index, material.masterIndex)"
+          >
+          </leap-internal-repo-tile>
+        </ng-template>
+        <ng-template #noMaterialsTemplate>
+          <leap-no-materials>This course has no materials for learners.</leap-no-materials>
+        </ng-template>
+      </leap-creation-stepper-step-materials>
+    </leap-creation-stepper-step-section>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons>
+    <button nz-button (click)="onCancel($event)">Cancel</button>
+    <label nz-tooltip [nzTooltipTitle]="!(areAllMaterialsConfigured$ | async) ? notAllExamsConfiguredTooltip : ''">
+      <button
+        nz-button
+        nzType="primary"
+        [disabled]="!(areAllMaterialsConfigured$ | async)"
+        [nzLoading]="updating$ | async"
+        (click)="onProceed($event)"
+      >
+        Proceed
+      </button>
+    </label>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>

@@ -1,0 +1,87 @@
+<leap-table-control-panel>
+  <leap-table-search data-section="right" (searchPhraseChange)="onSearch($event)"></leap-table-search>
+</leap-table-control-panel>
+
+<nz-table
+  nzTableLayout="fixed"
+  leapTableGrid
+  [nzFrontPagination]="false"
+  [nzData]="selfPacedCourses$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #coursesTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="40%" [nzSortFn]="true" [nzEllipsis]="true">Course Name</th>
+      <th nzColumnKey="categoryName" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Category</th>
+      <th nzColumnKey="languageVariants" nzWidth="30%" [nzEllipsis]="true">Language Variants</th>
+      <th nzColumnKey="publishStatus" nzWidth="58px" [nzSortFn]="true"></th>
+      <th nzWidth="58px"></th>
+      <th nzWidth="34px"></th>
+    </tr>
+  </thead>
+  <tbody
+    nz-tooltip
+    nzTooltipTitle="Open Self-paced Course Details"
+    nzTooltipPlacement="bottomRight"
+    nzTooltipColor="#26273b"
+    nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+    [nzTooltipTrigger]="null"
+    leapTableGridRowTooltip
+  >
+    <tr leapTableGridSpacer></tr>
+    <tr
+      *ngFor="let course of coursesTable.data; trackBy: trackByFn"
+      leapTableGridRow
+      [leapTableGridRowClickable]="true"
+      [routerLink]="['details', course.id]"
+    >
+      <td leap-table-grid-title-cell>
+        <img data-section="image" [src]="course.thumbnailUrl" alt="" />
+        <a [routerLink]="['details', course.id]" data-section="title">{{ course.name }}</a>
+      </td>
+      <td [nzEllipsis]="true">{{ course.categoryName }}</td>
+      <td [nzEllipsis]="true">
+        <span>{{ course.language.configValue }}</span>
+        <span *ngIf="course.totalEventsCount - 1 as restLanguageVariants">, {{ restLanguageVariants }} more</span>
+      </td>
+      <td>
+        <img
+          [src]="
+            environmentService.assetsPath +
+            (course.publishStatus?.configKey === 'published' ? '/published-to-lxp.svg' : '/not-published-to-lxp.svg')
+          "
+          alt="Published"
+          nz-tooltip
+          [nzTooltipTitle]="
+            course.publishStatus?.configKey === 'published'
+              ? 'Course is published to the LXP'
+              : 'Course is not published to the LXP'
+          "
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+          leapTableGridCellTooltip
+        />
+      </td>
+      <td>
+        <button leapTableGridRowCtaButton (click)="createLanguageVariant($event, course)">
+          <i
+            class="fal fa-plus-circle create-language-variant-icon"
+            nz-tooltip
+            nzTooltipTitle="Create New Language Variant"
+            nzTooltipPlacement="bottomRight"
+            nzTooltipColor="#26273b"
+            nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+            leapTableGridCellTooltip
+          ></i>
+        </button>
+      </td>
+      <td leap-table-grid-details-cell></td>
+    </tr>
+  </tbody>
+</nz-table>

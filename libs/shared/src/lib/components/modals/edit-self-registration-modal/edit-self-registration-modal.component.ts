@@ -1,12 +1,13 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { getOptionsFromMap } from '../../../common/helpers/helpers';
-import { SELF_REGISTRATION_OPTIONS_MAP } from '../../../containers/self-paced-courses-container/common/self-registration-options';
-import { REGISTRATION_APPROVAL_OPTIONS_MAP } from '../../../containers/self-paced-courses-container/common/registration-approval-options';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
-import { REGISTRATION_PERIOD_OPTIONS_MAP } from '../../../containers/self-paced-courses-container/common/registration-period-options';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
+import {IKeyValuePair} from "../../../models/interfaces";
+import {
+  REGISTRATION_APPROVAL_OPTIONS_MAP,
+  REGISTRATION_PERIOD_OPTIONS_MAP, SELF_REGISTRATION_OPTIONS_MAP
+} from "../../../models/constants/registration-options";
+import {getOptionsFromMap} from "../../../utils/common";
 
 @Component({
   selector: 'leap-edit-self-registration-modal',
@@ -15,7 +16,7 @@ import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class EditSelfRegistrationModalComponent implements OnInit, OnDestroy {
+export class EditSelfRegistrationModalComponent implements OnInit {
   selfRegistrationOptions: IKeyValuePair[] = [];
   registrationPeriodOptions: IKeyValuePair[] = [];
   registrationApprovalOptions: IKeyValuePair[] = [];
@@ -67,8 +68,6 @@ export class EditSelfRegistrationModalComponent implements OnInit, OnDestroy {
 
     this.subscribeToSelfRegistration();
   }
-
-  ngOnDestroy(): void {}
 
   private initRegistrationPeriod(): void {
     const eventTime = new Date();

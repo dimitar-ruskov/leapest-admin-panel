@@ -1,0 +1,300 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Course Details">
+    Below you can provide the details about your course. These will be publicly displayed at the course page in the
+    Marketplace.
+  </leap-creation-stepper-step-header>
+
+  <leap-creation-stepper-step-body>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <nz-form-item>
+        <leap-form-label>Course Description</leap-form-label>
+        <leap-form-hint-label>Please provide a general description for your course.</leap-form-hint-label>
+        <nz-form-control>
+          <quill-editor
+            class="admin-panel__quill-editor"
+            [modules]="quillConfig"
+            formControlName="description"
+          ></quill-editor>
+          <leap-editor-char-count
+            [current]="descriptionControl?.value?.length"
+            [limit]="charLimit"
+          ></leap-editor-char-count>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div class="sp-course-create-details__additional-fields">
+        <button
+          *ngIf="objectivesControl.disabled; else objectivesTemplate"
+          nz-button
+          class="add-field"
+          nzType="default"
+          nzSize="large"
+          (click)="toggleControlVisibility($event, objectivesControl, true)"
+        >
+          <i class="fal fa-plus"></i>
+          <span>Add Course Objectives</span>
+        </button>
+
+        <ng-template #objectivesTemplate>
+          <nz-form-item>
+            <label class="flex-label" for="course-objectives">
+              <leap-form-label>Course Objectives</leap-form-label>
+              <button
+                class="admin-panel__reset-button remove-additional-field"
+                (click)="toggleControlVisibility($event, objectivesControl, false)"
+              >
+                <i class="far fa-times-circle"></i>
+              </button>
+            </label>
+            <leap-form-hint-label>Please provide a general description for your course objective.</leap-form-hint-label>
+            <nz-form-control>
+              <quill-editor
+                id="course-objectives"
+                class="admin-panel__quill-editor"
+                [modules]="quillConfig"
+                formControlName="objectives"
+              ></quill-editor>
+              <leap-editor-char-count
+                [current]="objectivesControl?.value?.length"
+                [limit]="charLimit"
+              ></leap-editor-char-count>
+            </nz-form-control>
+          </nz-form-item>
+        </ng-template>
+
+        <button
+          *ngIf="targetAudienceControl.disabled; else targetAudienceTemplate"
+          class="add-field"
+          nz-button
+          nzType="default"
+          nzSize="large"
+          (click)="toggleControlVisibility($event, targetAudienceControl, true)"
+        >
+          <i class="fal fa-plus"></i>
+          <span>Add Target Audience</span>
+        </button>
+
+        <ng-template #targetAudienceTemplate>
+          <nz-form-item>
+            <label class="flex-label" for="course-target-audience">
+              <leap-form-label>Target Audience</leap-form-label>
+              <button
+                class="admin-panel__reset-button remove-additional-field"
+                (click)="toggleControlVisibility($event, targetAudienceControl, false)"
+              >
+                <i class="far fa-times-circle"></i>
+              </button>
+            </label>
+            <leap-form-hint-label>Please provide a general description for your target audience.</leap-form-hint-label>
+            <nz-form-control>
+              <quill-editor
+                id="course-target-audience"
+                class="admin-panel__quill-editor"
+                [modules]="quillConfig"
+                formControlName="targetAudience"
+              ></quill-editor>
+              <leap-editor-char-count
+                [current]="targetAudienceControl?.value?.length"
+                [limit]="charLimit"
+              ></leap-editor-char-count>
+            </nz-form-control>
+          </nz-form-item>
+        </ng-template>
+      </div>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Select a Category</leap-form-label>
+        <leap-form-hint-label
+          >Associating your course to a category and its inner classifications, will provide an additional way to
+          organize your content in the Marketplace library. Please select the catalog(s) that best suits your course. If
+          none of these categories apply, please contact support@edcast.com.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <leap-select-category-input formControlName="category"></leap-select-category-input>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="categoryControl?.value">
+        <leap-form-label [required]="true">Sub-Category</leap-form-label>
+        <leap-form-hint-label
+          >Sub-Categories allow you to refine your product classification and organize those with common
+          characteristics. Select the Sub-Category that best fits your product, or create a new one.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <leap-select-sub-category-input
+            formControlName="subcategory"
+            [categoryId]="categoryControl.value.id"
+          ></leap-select-sub-category-input>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label>Keywords</leap-form-label>
+        <leap-form-hint-label
+          >Keywords allow your course to be more easily discovered. Start typing the keywords that help to define your
+          course. Select from the suggestions provided. If you made a mistake, click the "x" icon to remove it.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <nz-select
+            nzMode="multiple"
+            nzPlaceHolder="Start typing..."
+            nzAllowClear
+            nzShowSearch
+            nzServerSearch
+            formControlName="keywords"
+            (nzOnSearch)="onInputKeyword($event)"
+          >
+            <nz-option
+              *ngFor="let option of keywordsControlOptions$ | async"
+              [nzValue]="option.key"
+              [nzLabel]="option.value"
+            ></nz-option>
+          </nz-select>
+          <div class="keyword-tags-container">
+            <span *ngFor="let val of keywordsControl.value">
+              <nz-tag nzMode="closeable" nzColor="#38b6a0" (nzOnClose)="onRemoveKeyword(val)">
+                {{ val }}
+              </nz-tag>
+            </span>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Level</leap-form-label>
+        <leap-form-hint-label>Please classify the level of this course.</leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="levelId">
+            <label
+              *ngFor="let option of courseLevelDictionary$ | async; first as first"
+              [hidden]="first"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+        <span
+          class="admin-panel__clear-button"
+          nz-tooltip
+          nzTooltipPlacement="right"
+          [ngClass]="isDisabledClearSection ? 'disabled' : ''"
+          [nzTooltipOverlayStyle]="{ 'font-size': '10px' }"
+          [nzTooltipTitle]="isDisabledClearSection ? 'No level selected yet' : ''"
+          (click)="clearSection()"
+          >Clear section</span
+        >
+      </nz-form-item>
+
+      <div>
+        <leap-form-label [required]="true">Select Training Manager(s)</leap-form-label>
+        <leap-form-hint-label>
+          An employee of your company who can manage this event by (un)assigning or approving/rejecting learners, if the
+          event requires approval.
+        </leap-form-hint-label>
+      </div>
+      <div *ngFor="let selectedTM of trainingManagersControl.value; let i = index" class="selected-tm">
+        <div style="display: flex">
+          <div class="main-label">{{ selectedTM.trainingManagerName }}</div>
+          <div class="remove-tm" (click)="removeTM(i)">
+            <i class="fal fa-trash-alt"></i>
+            Remove
+          </div>
+        </div>
+        <div class="main-label">
+          {{ selectedTM.trainingManagerEmail }}
+        </div>
+      </div>
+      <div style="display: flex">
+        <div style="width: 100%">
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="tmErrorTpl">
+              <nz-select
+                nzMode="multiple"
+                nzPlaceHolder="Select a Training Manager (click or type to search)"
+                nzShowSearch
+                [(nzOpen)]="trainingManagersDropdownOpen"
+                formControlName="trainingManagers"
+              >
+                <ng-container *ngFor="let tm of trainingManagers$ | async">
+                  <nz-option [nzValue]="tm" [nzLabel]="tm.trainingManagerName + ' - ' + tm.trainingManagerEmail">
+                  </nz-option>
+                </ng-container>
+              </nz-select>
+              <ng-template #tmErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Please add at least 1 training manager
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Self-registration</leap-form-label>
+        <leap-form-hint-label>Can learners register for this course event?</leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="selfRegistration">
+            <label
+              *ngFor="let option of selfRegistrationOptions"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="isAutomaticApprovalControlVisible">
+        <leap-form-label [required]="true">Registration Approval</leap-form-label>
+        <leap-form-hint-label
+          >Does your course require registration approval when learners sign up?</leap-form-hint-label
+        >
+        <nz-form-control>
+          <nz-radio-group formControlName="automaticApproval">
+            <label
+              *ngFor="let option of registrationApprovalOptions"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="!preSelfPacedCourse.specificExternalSKU">
+        <leap-form-label>Internal Course Code / SKU</leap-form-label>
+        <leap-form-hint-label>Add a custom code to your course.</leap-form-hint-label>
+        <nz-form-control [nzErrorTip]="errorTemplate">
+          <input nz-input type="text" class="ant-input" formControlName="externalSKU" placeholder="Start Typing..." />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons>
+    <button nz-button (click)="onBack($event)">Back</button>
+    <button nz-button nzType="primary" [disabled]="form.invalid" [nzLoading]="updating" (click)="onProceed($event)">
+      Proceed
+    </button>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    This field is too short
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    This field is too long
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

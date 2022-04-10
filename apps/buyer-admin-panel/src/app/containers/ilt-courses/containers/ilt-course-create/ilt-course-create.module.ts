@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule} from "@angular/router";
-import { NgxsModule } from '@ngxs/store';
 import { QuillModule } from 'ngx-quill';
 
 import { NzStepsModule } from 'ng-zorro-antd/steps';
@@ -27,7 +26,6 @@ import { IltCourseCreateMaterialsComponent } from './steps/ilt-course-create-mat
 import { IltCourseCreateDetailsComponent } from './steps/ilt-course-create-details/ilt-course-create-details.component';
 import { IltCourseCreateAgendaComponent } from './steps/ilt-course-create-agenda/ilt-course-create-agenda.component';
 import { IltCourseCreateSummaryComponent } from './steps/ilt-course-create-summary/ilt-course-create-summary.component';
-import { ILTCourseCreateState } from './state/ilt-course-create.state';
 
 import {
   FormLabelModule
@@ -76,7 +74,6 @@ import {
     }]),
 
     QuillModule,
-    NgxsModule.forFeature([ILTCourseCreateState]),
     CreationStepperModule,
     FormLabelModule,
     EditorCharCountModule,

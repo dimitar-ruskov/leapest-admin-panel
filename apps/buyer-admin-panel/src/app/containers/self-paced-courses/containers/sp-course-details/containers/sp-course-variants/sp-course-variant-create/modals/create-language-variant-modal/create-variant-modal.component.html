@@ -1,0 +1,33 @@
+<form nz-form [formGroup]='form' nzLayout='vertical'>
+
+  <nz-form-item class='create-language-variant-modal__form-item'>
+    <leap-form-label [required]='true'>Сourse Name</leap-form-label>
+    <p class='create-language-variant-modal__course-name'>{{ courseName }}</p>
+  </nz-form-item>
+
+  <nz-form-item class='create-language-variant-modal__form-item'>
+    <leap-form-label [required]='true'>Delivery language</leap-form-label>
+    <leap-form-hint-label>The language in which this course is going to be delivered. Please be aware of any differences
+      with the languages of the materials used.
+    </leap-form-hint-label>
+    <nz-form-control [nzErrorTip]='errorTemplate'>
+      <nz-select formControlName='language'
+                 [nzNotFoundContent]="'Item not found'"
+                 nzPlaceHolder='Select...'
+      >
+        <nz-option *ngFor='let option of languageDictionary; trackBy: trackByFn'
+                   [nzLabel]='option.value'
+                   [nzValue]='option.key'
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div class='create-language-variant-modal__final-name'>
+  <span>The name of your variant is:</span>&nbsp;{{ courseName + ' - ' + languageControl.value }}
+</div>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">This field is required</ng-container>
+</ng-template>

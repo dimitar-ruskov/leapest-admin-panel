@@ -1,0 +1,71 @@
+<leap-table-control-panel>
+  <leap-table-search
+    data-section="right"
+    (searchPhraseChange)="onSearch($event)"
+    [placeholder]="searchPlaceholder"
+  ></leap-table-search>
+  <button *ngIf="(total$ | async) > 0" nz-button nzType="default" data-section="right" (click)="exportLearners()">
+    <i class="fal fa-download"></i><span class="export-button__label">Export Learners Listing</span>
+  </button>
+</leap-table-control-panel>
+<nz-table
+  #pendingLearnersTable
+  nzNoResult="No learners added yet"
+  [nzFrontPagination]="false"
+  [nzData]="learners$ | async"
+  [nzTotal]="total$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  [nzPageSizeOptions]="paginationLimit"
+  [nzShowPagination]="true"
+  [nzShowSizeChanger]="true"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Enrollment Date</th>
+      <th nzWidth="55px"></th>
+      <th nzWidth="55px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of pendingLearnersTable.data; trackBy: tableRowTrackByFn">
+      <td>{{ data.firstName || data.lastName ? data.firstName + ' ' + data.lastName : 'N/A' }}</td>
+      <td>{{ data.username }}</td>
+      <td>{{ data.enrolmentDate | date: 'd MMM yyyy' }}</td>
+      <td>
+        <button
+          class="admin-panel__reset-button reject-learner-button"
+          nz-tooltip
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          [nzTooltipTitle]="customRejectTooltip"
+          (click)="rejectLearner(data)"
+        >
+          <i class="fal fa-times-circle"></i>
+        </button>
+        <ng-template #customRejectTooltip>
+          <div class="admin-panel__cta-tooltip">Reject Learner's Registration</div>
+        </ng-template>
+      </td>
+      <td>
+        <button
+          class="admin-panel__reset-button approve-learner-button"
+          nz-tooltip
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          [nzTooltipTitle]="customApproveTooltip"
+          (click)="approveLearner(data)"
+        >
+          <i class="fal fa-check"></i>
+        </button>
+        <ng-template #customApproveTooltip>
+          <div class="admin-panel__cta-tooltip">Approve Learner's Registration</div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody></nz-table
+>

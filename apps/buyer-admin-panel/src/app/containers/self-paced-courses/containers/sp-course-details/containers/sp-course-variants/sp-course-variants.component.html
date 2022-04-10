@@ -1,0 +1,59 @@
+<leap-table-control-panel>
+  <leap-table-search data-section="right" (searchPhraseChange)="onSearch($event)"></leap-table-search>
+</leap-table-control-panel>
+
+<nz-table
+  nzTableLayout="fixed"
+  leapTableGrid
+  [nzFrontPagination]="false"
+  [nzData]="spCourseLanguageVariants$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #spCourseLanguageVariantsTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="classEvent.displayName" nzWidth="45%" [nzEllipsis]="true" [nzSortFn]="true">Variant Name</th>
+      <th nzColumnKey="language.configValue" nzWidth="20%" [nzEllipsis]="true">Language</th>
+      <th nzColumnKey="trainingManagerName" nzWidth="20%" [nzEllipsis]="true">Training Manager</th>
+      <th nzColumnKey="enrolledLearnerCounter" nzWidth="15%" [nzEllipsis]="true">Registered</th>
+      <th nzWidth="34px"></th>
+    </tr>
+  </thead>
+  <tbody
+    nz-tooltip
+    nzTooltipTitle="Open Language Variant Details"
+    nzTooltipPlacement="bottomRight"
+    nzTooltipColor="#26273b"
+    nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+    [nzTooltipTrigger]="null"
+    leapTableGridRowTooltip
+  >
+    <tr leapTableGridSpacer></tr>
+    <tr
+      *ngFor="let variant of spCourseLanguageVariantsTable.data; trackBy: trackByFn"
+      leapTableGridRow
+      [leapTableGridRowClickable]="true"
+      [routerLink]="['/admin', 'self-paced-courses', 'details', courseId, 'variant', 'details', variant.id]"
+    >
+      <td leap-table-grid-title-cell>
+        <img data-section="image" [src]="variant.course.thumbnailUrl" alt="" />
+        <a
+          [routerLink]="['/admin', 'self-paced-courses', 'details', courseId, 'variant', 'details', variant.id]"
+          data-section="title"
+        >
+          {{ variant.classEvent.displayName }}
+        </a>
+      </td>
+      <td [nzEllipsis]="true">{{ variant.language.configValue }}</td>
+      <td [nzEllipsis]="true">{{ variant.trainingManagers?.[0]?.trainingManagerName }}</td>
+      <td [nzEllipsis]="true">
+        {{ variant.enrolledLearnerCounter }}
+      </td>
+      <td leap-table-grid-details-cell></td>
+    </tr>
+  </tbody>
+</nz-table>

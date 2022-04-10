@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxsModule } from '@ngxs/store';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -12,7 +11,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { PublishingListComponent } from './publishing-list.component';
 import { PublishingSettingsComponent } from './containers/publishing-settings/publishing-settings.component';
 import { PublishingInternalRepositoryComponent } from './containers/publishing-internal-repository/publishing-internal-repository.component';
-import { PublishingState } from '../../state/publishing.state';
 
 import {
   TableSearchModule
@@ -50,7 +48,6 @@ import {NzIconModule} from "ng-zorro-antd/icon";
       component: PublishingListComponent
     }]),
 
-    NgxsModule.forFeature([PublishingState]),
     CtaContainerModule,
     TableControlPanelModule,
     TableSearchModule,

@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IltCoursesContainerComponent } from './ilt-courses-container.component';
-import { IltCoursesListComponent } from './containers/ilt-courses-list/ilt-courses-list.component';
-import { IltCourseCreateComponent } from './containers/ilt-course-create/ilt-course-create.component';
-import { IltCourseDetailsComponent } from './containers/ilt-course-details/ilt-course-details.component';
 import { IltCourseNotificationDetailsComponent } from './containers/ilt-course-details/containers/ilt-course-notifications/ilt-course-notification-details/ilt-course-notification-details.component';
 import {
   IltCourseEventsBulkUploadDetailsComponent

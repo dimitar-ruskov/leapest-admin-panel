@@ -1,0 +1,224 @@
+<leap-creation-stepper-step-summary>
+  <nz-collapse>
+    <nz-collapse-panel nzHeader="General Information" [nzActive]="true">
+      <leap-general-info [fields]="fields">
+        <ng-template #fieldTemplate let-field>
+          <leap-general-info-field [fieldTitle]="field.title" [editable]="false">
+            <leap-general-info-field-value [fieldValue]="field.value"></leap-general-info-field-value>
+          </leap-general-info-field>
+        </ng-template>
+      </leap-general-info>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <nz-collapse>
+    <nz-collapse-panel nzHeader="Materials">
+      <leap-course-materials-input
+        [ngModel]="materials"
+        [userType]="'learner'"
+        [noMaterialsLabel]="noMaterialsLabel"
+        [readonly]="true"
+      ></leap-course-materials-input>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <nz-collapse>
+    <nz-collapse-panel nzHeader="Create Self-paced Course" [nzActive]="true">
+      <leap-creation-stepper-step-section>
+        <form nz-form [formGroup]="form" class="form">
+          <div class="publish-section">
+            <leap-creation-stepper-step-info>
+              Please make sure you have confirmed all the information regarding this course.
+            </leap-creation-stepper-step-info>
+            <label nz-checkbox formControlName="publishToLXP">
+              Publish Course to LXP after Course Creation
+            </label>
+            <div class="description">
+              If you choose to leave this option checked, after Course Creation the course, and later, all associated
+              Course Event will be immediately accessible for your learners on the LXP. If you choose NOT to immediately
+              publish the course, you can create and prepare Course Events and publish the Course when you are ready.
+            </div>
+          </div>
+          <div
+            class="flex-display"
+            *ngIf="publishToLXPControl.value === true && preSelfPacedCourse.specificExternalSKU"
+          >
+            <span class="main-label">Custom Course Code <span class="italic">*</span></span>
+            <span class="description">
+              Please enter a code between 4 to 8 characters containing only digits and alphabets in upper case.
+            </span>
+            <nz-form-control class="form-control-non-flex input-field" [nzErrorTip]="errorTemplate">
+              <input nz-input placeholder="Start Typing..." formControlName="externalSKU" />
+            </nz-form-control>
+          </div>
+          <div *ngIf="publishToLXPControl.value === true">
+            <div class="flex-display">
+              <span class="main-label">LXP Channels <span class="italic">Optional</span></span>
+              <span class="description">In which channels do you wish this event to be published?</span>
+              <nz-form-control class="form-control-non-flex">
+                <nz-select
+                  nzAllowClear
+                  nzShowSearch
+                  nzServerSearch
+                  nzMode="multiple"
+                  nzShowArrow="true"
+                  formControlName="lxpChannels"
+                  nzPlaceHolder="Select Channels (click or type to search)"
+                  (nzOnSearch)="getLxpChannels($event)"
+                >
+                  <ng-container *ngFor="let o of lxpChannels$ | async">
+                    <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+              <ng-container *ngTemplateOutlet="channelsPillsContainer"></ng-container>
+            </div>
+
+            <div class="flex-display">
+              <span class="main-label">LXP Groups <span class="italic">Optional</span></span>
+              <span class="description">In which groups do you wish this event to be published?</span>
+              <nz-form-control class="form-control-non-flex">
+                <nz-select
+                  nzAllowClear
+                  nzShowSearch
+                  nzServerSearch
+                  nzShowArrow="true"
+                  nzMode="multiple"
+                  formControlName="lxpGroups"
+                  nzPlaceHolder="Select Groups (click or type to search)"
+                  (nzOnSearch)="onInputLxpGroups($event)"
+                >
+                  <ng-container *ngFor="let o of lxpGroups$ | async">
+                    <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+              <ng-container *ngTemplateOutlet="publishGroupsPillsContainer"></ng-container>
+            </div>
+            <label>Privacy Settings <span class="italic">*</span></label>
+            <div class="description">
+              Please specify the level of access for this Course's SmartCard on the LXP.
+            </div>
+            <nz-radio-group formControlName="lxpPrivate" class="flex-display">
+              <label nz-radio [nzValue]="o.value" *ngFor="let o of coursePublishStatus">
+                {{ o.label }}
+                <i class="fal fa-info-circle" nz-tooltip nzTooltipTitle="{{ o.tooltip }}"></i>
+              </label>
+            </nz-radio-group>
+          </div>
+          <div *ngIf="publishToLXPControl.value === true && lxpPrivateControl.value === true">
+            <div class="flex-display">
+              <span class="main-label">Restrict to Users <span class="italic">Optional</span></span>
+              <span class="description"
+                >Please, type at least 3 letters of the users you wish to select to share this course with.</span
+              >
+              <nz-form-control class="form-control-non-flex">
+                <nz-select
+                  nzMode="multiple"
+                  nzPlaceHolder="Type to search and select"
+                  nzAllowClear
+                  nzShowSearch
+                  nzServerSearch
+                  formControlName="lxpRestrictUsers"
+                  (nzOnSearch)="onInputLxpUsers($event)"
+                >
+                  <ng-container *ngFor="let o of lxpUsers$ | async">
+                    <nz-option [nzValue]="o.key" [nzLabel]="o.value"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+              <ng-container *ngTemplateOutlet="usersPillsContainer"></ng-container>
+            </div>
+            <div class="flex-display">
+              <span class="main-label">Restrict to Groups <span class="italic">Optional</span></span>
+              <span class="description"
+                >Please, type at least 3 letters of the groups you wish to select to share this course with.</span
+              >
+              <nz-form-control class="form-control-non-flex">
+                <nz-select
+                  nzMode="multiple"
+                  nzPlaceHolder="Type to search and select"
+                  nzAllowClear
+                  nzShowSearch
+                  nzServerSearch
+                  formControlName="lxpRestrictGroups"
+                  (nzOnSearch)="onInputLxpGroups($event)"
+                >
+                  <ng-container *ngFor="let o of lxpGroups$ | async">
+                    <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+              <ng-container *ngTemplateOutlet="groupsPillsContainer"></ng-container>
+            </div>
+          </div>
+        </form>
+      </leap-creation-stepper-step-section>
+      <leap-creation-stepper-step-buttons>
+        <button nz-button (click)="onBack()">Back</button>
+        <button nz-button nzType="primary" [nzLoading]="submitting" (click)="onSubmit()" [disabled]="!form.valid">
+          Submit
+        </button>
+      </leap-creation-stepper-step-buttons>
+    </nz-collapse-panel>
+  </nz-collapse>
+</leap-creation-stepper-step-summary>
+
+<ng-template #usersPillsContainer>
+  <div class="pill-container" *ngIf="lxpUsersCount > 0">
+    <span *ngFor="let val of lxpRestrictUsersControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val }} <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'user')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+
+<ng-template #groupsPillsContainer>
+  <div class="pill-container" *ngIf="lxpGroupsCount > 0">
+    <span *ngFor="let val of lxpRestrictGroupsControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val.value }} <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'group')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+
+<ng-template #channelsPillsContainer>
+  <div class="pill-container" *ngIf="lxpChannelsCount > 0">
+    <span *ngFor="let val of lxpRestrictChannelsControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val.value }} <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'channel')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+
+<ng-template #publishGroupsPillsContainer>
+  <div class="pill-container" *ngIf="lxpPublishGroupsCount > 0">
+    <span *ngFor="let val of lxpRestrictPublishGroupsControl.value">
+      <nz-tag nzColor="default" class="lxp-user-tag"
+        >{{ val.value }}
+        <i class="close-icon" nz-icon nzType="close-circle" (click)="onRemoveUser(val, 'publishGroup')"></i
+      ></nz-tag>
+    </span>
+  </div>
+</ng-template>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    This field is required
+  </ng-container>
+  <ng-container *ngIf="control.hasError('pattern')">
+    This field should contain only digits and alphabets in upper case.
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    This field should be at least 4 characters long
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    This field should not be more than 8 characters long
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

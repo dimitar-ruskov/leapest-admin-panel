@@ -1,0 +1,172 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Variant Details">
+    Here you can provide all base details about your course event. These will be publicly displayed at the course page
+    in the Marketplace.
+  </leap-creation-stepper-step-header>
+
+  <leap-creation-stepper-step-body>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <div>
+        <leap-form-label [required]="true">Select Training Manager(s)</leap-form-label>
+        <leap-form-hint-label>
+          An employee of your company who can manage this event by (un)assigning or approving/rejecting learners, if the
+          event requires approval.
+        </leap-form-hint-label>
+      </div>
+      <div *ngFor="let selectedTM of trainingManagersControl.value; let i = index" class="selected-tm">
+        <div style="display: flex">
+          <div class="main-label">{{ selectedTM.trainingManagerName }}</div>
+          <div class="remove-tm" (click)="removeTM(i)">
+            <i class="fal fa-trash-alt"></i>
+            Remove
+          </div>
+        </div>
+        <div class="main-label">
+          {{ selectedTM.trainingManagerEmail }}
+        </div>
+      </div>
+      <div style="display: flex">
+        <div style="width: 100%">
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="tmErrorTpl">
+              <nz-select
+                nzMode="multiple"
+                nzPlaceHolder="Select a Training Manager (click or type to search)"
+                nzShowSearch
+                [(nzOpen)]="trainingManagersDropdownOpen"
+                formControlName="trainingManagers"
+              >
+                <ng-container *ngFor="let tm of trainingManagers$ | async">
+                  <nz-option [nzValue]="tm" [nzLabel]="tm.trainingManagerName + ' - ' + tm.trainingManagerEmail">
+                  </nz-option>
+                </ng-container>
+              </nz-select>
+              <ng-template #tmErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Please add at least 1 training manager
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Self-registration</leap-form-label>
+        <leap-form-hint-label>Can learners register for this course event?</leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="selfRegistration">
+            <label
+              *ngFor="let option of selfRegistrationOptions"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="isAutomaticApprovalControlVisible">
+        <leap-form-label [required]="true">Registration Approval</leap-form-label>
+        <leap-form-hint-label
+          >Does your course require registration approval when learners sign up?
+        </leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="automaticApproval">
+            <label
+              *ngFor="let option of registrationApprovalOptions"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Course Completion</leap-form-label>
+        <leap-form-hint-label
+          >Please specify how you wish for this course event to be considered completed.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="automaticCourseCompletion">
+            <label
+              *ngFor="let option of courseCompletionOptions"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzValue]="option.key"
+              >{{ option.value }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label [required]="true">Reviews and Ratings</leap-form-label>
+        <leap-form-hint-label
+          >Indicate weather or not the course event can be reviewed and rated by participants.
+        </leap-form-hint-label>
+        <nz-form-control>
+          <nz-switch formControlName="reviewsEnabled"></nz-switch>
+          <span class="admin-panel__switch-label">Enable Certificate Delivery</span>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <leap-form-label>
+          {{
+            preSPCourseLanguageVariant.course.specificExternalSKU ? 'Custom Course Code' : 'Internal Course Code / SKU'
+          }}
+        </leap-form-label>
+        <leap-form-hint-label>
+          {{
+            preSPCourseLanguageVariant.course.specificExternalSKU
+              ? 'Please enter a code between 4 to 8 characters containing only digits and alphabets in upper case.'
+              : 'Add a custom code to your course.'
+          }}
+        </leap-form-hint-label>
+        <nz-form-control [nzErrorTip]="errorTemplate">
+          <input nz-input type="text" formControlName="externalSKU" placeholder="Start Typing..." />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons>
+    <button nz-button (click)="onBack($event)">Back</button>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="form.invalid"
+      [nzLoading]="updating$ | async"
+      (click)="onProceed($event)"
+    >
+      Proceed
+    </button>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('pattern')">
+    This field should contain only digits and alphabets in upper case.
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    {{
+      preSPCourseLanguageVariant.course.specificExternalSKU
+        ? 'This field should be at least 4 characters long'
+        : 'This field is too short'
+    }}
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    {{
+      preSPCourseLanguageVariant.course.specificExternalSKU
+        ? 'This field should not be more than 8 characters long'
+        : 'This field is too long'
+    }}
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

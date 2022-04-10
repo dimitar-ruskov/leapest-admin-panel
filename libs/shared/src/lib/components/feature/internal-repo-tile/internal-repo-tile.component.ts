@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { InternalRepositoryDTO } from '../../models/internal-repository.model';
-import { EnvironmentService } from '../../../snatch/services';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import {InternalRepositoryDTO} from "../../../models/interfaces";
+import {EnvironmentService} from "../../../utils/services/common";
 
 
 const SELECT_VARIANT_LABEL = 'Select variant';

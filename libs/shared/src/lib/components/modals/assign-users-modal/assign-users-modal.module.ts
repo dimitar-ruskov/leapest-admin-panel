@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {AssignUsersModalComponent} from "./assign-users-modal.component";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzSpinModule} from "ng-zorro-antd/spin";
@@ -23,6 +24,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzSpinModule,
     NzRadioModule,

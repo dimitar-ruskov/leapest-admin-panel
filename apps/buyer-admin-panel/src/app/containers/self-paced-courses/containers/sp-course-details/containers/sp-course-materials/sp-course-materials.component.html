@@ -1,0 +1,3 @@
+<div class='self-paced-course-materials__item' *ngFor='let material of (materials$ | async); trackBy: trackByFn'>
+  <leap-master-internal-repo-tile [m_ir]='material'></leap-master-internal-repo-tile>
+</div>

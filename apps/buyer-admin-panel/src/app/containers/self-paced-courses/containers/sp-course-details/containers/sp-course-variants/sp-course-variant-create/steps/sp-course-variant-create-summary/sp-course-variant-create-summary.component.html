@@ -1,0 +1,72 @@
+<leap-creation-stepper-step-summary>
+  <nz-collapse>
+    <nz-collapse-panel nzHeader='General Information' [nzActive]='true'>
+      <leap-general-info [fields]='generalInformationFields'>
+        <ng-template #fieldTemplate let-field>
+          <leap-general-info-field [fieldTitle]='field.title'
+                                   [editable]='false'
+          >
+            <leap-general-info-field-value [fieldValue]='field.value'></leap-general-info-field-value>
+          </leap-general-info-field>
+        </ng-template>
+      </leap-general-info>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <nz-collapse>
+    <nz-collapse-panel nzHeader='Variant Details'>
+      <leap-general-info [fields]='variantDetailsFields'>
+        <ng-template #fieldTemplate let-field>
+          <leap-general-info-field [fieldTitle]='field.title'
+                                   [editable]='false'
+          >
+            <leap-general-info-field-value [fieldValue]='field.value'></leap-general-info-field-value>
+          </leap-general-info-field>
+        </ng-template>
+      </leap-general-info>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <nz-collapse>
+    <nz-collapse-panel nzHeader='Materials'>
+
+      <leap-general-info [fields]='materialsFields'>
+        <ng-template #fieldTemplate let-field>
+          <leap-general-info-field [fieldTitle]='field.title'
+                                   [editable]='false'
+          >
+            <leap-creation-stepper-step-materials [materials]='field.value?.content?.materials'>
+              <ng-template #materialTemplate let-material>
+                <leap-internal-repo-tile [ir]='material'
+                                         [selectable]='false'
+                ></leap-internal-repo-tile>
+              </ng-template>
+              <ng-template #noMaterialsTemplate>
+                <leap-no-materials>{{ field.value?.content?.noMaterialsLabel }}</leap-no-materials>
+              </ng-template>
+            </leap-creation-stepper-step-materials>
+          </leap-general-info-field>
+        </ng-template>
+      </leap-general-info>
+
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <nz-collapse>
+    <nz-collapse-panel nzHeader='Create Variant' [nzActive]='true'>
+      <leap-creation-stepper-step-section>
+        <leap-creation-stepper-step-info>
+          Please make sure you have confirmed all the information regarding this variant.
+        </leap-creation-stepper-step-info>
+      </leap-creation-stepper-step-section>
+      <leap-creation-stepper-step-buttons>
+        <button nz-button (click)='onBack()'>Back</button>
+        <button nz-button
+                nzType='primary'
+                [nzLoading]='submitting$ | async'
+                (click)='onSubmit()'
+        >Submit</button>
+      </leap-creation-stepper-step-buttons>
+    </nz-collapse-panel>
+  </nz-collapse>
+</leap-creation-stepper-step-summary>

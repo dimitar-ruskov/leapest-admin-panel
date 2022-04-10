@@ -2,8 +2,9 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, take } from 'rxjs/operators';
 
-import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import {AdminCoursesService} from "../../../utils/services";
+import {ITrainingManager} from "../../../models/interfaces";
 
 
 @Component({
@@ -13,6 +14,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditTrainingManagerModalComponent implements OnInit, OnDestroy {
+
+  @Input() selectedTrainingManager: any;
 
   private pendingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
@@ -30,8 +33,6 @@ export class EditTrainingManagerModalComponent implements OnInit, OnDestroy {
     trainingManager: [null, Validators.required]
   });
   trainingManagers: { id: string, email: string, name: string }[];
-
-  @Input() selectedTrainingManager: { id: string, email: string, name: string } | null;
 
   trainingManagerCompareFn = (
     o1: { id: string, email: string, name: string },

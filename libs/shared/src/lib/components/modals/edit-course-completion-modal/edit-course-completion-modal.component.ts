@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { getOptionsFromMap } from '../../../common/helpers/helpers';
-import { COURSE_COMPLETION_OPTIONS_MAP } from '../../../containers/self-paced-courses-container/common/course-completion-options';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
+import {getOptionsFromMap} from "../../../utils/common";
+import {COURSE_COMPLETION_OPTIONS_MAP} from "../../../models/constants/registration-options";
+import {IKeyValuePair} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-edit-course-completion-modal',

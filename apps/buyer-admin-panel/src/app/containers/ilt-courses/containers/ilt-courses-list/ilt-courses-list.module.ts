@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NgxsModule } from '@ngxs/store';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -9,9 +8,6 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-import { IltCoursesListState } from './state/ilt-courses-list.state';
-import { PublishedILTCoursesState } from './state/published-ilt-courses.state';
-import { DraftILTCoursesState } from './state/draft-ilt-courses.state';
 import { IltCoursesListComponent } from './ilt-courses-list.component';
 import { PublishedIltCoursesListComponent } from './published-ilt-courses-list/published-ilt-courses-list.component';
 import { DraftIltCoursesListComponent } from './draft-ilt-courses-list/draft-ilt-courses-list.component';
@@ -49,11 +45,6 @@ import {
       component: IltCoursesListComponent
     }]),
 
-    NgxsModule.forFeature([
-      IltCoursesListState,
-      PublishedILTCoursesState,
-      DraftILTCoursesState
-    ]),
     CtaContainerModule,
     TableControlPanelModule,
     TableSearchModule,

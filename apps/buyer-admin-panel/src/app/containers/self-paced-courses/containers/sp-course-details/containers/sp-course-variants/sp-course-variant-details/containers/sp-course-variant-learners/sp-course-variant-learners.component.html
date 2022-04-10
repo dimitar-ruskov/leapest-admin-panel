@@ -1,0 +1,25 @@
+<nz-tabset *ngIf='spCourseLanguageVariant.selfRegistration && !spCourseLanguageVariant.course?.automaticApproval; else enrolledLearners'
+           nzType='card'
+           class='admin-panel__card-tabset'
+           [nzAnimated]='false'
+>
+  <nz-tab nzTitle='Requesting Enrollment'>
+    <leap-sp-course-variant-learners-pending
+      [spCourseLanguageVariant]='spCourseLanguageVariant'>
+    </leap-sp-course-variant-learners-pending>
+  </nz-tab>
+  <nz-tab nzTitle='Enrolled'>
+    <leap-sp-course-variant-learners-enrolled
+      [spCourseLanguageVariant]='spCourseLanguageVariant'>
+    </leap-sp-course-variant-learners-enrolled>
+  </nz-tab>
+</nz-tabset>
+
+<ng-template #enrolledLearners>
+  <div class='table-container'>
+    <leap-sp-course-variant-learners-enrolled
+      [spCourseLanguageVariant]='spCourseLanguageVariant'>
+    </leap-sp-course-variant-learners-enrolled>
+  </div>
+</ng-template>
+

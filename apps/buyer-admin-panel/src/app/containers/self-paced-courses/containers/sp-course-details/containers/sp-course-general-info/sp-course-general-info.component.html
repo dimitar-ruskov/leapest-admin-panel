@@ -1,0 +1,17 @@
+<leap-general-info [fields]="fields" *ngIf="selfPacedCourse">
+  <leap-general-info-thumbnail-box
+    [thumbnailUrl]="selfPacedCourse.thumbnailUrl"
+    [editable]="!editLock"
+    (generateThumbnail)="onGenerateThumbnail(selfPacedCourse.id)"
+    (uploadThumbnail)="onUploadThumbnail(selfPacedCourse.thumbnailUrl, selfPacedCourse.id)"
+  ></leap-general-info-thumbnail-box>
+  <ng-template #fieldTemplate let-field>
+    <leap-general-info-field
+      [fieldTitle]="field.title"
+      [editable]="field.editable && !editLock"
+      (edit)="onEdit(field.id)"
+    >
+      <leap-general-info-field-value [fieldValue]="field.value"></leap-general-info-field-value>
+    </leap-general-info-field>
+  </ng-template>
+</leap-general-info>

@@ -1,0 +1,111 @@
+<nz-breadcrumb nzSeparator=">">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'self-paced-courses']">Self-paced Courses</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Course Details</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="selfPacedCourse$ | async as resource">
+  <nz-content class="admin-panel__content">
+    <leap-cta-container [skeleton]="resource.isPending">
+      <h1 leap-cta-container-title>{{ resource.response?.name }}</h1>
+      <ng-container slot="buttons">
+        <button
+          class="admin-panel__slim-button"
+          *ngIf="!(resource.response?.publishStatus?.configKey === 'published'); else publishedToLXP"
+          nz-button
+          nzType="default"
+          [disabled]="publishToLxpPending"
+          (click)="
+            openPublishLxpModal(
+              resource.response?.name,
+              resource.response?.code,
+              resource.response?.domain?.name,
+              resource.response?.specificExternalSKU,
+              resource.response?.externalSKU
+            )
+          "
+          nz-tooltip
+          nzTooltipTitle="This course is not Published to LXP. Your learners can not discover it or access & enroll associated events."
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+        >
+          Publish To LXP
+        </button>
+        <ng-template #publishedToLXP>
+          <div class="published">
+            <img
+              class="published__icon"
+              [src]="environmentService.assetsPath + '/published-to-lxp.svg'"
+              alt="Published"
+            />
+            <span class="published__text">Published to LXP</span>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-container slot="buttons">
+        <button
+          class="admin-panel__slim-button"
+          nz-button
+          nzType="primary"
+          (click)="onCreateNewLanguageVariant($event, resource.response)"
+        >
+          Create New Language Variant
+        </button>
+      </ng-container>
+      <h2 leap-cta-container-description><span [innerHTML]="resource.response?.description"></span></h2>
+      <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 1 }" slot="skeleton"></nz-skeleton>
+    </leap-cta-container>
+  </nz-content>
+
+  <nz-content class="admin-panel__content">
+    <nz-tabset
+      class="admin-panel__tabset"
+      [nzAnimated]="false"
+      (nzSelectedIndexChange)="onSelectTab($event)"
+      nzLinkRouter
+    >
+      <nz-tab>
+        <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">General Information</a>
+        <ng-template nz-tab>
+          <leap-sp-course-general-info
+            *ngIf="!resource.isPending; else spinnerTemplate"
+          ></leap-sp-course-general-info>
+        </ng-template>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'materials' }"
+          queryParamsHandling="merge"
+          >Course Materials</a
+        >
+        <ng-template nz-tab>
+          <leap-sp-course-materials
+            *ngIf="!resource.isPending; else spinnerTemplate"
+          ></leap-sp-course-materials>
+        </ng-template>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'variants' }"
+          queryParamsHandling="merge"
+          >Language Variants</a
+        >
+        <leap-sp-course-variants></leap-sp-course-variants>
+      </nz-tab>
+    </nz-tabset>
+  </nz-content>
+</ng-container>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="self-paced-course-details__spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

@@ -18,13 +18,13 @@ const routes: Routes = [
       //   path: 'ilt-events',
       //   loadChildren: async () => import('./containers/ilt-events/ilt-events.module').then((m) => m.IltEventsModule),
       // },
-      // {
-      //   path: 'self-paced-courses',
-      //   loadChildren: async () =>
-      //     import('./containers/self-paced-courses-container/self-paced-courses-container.module').then(
-      //       (m) => m.SelfPacedCoursesContainerModule,
-      //     ),
-      // },
+      {
+        path: 'self-paced-courses',
+        loadChildren: async () =>
+          import('../self-paced-courses/sp-courses-container.module').then(
+            (m) => m.SpCoursesContainerModule,
+          ),
+      },
       {
         path: 'internal-repository',
         loadChildren: async () =>
@@ -78,7 +78,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [],
 })
 export class AdminHomeContainerRoutingModule {
 }

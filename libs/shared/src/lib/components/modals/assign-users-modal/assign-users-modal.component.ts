@@ -1,14 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { IKeyValuePair } from 'src/app/core/model/dictionary.model';
-import { TFormControlConfigOption } from '../../../../shared/component/t-form-control/t-form-input.model';
-import { AdminCoursesService } from 'src/app/admin-panel/services/admin-courses.service';
 import { Observable } from 'rxjs';
-import { EnvironmentService, UploadService } from '../../../../snatch/services';
-import { ILTEvent, ILTEventLearner } from '../../../models/ilt-event.model';
-import { SPCourseLanguageVariant } from '../../../containers/self-paced-courses-container/models/self-paced-course.model';
-import { SPCourseLanguageVariantLearner } from '../../../containers/self-paced-courses-container/models/sp-course-language-variant-learner.model';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+import {IKeyValuePair, ILTEvent, ILTEventLearner, TFormControlConfigOption} from "../../../models/interfaces";
+import {SPCourseLanguageVariant} from "../../../models/interfaces/sp-courses/sp-course.model";
+import {EnvironmentService, UploadService} from "../../../utils/services/common";
+import {
+  SPCourseLanguageVariantLearner
+} from "../../../models/interfaces/sp-courses/sp-course-language-variant-learner.model";
+import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-assign-users-modal',
@@ -84,6 +85,7 @@ export class AssignUsersModalComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly adminCoursesService: AdminCoursesService,
+    private readonly lxpUsersService: LxpUsersService,
     private readonly cdr: ChangeDetectorRef,
     public environmentService: EnvironmentService,
     private readonly uploadService: UploadService,
@@ -107,7 +109,7 @@ export class AssignUsersModalComponent implements OnInit {
       .pipe(
         distinctUntilChanged(),
         switchMap((groupId: string) => {
-          return this.adminCoursesService.getLxpUsersByGroupId(groupId);
+          return this.lxpUsersService.getLxpUsersByGroupId(groupId);
         }),
       )
       .subscribe((groupUsers: IKeyValuePair[]) => {
@@ -169,13 +171,13 @@ export class AssignUsersModalComponent implements OnInit {
 
   onInputLxpUsers(filter: string): void {
     if (filter && filter.length > 2) {
-      this.lxpUsers$ = this.adminCoursesService.getLxpUsers(filter);
+      this.lxpUsers$ = this.lxpUsersService.getLxpUsers(filter);
     }
   }
 
   onInputLxpGroups(filter: string): void {
     if (filter && filter.length > 2) {
-      this.lxpGroups$ = this.adminCoursesService.getLxpGroups(filter);
+      this.lxpGroups$ = this.lxpUsersService.getLxpGroups(filter);
     }
   }
 

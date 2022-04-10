@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxsModule } from '@ngxs/store';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -25,22 +24,17 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzUploadModule} from "ng-zorro-antd/upload";
 
 import {IltCourseDetailsRoutingModule} from "./ilt-course-details-routing.module";
-import { IltCourseDetailsState } from './state/ilt-course-details.state';
 import { IltCourseDetailsComponent } from './ilt-course-details.component';
 import { IltCourseGeneralInfoComponent } from './containers/ilt-course-general-info/ilt-course-general-info.component';
 import { IltCourseMaterialsComponent } from './containers/ilt-course-materials/ilt-course-materials.component';
 import { IltCourseEventsTabComponent } from './containers/ilt-course-events-tab/ilt-course-events-tab.component';
 import { IltCourseReviewsComponent } from './containers/ilt-course-reviews/ilt-course-reviews.component';
-import { IltCourseReviewsState } from './containers/ilt-course-reviews/state/ilt-course-reviews.state';
 import { IltCourseNotificationsComponent } from './containers/ilt-course-notifications/ilt-course-notifications.component';
 import { IltCourseNotificationDetailsComponent } from './containers/ilt-course-notifications/ilt-course-notification-details/ilt-course-notification-details.component';
-import { IltCourseDetailsNotificationsState } from './containers/ilt-course-notifications/state/ilt-course-details-notifications.state';
 import { IltCourseEventsBulkComponent } from './containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk.component';
 import { IltCourseEventsFinishedComponent } from './containers/ilt-course-events-tab/ilt-course-events-finished/ilt-course-events-finished.component';
 import { IltCourseEventsDraftComponent } from './containers/ilt-course-events-tab/ilt-course-events-draft/ilt-course-events-draft.component';
 import { IltCourseEventsActiveComponent } from './containers/ilt-course-events-tab/ilt-course-events-active/ilt-course-events-active.component';
-import { IltCourseEventsCommonState } from './containers/ilt-course-events-tab/state/ilt-course-events-common.state';
-import { IltCourseEventsBulkUploadsState } from './containers/ilt-course-events-tab/ilt-course-events-bulk/state/ilt-course-events-bulk.state';
 import {
   BulkUploadSchedulingReportListComponent
 } from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/bulk-upload-scheduling-report/bulk-upload-scheduling-report-list/bulk-upload-scheduling-report-list.component";
@@ -168,13 +162,6 @@ import {
     IltCourseDetailsRoutingModule,
 
     NgxsFormPluginModule,
-    NgxsModule.forFeature([
-      IltCourseDetailsState,
-      IltCourseReviewsState,
-      IltCourseDetailsNotificationsState,
-      IltCourseEventsCommonState,
-      IltCourseEventsBulkUploadsState,
-    ]),
     MasterInternalRepoTileModule,
     CtaContainerModule,
     GeneralInfoModule,

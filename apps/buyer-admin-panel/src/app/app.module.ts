@@ -13,6 +13,7 @@ import {QuillModule} from "ngx-quill";
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 import {en_US, NZ_I18N} from "ng-zorro-antd/i18n";
 import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzMessageModule} from "ng-zorro-antd/message";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -20,7 +21,7 @@ import {GraphQLModule} from "./graphql.module";
 import {environment} from "../environments/environment";
 import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
 import {BootstrapService} from "../../../../libs/shared/src/lib/utils/services/common";
-import {GroupGuard, HybridUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
+import {GroupGuard, HybridUserGuard, ProvisionUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
 import {CoreState} from "./state/core.state";
 import {SetDomainData} from "./state/core.actions";
 
@@ -38,8 +39,8 @@ const ngZorroConfig: NzConfig = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // @TODO Are we using animations?
-    NzModalModule, // @TODO Fix for Modals in services Provided in root
-    HttpClientModule,
+    NzModalModule,
+    HttpClientModule, // @TODO Fix for Modals in services Provided in root
     GraphQLModule,
     OktaAuthModule,
     AppRoutingModule,
@@ -86,7 +87,8 @@ const ngZorroConfig: NzConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     OktaAuthGuard,
     HybridUserGuard,
-    GroupGuard
+    GroupGuard,
+    ProvisionUserGuard
   ],
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {APP_BASE_HREF} from "@angular/common";
 import {OktaAuthGuard, OktaCallbackComponent} from '@okta/okta-angular';
 import {GroupGuard, HybridUserGuard, ProvisionUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
 
@@ -47,6 +48,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/hw' }]
 })
 export class AppRoutingModule {
 }

@@ -1,0 +1,29 @@
+@success-color: #38b6a0;
+@default-button-color: #737394;
+@background-color: #fff;
+
+form {
+  max-width: 450px;
+}
+
+.table-container {
+  background-color: @background-color;
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.download-report-button {
+  color: @default-button-color;
+
+  > i {
+    font-size: 22px;
+  }
+
+  &:hover {
+    color: @success-color;
+  }
+
+  &__label {
+    margin-left: 5px;
+  }
+}

@@ -1,0 +1,55 @@
+<leap-table-control-panel>
+  <leap-table-search
+    data-section="right"
+    (searchPhraseChange)="onSearch($event)"
+    [placeholder]="searchPlaceholder"
+  ></leap-table-search>
+  <button *ngIf="(total$ | async) > 0" nz-button nzType="default" data-section="right" (click)="exportLearners()">
+    <i class="fal fa-download"></i><span class="export-button__label">Export Learners Listing</span>
+  </button>
+</leap-table-control-panel>
+<nz-table
+  #enrolledLearnersTable
+  nzNoResult="No learners added yet"
+  [nzFrontPagination]="false"
+  [nzData]="learners$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageSizeOptions]="paginationLimit"
+  [nzShowPagination]="true"
+  [nzShowSizeChanger]="true"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Enrollment Date</th>
+      <th nzWidth="55px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of enrolledLearnersTable.data; trackBy: tableRowTrackByFn">
+      <td>{{ data.firstName || data.lastName ? data.firstName + ' ' + data.lastName : 'N/A' }}</td>
+      <td>{{ data.username }}</td>
+      <td>{{ data.enrolmentDate | date: 'd MMM yyyy' }}</td>
+      <td>
+        <button
+          class="admin-panel__reset-button remove-learner-button"
+          nz-tooltip
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          [nzTooltipTitle]="customTooltip"
+          (click)="removeLearner(data)"
+        >
+          <i class="fal fa-trash-alt"></i>
+        </button>
+        <ng-template #customTooltip>
+          <div class="admin-panel__cta-tooltip">Remove learner from this variant</div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody></nz-table
+>

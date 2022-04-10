@@ -1,0 +1,126 @@
+<nz-breadcrumb nzSeparator=">">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'self-paced-courses']">Self-paced Courses</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'self-paced-courses', 'details', courseId]">Course Details</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Language Variants</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="spCourseLanguageVariant$ | async as spCourseLanguageVariant">
+  <nz-content class="admin-panel__content">
+    <leap-cta-container [skeleton]="spCourseLanguageVariant.isPending && !spCourseLanguageVariant.response">
+      <h1 leap-cta-container-title>{{ spCourseLanguageVariant?.response?.classEvent.displayName }}</h1>
+      <div slot="buttons" class="flex mr-4">
+        <img
+          class="publish-icon"
+          [src]="
+            environmentService.assetsPath +
+            (spCourseLanguageVariant?.response?.course.publishStatus?.configKey === 'published'
+              ? '/published-to-lxp.svg'
+              : '/not-published-to-lxp.svg')
+          "
+          alt="Published"
+        />
+        <span
+          >{{
+            spCourseLanguageVariant?.response?.course.publishStatus?.configKey === 'published'
+              ? 'Parent Course is Published to LXP'
+              : 'Parent Course is not Published to LXP'
+          }}
+          <a
+            *ngIf="spCourseLanguageVariant?.response?.course.publishStatus?.configKey === 'published'"
+            href="{{ '/hw/admin/self-paced-courses/details/' + spCourseLanguageVariant?.response?.course.parentId }}"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            (View Course)
+          </a>
+        </span>
+      </div>
+      <leap-event-header-sections
+        [details]="spCourseLanguageVariant.response"
+        (onEditClicked)="onEditDetails($event, spCourseLanguageVariant.response)"
+        (assignUsersClicked)="onAssignUsers(spCourseLanguageVariant?.response)"
+      ></leap-event-header-sections>
+      <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 2 }" slot="skeleton"></nz-skeleton>
+    </leap-cta-container>
+  </nz-content>
+
+  <nz-content class="admin-panel__content">
+    <nz-tabset
+      class="admin-panel__tabset"
+      [nzAnimated]="false"
+      (nzSelectedIndexChange)="onSelectTab($event)"
+      nzLinkRouter
+    >
+      <nz-tab>
+        <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">Learners</a>
+        <leap-sp-course-variant-learners
+          *ngIf="!spCourseLanguageVariant.isPending; else spinnerTemplate"
+          [spCourseLanguageVariant]="spCourseLanguageVariant.response"
+        ></leap-sp-course-variant-learners>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'details' }"
+          queryParamsHandling="merge"
+          >Details</a
+        >
+        <leap-sp-course-variant-info
+          *ngIf="!spCourseLanguageVariant.isPending; else spinnerTemplate"
+          [spCourseLanguageVariant]="spCourseLanguageVariant.response"
+          (editDetails)="onEditDetails($event, spCourseLanguageVariant.response)"
+        ></leap-sp-course-variant-info>
+      </nz-tab>
+      <ng-container
+        *ngIf="
+          spCourseLanguageVariant?.response?.course?.masterInternalRepositories
+            | groupMasterInternalReposByType as groups
+        "
+      >
+        <nz-tab *ngIf="groups.material.length">
+          <a
+            class="tab"
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['.']"
+            [queryParams]="{ tab: 'materials-info', sub: null }"
+            queryParamsHandling="merge"
+            >Materials Tracking</a
+          >
+          <leap-sp-course-variant-materials-tracking
+            *ngIf="!spCourseLanguageVariant.isPending; else spinnerTemplate"
+            [spCourseLanguageVariant]="spCourseLanguageVariant.response"
+            [materials]="groups.material"
+          ></leap-sp-course-variant-materials-tracking>
+        </nz-tab>
+        <nz-tab *ngIf="groups.exam.length">
+          <a
+            class="tab"
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['.']"
+            [queryParams]="{ tab: 'exams', sub: null }"
+            queryParamsHandling="merge"
+            >Exams</a
+          >
+          <leap-sp-course-variant-exams
+            *ngIf="!spCourseLanguageVariant.isPending; else spinnerTemplate"
+            [spCourseLanguageVariant]="spCourseLanguageVariant.response"
+            [examMaterials]="groups.exam"
+          ></leap-sp-course-variant-exams>
+        </nz-tab>
+      </ng-container>
+    </nz-tabset>
+  </nz-content>
+</ng-container>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="sp-course-language-variant-details__spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

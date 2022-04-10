@@ -1,0 +1,25 @@
+@default-button-color: #737394;
+@danger-color: #f1736a;
+
+.remove-learner-button {
+  color: @default-button-color;
+
+  > i {
+    font-size: 22px;
+  }
+
+  &:hover {
+    color: @danger-color;
+  }
+}
+
+:host::ng-deep {
+  & .ant-table-pagination {
+    align-items: center;
+  }
+
+  & nz-select-top-control {
+    height: 32px !important;
+    align-items: center;
+  }
+}

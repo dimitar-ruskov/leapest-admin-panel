@@ -1,0 +1,74 @@
+<nz-tabset nzType="card" class="admin-panel__card-tabset" [nzAnimated]="false" nzLinkRouter>
+  <nz-tab>
+    <a class="sub-tab" *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'details' }"
+      >Variant Details</a
+    >
+    <leap-general-info [fields]="variantDetailsFields">
+      <leap-general-info-thumbnail-box
+        header="Variant thumbnail"
+        [thumbnailUrl]="spCourseLanguageVariant.course.thumbnailUrl"
+        [editable]="!spCourseLanguageVariant.editLock"
+        (generateThumbnail)="onGenerateThumbnail(spCourseLanguageVariant.course.id)"
+        (uploadThumbnail)="
+          onUploadThumbnail(spCourseLanguageVariant.course.thumbnailUrl, spCourseLanguageVariant.course.id)
+        "
+      ></leap-general-info-thumbnail-box>
+      <ng-template #fieldTemplate let-field>
+        <leap-general-info-field
+          [fieldTitle]="field.title"
+          [editable]="field.editable && !spCourseLanguageVariant.editLock"
+          (edit)="onEdit(field.id)"
+        >
+          <leap-general-info-field-value [fieldValue]="field.value"></leap-general-info-field-value>
+        </leap-general-info-field>
+      </ng-template>
+    </leap-general-info>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'general-info' }"
+      queryParamsHandling="merge"
+      >General Information</a
+    >
+    <leap-general-info [fields]="generalInformationFields">
+      <leap-general-info-thumbnail-box
+        [thumbnailUrl]="spCourseLanguageVariant.course.parentThumbnailUrl"
+        [editable]="false"
+      ></leap-general-info-thumbnail-box>
+      <ng-template #fieldTemplate let-field>
+        <leap-general-info-field [fieldTitle]="field.title" [editable]="false">
+          <leap-general-info-field-value [fieldValue]="field.value"></leap-general-info-field-value>
+        </leap-general-info-field>
+      </ng-template>
+    </leap-general-info>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'material-info' }"
+      queryParamsHandling="merge"
+      >Materials Information</a
+    >
+    <leap-general-info [fields]="materialsFields">
+      <ng-template #fieldTemplate let-field>
+        <leap-general-info-field [fieldTitle]="field.title" [editable]="false">
+          <leap-creation-stepper-step-materials [materials]="field.value?.content?.materials">
+            <ng-template #materialTemplate let-material>
+              <leap-internal-repo-tile [ir]="material" [selectable]="false"></leap-internal-repo-tile>
+            </ng-template>
+            <ng-template #noMaterialsTemplate>
+              <leap-no-materials>{{ field.value?.content?.noMaterialsLabel }}</leap-no-materials>
+            </ng-template>
+          </leap-creation-stepper-step-materials>
+        </leap-general-info-field>
+      </ng-template>
+    </leap-general-info>
+  </nz-tab>
+</nz-tabset>

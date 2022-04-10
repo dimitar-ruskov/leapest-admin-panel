@@ -1,0 +1,38 @@
+<leap-cta-container>
+  <h1 leap-cta-container-title>Self-paced Courses</h1>
+  <ng-container slot="buttons">
+    <button class="admin-panel__slim-button" nz-button nzType="primary" (click)="onCreateCourse($event)">
+      Create New Course
+    </button>
+  </ng-container>
+  <h2 leap-cta-container-description>
+    Here you can create and manage your self-paced courses and their associated language variants.
+  </h2>
+</leap-cta-container>
+
+<nz-content class="admin-panel__content">
+  <nz-tabset
+    class="admin-panel__tabset"
+    [nzSelectedIndex]="activeTab$ | async"
+    [nzAnimated]="false"
+    (nzSelectedIndexChange)="onSelectTab($event)"
+    nzLinkRouter
+  >
+    <nz-tab>
+      <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">Active</a>
+      <leap-active-sp-courses-list></leap-active-sp-courses-list>
+    </nz-tab>
+    <nz-tab>
+      <a
+        class="tab"
+        *nzTabLink
+        nz-tab-link
+        [routerLink]="['.']"
+        [queryParams]="{ tab: 'draft' }"
+        queryParamsHandling="merge"
+        >Draft</a
+      >
+      <leap-draft-sp-courses-list></leap-draft-sp-courses-list>
+    </nz-tab>
+  </nz-tabset>
+</nz-content>

@@ -1,0 +1,73 @@
+<div class='table-container'>
+  <nz-content class='admin-panel__content'>
+    <form nz-form [formGroup]='form' nzLayout='vertical'>
+      <nz-form-item>
+        <leap-form-label [required]='true'>Select Material</leap-form-label>
+        <nz-form-control>
+          <nz-select nzShowSearch formControlName='selectedExam'
+                     [nzNotFoundContent]="'Item not found'"
+                     [compareWith]='examOptionCompareFn'
+                     nzPlaceHolder='Select an Exam (click or type to search)'>
+            <nz-option *ngFor='let option of (examTrackingFilterOptions$ | async)'
+                       [nzLabel]='option.value'
+                       [nzValue]='option'>
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-content>
+
+  <nz-content class='admin-panel__content'>
+    <nz-table *ngIf='paginationParams$ | async as paginationParams'
+              #examsTable
+              nzNoResult='No learners added yet'
+              [nzFrontPagination]='false'
+              [nzData]='data'
+              [nzLoading]='loading'
+              [nzShowPagination]='true'
+              [nzPageSize]='paginationParams.limit'
+              [nzPageIndex]='paginationParams.page'
+              [nzTotal]='total'
+              (nzQueryParams)='onQueryParamsChange($event)'
+    >
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Exam Status</th>
+        <th>Exam Date</th>
+        <th>Exam Score</th>
+        <th>Result</th>
+        <th>Report</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let exam of examsTable.data; trackBy: tableRowTrackByFn'>
+        <td>{{ exam.user.username }}</td>
+        <td>{{ exam.status || 'N/A' }}</td>
+        <td>{{ exam.startTime ? (exam.startTime | date: 'dd MMM yyyy, hh:mm') : 'N/A' }}</td>
+        <td>{{ exam.totalMarks && exam.maxMarks ? (exam.totalMarks + ' / ' + exam.maxMarks) : 'N/A' }}</td>
+        <td>{{ exam.performanceCategory || 'N/A' }}</td>
+        <td>
+          <button *ngIf='exam.pdfReport; else noReportTemplate'
+                  class='admin-panel__reset-button download-report-button'
+                  nz-tooltip
+                  nzTooltipPlacement='bottomRight'
+                  nzTooltipColor='#26273b'
+                  [nzTooltipTitle]='customTooltip'
+                  (click)='downloadReport(exam)'
+          >
+            <i class='fal fa-download'></i><span class='download-report-button__label'>Download Report</span>
+          </button>
+          <ng-template #customTooltip>
+            <div class='admin-panel__cta-tooltip'>Download Report</div>
+          </ng-template>
+          <ng-template #noReportTemplate>
+            <span>N/A</span>
+          </ng-template>
+        </td>
+      </tr>
+    </nz-table>
+  </nz-content>
+</div>
+

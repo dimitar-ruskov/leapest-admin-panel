@@ -1,0 +1,35 @@
+@danger-color: #f1736a;
+@success-color: #38b6a0;
+@default-button-color: #737394;
+
+.approve-learner-button,
+.reject-learner-button {
+  color: @default-button-color;
+
+  > i {
+    font-size: 22px;
+  }
+}
+
+.reject-learner-button {
+  &:hover {
+    color: @danger-color;
+  }
+}
+
+.approve-learner-button {
+  &:hover {
+    color: @success-color;
+  }
+}
+
+:host::ng-deep {
+  & .ant-table-pagination {
+    align-items: center;
+  }
+
+  & nz-select-top-control {
+    height: 32px !important;
+    align-items: center;
+  }
+}

@@ -1,0 +1,55 @@
+<div class='table-container'>
+  <nz-content class='admin-panel__content'>
+    <form nz-form [formGroup]='form' nzLayout='vertical'>
+      <nz-form-item>
+        <leap-form-label [required]='true'>Select Material</leap-form-label>
+        <nz-form-control>
+          <nz-select nzShowSearch formControlName='selectedMaterial' [nzNotFoundContent]="'Item not found'"
+            [compareWith]='materialOptionCompareFn' nzPlaceHolder='Select a Material (click or type to search)'>
+            <nz-option *ngFor='let option of (materialTrackingFilterOptions$ | async)' [nzLabel]='option.value'
+              [nzValue]='option'>
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-content>
+
+  <nz-content class='admin-panel__content' *ngIf='(materialsTrackingList$ | async) as materialsTrackingList'>
+    <nz-table *ngIf='paginationParams$ | async as paginationParams' #reportsTable nzNoResult='No data'
+      [nzFrontPagination]='false' [nzData]='data' [nzLoading]='loading' [nzShowPagination]='true'
+      [nzPageSize]='paginationParams.limit' [nzPageIndex]='paginationParams.page' [nzTotal]='total'
+      (nzQueryParams)='onQueryParamsChange($event)'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Total Time Spent</th>
+          <th>Completed</th>
+          <th nzWidth='112px'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let report of reportsTable.data; trackBy: tableRowTrackByFn'>
+          <td>
+            <p class='learner-fullname'>{{ report.fullName || 'N/A' }}</p>
+            <p class='learner-email'>{{ report.email }}</p>
+          </td>
+          <td>{{ report.userStarted ? (report.totalTime * 1000 | date: 'hh:mm:ss') : 'Not Started' }}</td>
+          <td>{{ report.completedContents + ' / ' + report.totalContents }}</td>
+          <td>
+            <div nz-tooltip nzTooltipPlacement='bottomRight' nzTooltipColor='#26273b'
+              [nzTooltipTitle]='!report.userStarted ? notStartedTooltip : ""'>
+              <button nz-button nzType='text' class='admin-panel__reset-button see-details-button'
+                [disabled]='!report.userStarted' (click)='seeDetails(report)'>
+                <i class='fal fa-ballot-check'></i><span class='see-details-button__label'>Details</span>
+              </button>
+            </div>
+
+            <ng-template #notStartedTooltip>
+              <div class='admin-panel__cta-tooltip'>Not started</div>
+            </ng-template>
+          </td>
+        </tr>
+    </nz-table>
+  </nz-content>
+</div>

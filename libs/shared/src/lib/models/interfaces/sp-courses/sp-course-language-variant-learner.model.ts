@@ -1,0 +1,32 @@
+export interface SPCourseLanguageVariantLearner {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  language?: any;
+  timeZone?: any;
+  displayName: string;
+  type: string;
+  whitelisted: boolean;
+  invitationSent: boolean;
+  consentDate?: any;
+  defaultSubdomain: string;
+  linkedIn?: any;
+  enrolmentDate: string;
+  completionPercentage: number;
+  markedCompletedOn?: any;
+  instructorRole?: any;
+  eligibleForCompletion: boolean;
+  hwRedirect?: any;
+  bpRedirect?: any;
+  lxpUser: boolean;
+  waitlistTicketNumber?: any;
+  sequenceNumber?: any;
+  inWaitingList?: any;
+  hybrid?: any;
+  registered: boolean;
+}

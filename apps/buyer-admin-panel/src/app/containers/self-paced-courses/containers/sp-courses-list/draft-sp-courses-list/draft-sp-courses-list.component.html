@@ -1,0 +1,66 @@
+<leap-table-control-panel>
+  <leap-table-search data-section='right'
+                     (searchPhraseChange)='onSearch($event)'
+  ></leap-table-search>
+</leap-table-control-panel>
+
+<nz-table nzTableLayout='fixed'
+          leapTableGrid
+          [nzFrontPagination]='false'
+          [nzData]='selfPacedCourses$ | async'
+          [nzLoading]='loading$ | async'
+          [nzPageSize]='pageSize$ | async'
+          [nzTotal]='total$ | async'
+          [nzPageIndex]='pageIndex$ | async'
+          (nzQueryParams)='onQueryParamsChange($event)'
+          #coursesTable
+>
+  <thead>
+  <tr>
+    <th nzColumnKey='name'
+        nzWidth='70%'
+        [nzSortFn]='true'
+        [nzEllipsis]='true'
+    >Course Name</th>
+    <th nzColumnKey='type.configValue'
+        nzWidth='30%'
+        [nzEllipsis]='true'>Type</th>
+    <th nzWidth='58px'></th>
+    <th nzWidth='34px'></th>
+  </tr>
+  </thead>
+  <tbody nz-tooltip
+         nzTooltipTitle='Continue Creating Self-Paced Course'
+         nzTooltipPlacement='bottomRight'
+         nzTooltipColor='#26273b'
+         nzTooltipOverlayClassName='admin-panel__cta-tooltip'
+         [nzTooltipTrigger]='null'
+         leapTableGridRowTooltip
+  >
+  <tr leapTableGridSpacer></tr>
+  <tr *ngFor='let course of coursesTable.data; trackBy: trackByFn'
+      leapTableGridRow
+      [leapTableGridRowClickable]='true'
+      [routerLink]='["create", course.id]'
+  >
+    <td [nzEllipsis]='true'>{{ course.name }}</td>
+    <td [nzEllipsis]='true'>{{ course.type.configValue }}</td>
+    <td>
+      <button leapTableGridRowCtaButton
+              [leapTableGridRowCtaButtonDanger]='true'
+              (click)='deleteDraft($event, course)'
+      >
+        <i class='fal fa-trash-alt delete-course-icon'
+           nz-tooltip
+           nzTooltipTitle='Delete/Discard Course Draft'
+           nzTooltipPlacement='bottomRight'
+           nzTooltipColor='#26273b'
+           nzTooltipOverlayClassName='admin-panel__cta-tooltip'
+           leapTableGridCellTooltip
+        ></i>
+      </button>
+    </td>
+    <td leap-table-grid-details-cell></td>
+  </tr>
+  </tbody>
+</nz-table>

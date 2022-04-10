@@ -1,0 +1,27 @@
+@default-text-color: #26273b;
+@label-color: #737394;
+
+.create-language-variant-modal {
+  &__course-name {
+    color: @default-text-color;
+    font-size: 20px;
+    margin: 5px 0 0;
+  }
+
+  &__final-name {
+    vertical-align: center;
+    color: @default-text-color;
+    margin-top: 20px;
+
+    > span {
+      color: @label-color;
+      font-size: 14px;
+    }
+  }
+
+  &__form-item {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}

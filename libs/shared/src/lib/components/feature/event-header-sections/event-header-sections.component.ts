@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { ILTEvent } from '../../models/ilt-event.model';
-import { SPCourseLanguageVariant } from '../../containers/self-paced-courses-container/models/self-paced-course.model';
+import {ILTEvent} from "../../../models/interfaces";
+import {SPCourseLanguageVariant} from "../../../models/interfaces/sp-courses/sp-course.model";
 
 const LEARNER_REGISTRATION_IN_PROGRESS_TOOLTIP =
   'Learner registration in progress. Please check back later for event enrollment update';

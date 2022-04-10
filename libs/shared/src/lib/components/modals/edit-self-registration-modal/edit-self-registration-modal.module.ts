@@ -8,6 +8,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzRadioModule} from "ng-zorro-antd/radio";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 @NgModule({
   declarations: [EditSelfRegistrationModalComponent],
@@ -16,6 +17,7 @@ import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzRadioModule,
     NzDatePickerModule,
