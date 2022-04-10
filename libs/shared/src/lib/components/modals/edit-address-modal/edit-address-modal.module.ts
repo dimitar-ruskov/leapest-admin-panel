@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {EditAddressModalComponent} from "./edit-address-modal.component";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzButtonModule} from "ng-zorro-antd/button";
@@ -17,6 +18,7 @@ import {NzAlertModule} from "ng-zorro-antd/alert";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzButtonModule,
     NzSpinModule,

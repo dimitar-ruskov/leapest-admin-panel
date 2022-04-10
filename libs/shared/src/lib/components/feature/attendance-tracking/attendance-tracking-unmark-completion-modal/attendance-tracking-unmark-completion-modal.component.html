@@ -1,0 +1,10 @@
+<div>You are about to unmark the completion of this event for the following learner.</div>
+<div class="mt-15 user">
+  <div *ngIf="user.firstName || user.lastName">{{ user.firstName }} {{ user.lastName }}</div>
+  <div>{{ user.username }}</div>
+</div>
+<div class="mt-15">
+  After un-marking this completion, an email will be sent to this learner, notifying them of your decision. Please note
+  that any participation certificates already issued can not be revoked.
+</div>
+<div class="mt-15">You can reverse this action at any time. How do you wish to proceed?</div>

@@ -1,0 +1,63 @@
+<leap-table-control-panel>
+  <div class="date-picker" data-section="right">
+    <nz-range-picker [formControl]="datePickerRangeControl" nzFormat="dd MMM yyyy"></nz-range-picker>
+  </div>
+  <leap-table-search data-section="right" (searchPhraseChange)="onSearch($event)"></leap-table-search>
+</leap-table-control-panel>
+
+<nz-table
+  nzTableLayout="fixed"
+  leapTableGrid
+  [nzFrontPagination]="false"
+  [nzData]="iltEvents$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #iltEventsTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="35%" [nzEllipsis]="true">Course Name</th>
+      <th nzColumnKey="classEvent.venue" nzWidth="20%" [nzEllipsis]="true">Event Venue</th>
+      <th nzColumnKey="classEvent.startDate" nzWidth="15%" [nzEllipsis]="true">Start</th>
+      <th nzColumnKey="classEvent.endDate" nzWidth="15%" [nzEllipsis]="true">End</th>
+      <th nzColumnKey="classEvent.seats" nzWidth="15%" [nzEllipsis]="true">Seats</th>
+      <th nzWidth="34px"></th>
+    </tr>
+  </thead>
+  <tbody
+    nz-tooltip
+    nzTooltipTitle="Open Course Event Details"
+    nzTooltipPlacement="bottomRight"
+    nzTooltipColor="#26273b"
+    nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+    [nzTooltipTrigger]="null"
+    leapTableGridRowTooltip
+  >
+    <tr leapTableGridSpacer></tr>
+    <tr
+      *ngFor="let event of iltEventsTable.data; trackBy: trackByFn"
+      leapTableGridRow
+      [leapTableGridRowClickable]="true"
+      [routerLink]="['/admin', 'ilt-events', 'details', event.sku]"
+    >
+      <td leap-table-grid-title-cell>
+        <img data-section="image" [src]="event.thumbnailUrl" alt="" />
+        <a [routerLink]="['/admin', 'ilt-events', 'details', event.id]" data-section="title">{{ event.name }}</a>
+      </td>
+      <td [nzEllipsis]="true">{{ event.virtualVenue ? 'Online (VILT)' : event.venue?.address }}</td>
+      <td [nzEllipsis]="true">{{ event.startDate | date: 'd MMM yyyy' }}</td>
+      <td [nzEllipsis]="true">{{ event.endDate | date: 'd MMM yyyy' }}</td>
+      <td
+        [nzEllipsis]="true"
+        [ngStyle]="{ color: event.enrolledLearnerCounter === event.maxSeats ? '#f1736a' : '#38b6a0' }"
+      >
+        {{ event.enrolledLearnerCounter }}
+        / {{ event.maxSeats }}
+      </td>
+      <td leap-table-grid-details-cell></td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,50 @@
+<div class="table-container event-reviews">
+  <nz-table
+    [nzFrontPagination]="false"
+    [nzData]="eventReviews$ | async"
+    [nzLoading]="loading$ | async"
+    [nzPageSize]="pageSize$ | async"
+    [nzTotal]="total$ | async"
+    [nzPageIndex]="pageIndex$ | async"
+    [nzNoResult]="noResultsText"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    #eventReviewsTable
+    leapTableGrid
+  >
+    <thead style="display: none"></thead>
+    <tbody>
+      <tr leapTableGridSpacer></tr>
+      <tr *ngFor="let data of eventReviewsTable.data" leapTableGridRow>
+        <td>
+          <div>
+            <span *ngIf="!data.anonymous" class="reviewer-name"
+              >{{ data.reviewer.firstName }} {{ data.reviewer.lastName }}</span
+            >
+            <span class="review-date">{{ formatDate(data.updatedAt) }}</span>
+            <span class="float-right">
+              <button
+                leapTableGridRowCtaButton
+                [leapTableGridRowCtaButtonDanger]="true"
+                (click)="deleteEventReview($event, data.id)"
+              >
+                <i class="fal fa-trash-alt"></i>
+                Delete Review
+              </button>
+            </span>
+          </div>
+          <div>
+            <i
+              *ngFor="let n of range; let $index = index"
+              class="to-display fa"
+              [ngClass]="isMarkedOthers(data.rating, $index)"
+            ></i>
+            <span class="review-date">Rating</span>
+          </div>
+          <div *ngIf="data.message" class="review-msg">
+            {{ data.message }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

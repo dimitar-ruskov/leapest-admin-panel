@@ -3,6 +3,10 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {EditVirtualMeetingsModalComponent} from "./edit-virtual-meetings-modal.component";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
+import {
+  InstructorsCollisionsWarningsModule
+} from "../../feature/instructors-collisions-warnings/instructors-collisions-warnings.module";
 
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
@@ -19,6 +23,8 @@ import {NzSpinModule} from "ng-zorro-antd/spin";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
+    InstructorsCollisionsWarningsModule,
     NzFormModule,
     NzInputModule,
     NzSwitchModule,

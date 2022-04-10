@@ -1,0 +1,24 @@
+<div class="attendance-tracking-section">
+  <leap-attendance-tracking-help [hasCustomReasons]="!!customReasons?.length"></leap-attendance-tracking-help>
+</div>
+
+<div class="attendance-tracking-section">
+  <leap-table-control-panel>
+    <leap-table-search data-section="right" (searchPhraseChange)="onSearch($event)"></leap-table-search>
+  </leap-table-control-panel>
+
+  <leap-attendance-tracking-table
+    [attendancesByUsers]="attendancesByUsers$ | async"
+    [attendanceUpdating]="attendanceUpdating$ | async"
+    [queryParams]="queryParams$ | async"
+    [eventId]="event.id"
+    [customReasons]="customReasons"
+    [isAutomatic]="event.automaticAttendanceTracking"
+    (attendanceChange)="onAttendanceChange($event)"
+    (eventAttendanceCompleted)="onEventAttendanceCompleted($event)"
+    (unmarkCompletion)="unmarkCompletion($event)"
+    (bulkComplete)="onBulkCompleteAttendances($event)"
+    (queryParamsChange)="onQueryParamsChange($event)"
+    (updateAttendance)="updateAttendance($event)"
+  ></leap-attendance-tracking-table>
+</div>

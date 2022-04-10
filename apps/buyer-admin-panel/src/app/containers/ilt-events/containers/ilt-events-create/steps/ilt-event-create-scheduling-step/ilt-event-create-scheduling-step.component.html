@@ -1,0 +1,327 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Event Scheduling">
+    Here you can indicate how Learners can access the event and, if applicable, for how long they can registrater.
+  </leap-creation-stepper-step-header>
+
+  <leap-creation-stepper-step-body>
+    <form [formGroup]="form" nz-form nzLayout="vertical">
+      <nz-form-item *ngIf="iltEvent?.classEvent?.virtualVenue">
+        <leap-form-label [required]="true">Conferencing Tool</leap-form-label>
+        <leap-form-hint-label>What conferencing tool do you wish to use for this event?</leap-form-hint-label>
+        <nz-form-control>
+          <nz-radio-group formControlName="conferencingTool">
+            <label
+              *ngFor="let conferencingTool of conferencingToolsDictionary$ | async"
+              class="admin-panel__radio-option"
+              nz-radio
+              [nzDisabled]="!conferencingTool.tokenAvailable"
+              [nzValue]="conferencingTool.key"
+            >
+              <img class="zoom-icon-img" [src]="environmentService.assetsPath + '/zoom-icon-img.png'" alt="" />
+              {{ conferencingTool.value }}
+              <div class="auth-container" *ngIf="!conferencingTool.tokenAvailable">
+                <div class="auth-text">
+                  To use this option, please activate your Zoom account.
+                </div>
+                <div>
+                  <button
+                    class="auth-btn"
+                    nz-button
+                    nzType="primary"
+                    nzSize="small"
+                    (click)="activateConferencingTool(conferencingTool)"
+                  >
+                    Activate Zoom Account
+                  </button>
+                </div>
+              </div>
+            </label>
+            <label class="admin-panel__radio-option" nz-radio nzValue="manual">
+              <i class="fal fa-cog"></i>
+              Manual
+            </label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div>
+        <leap-form-label [required]="true">Add Instructor(s)</leap-form-label>
+        <leap-form-hint-label>
+          Who is going to present the contents of this course event? If you have Zoom as your Conferencing tool, please
+          make sure that the Instructors are part of your Zoom Account.
+        </leap-form-hint-label>
+      </div>
+      <div *ngFor="let selectedInstructor of instructorsControl.value; let i = index" class="selected-instructor">
+        <div style="display: flex">
+          <div class="main-label">{{ selectedInstructor.firstName + ' ' + selectedInstructor.lastName }}</div>
+          <div class="remove-instructor" (click)="removeInstructor(i)">
+            <i class="fal fa-trash-alt"></i>
+            Remove
+          </div>
+        </div>
+        <div class="main-label">
+          {{ selectedInstructor.username }}
+        </div>
+      </div>
+      <div style="display: flex">
+        <div style="width: 82%">
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="instructorErrorTpl">
+              <nz-select
+                nzMode="multiple"
+                nzPlaceHolder="Select an Instructor (click or type to search)"
+                nzShowSearch
+                [(nzOpen)]="instructorDropdownOpen"
+                formControlName="instructors"
+              >
+                <ng-container *ngFor="let o of instructors$ | async">
+                  <nz-option [nzValue]="o" [nzLabel]="o.firstName + ' ' + o.lastName + ' - ' + o.username"> </nz-option>
+                </ng-container>
+              </nz-select>
+              <ng-template #instructorErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Please add at least 1 instructor
+                </ng-container>
+                <ng-container *ngIf="control.hasError('conferenceAccount')">
+                  The first instructor has to be in your {{ conferencingTool.value }} account
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div style="margin-left: 11px">
+          <button nz-button class="default-btn" (click)="openAddInstructorModal()">Add New</button>
+        </div>
+      </div>
+
+      <div class="mt15"></div>
+      <div *ngIf="!iltEvent.historical" [hidden]="!iltEvent.isInternal">
+        <nz-form-item>
+          <leap-form-label [required]="true">Registration Period</leap-form-label>
+          <leap-form-hint-label>
+            When can learners register for this course event?
+            <span class="timezone-info">Timezone: {{ iltEvent.classEvent?.timezone }}</span>
+          </leap-form-hint-label>
+          <nz-form-control>
+            <nz-radio-group formControlName="registrationDeadlineDependsOnEventStartDate">
+              <label
+                *ngFor="let option of registrationDeadlineDependsOnEventStartDateOptions"
+                nz-radio
+                [nzValue]="option.key"
+                class="admin-panel__radio-option"
+              >
+                <span class="main-label">{{ option.value }}</span>
+              </label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div class="mt15"></div>
+
+        <div *ngIf="!registrationDeadlineDependsOnEventStartDate.value">
+          <leap-form-label [required]="true">Registration Period</leap-form-label>
+          <leap-form-hint-label>
+            Until when can learners register for this event?
+          </leap-form-hint-label>
+          <div style="display: flex;">
+            <div class="end-label">End:</div>
+            <nz-form-item>
+              <nz-form-control>
+                <nz-date-picker
+                  formControlName="registrationPeriodEndDate"
+                  nzFormat="dd MMM yyyy"
+                  nzAllowClear="false"
+                  [nzDisabledDate]="disabledDate"
+                >
+                </nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+            <div style="width: 15px"></div>
+            <nz-form-item>
+              <nz-form-control>
+                <nz-time-picker formControlName="registrationPeriodEndTime" nzFormat="HH:mm" nzAllowEmpty="false">
+                </nz-time-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div class="mt15"></div>
+
+        <nz-form-item>
+          <leap-form-label>Cancellation Policy</leap-form-label>
+          <leap-form-hint-label>
+            The policies listed below will be applied when a Learner or a Customer cancel a purchased seat.
+          </leap-form-hint-label>
+          <nz-form-control nz-tooltip [nzTooltipTitle]="isRegistrationBeforeStart ? null : disabledCheckbox">
+            <label nz-checkbox formControlName="automaticCancellation" [nzDisabled]="!isRegistrationBeforeStart">
+              Automatically cancel event if minimum number of learners is not reached
+            </label>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div *ngIf="!iltEvent?.classEvent?.virtualVenue">
+        <leap-form-label [required]="true"> Event Venue</leap-form-label>
+        <leap-form-hint-label
+          >Where the course will take place. Select from an existing venue, or add a new one.
+        </leap-form-hint-label>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-select
+              nzShowSearch
+              formControlName="country"
+              [nzNotFoundContent]="'Item not found'"
+              nzPlaceHolder="Select Country (click or type to search)"
+            >
+              <nz-option
+                *ngFor="let venueCountry of venueCountries$ | async"
+                [nzLabel]="venueCountry.value"
+                [nzValue]="venueCountry.key"
+              >
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-select
+              nzShowSearch
+              formControlName="city"
+              [nzNotFoundContent]="'Item not found'"
+              nzPlaceHolder="Select City (click or type to search)"
+            >
+              <nz-option
+                *ngFor="let venueCity of venueCities$ | async"
+                [nzLabel]="venueCity.value"
+                [nzValue]="venueCity.key"
+              >
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <div style="display: flex">
+          <div style="width: 82%">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-select
+                  nzShowSearch
+                  formControlName="venue"
+                  [nzNotFoundContent]="'Item not found'"
+                  nzPlaceHolder="Select Venue (click or type to search)"
+                >
+                  <nz-option *ngFor="let venue of venues$ | async" [nzLabel]="venue.address" [nzValue]="venue.id">
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div style="margin-left: 11px">
+            <button nz-button class="default-btn" (click)="openAddVenueModal()">Add New</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="iltEvent?.classEvent?.virtualVenue">
+        <ng-container formArrayName="sessions">
+          <leap-form-label [required]="true">Enable Session</leap-form-label>
+          <leap-form-hint-label
+            >The system will create unique sessions for each day of the course, for which the session was enabled via
+            the toggle button when the event is published
+          </leap-form-hint-label>
+          <div
+            *ngFor="let session of sessions.controls; trackBy: trackByFn; index as i"
+            [formGroupName]="i"
+            class="enable-session-container"
+          >
+            <nz-switch formControlName="enabled"></nz-switch>
+            <div class="ml15">
+              <span>Day {{ i + 1 }} : {{ session?.controls?.date?.value | date: 'MMM d, yyyy' }}</span>
+              <div
+                class="manual-link-container"
+                *ngIf="conferencingTool.value === 'manual' && session?.controls?.enabled?.value"
+              >
+                <input class="manual-link-input" placeholder="Enter Conference Link" formControlName="link" />
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <div class="mt15"></div>
+
+        <div *ngIf="conferencingTool.value !== 'manual' && isSelectedConferenceToolAccountPro">
+          <nz-form-item>
+            <leap-form-label [required]="true">Attendance Tracking</leap-form-label>
+            <leap-form-hint-label>
+              Specify manual or automatic attendance tracking.
+            </leap-form-hint-label>
+            <nz-form-control>
+              <nz-radio-group formControlName="attendanceTracking">
+                <label
+                  *ngFor="let option of attendanceTrackingOptions"
+                  nz-radio
+                  [nzValue]="option.key"
+                  class="admin-panel__radio-option"
+                >
+                  <span class="main-label">{{ option.value }}</span>
+                  <span class="sub-label"> - {{ option.hint }}</span>
+                </label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item *ngIf="attendanceTrackingControl.value">
+            <leap-form-label [required]="true">Completion</leap-form-label>
+            <leap-form-hint-label>
+              Specify manual or automatic course completion
+            </leap-form-hint-label>
+            <nz-form-control>
+              <nz-radio-group formControlName="completion">
+                <label
+                  *ngFor="let option of completionOptions"
+                  nz-radio
+                  [nzValue]="option.key"
+                  class="admin-panel__radio-option"
+                >
+                  <span class="main-label">{{ option.value }}</span>
+                  <span class="sub-label"> - {{ option.hint }}</span>
+                </label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item *ngIf="attendanceTrackingControl.value && completionControl.value">
+            <leap-form-label [required]="true">Specify Participation Attendance</leap-form-label>
+            <leap-form-hint-label>
+              Specify percentage to automatically indicate Event Completion.
+            </leap-form-hint-label>
+            <leap-form-label [required]="true"
+              >Course is marked as completed if learner's attendance is over:
+            </leap-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="completionPercent" [nzMin]="1" [nzMax]="100" [nzStep]="1">
+              </nz-input-number>
+              <span>%</span>
+            </nz-form-control>
+            <leap-form-hint-label>
+              Please input number between 0-100
+            </leap-form-hint-label>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons>
+    <button nz-button (click)="onBack($event)">Back</button>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="form.invalid || checkLinks"
+      [nzLoading]="updating"
+      (click)="onProceed($event)"
+    >
+      Proceed
+    </button>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>
+<div class="mt15"></div>
+<div class="mt15"></div>

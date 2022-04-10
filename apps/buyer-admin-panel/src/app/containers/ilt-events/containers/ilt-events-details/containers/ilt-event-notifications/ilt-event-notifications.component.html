@@ -1,0 +1,139 @@
+<form [formGroup]="form" ngxsForm="iltEvents.iltEventDetails.iltEventDetailsNotifications.searchForm"></form>
+<leap-table-control-panel>
+  <leap-table-search
+    data-section="right"
+    (searchPhraseChange)="onSearch($event)"
+    [filter]="form.get('filter').value"
+  ></leap-table-search>
+</leap-table-control-panel>
+<div class="applied-filters-container">
+  <leap-notification-filter-pills
+    *ngIf="selectedFilters$ | async as filters"
+    [searchForm]="(searchForm$ | async)?.model"
+    [searchMetadata]="searchMetadata$ | async"
+    [filters]="filters"
+    (filterPatched)="filterPillsUpdated($event)"
+    (filtersRemoved)="clearForm()"
+  ></leap-notification-filter-pills>
+</div>
+<nz-table
+  nzTableLayout="fixed"
+  [nzFrontPagination]="false"
+  [nzData]="(notifications$ | async)?.response"
+  [nzLoading]="(notifications$ | async)?.isPending"
+  [nzPageSize]="(pagination$ | async)?.limit"
+  [nzTotal]="(searchMetadata$ | async)?.totalCount"
+  [nzPageIndex]="(pagination$ | async)?.page"
+  [nzNoResult]="'There are no notification templates available'"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  leapTableGrid
+  #courseNotificationsTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="trigger" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true" nzCustomFilter>
+        Trigger
+        <nz-filter-trigger
+          [(nzVisible)]="triggerFilterVisible"
+          [nzActive]="form.get('trigger').value.length"
+          [nzDropdownMenu]="triggerMenu"
+        >
+          <i nz-icon nzType="filter" nzTheme="fill"></i>
+        </nz-filter-trigger>
+      </th>
+      <th nzColumnKey="subject" nzWidth="35%" [nzSortFn]="true" [nzEllipsis]="true">
+        Subject
+      </th>
+      <th nzColumnKey="recipient" nzWidth="15%" [nzSortFn]="true" [nzEllipsis]="true" nzCustomFilter>
+        Recipient
+        <nz-filter-trigger
+          [(nzVisible)]="recipientFilterVisible"
+          [nzActive]="form.get('recipient').value.length"
+          [nzDropdownMenu]="recipientMenu"
+        >
+          <i nz-icon nzType="filter" nzTheme="fill"></i>
+        </nz-filter-trigger>
+      </th>
+      <th nzColumnKey="updated" nzWidth="13%" [nzSortFn]="true" [nzEllipsis]="true">
+        Last Updated
+      </th>
+      <th nzWidth="50px"></th>
+      <th nzWidth="50px"></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="(notifications$ | async)?.response as notifications">
+    <tr leapTableGridSpacer></tr>
+    <tr
+      *ngFor="let notification of notifications; let i = index; trackBy: trackByFn"
+      leapTableGridRow
+      [leapTableGridRowClickable]="true"
+      [routerLink]="[
+        'notifications',
+        notification.trigger?.configKey,
+        notification.recipient?.configKey,
+        notification.venue?.configKey
+      ]"
+    >
+      <td
+        nz-tooltip
+        nzTooltipTitle="{{ notification.trigger?.configValue }}"
+        nzTooltipColor="#26273b"
+        nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+        leapTableGridCellTooltip
+        [nzEllipsis]="true"
+      >
+        {{ notification.trigger?.configValue }}
+      </td>
+      <td
+        nz-tooltip
+        nzTooltipTitle="{{ notification.subject }}"
+        nzTooltipColor="#26273b"
+        nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+        leapTableGridCellTooltip
+        [nzEllipsis]="true"
+      >
+        {{ notification.subject }}
+      </td>
+      <td [nzEllipsis]="true">{{ notification.recipient?.configValue }}</td>
+      <td [nzEllipsis]="true">{{ notification.updatedAt | date: 'dd MMM yyyy' }}</td>
+      <td>
+        <button leapTableGridRowCtaButton (click)="openPreviewTemplate(notification, $event)">
+          <i
+            nz-tooltip
+            nzTooltipTitle="Preview email with this template"
+            nzTooltipColor="#26273b"
+            nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+            leapTableGridCellTooltip
+            class="fal fa-eye"
+          ></i>
+        </button>
+      </td>
+      <td>
+        <button
+          leapTableGridRowCtaButton
+          nz-tooltip
+          nzTooltipTitle="Open notification details"
+          nzTooltipColor="#26273b"
+          nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+          leapTableGridCellTooltip
+          [routerLink]="[
+            'notifications',
+            notification.trigger?.configKey,
+            notification.recipient?.configKey,
+            notification.venue?.configKey
+          ]"
+        >
+          <i class="fal fa-edit"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-dropdown-menu #triggerMenu="nzDropdownMenu">
+  <leap-filter-dropdown (filterUpdated)="setFilters()" [filterList]="filterTrigger"></leap-filter-dropdown>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #recipientMenu="nzDropdownMenu">
+  <leap-filter-dropdown (filterUpdated)="setFilters()" [filterList]="filterRecipient"></leap-filter-dropdown>
+</nz-dropdown-menu>

@@ -1,0 +1,62 @@
+<leap-table-control-panel>
+  <leap-table-search
+    data-section="right"
+    (searchPhraseChange)="onSearch($event)"
+    [placeholder]="searchPlaceholder"
+  ></leap-table-search>
+  <button *ngIf="(total$ | async) > 0" nz-button nzType="default" data-section="right" (click)="exportLearners()">
+    <i class="fal fa-download"></i><span class="export-button__label">Export Learners Listing</span>
+  </button>
+</leap-table-control-panel>
+<nz-table
+  [nzFrontPagination]="false"
+  [nzData]="iltEventLearners$ | async"
+  [nzLoading]="loading$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzTotal]="total$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  [nzPageSizeOptions]="paginationLimit"
+  [nzShowPagination]="true"
+  [nzShowSizeChanger]="true"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  #iltEventEnrolledLearnersTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="40%" [nzSortFn]="true" [nzEllipsis]="true">Name</th>
+      <th nzColumnKey="email" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Email</th>
+      <th nzColumnKey="enrollmentDate" nzWidth="30%" [nzSortFn]="true" [nzEllipsis]="true">Request Date</th>
+      <th nzWidth="53px"></th>
+      <th nzWidth="53px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let learner of iltEventEnrolledLearnersTable.data; trackBy: trackByFn">
+      <td [nzEllipsis]="true">{{ learner.firstName ? learner.firstName + ' ' + learner.lastName : 'N/A' }}</td>
+      <td [nzEllipsis]="true">{{ learner.username }}</td>
+      <td [nzEllipsis]="true">{{ learner.enrolmentDate | date: 'd MMM yyyy' }}</td>
+      <td>
+        <i
+          class="fal fa-times-circle reject-learner-icon"
+          nz-tooltip
+          nzTooltipTitle="Reject Learner"
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+          (click)="rejectLearner(learner)"
+        ></i>
+      </td>
+      <td>
+        <i
+          class="fal fa-check approve-learner-icon"
+          nz-tooltip
+          nzTooltipTitle="Approve Learner"
+          nzTooltipPlacement="bottomRight"
+          nzTooltipColor="#26273b"
+          nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+          (click)="approveLearner(learner)"
+        ></i>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

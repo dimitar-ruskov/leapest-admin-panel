@@ -1,0 +1,141 @@
+<div class="waiting-list-header">
+  <div>Below follows the list of learners waiting for an opportunity to join this event.</div>
+  <div *ngIf="disabled; else disableWaitingList">
+    <button
+      class="small-button"
+      nz-button
+      nzType="primary"
+      nzSize="small"
+      (click)="toggleWaitingList()"
+      [disabled]="iltEvent.isInProgress || !iltEvent.isInternal"
+    >
+      Enable Waiting List
+    </button>
+  </div>
+  <ng-template #disableWaitingList>
+    <label nz-tooltip [nzTooltipTitle]="iltEvent.remainingSeats ? remainingSeatsExist : ''">
+      <button
+        class="small-button"
+        nz-button
+        nzType="default"
+        nzSize="small"
+        [disabled]="!!iltEvent.remainingSeats || iltEvent.isInProgress"
+        (click)="showAssignUsersModal()"
+      >
+        Assign Users to Waiting List
+      </button>
+    </label>
+    <button
+      class="disable-wl"
+      (click)="toggleWaitingList()"
+      [disabled]="iltEvent.isInProgress || !iltEvent.isInternal"
+      [ngClass]="!iltEvent.isInProgress ? 'disable-wl-active' : ''"
+    >
+      Disable waiting list?
+    </button>
+  </ng-template>
+</div>
+<div class="table-container">
+  <nz-table
+    leapTableGrid
+    [nzFrontPagination]="false"
+    [nzData]="waitingListLearners$ | async"
+    [nzLoading]="loading$ | async"
+    [nzPageSize]="pageSize$ | async"
+    [nzTotal]="total$ | async"
+    [nzPageIndex]="pageIndex$ | async"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    [nzNoResult]="noLearners"
+    #iltEventEnrolledLearnersTable
+  >
+    <thead>
+      <tr>
+        <th nzWidth="30px">№</th>
+        <th nzColumnKey="name" [nzEllipsis]="true">Name</th>
+        <th nzColumnKey="email" [nzEllipsis]="true">Email</th>
+        <th nzColumnKey="enrollmentDate" [nzEllipsis]="true">Enrollment Date</th>
+        <th nzWidth="53px"></th>
+        <th [hidden]="iltEventEnrolledLearnersTable.data?.length < 2" nzWidth="40px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr leapTableGridSpacer></tr>
+      <tr
+        leapTableGridRow
+        [leapTableGridRowDisabled]="disabled"
+        *ngFor="
+          let learner of iltEventEnrolledLearnersTable.data;
+          let i = index;
+          let last = last;
+          let first = first;
+          trackBy: trackByFn
+        "
+      >
+        <td>
+          <div class="index-circle">{{ i + 1 }}.</div>
+        </td>
+        <td [nzEllipsis]="true">
+          {{ learner.firstName ? learner.firstName + ' ' + learner.lastName : 'N/A' }}
+        </td>
+        <td [nzEllipsis]="true">{{ learner.username }}</td>
+        <td [nzEllipsis]="true">{{ learner.enrolmentDate | date: 'd MMM yyyy' }}</td>
+        <td>
+          <button
+            leapTableGridRowCtaButton
+            [leapTableGridRowCtaButtonDanger]="true"
+            [disabled]="disabled"
+            [leapTableGridRowCtaButtonDisabled]="disabled"
+            (click)="removeLearner(learner)"
+          >
+            <i
+              class="fal fa-times-circle remove-learner-icon"
+              nz-tooltip
+              [nzTooltipTitle]="disabled ? null : 'Remove Learner from Waiting List'"
+              nzTooltipPlacement="bottomRight"
+              nzTooltipColor="#26273b"
+              nzTooltipOverlayClassName="admin-panel__cta-tooltip"
+              leapTableGridCellTooltip
+            ></i>
+          </button>
+        </td>
+        <td [hidden]="iltEventEnrolledLearnersTable.data.length < 2">
+          <div
+            *ngIf="first && !last"
+            class="{{ disabled ? 'arrow-round-container-disabled' : 'arrow-round-container' }}"
+            (click)="disabled ? null : demoteWaitingListLearner(learner)"
+          >
+            <i class="fal fa-angle-down"></i>
+          </div>
+          <div
+            *ngIf="last && !first"
+            class="{{ disabled ? 'arrow-round-container-disabled' : 'arrow-round-container' }}"
+            (click)="disabled ? null : promoteWaitingListLearner(learner)"
+          >
+            <i class="fal fa-angle-up"></i>
+          </div>
+          <div *ngIf="!last && !first">
+            <div
+              class="{{ disabled ? 'arrow-half-circle-up-disabled' : 'arrow-half-circle-up' }}"
+              (click)="disabled ? null : promoteWaitingListLearner(learner)"
+            >
+              <i class="fal fa-angle-up"></i>
+            </div>
+            <div
+              class="{{ disabled ? 'arrow-half-circle-down-disabled' : 'arrow-half-circle-down' }}"
+              (click)="disabled ? null : demoteWaitingListLearner(learner)"
+            >
+              <i class="fal fa-angle-down"></i>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<ng-template #noLearners>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="noResultsText"
+  ></nz-empty>
+</ng-template>

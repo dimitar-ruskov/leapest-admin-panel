@@ -1,10 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
-import { IGlobalStateModel } from '../../../../shared/global-state.model';
-
+import {IKeyValuePair} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-edit-timezone-modal',
@@ -18,13 +16,13 @@ export class EditTimezoneModalComponent implements OnInit {
     timezone: [null, [Validators.required]]
   });
 
-  @Select((state: IGlobalStateModel) => state.core.dictionaries.timezones)
+  @Select(state => state.core.dictionaries.timezones)
   timezonesDict$: Observable<IKeyValuePair[]>;
 
   @Input() timezone: string;
 
   constructor(private readonly fb: FormBuilder) {
-    
+
   }
 
   ngOnInit(): void {

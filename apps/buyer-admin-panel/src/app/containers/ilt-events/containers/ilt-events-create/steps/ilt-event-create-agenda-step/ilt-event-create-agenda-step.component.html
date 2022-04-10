@@ -1,0 +1,43 @@
+<div style="margin-top: 25px">
+  <div style="text-align: center;">
+    <div class="header">Course Event Agenda</div>
+    <div class="sub-header">
+      Below you can organize the agenda for your session. Please, be sure to provide a date and time for each day. This
+      will be used to inform buyers and learners of when a course will take place and how long it will take.
+    </div>
+  </div>
+  <div style="height: 15px"></div>
+  <leap-no-materials *ngIf="!iltEvent?.course?.agendaEditable">
+    Your editing capabilities are limited. Agenda editing is disabled on the Parent Course.
+  </leap-no-materials>
+  <div>
+    <leap-t-agenda
+      [agenda]="{ days: iltEvent?.course?.hierarchicalAgenda }"
+      [isEvent]="true"
+      [isDateTimeEditable]="true"
+      (valueChange)="onAgendaValueAndValidityChange($event)"
+      [isEditable]="iltEvent.course.agendaEditable"
+      [isHistorical]="iltEvent.historical"
+      [openDateTimeModalAuto]="iltEvent.step === 'details'"
+      [timezone]="iltEvent.classEvent?.timezone"
+      [isTimezoneEditable]="true"
+      [isCreating]="true"
+    >
+    </leap-t-agenda>
+  </div>
+  <div class="btns-container">
+    <button nz-button (click)="onBack()" nzSize="large" class="default-btn">Back</button>
+    <div style="width: 10px;"></div>
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      [nzLoading]="updating"
+      [disabled]="!agendaValueAndValidity?.valid"
+      (click)="onProceed()"
+    >
+      Proceed
+    </button>
+  </div>
+  <div style="height: 20px"></div>
+</div>

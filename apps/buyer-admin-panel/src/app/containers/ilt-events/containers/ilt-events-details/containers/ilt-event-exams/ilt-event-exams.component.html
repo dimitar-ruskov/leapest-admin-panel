@@ -1,0 +1,68 @@
+<div class='table-container'>
+    <nz-content class='admin-panel__content'>
+        <form nz-form [formGroup]='form' nzLayout='vertical'>
+            <nz-form-item>
+                <leap-form-label [required]='true'>Select Exam</leap-form-label>
+                <nz-form-control>
+                    <nz-select nzShowSearch formControlName='selectedExam' [nzNotFoundContent]="'Item not found'"
+                        [compareWith]='examOptionCompareFn' nzPlaceHolder='Select an Exam (click or type to search)'>
+                        <nz-option *ngFor='let option of (examsFilterOptions$ | async)' [nzLabel]='option.value'
+                            [nzValue]='option'>
+                        </nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </nz-content>
+
+    <nz-content class='admin-panel__content'>
+        <nz-table [nzFrontPagination]='false' [nzData]='iltEventExams$ | async' [nzLoading]='loading$ | async'
+            [nzPageSize]='pageSize$ | async' [nzTotal]='total$ | async' [nzPageIndex]='pageIndex$ | async'
+            (nzQueryParams)='onQueryParamsChange($event)' #iltEventExamsTable>
+            <thead>
+                <tr>
+                    <th nzWidth='25%' [nzEllipsis]='true'>Participant</th>
+                    <th nzWidth='15%'>Exam Status</th>
+                    <th nzWidth='15%'>Date</th>
+                    <th nzWidth='15%'>Score</th>
+                    <th nzWidth='15%'>Result</th>
+                    <th nzWidth='15%'>Report</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let learner of iltEventExamsTable.data; trackBy: tableRowTrackByFn'>
+                    <td>
+                        <p>{{ learner.user.firstName }} {{learner.user.lastName }}</p>
+                        <p>{{ learner.user.username }}</p>
+                    </td>
+                    <td>
+                        <span *ngIf='learner.status; else naTemplate'>{{learner.status}}</span>
+                    </td>
+                    <td>
+                        <span *ngIf='learner.startTime; else naTemplate'> {{learner.startTime}}</span>
+                    </td>
+                    <td>
+                        <span *ngIf='learner.totalMarks && learner.maxMarks; else naTemplate'>
+                            {{learner.totalMarks}}/{{learner.maxMarks}}</span>
+                    </td>
+                    <td>
+                        <span *ngIf='learner.performanceCategory; else naTemplate'>
+                            {{learner.performanceCategory}}</span>
+                    </td>
+                    <td>
+                        <span *ngIf='learner.pdfReport; else naTemplate'
+                            (click)='downloadExamReport(learner.pdfReport)'>
+                            <i class='fal fa-download'></i>
+                            Download Report
+                        </span>
+                    </td>
+
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-content>
+</div>
+
+<ng-template #naTemplate>
+    <span>N/A</span>
+</ng-template>

@@ -1,0 +1,37 @@
+<leap-table-search
+  class="search"
+  placeholder="Search Recipient..."
+  (searchPhraseChange)="onSearchChange($event)"
+></leap-table-search>
+
+<nz-table
+  nzTableLayout="fixed"
+  [nzFrontPagination]="false"
+  [nzData]="(recipients$ | async)?.data"
+  [nzLoading]="recipientsLoading$ | async"
+  [nzTotal]="(recipients$ | async)?.count"
+  [nzPageSize]="(recipients$ | async)?.limit"
+  [nzPageIndex]="(recipients$ | async)?.page"
+  [nzNoResult]="'There are no recipients'"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  leapTableGrid
+  #recipientsTable
+>
+  <thead>
+    <tr>
+      <th nzColumnKey="name" nzWidth="100%" [nzSortFn]="true">
+        <span class="header">Participant</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngIf="(recipients$ | async)?.data.length">
+    <tr *ngFor="let recipient of recipientsTable.data; trackBy: trackByFn" leapTableGridRow>
+      <td>
+        <div class="primary-text">
+          {{ getRecipientName(recipient) }}
+        </div>
+        <div class="secondary-text">{{ recipient.userName }}</div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

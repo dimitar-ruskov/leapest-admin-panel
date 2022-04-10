@@ -1,14 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { concatMap, filter, map, take } from 'rxjs/operators';
-
-import { ILTInstructor } from '../../../models/ilt-event.model';
-import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
-import { CourseEventInstructorsCollisionService } from '../../../utils/services/course-event-instructors-collision.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { CourseEventInstructorsCollision } from '../../../models/ilt-course-event-instructor-collisions.model';
-import { ConferencingToolService } from '../../../utils/services/conferencing-tool.service';
+
+import {CourseEventInstructorsCollision, ILTInstructor} from "../../../models/interfaces";
+import {
+  AdminCoursesService,
+  ConferencingToolService,
+  CourseEventInstructorsCollisionService
+} from "../../../utils/services";
 
 @Component({
   selector: 'leap-edit-instructors-modal',
@@ -17,7 +18,7 @@ import { ConferencingToolService } from '../../../utils/services/conferencing-to
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class EditInstructorsModalComponent implements OnInit, OnDestroy {
+export class EditInstructorsModalComponent implements OnInit {
   private readonly pendingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   get pending$(): Observable<boolean> {
@@ -113,10 +114,6 @@ export class EditInstructorsModalComponent implements OnInit, OnDestroy {
     this.instructorAccountErrors$
       .pipe(untilDestroyed(this))
       .subscribe((instructorAccountErrors) => (this.instructorAccountError = !instructorAccountErrors.data));
-  }
-
-  ngOnDestroy(): void {
-    //od
   }
 
   private getInstructors(): void {

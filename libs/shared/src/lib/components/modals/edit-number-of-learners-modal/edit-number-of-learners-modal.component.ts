@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { COURSE_WAITING_LIST_LIMIT } from '../../../../../constants/wating-list-limit.const';
-
+import {COURSE_WAITING_LIST_LIMIT} from "../../../models/constants";
 
 @Component({
   selector: 'leap-edit-number-of-learners-modal',
@@ -22,7 +21,7 @@ export class EditNumberOfLearnersModalComponent implements OnInit {
   @Input() learnerCount: number;
 
   constructor(private readonly fb: FormBuilder) {
-   
+
   }
 
   ngOnInit(): void {

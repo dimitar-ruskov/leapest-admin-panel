@@ -1,0 +1,30 @@
+@not-specified-color: #737394;
+@present-color: #38b6a0;
+@partial-color: #f79b42;
+@absent-color: #f1736a;
+
+:host {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+
+  &.not-specified {
+    color: @not-specified-color;
+  }
+
+  &.present {
+    color: @present-color
+  }
+
+  &.partial {
+    color: @partial-color
+  }
+
+  &.absent {
+    color: @absent-color
+  }
+
+  i {
+    font-size: 24px;
+  }
+}

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IKeyValuePair } from 'src/app/core/model/dictionary.model';
+import {IKeyValuePair} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-add-address-modal',

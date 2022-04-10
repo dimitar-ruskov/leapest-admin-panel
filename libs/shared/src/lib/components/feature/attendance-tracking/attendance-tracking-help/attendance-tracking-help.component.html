@@ -1,0 +1,15 @@
+<p>{{ helpText }}</p>
+<div class="attendance-tracking-help__icon-hints">
+  <div *ngFor="let statusIconHint of statusIconHints" class="attendance-tracking-help__icon-hint">
+    <leap-attendance-tracking-status-icon [status]="statusIconHint.status"></leap-attendance-tracking-status-icon>
+    <img
+      *ngIf="
+        hasCustomReasons && (statusIconHint.status === statuses.ABSENT || statusIconHint.status === statuses.PARTIAL)
+      "
+      class="attendance-tracking-help__comment"
+      [src]="environmentService.assetsPath + '/attendance-not-informed.svg'"
+      alt="Not-Informed"
+    />
+    <span>{{ statusIconHint.hint }}</span>
+  </div>
+</div>

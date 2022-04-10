@@ -1,0 +1,118 @@
+<div style="text-align: center" class="thumbnail" [ngClass]="{ active: 'true' }" *ngIf="isEditable">
+  <div class="field-header">COURSE THUMBNAIL</div>
+  <img
+    style="margin: 0 auto;"
+    src="{{ course?.thumbnailUrl }}"
+    alt=""
+    width="280"
+    height="210"
+    class="image"
+    id="variant-image"
+  />
+  <div class="btns-container">
+    <div class="thumbnail-button">
+      <button
+        [disabled]="course?.editLock"
+        nz-button
+        nzType="default"
+        nzSize="default"
+        (click)="onUploadThumbnail.emit('generate')"
+      >
+        <img [src]="environmentService.assetsPath + '/sync-arrow.svg'" alt="Generate" class="mr-2" />
+        Generate Thumbnail
+      </button>
+    </div>
+    <div class="thumbnail-button">
+      <button
+        [disabled]="course?.editLock"
+        nz-button
+        nzType="default"
+        nzSize="default"
+        (click)="onUploadThumbnail.emit('upload')"
+      >
+        <img [src]="environmentService.assetsPath + '/upload.svg'" alt="Upload" class="mr-2" />
+        Upload Thumbnail
+      </button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="field-header">COURSE TYPE</div>
+  <div class="field-value">{{ course?.format?.configValue }}</div>
+</div>
+<div class="m15-top">
+  <div class="field-header">
+    COURSE NAME
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('name')"></i>
+  </div>
+  <div class="field-value">{{ course?.name }}</div>
+</div>
+<div class="m15-top">
+  <div class="field-header">
+    CATEGORY
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('category')"></i>
+  </div>
+  <div class="field-value">{{ course?.categoryName }}</div>
+</div>
+<div class="m15-top">
+  <div class="field-header">
+    SUB-CATEGORY
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('subcategory')"></i>
+  </div>
+  <div class="field-value">
+    {{ course?.subcategoryName }}
+  </div>
+</div>
+<div class="m15-top">
+  <div class="field-header">
+    KEYWORDS
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('keywords')"></i>
+  </div>
+  <div class="field-value">
+    {{ course?.keywords?.join(',') }}
+  </div>
+</div>
+<div class="m15-top">
+  <div class="field-header">
+    LEVEL
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('level')"></i>
+  </div>
+  <div class="field-value">
+    {{ course?.level?.configValue }}
+  </div>
+</div>
+<div class="m15-top">
+  <div class="field-header">CREATED BY</div>
+  <div class="field-value" [innerHtml]="course?.createdBy"></div>
+</div>
+<!-- <div class="m15-top">
+    <div class="field-header">INTERNAL COURSE CODE / SKU</div>
+    <div class="field-value">
+        {{ course?.externalSKU || '-' }}
+    </div>
+</div> -->
+<div class="m15-top">
+  <div class="field-header">
+    COURSE DESCRIPTION
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('description')"></i>
+  </div>
+  <div class="field-value" [innerHtml]="course?.description"></div>
+</div>
+<div class="m15-top" *ngIf="isEditable || course.objectives">
+  <div class="field-header">
+    COURSE OBJECTIVES
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('objectives')"></i>
+  </div>
+  <div *ngIf="course?.objectives; else naTemplate" class="field-value" [innerHtml]="course?.objectives"></div>
+</div>
+<div class="m15-top" *ngIf="isEditable || course.targetAudience">
+  <div class="field-header">
+    TARGET AUDIENCE
+    <i *ngIf="isEditable" class="fal fa-edit edit-icon" (click)="onEditProp.emit('target-audience')"></i>
+  </div>
+  <div *ngIf="course?.targetAudience; else naTemplate" class="field-value" [innerHtml]="course?.targetAudience"></div>
+</div>
+<ng-template #naTemplate>
+  <div class="field-value">-</div>
+</ng-template>

@@ -1,0 +1,56 @@
+@disabled-color: #b6b7cc;
+
+:host(::ng-deep) {
+  .ant-select-arrow {
+    top: 38%;
+  }
+
+  .custom-arrow-icon {
+    i {
+      font-size: 18px;
+      color: #737394;
+    }
+  }
+
+  .ant-select {
+    &.unavailable {
+      .ant-select-selection-item,
+      .custom-arrow-icon {
+        i {
+          color: @disabled-color;
+        }
+      }
+    }
+  }
+}
+
+.attendance-status {
+  width: 105px;
+}
+
+.attendance-status-option {
+  display: flex;
+  align-items: center;
+
+  > span {
+    margin-left: 10px;
+  }
+}
+
+.attendance-status-selected {
+
+  &__informed {
+    width: 23px;
+    height: 23px;
+    margin-left: 5px;
+    margin-top: 5px;
+
+    &._not {
+      fill: #737394FF;
+
+      &:hover {
+        fill: #38B6A0FF;
+      }
+    }
+  }
+}

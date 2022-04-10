@@ -1,0 +1,325 @@
+<div style="margin-top: 25px">
+  <div style="text-align: center;">
+    <div class="header">Course Event Details</div>
+    <div class="sub-header">
+      Here you can provide all base details about your course event. These will be publicly displayed at the course page
+      in the Marketplace.
+    </div>
+  </div>
+  <form nz-form nzLayout="vertical" [formGroup]="detailsForm">
+    <div style="width:66%">
+      <nz-form-item>
+        <leap-form-label [required]="true">Event Delivery Language</leap-form-label>
+        <leap-form-hint-label>
+          The language in which this event is going to be delivered. Please be aware of any differences with the
+          languages of the materials used.
+        </leap-form-hint-label>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <div class="language-control">
+            <nz-select
+              nzShowSearch
+              formControlName="language"
+              [nzNotFoundContent]="'Item not found'"
+              nzPlaceHolder="Select a Language (click or type to search)"
+            >
+              <nz-option
+                *ngFor="let option of iltLanguageDictionary$ | async"
+                [nzLabel]="option.value"
+                [nzValue]="option.key"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div style="height: 15px"></div>
+
+      <div>
+        <leap-form-label [required]="true">Select Training Manager(s)</leap-form-label>
+        <leap-form-hint-label>
+          An employee of your company who can manage this event by (un)assigning or approving/rejecting learners, if the
+          event requires approval.
+        </leap-form-hint-label>
+      </div>
+      <div *ngFor="let selectedTM of trainingManagersControl.value; let i = index" class="selected-tm">
+        <div style="display: flex">
+          <div class="main-label">{{ selectedTM.trainingManagerName }}</div>
+          <div class="remove-tm" (click)="removeTM(i)">
+            <i class="fal fa-trash-alt"></i>
+            Remove
+          </div>
+        </div>
+        <div class="main-label">
+          {{ selectedTM.trainingManagerEmail }}
+        </div>
+      </div>
+      <div style="display: flex">
+        <div style="width: 100%">
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="tmErrorTpl">
+              <nz-select
+                nzMode="multiple"
+                nzPlaceHolder="Select a Training Manager (click or type to search)"
+                nzShowSearch
+                [(nzOpen)]="trainingManagersDropdownOpen"
+                formControlName="trainingManagers"
+              >
+                <ng-container *ngFor="let tm of trainingManagers$ | async">
+                  <nz-option [nzValue]="tm" [nzLabel]="tm.trainingManagerName + ' - ' + tm.trainingManagerEmail">
+                  </nz-option>
+                </ng-container>
+              </nz-select>
+              <ng-template #tmErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Please add at least 1 training manager
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div style="height: 15px"></div>
+      <ng-container *ngIf="!iltEvent.historical; else importLearners">
+        <leap-form-label [required]="true">Number of Learners</leap-form-label>
+        <leap-form-hint-label>
+          Please, select the minimum number of Learners you need to take up this course event, and the maximum number of
+          seats available..
+        </leap-form-hint-label>
+
+        <nz-form-item>
+          <nz-form-label style="margin-top: 7px; width: 50px; text-align: left" nzFor="minLearners"
+            >Min:
+          </nz-form-label>
+          <nz-form-control>
+            <nz-input-number
+              type="number"
+              nzMin="1"
+              [nzMax]="COURSE_WAITING_LIST_LIMIT"
+              formControlName="minLearners"
+              id="minLearners"
+            >
+            </nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label style="margin-top: 7px; width: 50px; text-align: left" nzFor="maxLearners"
+            >Max:
+          </nz-form-label>
+          <nz-form-control>
+            <nz-input-number
+              type="number"
+              [nzMin]="detailsForm.get('minLearners').value"
+              [nzMax]="COURSE_WAITING_LIST_LIMIT"
+              formControlName="maxLearners"
+              id="maxLearners"
+            >
+            </nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+        <div style="height: 15px"></div>
+        <nz-form-item [hidden]="!iltEvent.isInternal">
+          <leap-form-label>Self-registration</leap-form-label>
+          <leap-form-hint-label>
+            Can learners register for this course event?
+          </leap-form-hint-label>
+
+          <nz-form-control>
+            <nz-radio-group formControlName="selfRegistration">
+              <label *ngFor="let option of selfRegistrationOptions" nz-radio [nzValue]="option.key">
+                <span class="main-label">{{ option.value }}</span>
+              </label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item *ngIf="selfRegistrationControl.value" [hidden]="!iltEvent.isInternal" style="margin-top: 15px">
+          <leap-form-label>Registration Approval</leap-form-label>
+          <leap-form-hint-label>
+            Does your course require registration approval when learners sign up?
+          </leap-form-hint-label>
+
+          <nz-form-control>
+            <nz-radio-group formControlName="registrationApproval">
+              <label *ngFor="let option of registrationApprovalOptions" nz-radio [nzValue]="option.key">
+                <span class="main-label">{{ option.value }}</span>
+              </label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div *ngIf="selfRegistrationControl.value" [hidden]="!iltEvent.isInternal" style="margin-top: 15px">
+          <nz-form-item>
+            <leap-form-label>Waiting List</leap-form-label>
+            <leap-form-hint-label>
+              With a Waiting List enabled, when a seat becomes available, the first learner in the list will be
+              automatically moved to the enrollment list. If any approvals are required, you will be notified about it;
+              otherwise the learner will be automatically added to the event. Please note that you will be able to
+              modify the priority of the learners on the waiting list once an event is created.
+            </leap-form-hint-label>
+          </nz-form-item>
+
+          <nz-form-item>
+            <div class="waiting-list-wrapper">
+              <div class="waiting-list-wrapper__switch">
+                <nz-form-control>
+                  <nz-switch formControlName="waitingListEnabled"></nz-switch>
+                </nz-form-control>
+              </div>
+              <div class="waiting-list-wrapper__label">
+                <leap-form-label>Enable Waiting List</leap-form-label>
+              </div>
+            </div>
+          </nz-form-item>
+        </div>
+
+        <nz-form-item *ngIf="selfRegistrationControl.value && waitingListEnabledControl.value" style="margin-top: 15px">
+          <leap-form-label>Waiting List Size</leap-form-label>
+          <leap-form-hint-label>
+            What is the maximum number of learners that can be added to a waiting list?
+          </leap-form-hint-label>
+          <nz-form-control>
+            <nz-input-number type="number" formControlName="waitingListSize" [nzMin]="1"> </nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+
+      <ng-template #importLearners>
+        <nz-form-item>
+          <leap-form-label [required]="true">Learners</leap-form-label>
+          <leap-form-hint-label>
+            Please make sure your csv file has columns 'email' and 'Completion Date'. If Completion Date is missing for
+            a learner, the completion date will be set to the event end date. You can find an example template
+            <span class="csv-template" (click)="csvTemplateDownload()"><i class="fal fa-download"></i> here</span>
+          </leap-form-hint-label>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <leap-form-hint-label>
+              <span> You can upload <b>one file</b> for validation. </span>
+              <ul>
+                <li>The file is not larger than {{ allowedUploadSize }} Mb</li>
+                <li>The file is a {{ allowedUploadFormats }}</li>
+                <li>The first row contains the headers of the csv</li>
+                <li>The first column is titled 'email'</li>
+                <li>The second column is titled 'Completion Date'</li>
+                <li>Dates are in the format 'YYYY-MM-DD'</li>
+              </ul>
+            </leap-form-hint-label>
+
+            <div class="learners-file" *ngIf="detailsForm.get('csvKey').value && uploadedFile">
+              <span class="uploaded">{{ uploadedFile.name }}</span>
+              <span class="delete-icon" style="font-size: 16px;" (click)="removeCSV()"
+                ><i class="fal fa-trash-alt"></i
+              ></span>
+            </div>
+
+            <div class="upload-button" *ngIf="!uploadedFile">
+              <nz-upload
+                [nzBeforeUpload]="beforeUpload"
+                [nzCustomRequest]="uploadFile"
+                [nzAccept]="allowedUploadFormats"
+                [nzMultiple]="false"
+                [nzShowUploadList]="false"
+              >
+                <button nz-button [nzLoading]="uploading" [disabled]="uploading">
+                  <img
+                    [hidden]="uploading"
+                    [src]="environmentService.assetsPath + '/upload.svg'"
+                    alt="Upload"
+                    class="mr-2"
+                  />
+                  Upload File
+                </button>
+              </nz-upload>
+            </div>
+            <div *ngIf="bulkUploadErrors && bulkUploadErrors.length">
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Errors</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let error of bulkUploadErrors">
+                    <td>
+                      <span>
+                        {{ error.row }}
+                      </span>
+                    </td>
+                    <td>
+                      <span>
+                        {{ error.remarks.join(',') }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-template>
+
+      <nz-form-item>
+        <leap-form-label>
+          {{ iltEvent.course.specificExternalSKU ? 'Custom Course Code' : 'Internal Course Code / SKU' }}
+        </leap-form-label>
+        <leap-form-hint-label>
+          {{
+            iltEvent.course.specificExternalSKU
+              ? 'Please enter a code between 4 to 8 characters containing only digits and alphabets in upper case.'
+              : 'Add a custom code to your course.'
+          }}
+        </leap-form-hint-label>
+        <nz-form-control [nzErrorTip]="errorTemplate">
+          <input nz-input type="text" formControlName="externalSKU" placeholder="Start Typing..." />
+        </nz-form-control>
+      </nz-form-item>
+
+      <div style="height: 15px"></div>
+      <div class="btn-container">
+        <button nz-button class="default-btn" nzSize="large" (click)="onBack()">
+          Back
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          nzSize="large"
+          (click)="onProceed()"
+          [nzLoading]="updating"
+          [disabled]="bulkUploadErrors?.length > 0 || !detailsForm.valid"
+        >
+          Proceed
+        </button>
+      </div>
+      <div style="height: 20px"></div>
+    </div>
+  </form>
+</div>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('pattern')">
+    This field should contain only digits and alphabets in upper case.
+  </ng-container>
+  <ng-container *ngIf="control.hasError('minlength')">
+    {{
+      iltEvent.course.specificExternalSKU
+        ? 'This field should be at least 4 characters long'
+        : 'This field is too short'
+    }}
+  </ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">
+    {{
+      iltEvent.course.specificExternalSKU
+        ? 'This field should not be more than 8 characters long'
+        : 'This field is too long'
+    }}
+  </ng-container>
+  <ng-container *ngIf="control.hasError('custom')">
+    {{ control.getError('custom').message }}
+  </ng-container>
+</ng-template>

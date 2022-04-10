@@ -7,6 +7,7 @@ import {EditConferenceLinkModalComponent} from "./edit-conference-link-modal.com
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzAlertModule} from "ng-zorro-antd/alert";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 @NgModule({
   declarations: [EditConferenceLinkModalComponent],
@@ -15,6 +16,7 @@ import {NzAlertModule} from "ng-zorro-antd/alert";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzInputModule,
     NzAlertModule

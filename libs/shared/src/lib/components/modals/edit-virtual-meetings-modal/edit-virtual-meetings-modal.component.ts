@@ -12,16 +12,19 @@ import { Select } from '@ngxs/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { concatMap, filter, map, switchMap, take } from 'rxjs/operators';
-import { CourseEventInstructorsCollision } from 'src/app/admin-panel/models/ilt-course-event-instructor-collisions.model';
-import { ILTInstructor } from 'src/app/admin-panel/models/ilt-event.model';
-import { AdminCoursesService } from 'src/app/admin-panel/services/admin-courses.service';
-import { ConferencingToolService } from 'src/app/admin-panel/services/conferencing-tool.service';
-import { CourseEventInstructorsCollisionService } from 'src/app/admin-panel/services/course-event-instructors-collision.service';
-import { IGlobalStateModel } from '../../../../shared/global-state.model';
-import { EnvironmentService } from '../../../../snatch/services';
-import { CustomValidators } from '../../../common/validators/custom-validators';
-import { ConferencingTool } from '../../../models/conferencing-tool.model';
-import { ILTCourseAgendaDay } from '../../../models/ilt-course.model';
+import {
+  ConferencingTool,
+  CourseEventInstructorsCollision,
+  ILTCourseAgendaDay,
+  ILTInstructor
+} from "../../../models/interfaces";
+import {CustomValidators} from "../../../utils/common";
+import {EnvironmentService} from "../../../utils/services/common";
+import {
+  AdminCoursesService,
+  ConferencingToolService,
+  CourseEventInstructorsCollisionService
+} from "../../../utils/services";
 
 const ZOOM_GUIDE = 'https://edcast-docs.document360.io/v1/docs/web-conferencing-in-edcast-courses-events';
 
@@ -74,7 +77,7 @@ export class EditVirtualMeetingsModalComponent implements OnInit {
   @Output() authConferencingTool: EventEmitter<ConferencingTool> = new EventEmitter<ConferencingTool>();
   @Output() addInstructor: EventEmitter<void> = new EventEmitter<void>();
 
-  @Select((state: IGlobalStateModel) => state.adminPanel.conferencingToolsDictionary)
+  @Select(state => state.core.conferencingToolsDictionary)
   conferencingToolsDictionary$: Observable<ConferencingTool[]>;
 
   form: FormGroup = this.fb.group({
@@ -184,8 +187,6 @@ export class EditVirtualMeetingsModalComponent implements OnInit {
       this.instructorAccountError = !instructorAccountErrors.data;
     });
   }
-
-  ngOnDestroy(): void {}
 
   private getInstructors(): void {
     this.adminCoursesService

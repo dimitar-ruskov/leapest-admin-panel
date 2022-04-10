@@ -1,0 +1,84 @@
+<div class="main-header">
+  <div style="text-align: center;">
+    <div class="header">Summary</div>
+    <div class="sub-header">
+      Below follows a summary of the information you provided. Please, review this information before submitting it. If
+      you wish to change or review anything with more detail, you can go back to the previous steps.
+    </div>
+  </div>
+</div>
+<div style="height: 15px"></div>
+<nz-collapse>
+  <nz-collapse-panel nzHeader="General Information" [nzActive]="true">
+    <div style="padding-left: 30px;">
+      <leap-flattened-course-info [course]="iltEvent.course"></leap-flattened-course-info>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>
+<div style="height: 15px"></div>
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Event Details">
+    <div style="padding-left: 30px;">
+      <leap-event-details-info [iltEvent]="iltEvent" [showThumbnail]="false" [readonly]="true">
+      </leap-event-details-info>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>
+<div style="height: 15px"></div>
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Agenda">
+    <leap-t-agenda [agenda]="{ days: iltEvent.hierarchicalAgenda }" [isEvent]="true" [isDateTimeEditable]="false">
+    </leap-t-agenda>
+  </nz-collapse-panel>
+</nz-collapse>
+<div style="height: 15px"></div>
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Materials">
+    <div style="padding-left: 30px; padding-right: 20px">
+      <div class="field-header">LEARNER MATERIALS</div>
+      <div style="height: 10px"></div>
+      <div *ngIf="!learnerMaterialDTOs?.length" class="no-material">
+        This course has no learner materials.
+      </div>
+      <div *ngFor="let learnerMaterial of learnerMaterialDTOs">
+        <leap-internal-repo-tile [ir]="learnerMaterial" [selectable]="false"> </leap-internal-repo-tile>
+        <div style="height: 10px"></div>
+      </div>
+      <div class="field-header">INSTRUCTOR MATERIALS</div>
+      <div style="height: 10px"></div>
+      <div *ngIf="!instructorMaterialDTOs?.length" class="no-material">
+        This course has no instructor materials.
+      </div>
+      <div *ngFor="let material of instructorMaterialDTOs">
+        <leap-internal-repo-tile [ir]="material" [selectable]="false"> </leap-internal-repo-tile>
+        <div style="height: 10px"></div>
+      </div>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>
+
+<div style="height: 15px"></div>
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Scheduling">
+    <div style="padding-left: 30px;">
+      <leap-scheduling-details [iltEvent]="iltEvent" [readonly]="true"> </leap-scheduling-details>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>
+
+<div style="height: 15px"></div>
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Create Course Event" [nzActive]="true">
+    <div class="create-course-info">
+      Please make sure you have confirmed all the information regarding this course event.
+    </div>
+    <div style="height: 10px"></div>
+    <div style="display: flex; justify-content: center">
+      <button nz-button (click)="onBack()" nzSize="large" class="default-btn">Back</button>
+      <div style="width: 10px;"></div>
+      <button nz-button nzType="primary" nzSize="large" (click)="onSubmit()" [nzLoading]="submitting">
+        Submit
+      </button>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>

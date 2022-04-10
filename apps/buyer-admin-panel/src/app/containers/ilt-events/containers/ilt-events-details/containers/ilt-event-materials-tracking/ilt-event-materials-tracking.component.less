@@ -1,0 +1,52 @@
+@background-color: #fff;
+@success-color: #38b6a0;
+@default-button-color: #737394;
+@disabled-color: #8e8fa6;
+
+form {
+  max-width: 450px;
+}
+
+p {
+  margin: 0;
+}
+
+.table-container {
+  background-color: @background-color;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.see-details-button {
+  color: @default-button-color;
+
+  &:disabled {
+    color: @disabled-color;
+  }
+
+  &:disabled:hover{
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      color: @success-color;
+    }
+  }
+}
+
+.see-details-button {
+  &__label {
+    margin-left: 5px;
+  }
+}
+
+.learner-fullname,
+.learner-email {
+  line-height: 22px;
+}
+
+.learner-email {
+  color: @default-button-color;
+  font-size: 14px;
+}

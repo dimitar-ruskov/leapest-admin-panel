@@ -1,18 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IKeyValuePair } from '../../../../core/model/dictionary.model';
-import {
-  BulkAttendanceTrackingCompletionTypeKeys,
-  BulkAttendanceTrackingCompletionTypeKey,
-  IltEventAttendanceStatusKeys,
-  IltEventAttendanceStatusValues,
-} from '../../../models/ilt-event-attendance.model';
+import { take } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 import * as moment from 'moment';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { AdminCoursesService } from '../../../utils/services/admin-courses.service';
-import { take } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+
+import {
+  BulkAttendanceTrackingCompletionTypeKey,
+  BulkAttendanceTrackingCompletionTypeKeys,
+  IKeyValuePair, IltEventAttendanceStatusKeys,
+  IltEventAttendanceStatusValues
+} from "../../../models/interfaces";
+import {AdminCoursesService} from "../../../utils/services";
 
 @Component({
   selector: 'leap-bulk-attendance-tracking-selection-modal',
@@ -21,7 +21,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class BulkAttendanceTrackingSelectionModalComponent implements OnInit, OnDestroy {
+export class BulkAttendanceTrackingSelectionModalComponent implements OnInit {
   completionTypes = BulkAttendanceTrackingCompletionTypeKeys;
   completionTypeOptions: IKeyValuePair[] = [
     { key: BulkAttendanceTrackingCompletionTypeKeys.COURSE_COMPLETION, value: 'Course Completion' },
@@ -101,8 +101,6 @@ export class BulkAttendanceTrackingSelectionModalComponent implements OnInit, On
     this.prepareDaysOptions();
     this.initFormSubscriptions();
   }
-
-  ngOnDestroy(): void {}
 
   public getError(learnersNumber: number): string {
     return (

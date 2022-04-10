@@ -1,0 +1,185 @@
+<nz-table
+  #basicTable
+  [nzData]="data"
+  [nzFrontPagination]="false"
+  [nzTotal]="total"
+  [nzPageSize]="queryParams?.limit"
+  [nzPageIndex]="queryParams?.page"
+  [nzLoading]="isPending || attendanceUpdating"
+  [nzScroll]="{ x: '100%' }"
+  [nzShowPagination]="true"
+  [nzNoResult]="noLearners"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  leapTableColumnPaginator
+  [columnMinWidth]="paginatedColumnMinWidth"
+  [fixedColumnsWidth]="fixedTableColumnsConfig.getTotalColumnsWidth()"
+  [step]="tableColumnPaginatorStep"
+  [paginatedColumns]="days.length"
+  (resized)="onResized()"
+  #paginator="leapTableColumnPaginator"
+>
+  <thead>
+    <tr>
+      <th
+        [nzChecked]="mainCheckboxChecked"
+        [nzIndeterminate]="mainCheckboxIndeterminate"
+        [nzDisabled]="mainCheckboxDisabled"
+        (nzCheckedChange)="onAllChecked($event)"
+        nzWidth="{{ fixedTableColumnsConfig.getColumnWidth('checkbox') }}"
+        nzLeft
+      ></th>
+      <th
+        nzColumnKey="user.firstName"
+        nzWidth="{{ fixedTableColumnsConfig.getColumnWidth('name') }}"
+        nzLeft
+        [nzSortFn]="true"
+        [(nzSortOrder)]="nameSortOrder"
+      >
+        Name
+      </th>
+
+      <th
+        nzColumnKey="user.username"
+        [nzSortFn]="true"
+        [(nzSortOrder)]="emailSortOrder"
+        nzLeft
+        nzWidth="{{ fixedTableColumnsConfig.getColumnWidth('email') }}"
+      >
+        Email
+      </th>
+
+      <th nzLeft nzWidth="{{ fixedTableColumnsConfig.getColumnWidth('leftPaginationButton') }}">
+        <div class="ant-table-th-content">
+          <button
+            class="ant-table-columns-paginator-button ant-table-columns-paginator-button--left"
+            nz-button
+            nzType="text"
+            [disabled]="!paginator.canGoLeft"
+            (click)="paginator.paginate(-1)"
+          >
+            <i class="fal fa-angle-left"></i>
+          </button>
+        </div>
+      </th>
+
+      <th [nzWidth]="paginator.columnWidthPx" *ngFor="let day of days; trackBy: daysTrackByFn">
+        <div class="ant-table-th-content">
+          <div class="event-date">
+            <span>{{ day | date: 'dd MMM' }}</span>
+          </div>
+        </div>
+      </th>
+
+      <th *ngIf="paginator.spacerWidth" [nzWidth]="paginator.spacerWidthPx">
+        <div class="ant-table-th-content">
+          <div class="event-date"></div>
+        </div>
+      </th>
+
+      <th nzRight nzWidth="{{ fixedTableColumnsConfig.getColumnWidth('rightPaginationButton') }}">
+        <div class="ant-table-th-content">
+          <button
+            class="ant-table-columns-paginator-button ant-table-columns-paginator-button--right"
+            nz-button
+            nzType="text"
+            [disabled]="!paginator.canGoRight"
+            (click)="paginator.paginate(1)"
+          >
+            <i class="fal fa-angle-right"></i>
+          </button>
+        </div>
+      </th>
+
+      <th nzRight nzWidth="{{ fixedTableColumnsConfig.getColumnWidth('action') }}">
+        <div class="ant-table-th-content">
+          <button nz-button nzType="default" [disabled]="setOfCheckedId.size === 0" (click)="completeInBulk($event)">
+            Mark Completion in Bulk
+          </button>
+        </div>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr
+      *ngFor="let attendancesByUser of basicTable.data; trackBy: tableRowTrackByFn"
+      [class.single-row]="basicTable.data.length === 1"
+    >
+      <td
+        colspan="3"
+        [nzChecked]="setOfCheckedId.has(attendancesByUser.user.username)"
+        [nzDisabled]="attendancesByUser.user.completionPercentage === 100"
+        (nzCheckedChange)="onItemChecked(attendancesByUser.user.username, $event)"
+        nzLeft
+      >
+        <div class="ant-table-td-content">
+          <leap-attendance-tracking-user-entry [user]="attendancesByUser.user"></leap-attendance-tracking-user-entry>
+        </div>
+      </td>
+
+      <td nzLeft>
+        <div class="ant-table-td-gutter"></div>
+      </td>
+
+      <td
+        *ngFor="
+          let attendanceEntry of attendancesByUser.attendances;
+          index as i;
+          trackBy: tableRowAttendanceColumnTrackByFn
+        "
+      >
+        <div class="ant-table-td-content">
+          <leap-attendance-tracking-status
+            [attendanceEntry]="attendanceEntry"
+            [isDisabled]="attendancesByUser.user.completionPercentage > 0"
+            [hasCustomReasons]="!!customReasons?.length"
+            [available]="isAvailable(attendanceEntry.date)"
+            (statusChange)="onAttendanceStatusChange($event, attendanceEntry)"
+            (customAttendanceOpened)="openCustomAttendanceModal(attendanceEntry)"
+          ></leap-attendance-tracking-status>
+        </div>
+      </td>
+
+      <td *ngIf="paginator.spacerWidth">
+        <div class="ant-table-td-content"></div>
+      </td>
+
+      <td nzRight>
+        <div class="ant-table-td-gutter"></div>
+      </td>
+
+      <td nzRight>
+        <div class="ant-table-td-content">
+          <ng-container *ngIf="attendancesByUser.user.completionPercentage > 0; else markAsCompletedButton">
+            <leap-attendance-tracking-event-completed></leap-attendance-tracking-event-completed>
+            <i class="revert-button fal fa-undo" (click)="onUnmarkCompletion(attendancesByUser.user)"></i>
+          </ng-container>
+          <ng-template #markAsCompletedButton>
+            <div
+              nz-tooltip
+              nzTooltipPlacement="left"
+              [nzTooltipTitle]="attendancesByUser.completed ? markAsCompletedTooltip : cannotMarkAsCompletedTooltip"
+            >
+              <button
+                nz-button
+                nzType="default"
+                nzSize="small"
+                [disabled]="!attendancesByUser.completed"
+                (click)="markEventAsCompleted($event, attendancesByUser.user)"
+              >
+                Mark as Completed
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #noLearners>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="noResultsText"
+  ></nz-empty>
+</ng-template>

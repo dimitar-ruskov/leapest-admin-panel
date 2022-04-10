@@ -1,0 +1,39 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { IltEventsComponent } from './ilt-events.component';
+import {EventAgendaUnsavedChangesGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
+
+const routes: Routes = [
+  {
+    path: '',
+    component: IltEventsComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: async () =>
+          import('./containers/ilt-events-list/ilt-events-list.module')
+            .then((m) => m.IltEventsListModule)
+      },
+      {
+        path: 'create/:sku',
+        loadChildren: async () =>
+          import('./containers/ilt-events-create/ilt-events-create.module')
+            .then((m) => m.IltEventsCreateModule)
+      },
+      {
+        path: 'details/:sku',
+        loadChildren: async () =>
+          import('./containers/ilt-events-details/ilt-events-details.module')
+            .then((m) => m.IltEventsDetailsModule),
+        canDeactivate: [EventAgendaUnsavedChangesGuard],
+      },
+    ],
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class IltEventsRoutingModule {}

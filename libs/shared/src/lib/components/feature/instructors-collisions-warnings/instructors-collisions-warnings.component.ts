@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { CourseEventInstructorsCollision } from '../../models/ilt-course-event-instructor-collisions.model';
-
+import {CourseEventInstructorsCollision} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-instructors-collisions-warnings',

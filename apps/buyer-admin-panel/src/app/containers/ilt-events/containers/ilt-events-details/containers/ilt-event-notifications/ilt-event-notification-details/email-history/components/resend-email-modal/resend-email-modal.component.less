@@ -1,0 +1,49 @@
+.info {
+  &-explain {
+    color: #26273b;
+    margin-bottom: 10px;
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+
+  &-box {
+    border: 1px solid #9c9db5;
+    border-radius: 6px;
+
+    &__item {
+      margin: 10px;
+
+      .value{
+        height: 22px;
+        color: #26273b;
+      }
+
+      .label {
+        height: 19px;
+        font-size: 14px;
+        color: #737394;
+      }
+    }
+  }
+}
+
+
+::ng-deep {
+  .ant-modal-header {
+    padding-bottom: unset;
+    padding-top: 20px;
+    border-bottom: none;
+  }
+
+  .ant-modal-title{
+    height: 33px;
+    font-size: 24px;
+    color: #26273b;
+    display: contents;
+  }
+  .ant-modal-body {
+    padding-top: 20px;
+  }
+}

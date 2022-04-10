@@ -1,0 +1,38 @@
+@card-background-color: #fff;
+@card-text-color: #26273b;
+
+:host {
+  display: block;
+  background-color: @card-background-color;
+  border-radius: 6px;
+  padding: 20px;
+  font-size: 16px;
+  color: @card-text-color;
+
+  > p {
+    margin: 0;
+  }
+
+  .attendance-tracking-help {
+    &__icon-hints {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    &__icon-hint {
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+
+      > span {
+        margin-left: 10px;
+      }
+    }
+
+    &__comment {
+      margin-left: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}

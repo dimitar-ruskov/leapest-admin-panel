@@ -1,17 +1,8 @@
 @border-color: #b6b7cc;
 @default-text-color: #26273b;
 
-.edit-training-manager-modal {
-  &__selected-manager {
-    border: 1px solid @border-color;
-    border-radius: 4px;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-
-    > p {
-      color: @default-text-color;
-      line-height: 1.5;
-      margin: 0;
-    }
+:host ::ng-deep {
+  .ant-form-item .ant-select, .ant-form-item .ant-cascader-picker{
+    max-width: 580px !important;
   }
 }

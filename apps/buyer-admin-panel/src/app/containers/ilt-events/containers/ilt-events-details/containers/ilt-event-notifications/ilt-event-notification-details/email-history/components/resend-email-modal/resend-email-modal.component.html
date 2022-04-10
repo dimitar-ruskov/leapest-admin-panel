@@ -1,0 +1,37 @@
+<div>
+  <div class="info-explain">You are about to resent the following notification:</div>
+  <div class="info-box">
+    <div class="info-box__item">
+      <div class="label">TRIGGER</div>
+      <div class="value">{{ trigger.configValue }}</div>
+    </div>
+
+    <div class="info-box__item">
+      <div class="label">SUBJECT</div>
+      <div class="value">{{ subject }}</div>
+    </div>
+
+    <div class="info-box__item">
+      <div class="label">DATE SENT</div>
+      <div class="value">{{ updatedAt | date: 'dd MMM yyyy, hh:mm a' }}</div>
+    </div>
+  </div>
+
+  <div class="info-explain">To user:</div>
+  <div class="info-box">
+    <div class="info-box__item">
+      <div class="label">NAME</div>
+      <div class="value">{{ recipientName }}</div>
+    </div>
+
+    <div class="info-box__item">
+      <div class="label">EMAIL</div>
+      <div class="value">{{ recipientEmail }}</div>
+    </div>
+
+    <div class="info-box__item">
+      <div class="label">ROLE</div>
+      <div class="value">{{ recipientRole | titlecase }}</div>
+    </div>
+  </div>
+</div>

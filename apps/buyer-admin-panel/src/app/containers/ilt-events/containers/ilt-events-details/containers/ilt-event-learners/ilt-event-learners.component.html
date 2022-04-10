@@ -1,0 +1,32 @@
+<nz-tabset
+  *ngIf="showEnrollmentRequests; else enrolledLearners"
+  nzType="card"
+  class="admin-panel__card-tabset"
+  [nzAnimated]="false"
+>
+  <nz-tab nzTitle="Requesting Enrollment">
+    <leap-ilt-event-learners-pending [classEventId]="classEventId" [eventId]="eventId">
+    </leap-ilt-event-learners-pending>
+  </nz-tab>
+  <nz-tab nzTitle="Enrolled">
+    <leap-ilt-event-learners-enrolled [classEventId]="classEventId" [eventId]="eventId">
+    </leap-ilt-event-learners-enrolled>
+  </nz-tab>
+  <nz-tab nzTitle="Unenrolled" *ngIf="(total$ | async) > 0">
+    <leap-ilt-event-learners-unenrolled [classEventId]="classEventId" [eventId]="eventId">
+    </leap-ilt-event-learners-unenrolled>
+  </nz-tab>
+</nz-tabset>
+
+<ng-template #enrolledLearners>
+  <nz-tabset nzType="card" class="admin-panel__card-tabset">
+    <nz-tab nzTitle="Enrolled">
+      <leap-ilt-event-learners-enrolled [classEventId]="classEventId" [eventId]="eventId">
+      </leap-ilt-event-learners-enrolled>
+    </nz-tab>
+    <nz-tab nzTitle="Unenrolled" *ngIf="(total$ | async) > 0">
+      <leap-ilt-event-learners-unenrolled [classEventId]="classEventId" [eventId]="eventId">
+      </leap-ilt-event-learners-unenrolled>
+    </nz-tab>
+  </nz-tabset>
+</ng-template>

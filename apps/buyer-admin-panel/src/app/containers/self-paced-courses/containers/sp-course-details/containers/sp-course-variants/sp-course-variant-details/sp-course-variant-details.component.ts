@@ -98,7 +98,7 @@ export class SpCourseVariantDetailsComponent implements OnInit {
       nzTitle: 'Edit Training Manager',
       nzContent: EditTrainingManagerModalComponent,
       nzComponentParams: {
-        selectedTrainingManager: languageVariant.trainingManagers?.[0],
+        selectedTrainingManagers: languageVariant.trainingManagers,
       },
       nzWrapClassName: 'modal-class',
       nzWidth: 660,

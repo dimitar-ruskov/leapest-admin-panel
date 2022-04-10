@@ -1,0 +1,73 @@
+<leap-creation-stepper-step-layout>
+  <leap-creation-stepper-step-header header="Course Event Materials">
+    Below you can specify and review which materials and certificates are going to be issued for the learners attending
+    this course event.
+  </leap-creation-stepper-step-header>
+
+  <leap-creation-stepper-step-body>
+    <form nz-form nzLayout="vertical" [formGroup]="form" class="self-paced-course-create__step-form">
+      <ng-container formGroupName="internalRepositories">
+        <nz-form-item>
+          <leap-form-label>Specify Learner Materials</leap-form-label>
+          <leap-form-hint-label
+            >Participants of the course will get access to the materials below. Please select variants for this course:
+          </leap-form-hint-label>
+          <nz-form-control>
+            <leap-course-materials-input
+              formControlName="learner"
+              [selectingVariantsEnabled]="true"
+              [noMaterialsLabel]="noLearnerMaterialsLabel"
+              [userType]="'learner'"
+              [showOneLang]="true"
+              [courseName]="iltEvent.course.name"
+            ></leap-course-materials-input>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <leap-form-label>Specify Instructor Materials</leap-form-label>
+          <leap-form-hint-label
+            >Instructors of this course event will get access to the materials below. Please select variants for this
+            course:
+          </leap-form-hint-label>
+          <nz-form-control>
+            <leap-course-materials-input
+              formControlName="instructor"
+              [selectingVariantsEnabled]="true"
+              [noMaterialsLabel]="noInstructorMaterialsLabel"
+              [userType]="'instructor'"
+              [showOneLang]="true"
+              [courseName]="iltEvent.course.name"
+            ></leap-course-materials-input>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <ng-container *ngIf="iltEvent.course.participationCertificate; else noCourseCertificate">
+            <leap-edit-course-certificate
+              #editCertificate
+              [isEvent]="true"
+              [hidePreview]="true"
+              [hideTitleDownload]="true"
+              [currentCertificate]="iltEvent.course.participationCertificate"
+            ></leap-edit-course-certificate>
+          </ng-container>
+
+          <ng-template #noCourseCertificate>
+            <leap-form-label>Participation Certificate Delivery</leap-form-label>
+            <div class="no-certificate">
+              It appears that you do not have any active participation certificate yet. If you wish to use one for this
+              course, please add it to the
+              <a [href]="'/hw/admin/ilt-courses/details/' + iltEvent.course.id">Course Template</a> first
+            </div>
+          </ng-template>
+        </nz-form-item>
+      </ng-container>
+    </form>
+  </leap-creation-stepper-step-body>
+
+  <leap-creation-stepper-step-buttons style="margin-bottom: 20px">
+    <button nz-button (click)="onCancel($event)">Cancel</button>
+    <button nz-button nzType="primary" [nzLoading]="updating" (click)="onProceed($event)">Proceed</button>
+  </leap-creation-stepper-step-buttons>
+</leap-creation-stepper-step-layout>

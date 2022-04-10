@@ -11,13 +11,14 @@ const routes: Routes = [
       {
         path: 'ilt-courses',
         loadChildren: async () =>
-          import('../ilt-courses/ilt-courses-container.module').then(
-            (m) => m.IltCoursesContainerModule),
+          import('../ilt-courses/ilt-courses-container.module')
+            .then((m) => m.IltCoursesContainerModule),
       },
-      // {
-      //   path: 'ilt-events',
-      //   loadChildren: async () => import('./containers/ilt-events/ilt-events.module').then((m) => m.IltEventsModule),
-      // },
+      {
+        path: 'ilt-events',
+        loadChildren: async () => import('../ilt-events/ilt-events.module')
+          .then((m) => m.IltEventsModule),
+      },
       {
         path: 'self-paced-courses',
         loadChildren: async () =>
@@ -52,16 +53,16 @@ const routes: Routes = [
       {
         path: 'notifications',
         loadChildren: async () =>
-          import('../notifications/notifications-container.module').then(
-            (m) => m.NotificationsContainerModule,
+          import('../notifications/notifications-container.module')
+            .then((m) => m.NotificationsContainerModule,
           ),
         canActivate: [AdminUserGuard],
       },
       {
         path: 'publishing',
         loadChildren: async () =>
-          import('../publishing/publishing-container.module').then(
-            (m) => m.PublishingContainerModule,
+          import('../publishing/publishing-container.module')
+            .then((m) => m.PublishingContainerModule,
           ),
         canActivate: [AdminUserGuard],
       },

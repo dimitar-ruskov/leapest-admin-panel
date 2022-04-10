@@ -1,0 +1,134 @@
+@import (reference) "../../../../../styles";
+
+.stepper-container {
+  margin: 20px auto;
+  margin-bottom: 50px;
+}
+
+.main-container{
+    border-radius: 4px;
+}
+
+:host ::ng-deep {
+
+  div.ant-steps-item-title {
+    font-size: 14px;
+    color: #26273b;
+
+    &.disabled {
+      color: #cfd0dd;
+    }
+  }
+
+  div.ant-steps-item-description {
+    font-size: 12px;
+    color: #8e8fa6;
+
+    &.disabled {
+      color: #cfd0dd;
+    }
+  }
+
+  .ant-steps-item-icon {
+    border: 1px solid #cfd0dd !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .ant-steps-icon {
+    display: block !important;
+    margin-top: -3px !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .ant-steps-item-title {
+    color: #cfd0dd !important;
+  }
+
+  .ant-steps-item-process  {
+    svg {
+      fill: @primary-color !important;
+      background-color: #fff;
+      color: @primary-color !important;
+    }
+    i{
+        color: @primary-color !important;
+    }
+
+    .ant-steps-item-icon {
+      background-color: #fff !important;
+      border-color: @primary-color !important;
+    }
+
+    .ant-steps-item-title {
+      color: @primary-color !important;
+    }
+  }
+
+  .ant-steps-item-finish {
+    svg {
+      fill: #fff !important;
+      background-color: @primary-color !important;
+      color: @primary-color !important;
+    }
+    i{
+        color: #fff !important;
+    }
+
+    .ant-steps-item-icon {
+      background-color: @primary-color !important;
+      border-color: @primary-color !important;
+    }
+
+    .ant-steps-item-title {
+      color: @primary-color !important;
+    }
+  }
+}
+.breadcrumb{
+  font-family: Open Sans;
+  font-size: 14px;
+}
+
+nz-step {
+  width: 32px;
+  height: 32px;
+}
+
+svg {
+  display: inline;
+}
+.leapest-logo-container{
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #ffffff;
+  background-size: cover;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+  padding-left: 15px;
+}
+.separator {
+  height: 26px;
+  border-right: 1px solid #acadc1;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.icon-div{
+  height: 60px;
+  padding-top: 9px;
+}
+.description {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  color: #26273b;
+}
+
+.big-font {
+  font-size: 18px;
+}
+
+.publish-icon {
+  height: 20px;
+  margin-right: 5px;
+}

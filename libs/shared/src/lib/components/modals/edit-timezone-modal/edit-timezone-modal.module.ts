@@ -6,6 +6,7 @@ import {EditTimezoneModalComponent} from "./edit-timezone-modal.component";
 
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import {FormLabelModule} from "../../common/form-label/form-label.module";
 
 @NgModule({
   declarations: [EditTimezoneModalComponent],
@@ -14,6 +15,7 @@ import {NzSelectModule} from "ng-zorro-antd/select";
     CommonModule,
     ReactiveFormsModule,
 
+    FormLabelModule,
     NzFormModule,
     NzSelectModule
   ],

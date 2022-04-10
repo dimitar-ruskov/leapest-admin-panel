@@ -1,0 +1,78 @@
+<nz-tabset nzType="card" class="admin-panel__card-tabset" [nzAnimated]="false" nzLinkRouter>
+  <nz-tab>
+    <a class="sub-tab" *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'details' }">Event Details</a>
+    <leap-event-details-info
+      [iltEvent]="iltEvent"
+      (editProp)="onEditEventDetailsProp($event.fieldId, iltEvent)"
+      (uploadThumbnail)="onUploadThumbnail($event)"
+      (downloadCertificate)="downloadCertificate($event)"
+      (previewCertificate)="previewCertificate($event)"
+      (generateThumbnail)="onGenerateThumbnail($event)"
+    >
+    </leap-event-details-info>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'general-info' }"
+      queryParamsHandling="merge"
+      >General Information</a
+    >
+    <leap-flattened-course-info [course]="iltEvent.course"></leap-flattened-course-info>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'material-info' }"
+      queryParamsHandling="merge"
+      >Materials Information</a
+    >
+    <div style="width: 80%">
+      <div class="field-header">LEARNER MATERIALS</div>
+      <div style="height: 10px"></div>
+      <div *ngIf="getLearnerMaterials(iltEvent.course) as learnerMaterialDTOs">
+        <div *ngIf="!learnerMaterialDTOs?.length" class="no-material">
+          This course has no learner materials.
+        </div>
+        <div *ngFor="let learnerMaterial of learnerMaterialDTOs">
+          <leap-internal-repo-tile [ir]="learnerMaterial" [selectable]="false"> </leap-internal-repo-tile>
+          <div style="height: 10px"></div>
+        </div>
+      </div>
+      <div *ngIf="getInstructorMaterials(iltEvent.course) as instructorMaterialDTOs">
+        <div class="field-header">INSTRUCTOR MATERIALS</div>
+        <div style="height: 10px"></div>
+        <div *ngIf="!instructorMaterialDTOs?.length" class="no-material">
+          This course has no instructor materials.
+        </div>
+        <div *ngFor="let material of instructorMaterialDTOs">
+          <leap-internal-repo-tile [ir]="material" [selectable]="false"> </leap-internal-repo-tile>
+          <div style="height: 10px"></div>
+        </div>
+      </div>
+    </div>
+  </nz-tab>
+  <nz-tab>
+    <a
+      class="sub-tab"
+      *nzTabLink
+      nz-tab-link
+      [routerLink]="['.']"
+      [queryParams]="{ sub: 'scheduling' }"
+      queryParamsHandling="merge"
+      >Scheduling</a
+    >
+    <leap-scheduling-details
+      [iltEvent]="iltEvent"
+      [readonly]="false"
+      (editProp)="onEditEventDetailsProp($event.fieldId, iltEvent)"
+    >
+    </leap-scheduling-details>
+  </nz-tab>
+</nz-tabset>

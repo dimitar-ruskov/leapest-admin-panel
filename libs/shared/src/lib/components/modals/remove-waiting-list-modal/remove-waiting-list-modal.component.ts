@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ILTEventLearner } from '../../../models/ilt-event.model';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {ILTEventLearner} from "../../../models/interfaces";
 
 @Component({
   selector: 'leap-remove-waiting-list-modal',
@@ -7,10 +7,6 @@ import { ILTEventLearner } from '../../../models/ilt-event.model';
   styleUrls: ['./remove-waiting-list-modal.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RemoveWaitingListModalComponent implements OnInit {
+export class RemoveWaitingListModalComponent {
   @Input() learner: ILTEventLearner;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

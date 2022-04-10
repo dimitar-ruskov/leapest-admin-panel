@@ -1,0 +1,60 @@
+<div class='table-container'>
+    <nz-content class='admin-panel__content'>
+        <form nz-form [formGroup]='form' nzLayout='vertical'>
+            <nz-form-item>
+                <leap-form-label [required]='true'>Select Material</leap-form-label>
+                <nz-form-control>
+                    <nz-select nzShowSearch formControlName='selectedMaterial' [nzNotFoundContent]="'Item not found'"
+                        [compareWith]='materialOptionCompareFn'
+                        nzPlaceHolder='Select a Material (click or type to search)'>
+                        <nz-option *ngFor='let option of (materialTrackingFilterOptions$ | async)'
+                            [nzLabel]='option.value' [nzValue]='option'>
+                        </nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </nz-content>
+
+    <nz-content class='admin-panel__content'>
+        <nz-table [nzFrontPagination]='false' [nzData]='materialsTrackingList$ | async' [nzLoading]='loading$ | async'
+            [nzPageSize]='pageSize$ | async' [nzTotal]='total$ | async' [nzPageIndex]='pageIndex$ | async'
+            (nzQueryParams)='onQueryParamsChange($event)' #iltEventMaterialTrackingTable>
+            <thead>
+                <tr>
+                    <th nzColumnKey='name' [nzEllipsis]='true'>Participant
+                    </th>
+                    <th nzColumnKey='email' [nzEllipsis]='true'>Total Time Spent
+                    </th>
+                    <th nzColumnKey='enrollmentDate' [nzEllipsis]='true'>Completed
+                    </th>
+                    <th nzWidth='112px'></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let report of iltEventMaterialTrackingTable.data; trackBy: tableRowTrackByFn'>
+                    <td>
+                        <p>{{ report.fullName }}</p>
+                        <p>{{ report.email }}</p>
+                    </td>
+                    <td [nzEllipsis]='true'>{{report.userStarted ? report.totalTime : 'Not Started'}}</td>
+                    <td [nzEllipsis]='true'>{{report.completedContents}} / {{report.totalContents}}</td>
+                    <td>
+                        <div nz-tooltip nzTooltipPlacement='bottomRight' nzTooltipColor='#26273b'
+                            [nzTooltipTitle]='!report.userStarted ? notStartedTooltip : ""'>
+                            <button nz-button nzType='text' class='admin-panel__reset-button see-details-button'
+                                [disabled]='!report.userStarted' (click)='seeDetails(report)'>
+                                <i class='fal fa-ballot-check'></i><span
+                                    class='see-details-button__label'>Details</span>
+                            </button>
+                        </div>
+
+                        <ng-template #notStartedTooltip>
+                            <div class='admin-panel__cta-tooltip'>Not started</div>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-content>
+</div>

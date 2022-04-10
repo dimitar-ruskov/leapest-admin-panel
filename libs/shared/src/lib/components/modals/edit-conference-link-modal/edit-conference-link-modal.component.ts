@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from '../../../common/validators/custom-validators';
-
+import {CustomValidators} from "../../../utils/common";
 
 @Component({
   selector: 'leap-edit-conference-link-modal',
@@ -18,7 +17,7 @@ export class EditConferenceLinkModalComponent implements OnInit {
   @Input() conferenceLink: string;
 
   constructor(private readonly fb: FormBuilder) {
-   
+
   }
 
   ngOnInit(): void {

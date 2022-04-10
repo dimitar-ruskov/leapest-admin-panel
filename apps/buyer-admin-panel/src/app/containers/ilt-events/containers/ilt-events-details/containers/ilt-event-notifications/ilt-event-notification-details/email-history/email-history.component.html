@@ -1,0 +1,100 @@
+<div class="table-container">
+  <div class="search">
+    <leap-table-search
+      data-section="right"
+      (searchPhraseChange)="onSearch($event)"
+      [placeholder]="searchPlaceholder"
+    ></leap-table-search>
+  </div>
+  <nz-table
+    leapTableGrid
+    [nzFrontPagination]="false"
+    [nzData]="mailList$ | async"
+    [nzLoading]="loading$ | async"
+    [nzPageSize]="pageSize$ | async"
+    [nzTotal]="total$ | async"
+    [nzPageIndex]="pageIndex$ | async"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    [nzNoResult]="noLearners"
+    [nzShowPagination]="true"
+    [nzShowQuickJumper]="true"
+    #iltNotificationEmailHistoryTable
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="name" nzWidth="70%" [nzSortFn]="true" [nzEllipsis]="true">Participant</th>
+        <th nzColumnKey="role" nzWidth="5%" [nzEllipsis]="true">Recipient Role</th>
+        <th nzColumnKey="sentDate" nzWidth="19%" [nzSortFn]="true" [nzEllipsis]="true">Date Sent</th>
+        <th nzWidth="4%"></th>
+        <th nzWidth="2%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let email of iltNotificationEmailHistoryTable.data; trackBy: trackByFn">
+        <td [nzEllipsis]="true">
+          <p class="history__full-name text-ellipsis">
+            {{ email?.recipient?.firstName ? email.recipient.firstName + ' ' + email.recipient.lastName : 'N/A' }}
+          </p>
+          <p class="history__email text-ellipsis">
+            {{ email.recipient?.username }}
+          </p>
+        </td>
+        <td [nzEllipsis]="true">
+          {{ username === email?.recipient?.username ? 'Me' : (email.recipient.type | titlecase) }}
+        </td>
+        <td [nzEllipsis]="true">{{ email.createdAt | date: "dd MMM yyyy, 'at' HH:mm" }}</td>
+        <td>
+          <button leapTableGridRowCtaButton (click)="onPreviewClicked(email)">
+            <i
+              nz-tooltip
+              nzTooltipTitle="Preview email with this template"
+              nzTooltipColor="#26273b"
+              leapTableGridCellTooltip
+              class="fal fa-eye history__cta-tooltip"
+            ></i>
+          </button>
+        </td>
+        <td>
+          <button
+            leapTableGridRowCtaButton
+            nz-tooltip
+            nzTooltipTitle="Resend Email to Participant"
+            class="history__cta-tooltip"
+            nzTooltipColor="#26273b"
+            leapTableGridCellTooltip
+            (click)="resendTemplateModal(email.recipient, email.hedwigEmailId)"
+          >
+            <img [src]="environmentService.assetsPath + '/resend-email-envelope.svg'" alt="Resend" class="mr-2" />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+<ng-template #noLearners>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="noResultsText"
+  ></nz-empty>
+</ng-template>
+
+<nz-modal
+  [nzWidth]="'660px'"
+  [(nzVisible)]="showPreviewTemplate"
+  nzTitle="Email Template Preview"
+  (nzOnCancel)="this.showPreviewTemplate = false"
+>
+  <ng-container *nzModalContent>
+    <nz-skeleton *ngIf="(previewTemplate$ | async).isPending" [nzActive]="true"></nz-skeleton>
+    <p style="text-align: center;" *ngIf="(previewTemplate$ | async).error">
+      There was a problem generating the preview for this template. Please close the pop-up and try again.
+    </p>
+    <div
+      *ngIf="(previewTemplate$ | async).isSuccess"
+      [innerHTML]="(previewTemplate$ | async).response.data | htmlBypass"
+    ></div>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="default" (click)="this.showPreviewTemplate = false">Close Preview</button>
+  </ng-container>
+</nz-modal>

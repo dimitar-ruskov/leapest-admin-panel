@@ -1,0 +1,38 @@
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <div class="description">
+    You are recording reason for {{ attendanceStatus.toLowerCase() }} for {{ learner }} on
+    {{ date | date: 'dd MMM yyyy' }}.
+  </div>
+
+  <nz-form-item>
+    <leap-form-label [required]="true">Specify for {{ attendanceStatus }}</leap-form-label>
+    <leap-form-hint-label
+      >Please specify a reason for {{ attendanceStatus.toLowerCase() }} of this learner.
+    </leap-form-hint-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="customAttendanceName">
+        <ng-container *ngFor="let reason of reasons">
+          <label nz-radio [nzValue]="reason.customAttendanceName">{{ reason.customAttendanceName }}</label>
+        </ng-container>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="reason">
+    <nz-form-control [nzErrorTip]="errorTemplate">
+      <textarea
+        nz-input
+        [nzAutosize]="{ minRows: 1, maxRows: 4 }"
+        formControlName="reason"
+        placeholder="Specify Reason"
+      >
+      </textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    Reason for {{ form.get('customAttendanceName').value }} is mandatory!
+  </ng-container>
+</ng-template>

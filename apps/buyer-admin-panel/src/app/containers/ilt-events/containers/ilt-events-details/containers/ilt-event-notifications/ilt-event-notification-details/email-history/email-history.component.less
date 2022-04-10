@@ -1,0 +1,68 @@
+@full-name-color: #26273b;
+@email-color: #737394;
+
+:host {
+  display: block;
+}
+
+.search {
+  leap-table-search {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.ant-table-tbody {
+  .ant-table-row {
+
+    td {
+      height: 60px;
+      font-size: 16px !important;
+
+      &:nth-child(2){
+        text-align: right !important;
+      }
+      &:nth-child(3){
+        text-align: right !important;
+      }
+    }
+  }
+}
+
+.history {
+  &__full-name,
+  &__email {
+    margin: 0;
+  }
+
+  &__full-name {
+    font-size: 16px;
+    color: @full-name-color;
+  }
+
+  &__email {
+    font-size: 14px;
+    color: @email-color;
+  }
+
+  &__cta-tooltip {
+    font-size: 20px;
+  }
+}
+
+:host(::ng-deep) {
+  .ant-table-thead {
+    th {
+      height: 60px;
+      font-size: 16px !important;
+
+      &:nth-child(2) {
+        text-align: right !important;
+      }
+
+      &:nth-child(3) {
+        text-align: right !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@material-button-text-color: #26273b;
+@material-button-border-color: #9c9db5;
+@material-button-background-color: #ffffff;
+@material-button-color-hover: #f0f0f5;
+
+&__material-wrapper {
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+}
+
+:host ::ng-deep {
+  .course-materials-input {
+    &__add-material-button {
+      border-color: @material-button-border-color;
+      background: @material-button-background-color;
+      color: @material-button-text-color;
+      text-shadow: none;
+
+      &:hover {
+        background-color: @material-button-color-hover;
+      }
+    }
+  }
+}
+
+.no-certificate {
+  width: 620px;
+  height: 70px;
+
+  padding: 10px 12px;
+  border: 1px solid #9476c9;
+  border-radius: 4px;
+  background-color: #f4f1f9;
+  background-size: cover;
+  font-size: 16px;
+  color: #9476c9;
+  text-align: center;
+  color: #9476c9;
+  margin-top: 5px;
+
+  a {
+    color: #9476c9;
+    text-decoration: underline;
+
+  }
+}
+

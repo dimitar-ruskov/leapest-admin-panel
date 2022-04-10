@@ -1,0 +1,217 @@
+<nz-breadcrumb nzSeparator=">">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/', 'admin', 'ilt-events']">Instructor-led Course Events</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Course Event Details</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<ng-container *ngIf="iltEvent$ | async as iltEvent">
+  <nz-content class="admin-panel__content">
+    <leap-cta-container [skeleton]="iltEvent.isPending && !iltEvent.response">
+      <nz-alert
+        *ngIf="iltEvent.response?.historical"
+        nzType="warning"
+        nzMessage="{{ historicalWarningMessage }}"
+        class="mt-2"
+      >
+      </nz-alert>
+      <nz-alert
+        *ngIf="!iltEvent.response?.historical && iltEvent.response?.classEvent?.status?.configKey === 'finished'"
+        nzType="warning"
+        nzMessage="{{ finishedEventWarningMessage }}"
+        class="mt-2"
+      >
+      </nz-alert>
+      <h1 leap-cta-container-title>{{ iltEvent?.response?.course.name + ' Event' }}</h1>
+      <div slot="buttons" class="flex mr-4">
+        <img
+          class="publish-icon"
+          [src]="
+            environmentService.assetsPath +
+            (iltEvent?.response?.course.publishStatus?.configKey === 'published'
+              ? '/published-to-lxp.svg'
+              : '/not-published-to-lxp.svg')
+          "
+          alt="Published"
+        />
+        <span
+          >{{
+            iltEvent?.response?.course.publishStatus?.configKey === 'published'
+              ? 'Parent Course is Published to LXP'
+              : 'Parent Course is not Published to LXP'
+          }}
+          <a
+            *ngIf="iltEvent?.response?.course.publishStatus?.configKey === 'published'"
+            href="{{ '/hw/admin/ilt-courses/details/' + iltEvent?.response?.course.parentId }}"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            (View Course)
+          </a>
+        </span>
+      </div>
+      <leap-event-header-sections
+        [details]="iltEvent.response"
+        [waitingListTotal]="waitingListTotal$ | async"
+        (onEditClicked)="onEditEventDetailsProp($event, iltEvent.response)"
+        (assignUsersClicked)="onAssignUsersClicked(iltEvent?.response)"
+      ></leap-event-header-sections>
+      <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 2 }" slot="skeleton"></nz-skeleton>
+    </leap-cta-container>
+  </nz-content>
+
+  <nz-content class="admin-panel__content">
+    <nz-tabset class="admin-panel__tabset" [nzAnimated]="false" [nzCanDeactivate]="canDeactivateTab" nzLinkRouter>
+      <nz-tab>
+        <a class="tab" *nzTabLink nz-tab-link [routerLink]="['.']">Learners</a>
+        <leap-ilt-event-learners
+          *ngIf="!iltEvent.isPending; else spinnerTemplate"
+          [classEventId]="iltEvent.response?.classEvent?.id"
+          [eventId]="iltEvent.response?.id"
+          [showEnrollmentRequests]="iltEvent.response?.selfRegistration && !iltEvent.response.course?.automaticApproval"
+        >
+        </leap-ilt-event-learners>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'details' }"
+          queryParamsHandling="merge"
+          >Details</a
+        >
+        <leap-ilt-event-info *ngIf="!iltEvent.isPending; else spinnerTemplate" [iltEvent]="iltEvent.response">
+        </leap-ilt-event-info>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'scheduling', sub: null }"
+          queryParamsHandling="merge"
+          >Event Agenda</a
+        >
+        <leap-t-agenda
+          *ngIf="!iltEvent.isPending; else spinnerTemplate"
+          [agenda]="{ days: iltEvent.response?.hierarchicalAgenda }"
+          [isEvent]="true"
+          [isDateTimeEditable]="true"
+          [isEditable]="iltEvent.response?.course?.agendaEditable"
+          [borderless]="true"
+          (valueChange)="onAgendaValueAndValidityChange($event)"
+          [showSaveChanges]="showAgendaSaveChanges"
+          (saveChanges)="onAgendaSaveChanges()"
+          [isHistorical]="iltEvent.response?.historical"
+          [timezone]="iltEvent.response?.classEvent?.timezone"
+        >
+        </leap-t-agenda>
+      </nz-tab>
+      <ng-container *ngIf="iltEvent?.response?.course | concatMaterialsPipe | groupMasterInternalReposByType as groups">
+        <nz-tab *ngIf="groups.material.length">
+          <a
+            class="tab"
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['.']"
+            [queryParams]="{ tab: 'materials-tracking', sub: null }"
+            queryParamsHandling="merge"
+            >Materials Tracking</a
+          >
+          <leap-ilt-event-materials-tracking
+            *ngIf="!iltEvent.isPending; else spinnerTemplate"
+            [iltEvent]="iltEvent.response"
+            [materials]="groups.material"
+          >
+          </leap-ilt-event-materials-tracking>
+        </nz-tab>
+        <nz-tab *ngIf="groups.exam.length">
+          <a
+            class="tab"
+            *nzTabLink
+            nz-tab-link
+            [routerLink]="['.']"
+            [queryParams]="{ tab: 'exams', sub: null }"
+            queryParamsHandling="merge"
+            >Exams</a
+          >
+          <leap-ilt-event-exams
+            *ngIf="!iltEvent.isPending; else spinnerTemplate"
+            [iltEvent]="iltEvent.response"
+            [examMaterials]="groups.exam"
+          >
+          </leap-ilt-event-exams>
+        </nz-tab>
+      </ng-container>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'waiting-list', sub: null }"
+          queryParamsHandling="merge"
+          >Waiting List</a
+        >
+        <leap-waiting-list
+          *ngIf="!iltEvent.isPending && iltEvent.response; else spinnerTemplate"
+          [iltEvent]="iltEvent.response"
+        >
+        </leap-waiting-list>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'attendance-tracking', sub: null }"
+          queryParamsHandling="merge"
+          >Attendance Tracking</a
+        >
+        <ng-template nz-tab>
+          <leap-attendance-tracking
+            *ngIf="!iltEvent.isPending && iltEvent.response; else spinnerTemplate"
+            [event]="iltEvent.response"
+          >
+          </leap-attendance-tracking>
+        </ng-template>
+      </nz-tab>
+      <nz-tab>
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'reviews', sub: null }"
+          queryParamsHandling="merge"
+          >Reviews</a
+        >
+        <leap-ilt-event-reviews
+          *ngIf="!iltEvent.isPending && iltEvent.response; else spinnerTemplate"
+          [eventId]="iltEvent.response?.id"
+        >
+        </leap-ilt-event-reviews>
+      </nz-tab>
+      <nz-tab *ngIf="showNotifications">
+        <a
+          class="tab"
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['.']"
+          [queryParams]="{ tab: 'notifications', sub: null }"
+          queryParamsHandling="merge"
+          >Notifications</a
+        >
+        <leap-ilt-event-notifications *ngIf="!iltEvent.isPending; else spinnerTemplate"></leap-ilt-event-notifications>
+      </nz-tab>
+    </nz-tabset>
+  </nz-content>
+</ng-container>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="ilt-event-details__spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

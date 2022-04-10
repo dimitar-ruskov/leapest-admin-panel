@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { startWith } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { startWith } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class EditWaitingListModalComponent implements OnInit, OnDestroy {
+export class EditWaitingListModalComponent implements OnInit {
   @Input() enabled: boolean;
   @Input() size: number;
   @Input() minSize: number;
@@ -38,9 +38,5 @@ export class EditWaitingListModalComponent implements OnInit, OnDestroy {
     this.isEnabled.valueChanges.pipe(startWith(this.enabled), untilDestroyed(this)).subscribe((val) => {
       val ? this.wSize.enable() : this.wSize.disable();
     });
-  }
-
-  ngOnDestroy() {
-    //od
   }
 }
