@@ -53,45 +53,6 @@ import {
   InternalRepositoryCoursesState
 } from "../containers/internal-repository/containers/internal-repository-details/state/internal-repository-courses.state";
 import {
-  MarketplaceRepositoryListState
-} from "../containers/marketplace-repository/containers/marketplace-repository-list/state/marketplace-repository-list.state";
-import {
-  SpCoursesListStateModel
-} from "../containers/self-paced-courses/containers/sp-courses-list/state/sp-courses-list.state";
-import {
-  ActiveSpCoursesListState
-} from "../containers/self-paced-courses/containers/sp-courses-list/state/active-sp-courses-list/active-sp-courses-list.state";
-import {
-  DraftSpCoursesListStateModel
-} from "../containers/self-paced-courses/containers/sp-courses-list/state/draft-sp-courses-list/draft-sp-courses-list.state";
-import {
-  SpCourseCreateStateModel
-} from "../containers/self-paced-courses/containers/sp-course-create/state/sp-course-create.state";
-import {
-  SpCourseDetailsStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/state/sp-course-details.state";
-import {
-  SpCourseVariantsStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/state/sp-course-variants.state";
-import {
-  SpCourseVariantCreateState, SpCourseVariantCreateStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/sp-course-variant-create/state/sp-course-variant-create.state";
-import {
-  SpCourseVariantDetailsStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/sp-course-variant-details/state/sp-course-variant-details.state";
-import {
-  SpCourseVariantExamsStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/sp-course-variant-details/state/sp-course-variant-exams/sp-course-variant-exams.state";
-import {
-  SpCourseVariantMaterialsTrackingStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/sp-course-variant-details/state/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state";
-import {
-  SpCourseVariantLearnersPendingStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/sp-course-variant-details/state/sp-course-variant-learners/sp-course-variant-learners-pending.state";
-import {
-  SpCourseVariantLearnersEnrolledStateModel
-} from "../containers/self-paced-courses/containers/sp-course-details/containers/sp-course-variants/sp-course-variant-details/state/sp-course-variant-learners/sp-course-variant-learners-enrolled.state";
-import {
   IltEventsCreateStateModel
 } from "../containers/ilt-events/containers/ilt-events-create/state/ilt-events-create.state";
 import {IltEventsListStateModel} from "../containers/ilt-events/containers/ilt-events-list/state/ilt-events.state";
@@ -148,21 +109,12 @@ export interface IGlobalStateModel {
 //     iltEventDetails: IltEventDetailsModel;
 //   };
 //
-//   selfPacedCourses: {
-//     SpCourseCreate: SpCourseCreateStateModel;
-//     spCoursesList: SpCoursesListModel;
-//     spCourseDetail: SpCourseDetailsStateModel;
-//     spCourseVariants: SpCourseVariantsModel;
-//   };
-//
 //   internalRepository: {
 //     internalRepositoryList: InternalRepositoryListState;
 //     internalRepositoryDetails: InternalRepositoryDetailsState;
 //     internalRepositoryVariants: InternalRepositoryVariantsState;
 //     internalRepositoryCourses: InternalRepositoryCoursesState;
 //   };
-//
-//   marketplaceRepository: MarketplaceRepositoryListState;
 //
 //   instructors: {
 //     instructorsList: InstructorsListState;
@@ -212,22 +164,4 @@ export interface IGlobalStateModel {
 //   eventReviews: EventReviewsStateModel;
 //   iltEventDetailsNotifications: IltEventDetailsNotificationsStateModel;
 //   emailHistory: EmailHistoryStateModel;
-// }
-//
-// interface SpCoursesListModel extends SpCoursesListStateModel {
-//   activeSpCoursesList: ActiveSpCoursesListState;
-//   draftSpCoursesList: DraftSpCoursesListStateModel;
-// }
-//
-// interface SpCourseVariantsModel extends SpCourseVariantsStateModel {
-//   spCourseVariants: SpCourseVariantCreateState;
-//   spCourseVariantCreate: SpCourseVariantCreateStateModel;
-//   spCourseVariantDetails: SpCourseVariantDetailsModel;
-// }
-//
-// interface SpCourseVariantDetailsModel extends SpCourseVariantDetailsStateModel {
-//   spCourseVariantExams: SpCourseVariantExamsStateModel;
-//   spCourseVariantMaterialsTracking: SpCourseVariantMaterialsTrackingStateModel;
-//   spCourseVariantLearnersPending: SpCourseVariantLearnersPendingStateModel;
-//   spCourseVariantLearnersEnrolled: SpCourseVariantLearnersEnrolledStateModel;
 // }

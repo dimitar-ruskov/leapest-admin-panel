@@ -49,3 +49,8 @@ export class GetEnrollmentCauseTypeDictionary {
 export class GetUnenrollmentCauseTypeDictionary {
   static readonly type = '[Core] Get Unenrollment Cause Type Dictionary';
 }
+
+export class FetchTimezones {
+  static readonly type = '[Core] Fetch Timezones';
+  constructor() {}
+}

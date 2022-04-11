@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminHomeContainerComponent} from "./admin-home-container.component";
+import {AdminUserGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
 
 const routes: Routes = [
   {
@@ -10,42 +11,45 @@ const routes: Routes = [
       // {
       //   path: 'ilt-courses',
       //   loadChildren: async () =>
-      //     import('./containers/ilt-courses-container/ilt-courses-container.module').then(
-      //       (m) => m.IltCoursesContainerModule,
-      //     ),
+      //     import('../ilt-courses/ilt-courses-container.module')
+      //       .then((m) => m.IltCoursesContainerModule),
       // },
       // {
       //   path: 'ilt-events',
-      //   loadChildren: async () => import('./containers/ilt-events/ilt-events.module').then((m) => m.IltEventsModule),
+      //   loadChildren: async () => import('../ilt-events/ilt-events.module')
+      //     .then((m) => m.IltEventsModule),
       // },
       // {
       //   path: 'internal-repository',
       //   loadChildren: async () =>
-      //     import('./containers/internal-repository/internal-repository.module').then((m) => m.InternalRepositoryModule),
+      //     import('../internal-repository/internal-repository.module')
+      //       .then((m) => m.InternalRepositoryModule),
       // },
       // {
       //   path: 'certificates',
       //   loadChildren: async () =>
-      //     import('./containers/certificates/certificates.module').then((m) => m.CertificatesModule),
+      //     import('../certificates/certificates.module')
+      //       .then((m) => m.CertificatesModule),
       // },
       // {
       //   path: 'instructors',
       //   loadChildren: async () =>
-      //     import('./containers/instructors/instructors.module').then((m) => m.InstructorsModule),
+      //     import('../instructors/instructors.module')
+      //       .then((m) => m.InstructorsModule),
       // },
       // {
       //   path: 'notifications',
       //   loadChildren: async () =>
-      //     import('./containers/notifications-container/notifications-container.module').then(
-      //       (m) => m.NotificationsContainerModule,
+      //     import('../notifications/notifications-container.module')
+      //       .then((m) => m.NotificationsContainerModule,
       //     ),
       //   canActivate: [AdminUserGuard],
       // },
       // {
       //   path: 'publishing',
       //   loadChildren: async () =>
-      //     import('./containers/publishing-container/publishing-container.module').then(
-      //       (m) => m.PublishingContainerModule,
+      //     import('../publishing/publishing-container.module')
+      //       .then((m) => m.PublishingContainerModule,
       //     ),
       //   canActivate: [AdminUserGuard],
       // },
@@ -62,7 +66,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [],
 })
 export class AdminHomeContainerRoutingModule {
 }

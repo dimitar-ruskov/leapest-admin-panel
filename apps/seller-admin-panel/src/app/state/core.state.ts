@@ -28,14 +28,16 @@ import {
   GetConferencingToolsDictionary,
   GetIRTypeList,
   GetUnenrollmentCauseTypeDictionary,
-  GetEnrollmentCauseTypeDictionary,
+  GetEnrollmentCauseTypeDictionary, FetchTimezones,
 } from './core.actions';
+import {TimezoneService} from "../../../../../libs/shared/src/lib/utils/services/common/timezone.service";
 
 export class CoreStateModel {
   profile: IProfile;
   getProfilePending: boolean;
   domainData: IDomainData;
 
+  timezones: IKeyValuePair[];
   iltLanguageDictionary: IKeyValuePair[];
   courseLevelDictionary: IKeyValuePair[];
   iltMaterialTypes: IKeyValuePair[];
@@ -56,6 +58,7 @@ export class CoreStateModel {
     getProfilePending: false,
     domainData: undefined,
 
+    timezones: [],
     iltLanguageDictionary: [],
     courseLevelDictionary: [],
     iltMaterialTypes: [],
@@ -76,7 +79,8 @@ export class CoreState implements NgxsOnInit {
     private readonly titleService: Title,
     private readonly oktaAuthStateService: OktaAuthStateService,
     // @TODO move dictionaries to CoreService
-    private readonly adminCoursesService: AdminCoursesService
+    private readonly adminCoursesService: AdminCoursesService,
+    private readonly timezoneService: TimezoneService
   ) {}
 
   async ngxsOnInit(ctx: StateContext<CoreStateModel>) {
@@ -105,6 +109,17 @@ export class CoreState implements NgxsOnInit {
     }
 
     patchState({ domainData: data });
+  }
+
+  @Action(FetchTimezones)
+  fetchTimezones({ patchState }: StateContext<CoreStateModel>) {
+    return this.timezoneService.getTimezoneDictionary().pipe(
+      tap((res: DeferredResource<IKeyValuePair[]>) => {
+        if (res.isSuccess) {
+          patchState({ timezones: res.response });
+        }
+      }),
+    );
   }
 
   @Action(GetILTLanguageDictionary)

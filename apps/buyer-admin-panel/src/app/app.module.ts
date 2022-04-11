@@ -13,7 +13,6 @@ import {QuillModule} from "ngx-quill";
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 import {en_US, NZ_I18N} from "ng-zorro-antd/i18n";
 import {NzModalModule} from "ng-zorro-antd/modal";
-import {NzMessageModule} from "ng-zorro-antd/message";
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module";

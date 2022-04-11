@@ -7,20 +7,13 @@ import { OktaAuthStateService } from '@okta/okta-angular';
 import {EnvironmentService} from "../../../../../../libs/shared/src/lib/utils/services/common";
 import {IDomainData, IProfile, TMenuInputModel} from "../../../../../../libs/shared/src/lib/models/interfaces";
 import {
-  GetCertificatesDictionary,
-  GetConferencingToolsDictionary,
-  GetCourseLevelDictionary,
-  GetCustomAttendanceDictionary,
+  FetchTimezones,
+  GetCertificatesDictionary, GetConferencingToolsDictionary,
+  GetCourseLevelDictionary, GetCustomAttendanceDictionary, GetEnrollmentCauseTypeDictionary,
   GetILTLanguageDictionary,
-  GetIRLanguageDictionary,
-  GetMaterialTypes
+  GetIRLanguageDictionary, GetIRTypeList, GetLearnerProfile,
+  GetMaterialTypes, GetUnenrollmentCauseTypeDictionary
 } from "../../state/core.actions";
-import {
-  GetEnrollmentCauseTypeDictionary,
-  GetIRTypeList,
-  GetLearnerProfile,
-  GetUnenrollmentCauseTypeDictionary
-} from "../../../../../buyer-admin-panel/src/app/state/core.actions";
 
 @Component({
   selector: 'seller-admin-home-container',
@@ -60,6 +53,7 @@ export class AdminHomeContainerComponent implements OnInit {
     const adminPermissions = await this.checkGroups(['buyer-admin', 'solar-partner']);
     if (adminPermissions) {
       this.store.dispatch([
+        new FetchTimezones(),
         new GetILTLanguageDictionary(),
         new GetIRLanguageDictionary(),
         new GetCourseLevelDictionary(),
@@ -71,13 +65,13 @@ export class AdminHomeContainerComponent implements OnInit {
         new GetUnenrollmentCauseTypeDictionary(),
         new GetIRTypeList(),
       ]);
-      // if (this.route.children?.length === 0) {
-      //   this.router.navigate(['ilt-courses'], { relativeTo: this.route });
-      // }
+      if (this.route.children?.length === 0) {
+        this.router.navigate(['ilt-courses'], { relativeTo: this.route });
+      }
     } else {
-      // if (this.route.children?.length === 0) {
-      //   this.router.navigate(['ilt-events'], { relativeTo: this.route });
-      // }
+      if (this.route.children?.length === 0) {
+        this.router.navigate(['ilt-events'], { relativeTo: this.route });
+      }
     }
   }
 
