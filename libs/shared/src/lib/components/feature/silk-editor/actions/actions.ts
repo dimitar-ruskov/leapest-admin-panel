@@ -26,6 +26,7 @@ export interface AddPlaceholder {
     key: string;
     value: string;
     isLink: boolean;
+    displayValue?: string;
   };
 }
 

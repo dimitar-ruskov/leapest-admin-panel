@@ -118,6 +118,9 @@ import {
 import {
   AddAddressModalModule
 } from "../../../../../../../../libs/shared/src/lib/components/modals/add-address-modal/add-address-modal.module";
+import {
+  TemplateComposerModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/template-composer/template-composer.module";
 
 
 @NgModule({
@@ -148,7 +151,7 @@ import {
     FlattenedCourseInfoModule,
     EventDetailsInfoModule,
     AttendanceTrackingModule,
-    // TemplateComposerModule,
+    TemplateComposerModule,
     TableSearchModule,
     NotificationFilterPillsModule,
     FilterDropdownModule,

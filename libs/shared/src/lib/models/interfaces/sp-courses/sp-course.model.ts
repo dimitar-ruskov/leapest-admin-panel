@@ -1,7 +1,7 @@
 import {
   SPCourseCreationStep
 } from "../../../../../../../apps/buyer-admin-panel/src/app/containers/self-paced-courses/containers/sp-course-create/models/sp-course-create-step.model";
-import {InternalRepositoryMaterial} from "../internal-repository.model";
+import {InternalRepositoryMaterial} from "../internal-repo/internal-repository.model";
 import {ConfigDto} from "../common/config-dto.model";
 import {ITrainingManager} from "../courses/ilt-event.model";
 import {IDomainData} from "../domain-data.model";

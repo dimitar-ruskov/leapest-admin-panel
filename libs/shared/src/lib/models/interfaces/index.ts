@@ -30,8 +30,8 @@ export * from './marketplace-repo/account.model';
 export * from './marketplace-repo/product.model';
 
 // Other models
-export * from './ceritificate.model';
+export * from './certificates/ceritificate.model';
 export * from './conferencing-tool.model';
 export * from './domain-data.model';
-export * from './internal-repository.model';
+export * from './internal-repo/internal-repository.model';
 export * from './profile-data.model';

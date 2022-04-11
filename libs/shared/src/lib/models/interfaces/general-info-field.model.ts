@@ -1,4 +1,4 @@
-import {InternalRepositoryDTO} from "./internal-repository.model";
+import {InternalRepositoryDTO} from "./internal-repo/internal-repository.model";
 import {PublishedILTCourse} from "./courses/ilt-course.model";
 
 export interface InfoField {

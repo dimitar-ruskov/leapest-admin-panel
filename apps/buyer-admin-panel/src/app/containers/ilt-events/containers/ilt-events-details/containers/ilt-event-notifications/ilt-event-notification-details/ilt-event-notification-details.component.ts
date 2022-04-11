@@ -28,7 +28,7 @@ import {DeferredResource} from "../../../../../../../../../../../libs/shared/src
 import {
   NotificationModel, NotificationPayloadModel,
   NotificationRecipientsListModel, NotificationResetLevel,
-  ReportingDomainsMap, TemplateComposerModel
+  ReportingDomainsMap
 } from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
 import {
   NotificationChangeModalComponent
@@ -36,6 +36,9 @@ import {
 import {
   NotificationRecipientsModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-recipients-modal/notification-recipients-modal.component";
+import {
+  TemplateComposerModel
+} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/template-composer.model";
 
 @Component({
   selector: 'leap-ilt-event-notification-details',

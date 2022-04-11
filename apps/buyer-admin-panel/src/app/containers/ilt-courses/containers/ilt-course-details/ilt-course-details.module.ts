@@ -132,6 +132,12 @@ import {
 import {
   CancelEventConfirmModalModule
 } from "../../../../../../../../libs/shared/src/lib/components/modals/cancel-event-confirm-modal/cancel-event-confirm-modal.module";
+import {
+  SilkEditorModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/silk-editor/silk-editor.module";
+import {
+  TemplateComposerModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/template-composer/template-composer.module";
 
 
 @NgModule({
@@ -176,7 +182,7 @@ import {
     CertificatePreviewModule,
     NotificationFilterPillsModule,
     FilterDropdownModule,
-    // TemplateComposerModule,
+    TemplateComposerModule,
     UploadThumbnailModalModule,
     PublishToLxpModalModule,
     KeywordsInputModalModule,

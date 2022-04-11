@@ -146,15 +146,15 @@
     </div>
   </nz-card>
 
-<!--  <leap-template-composer-->
-<!--    [details]="details"-->
-<!--    [showCC]="-->
-<!--      recipient === 'learner' &&-->
-<!--      (reportingManagerMapping$ | async)?.isSuccess &&-->
-<!--      ((reportingManagerMapping$ | async)?.response)[domain]-->
-<!--    "-->
-<!--    (cancel)="onCancel()"-->
-<!--    (submit)="confirmUpdateTemplate($event)"-->
-<!--    (previewClicked)="openPreviewTemplate($event)"-->
-<!--  ></leap-template-composer>-->
+  <leap-template-composer
+    [details]="details"
+    [showCC]="
+      recipient === 'learner' &&
+      (reportingManagerMapping$ | async)?.isSuccess &&
+      ((reportingManagerMapping$ | async)?.response)[domain]
+    "
+    (cancel)="onCancel()"
+    (submit)="confirmUpdateTemplate($event)"
+    (previewClicked)="openPreviewTemplate($event)"
+  ></leap-template-composer>
 </ng-container>

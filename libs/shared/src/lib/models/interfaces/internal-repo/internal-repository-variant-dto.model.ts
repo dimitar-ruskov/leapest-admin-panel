@@ -1,5 +1,5 @@
 import {ConfigDto} from "../common/config-dto.model";
-import {IRContent} from "../internal-repository.model";
+import {IRContent} from "./internal-repository.model";
 
 export interface InternalRepositoryVariantDTO {
   language: ConfigDto;

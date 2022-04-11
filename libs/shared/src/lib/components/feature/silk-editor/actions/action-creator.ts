@@ -29,8 +29,8 @@ export class ActionCreator {
     return { type: ADD_IMAGE, payload: { src, key, bucket } };
   }
 
-  static addPlaceholder(key: string, value: string, isLink: boolean): AddPlaceholder {
-    return { type: ADD_PLACEHOLDER, payload: { key, value, isLink } };
+  static addPlaceholder(key: string, value: string, isLink: boolean, displayValue?: string): AddPlaceholder {
+    return { type: ADD_PLACEHOLDER, payload: { key, value, isLink, displayValue } };
   }
 
   static addLink(href: string, text?: string): AddLink {

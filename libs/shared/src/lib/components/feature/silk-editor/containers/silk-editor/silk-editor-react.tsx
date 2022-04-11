@@ -2,10 +2,11 @@ import React, { useState, useMemo, useRef } from 'react';
 import { createEditor, Descendant, Editor, Transforms, Element as SlateElement, Range } from 'slate';
 import { Slate, Editable, withReact, ReactEditor, useSlate } from 'slate-react';
 import { withHistory } from 'slate-history';
-import { Action } from './actions/actions';
-import { Toolbar, Button, Icon, LinkElement } from './components';
+import { Action } from '../../actions/actions';
+import { Toolbar, Button, Icon, LinkElement } from '../../components/components';
 import isHotkey from 'is-hotkey';
 import isUrl from 'is-url';
+import { ComposerEmittedEventType } from '../../models/silk-editor.model';
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 const HOTKEYS = {
@@ -23,11 +24,15 @@ const SilkEditorReact = (props) => {
   const dispatchAction = (action: Action) => {
     if (action.type === 'add-placeholder') {
       if (!editorSelection.current) {
-        alert('Please first select a position on which you like to insert the placeholder');
+        props['onOpenModal'](ComposerEmittedEventType.PLACEHOLDER_MISSED);
         return;
       }
       Transforms.select(editor, editorSelection.current);
-      insertPlaceholder(editor, action.payload);
+      insertPlaceholder(props, editor, action.payload);
+    }
+    if (action.type === 'add-link') {
+      Transforms.select(editor, editorSelection.current);
+      insertLink(editor, action.payload.href);
     }
   };
 
@@ -54,9 +59,9 @@ const SilkEditorReact = (props) => {
         <BlockButton format="heading-one" icon="fa-h1" />
         <BlockButton format="heading-two" icon="fa-h2" />
 
-        <LinkButton />
+        <LinkButton onOpenModal={() => props['onOpenModal'](ComposerEmittedEventType.LINK_URL)} />
         <RemoveLinkButton />
-        <PreviewButton onPreviewClicked={() => props['onPreviewClicked']()} />
+        <PreviewButton onOpenModal={() => props['onOpenModal'](ComposerEmittedEventType.PREVIEW)} />
       </Toolbar>
       <Editable
         style={{
@@ -97,7 +102,13 @@ const Element = ({ attributes, children, element }) => {
           <a
             contentEditable={false}
             {...attributes}
-            style={{ backgroundColor: '#cfd0dd', marginRight: '1px', marginLeft: '1px' }}
+            style={{
+              backgroundColor: '#cfd0dd',
+              marginRight: '1px',
+              marginLeft: '1px',
+              cursor: 'default',
+              pointerEvents: 'none',
+            }}
             href="#"
             title={element.placeholder.value}>
             {element.placeholder.displayValue}
@@ -156,13 +167,10 @@ const Leaf = ({ attributes, children, leaf }) => {
   return <span {...attributes}>{children}</span>;
 };
 
-const insertPlaceholder = (editor, placeholder) => {
-  if (placeholder.isLink) {
-    const text = window.prompt('Enter the display text of the link:');
-    if (!text) {
-      return;
-    }
-    placeholder.displayValue = text;
+const insertPlaceholder = (props, editor, placeholder) => {
+  if (placeholder.isLink && !placeholder.displayValue) {
+    props['onOpenModal'](ComposerEmittedEventType.LINK_TEXT, placeholder);
+    return;
   }
   const placeholderItem: any = {
     type: 'placeholder',
@@ -329,18 +337,14 @@ const MarkButton = ({ format, icon }) => {
   );
 };
 
-const LinkButton = () => {
+const LinkButton = (props) => {
   const editor = useSlate();
   return (
     <Button
       active={isLinkActive(editor)}
       onMouseDown={(event) => {
         event.preventDefault();
-        const url = window.prompt('Enter the URL of the link:');
-        if (!url) {
-          return;
-        }
-        insertLink(editor, url);
+        props['onOpenModal'](ComposerEmittedEventType.LINK_URL);
       }}>
       <Icon>fa-link</Icon>
     </Button>
@@ -358,7 +362,7 @@ const RemoveLinkButton = () => {
           unwrapLink(editor);
         }
       }}>
-      <Icon>link_off</Icon>
+      <Icon>fa-chain-broken</Icon>
     </Button>
   );
 };
@@ -377,7 +381,7 @@ const PreviewButton = (props) => {
         padding: '0 5px',
       }}
       active={isLinkActive(editor)}
-      onMouseDown={() => props['onPreviewClicked']()}>
+      onMouseDown={() => props['onOpenModal'](ComposerEmittedEventType.PREVIEW)}>
       Preview
     </Button>
   );

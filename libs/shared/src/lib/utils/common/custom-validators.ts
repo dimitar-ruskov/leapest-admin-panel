@@ -40,4 +40,28 @@ export class CustomValidators {
       return null;
     }
   }
+
+  static composerMaxLength(control: AbstractControl, maxLength = 256): ValidationErrors | null {
+    const lineLength = (control.value || [])
+      .map((paragraph) =>
+        paragraph.children.reduce((acc, curr) => {
+          if (!curr.type) {
+            acc += curr.text.length;
+          }
+          return acc;
+        }, 0),
+      )
+      .reduce((acc, curr) => {
+        acc += curr;
+        return acc;
+      }, 0);
+
+    const isValid = lineLength <= maxLength;
+
+    if (!isValid) {
+      return { composerMaxLength: { message: `Max length is ${maxLength}` } };
+    } else {
+      return null;
+    }
+  }
 }

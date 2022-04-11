@@ -3,7 +3,6 @@
   "projects": {
     "buyer-admin-panel": "apps/buyer-admin-panel",
     "seller-admin-panel": "apps/seller-admin-panel",
-    "shared": "libs/shared",
-    "silk-editor": "libs/silk-editor"
+    "shared": "libs/shared"
   }
 }

@@ -22,7 +22,8 @@
         "scripts": [],
         "allowedCommonJsDependencies": [
           "core-js-pure",
-          "moment-timezone"
+          "moment-timezone",
+          "lodash/throttle"
         ]
       },
       "configurations": {

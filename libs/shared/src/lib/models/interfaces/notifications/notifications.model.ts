@@ -1,5 +1,6 @@
 import {ConfigDto} from "../common/config-dto.model";
 import {Configuration} from "../common/configuration.model";
+import {TemplateComposerMessageModel} from "./template-composer.model";
 
 export interface NotificationModel {
   courseEventId: string;
@@ -97,24 +98,4 @@ export enum NotificationResetLevel {
   COURSE = 'course',
   DOMAIN = 'domain',
   DEFAULT = 'default',
-}
-
-export interface TemplateComposerModel {
-  subject: string;
-  cc: boolean;
-  message: TemplateComposerMessageModel[];
-  subjectJSON?: TemplateComposerMessageModel[];
-}
-
-export interface TemplateComposerMessageModel {
-  type?: string;
-  children?: TemplateComposerMessageModel[];
-  placeholder?: PlaceholderModel;
-  text?: string;
-}
-
-export interface PlaceholderModel {
-  key: string;
-  value: string;
-  isLink: boolean;
 }

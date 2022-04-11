@@ -13,10 +13,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable, ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Action } from './actions/actions';
-import { SilkView } from './silk-view';
+import { Action } from '../../actions/actions';
+import { ComposerEmittedEventType } from '../../models/silk-editor.model';
+import {SilkView} from "./silk-view";
 
 export const EDITOR_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -31,13 +32,13 @@ export const EDITOR_VALUE_ACCESSOR: any = {
   providers: [EDITOR_VALUE_ACCESSOR],
 })
 export class SilkEditor implements OnChanges, OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-  @Input() actionDispatcher$: Observable<Action>;
+  @Input() actionDispatcher$: Subject<Action>;
 
   view: any;
   wrapper: SilkView;
 
   @Output() stateChanged$ = new EventEmitter();
-  @Output() previewClicked = new EventEmitter();
+  @Output() openModal = new EventEmitter<{ type: string; data: any }>();
 
   @ViewChild('editor') editor: ElementRef;
 
@@ -90,8 +91,8 @@ export class SilkEditor implements OnChanges, OnInit, AfterViewInit, OnDestroy, 
       passDispatchActionFn: (fn) => {
         this.dispatchActionFn = fn;
       },
-      onPreviewClicked: () => {
-        this.previewClicked.next(null);
+      onOpenModal: (type: ComposerEmittedEventType, data?: any) => {
+        this.openModal.next({ type, data });
       },
       initialValue: value,
     };

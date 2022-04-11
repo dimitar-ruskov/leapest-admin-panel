@@ -46,6 +46,9 @@ import {
 import {
   TableGridModule
 } from "../../../../../../../../libs/shared/src/lib/components/common/table-grid/table-grid.module";
+import {
+  TemplateComposerModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/template-composer/template-composer.module";
 
 @NgModule({
   declarations: [NotificationDetailsComponent],
@@ -67,7 +70,7 @@ import {
     TAgendaModule,
     CertificateViewModule,
     CertificatePreviewModule,
-    // TemplateComposerModule,
+    TemplateComposerModule,
 
     NzButtonModule,
     NzTabsModule,

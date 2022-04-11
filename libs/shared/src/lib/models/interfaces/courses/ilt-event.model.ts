@@ -1,8 +1,8 @@
 import { ILTCourseAgendaDay } from './ilt-course.model';
-import { InternalRepositoryMaterial } from '../internal-repository.model';
+import { InternalRepositoryMaterial } from '../internal-repo/internal-repository.model';
 import { Venue } from './ilt-course-list-item';
 import {ConfigDto} from "../common/config-dto.model";
-import {Certificate} from "../ceritificate.model";
+import {Certificate} from "../certificates/ceritificate.model";
 import {ExportLearnersTypes} from "./ilt-event-learners.model";
 
 export class AssignLearnersResponse {

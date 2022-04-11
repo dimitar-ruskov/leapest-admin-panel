@@ -1,0 +1,13 @@
+<form [formGroup]="form" nz-form nzLayout="vertical">
+  <nz-form-item>
+    <leap-form-hint-label>Enter the display text of the link:</leap-form-hint-label>
+    <nz-form-control [nzErrorTip]="errorTemplate">
+      <input nz-input formControlName="text" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('required')">This field is required</ng-container>
+  <ng-container *ngIf="control.hasError('maxlength')">Link should be less than 256 characters</ng-container>
+</ng-template>
