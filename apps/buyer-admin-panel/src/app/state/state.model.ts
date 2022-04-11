@@ -135,99 +135,98 @@ import {
 export interface IGlobalStateModel {
   core: CoreStateModel;
 
+  iltCourses: {
+    iltCourseCreate: ILTCourseCreateStateModel;
+    iltCoursesList: ILTCoursesListModel;
+    iltCourseDetails: IltCourseDetailsModel;
+  };
+
+  iltEvents: {
+    iltEventsCreate: IltEventsCreateStateModel;
+    iltEventsList: IltEventsListModel;
+    iltEventDetails: IltEventDetailsModel;
+  };
+
+  selfPacedCourses: {
+    SpCourseCreate: SpCourseCreateStateModel;
+    spCoursesList: SpCoursesListModel;
+    spCourseDetail: SpCourseDetailsStateModel;
+    spCourseVariants: SpCourseVariantsModel;
+  };
+
+  internalRepository: {
+    internalRepositoryList: InternalRepositoryListState;
+    internalRepositoryDetails: InternalRepositoryDetailsState;
+    internalRepositoryVariants: InternalRepositoryVariantsState;
+    internalRepositoryCourses: InternalRepositoryCoursesState;
+  };
+
+  marketplaceRepository: MarketplaceRepositoryListState;
+
+  instructors: {
+    instructorsList: InstructorsListState;
+    instructorDetails: InstructorDetailsState;
+  };
+
+  certificates: {
+    certificatesList: CertificatesListStateModel;
+    certificateDetails: CertificateDetailsStateModel;
+    certificateCourses: CertificateCoursesStateModel;
+    certificateIssued: CertificateIssuedStateModel;
+  };
+
+  notifications: {
+    activeTab: number;
+    notificationsSettings: NotificationsSettingsStateModel;
+    notificationsList: NotificationsListStateModel;
+    notificationDetails: NotificationDetailsStateModel;
+  };
+
+  publishing: PublishingStateModel;
 }
-//   iltCourses: {
-//     iltCourseCreate: ILTCourseCreateStateModel;
-//     iltCoursesList: ILTCoursesListModel;
-//     iltCourseDetails: IltCourseDetailsModel;
-//   };
-//
-//   iltEvents: {
-//     iltEventsCreate: IltEventsCreateStateModel;
-//     iltEventsList: IltEventsListModel;
-//     iltEventDetails: IltEventDetailsModel;
-//   };
-//
-//   selfPacedCourses: {
-//     SpCourseCreate: SpCourseCreateStateModel;
-//     spCoursesList: SpCoursesListModel;
-//     spCourseDetail: SpCourseDetailsStateModel;
-//     spCourseVariants: SpCourseVariantsModel;
-//   };
-//
-//   internalRepository: {
-//     internalRepositoryList: InternalRepositoryListState;
-//     internalRepositoryDetails: InternalRepositoryDetailsState;
-//     internalRepositoryVariants: InternalRepositoryVariantsState;
-//     internalRepositoryCourses: InternalRepositoryCoursesState;
-//   };
-//
-//   marketplaceRepository: MarketplaceRepositoryListState;
-//
-//   instructors: {
-//     instructorsList: InstructorsListState;
-//     instructorDetails: InstructorDetailsState;
-//   };
-//
-//   certificates: {
-//     certificatesList: CertificatesListStateModel;
-//     certificateDetails: CertificateDetailsStateModel;
-//     certificateCourses: CertificateCoursesStateModel;
-//     certificateIssued: CertificateIssuedStateModel;
-//   };
-//
-//   notifications: {
-//     activeTab: number;
-//     notificationsSettings: NotificationsSettingsStateModel;
-//     notificationsList: NotificationsListStateModel;
-//     notificationDetails: NotificationDetailsStateModel;
-//   };
-//
-//   publishing: PublishingStateModel;
-// }
-//
-// interface ILTCoursesListModel extends ILTCoursesListStateModel {
-//   draftIltCourses: PublishedILTCoursesStateModel;
-//   publishedIltCourses: PublishedILTCoursesStateModel;
-// }
-//
-// interface IltCourseDetailsModel extends IltCourseDetailsStateModel {
-//   iltCourseEventsCommon: IltCourseEventsCommonStateModel;
-//   iltCourseDetailsNotifications: IltCourseDetailsNotificationsStateModel;
-//   courseReviews: IltCourseReviewsStateModel;
-// }
-//
-// interface IltEventsListModel extends IltEventsListStateModel {
-//   activeIltEvents: ActiveIltEventsStateModel;
-//   draftIltEvents: DraftIltEventsStateModel;
-//   finishedIltEvents: FinishedIltEventsStateModel;
-// }
-//
-// interface IltEventDetailsModel extends IltEventDetailsStateModel {
-//   iltEventLearnersEnrolled: IltEventLearnersEnrolledStateModel;
-//   iltEventLearnersPending: IltEventLearnersPendingStateModel;
-//   iltEventMaterialsTracking: IltEventMaterialsTrackingStateModel;
-//   iltEventExams: IltEventExamsStateModel;
-//   waitingList: WaitingListStateModel;
-//   eventReviews: EventReviewsStateModel;
-//   iltEventDetailsNotifications: IltEventDetailsNotificationsStateModel;
-//   emailHistory: EmailHistoryStateModel;
-// }
-//
-// interface SpCoursesListModel extends SpCoursesListStateModel {
-//   activeSpCoursesList: ActiveSpCoursesListState;
-//   draftSpCoursesList: DraftSpCoursesListStateModel;
-// }
-//
-// interface SpCourseVariantsModel extends SpCourseVariantsStateModel {
-//   spCourseVariants: SpCourseVariantCreateState;
-//   spCourseVariantCreate: SpCourseVariantCreateStateModel;
-//   spCourseVariantDetails: SpCourseVariantDetailsModel;
-// }
-//
-// interface SpCourseVariantDetailsModel extends SpCourseVariantDetailsStateModel {
-//   spCourseVariantExams: SpCourseVariantExamsStateModel;
-//   spCourseVariantMaterialsTracking: SpCourseVariantMaterialsTrackingStateModel;
-//   spCourseVariantLearnersPending: SpCourseVariantLearnersPendingStateModel;
-//   spCourseVariantLearnersEnrolled: SpCourseVariantLearnersEnrolledStateModel;
-// }
+
+interface ILTCoursesListModel extends ILTCoursesListStateModel {
+  draftIltCourses: PublishedILTCoursesStateModel;
+  publishedIltCourses: PublishedILTCoursesStateModel;
+}
+
+interface IltCourseDetailsModel extends IltCourseDetailsStateModel {
+  iltCourseEventsCommon: IltCourseEventsCommonStateModel;
+  iltCourseDetailsNotifications: IltCourseDetailsNotificationsStateModel;
+  courseReviews: IltCourseReviewsStateModel;
+}
+
+interface IltEventsListModel extends IltEventsListStateModel {
+  activeIltEvents: ActiveIltEventsStateModel;
+  draftIltEvents: DraftIltEventsStateModel;
+  finishedIltEvents: FinishedIltEventsStateModel;
+}
+
+interface IltEventDetailsModel extends IltEventDetailsStateModel {
+  iltEventLearnersEnrolled: IltEventLearnersEnrolledStateModel;
+  iltEventLearnersPending: IltEventLearnersPendingStateModel;
+  iltEventMaterialsTracking: IltEventMaterialsTrackingStateModel;
+  iltEventExams: IltEventExamsStateModel;
+  waitingList: WaitingListStateModel;
+  eventReviews: EventReviewsStateModel;
+  iltEventDetailsNotifications: IltEventDetailsNotificationsStateModel;
+  emailHistory: EmailHistoryStateModel;
+}
+
+interface SpCoursesListModel extends SpCoursesListStateModel {
+  activeSpCoursesList: ActiveSpCoursesListState;
+  draftSpCoursesList: DraftSpCoursesListStateModel;
+}
+
+interface SpCourseVariantsModel extends SpCourseVariantsStateModel {
+  spCourseVariants: SpCourseVariantCreateState;
+  spCourseVariantCreate: SpCourseVariantCreateStateModel;
+  spCourseVariantDetails: SpCourseVariantDetailsModel;
+}
+
+interface SpCourseVariantDetailsModel extends SpCourseVariantDetailsStateModel {
+  spCourseVariantExams: SpCourseVariantExamsStateModel;
+  spCourseVariantMaterialsTracking: SpCourseVariantMaterialsTrackingStateModel;
+  spCourseVariantLearnersPending: SpCourseVariantLearnersPendingStateModel;
+  spCourseVariantLearnersEnrolled: SpCourseVariantLearnersEnrolledStateModel;
+}
