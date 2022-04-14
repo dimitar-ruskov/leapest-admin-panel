@@ -81,7 +81,7 @@ import {
 } from "../../../../../../../../libs/shared/src/lib/utils/pipes/common/html-bypass/html-bypass-pipe.module";
 import {
   NotificationRecipientsModalModule
-} from "../../../../../../../../libs/shared/src/lib/components/modals/notification-recipients-modal/notification-recipients-modal.module";
+} from "./containers/ilt-event-notifications/ilt-event-notification-details/notification-recipients-modal/notification-recipients-modal.module";
 import {
   EditWaitingListModalModule
 } from "../../../../../../../../libs/shared/src/lib/components/modals/edit-waiting-list-modal/edit-waiting-list-modal.module";

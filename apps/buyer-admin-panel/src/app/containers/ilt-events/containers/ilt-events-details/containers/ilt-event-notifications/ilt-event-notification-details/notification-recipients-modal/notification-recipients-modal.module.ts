@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NotificationRecipientsModalComponent } from './notification-recipients-modal.component';
-import {TableSearchModule} from "../../common/table-search/table-search.module";
-import {TableGridModule} from "../../common/table-grid/table-grid.module";
+import {TableSearchModule} from "../../../../../../../../../../../../libs/shared/src/lib/components/common/table-search/table-search.module";
+import {TableGridModule} from "../../../../../../../../../../../../libs/shared/src/lib/components/common/table-grid/table-grid.module";
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 

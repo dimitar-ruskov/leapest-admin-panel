@@ -1,6 +1,3 @@
-import {
-  SPCourseCreationStep
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/self-paced-courses/containers/sp-course-create/models/sp-course-create-step.model";
 import {InternalRepositoryMaterial} from "../internal-repo/internal-repository.model";
 import {ConfigDto} from "../common/config-dto.model";
 import {ITrainingManager} from "../courses/ilt-event.model";
@@ -227,4 +224,15 @@ export interface PreSelfPacedCourse {
   updatedBy: string;
   externalSKU?: string;
   specificExternalSKU?: boolean;
+}
+
+export type SPCourseCreationStep =
+  SPCourseCreationSteps.MATERIALS |
+  SPCourseCreationSteps.DETAILS |
+  SPCourseCreationSteps.SUMMARY;
+
+export enum SPCourseCreationSteps {
+  MATERIALS = 'materials',
+  DETAILS = 'details',
+  SUMMARY = 'summary'
 }

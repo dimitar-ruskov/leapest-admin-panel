@@ -35,7 +35,7 @@ import {
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-change-modal/notification-change-modal.component";
 import {
   NotificationRecipientsModalComponent
-} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-recipients-modal/notification-recipients-modal.component";
+} from "./notification-recipients-modal/notification-recipients-modal.component";
 import {
   TemplateComposerModel
 } from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/template-composer.model";

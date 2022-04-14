@@ -64,7 +64,7 @@ import {
 } from "../../../../../../libs/shared/src/lib/components/modals/edit-internal-repo-name-modal/edit-internal-repo-name-modal.module";
 import {
   CreationLoaderModalModule
-} from "../../../../../../libs/shared/src/lib/components/modals/creation-loader-modal/creation-loader-modal.module";
+} from "./components/creation-loader-modal/creation-loader-modal.module";
 import {InternalRepositoryState} from "./state/internal-repository.state";
 
 @NgModule({

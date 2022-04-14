@@ -5,17 +5,17 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, timer } from 'rxjs';
 import { delayWhen, filter, map, retryWhen } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {InternalRepository, InternalRepositoryDTO} from "../../../models/interfaces";
+import {InternalRepository, InternalRepositoryDTO} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
 import {
   GetInternalRepositoryDetails
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/containers/internal-repository-details/state/internal-repository-details.actions";
-import {DeferredResource} from "../../../utils/common";
+} from "../../containers/internal-repository-details/state/internal-repository-details.actions";
+import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   GetInternalRepositoryVariants
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/containers/internal-repository-details/state/internal-repository-variants.actions";
+} from "../../containers/internal-repository-details/state/internal-repository-variants.actions";
 import {
   InternalRepositoryService
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/internal-repository/service/internal-repository.service";
+} from "../../service/internal-repository.service";
 
 @Component({
   selector: 'leap-creation-loader-modal',

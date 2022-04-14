@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import {createPageableFromTableQueryParams} from "../../../utils/common";
+import {createPageableFromTableQueryParams} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   NotificationRecipientModel,
   NotificationRecipientsListModel
-} from "../../../models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
 import {
   GetNotificationRecipients
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/ilt-events/containers/ilt-events-details/containers/ilt-event-notifications/state/ilt-event-details-notifications.actions";
+} from "../../state/ilt-event-details-notifications.actions";
 
 @Component({
   selector: 'leap-notification-recipients-modal',
