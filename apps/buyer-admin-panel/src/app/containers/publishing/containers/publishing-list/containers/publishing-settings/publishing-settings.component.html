@@ -3,7 +3,7 @@
     <nz-form-item>
       <leap-form-label [required]="false">LXP Channels</leap-form-label>
       <leap-form-hint-label>
-        In which channels do you wish this event to be published?
+        In which channels do you wish to publish?
       </leap-form-hint-label>
       <nz-form-control class="form-control-non-flex">
         <nz-select
@@ -15,6 +15,7 @@
           formControlName="channels"
           nzPlaceHolder="Select Channels (click or type to search)"
           (nzOnSearch)="getLxpChannels($event)"
+          [compareWith]="compareKeyPair"
         >
           <ng-container *ngFor="let o of lxpChannels$ | async">
             <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
@@ -27,7 +28,7 @@
     <nz-form-item class="mt-3">
       <leap-form-label [required]="false"> LXP Groups</leap-form-label>
       <leap-form-hint-label>
-        In which groups do you wish this event to be published?
+        In which groups do you wish to publish?
       </leap-form-hint-label>
       <nz-form-control class="form-control-non-flex">
         <nz-select
@@ -39,6 +40,7 @@
           formControlName="groups"
           nzPlaceHolder="Select Groups (click or type to search)"
           (nzOnSearch)="onInputLxpGroups($event)"
+          [compareWith]="compareKeyPair"
         >
           <ng-container *ngFor="let o of lxpGroups$ | async">
             <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
@@ -72,7 +74,7 @@
     <nz-form-item class="mt-3">
       <leap-form-label [required]="true">Privacy Settings</leap-form-label>
       <leap-form-hint-label>
-        Please specify the level of access for this Course's SmartCard on the LXP.
+        Please specify the level of access on the LXP.
       </leap-form-hint-label>
       <nz-radio-group formControlName="lxpPrivate" class="flex-display">
         <label nz-radio [nzValue]="o.value" *ngFor="let o of coursePublishStatus">
@@ -86,7 +88,7 @@
       <nz-form-item class="mt-3">
         <leap-form-label [required]="false">Restrict to Users</leap-form-label>
         <leap-form-hint-label>
-          Please, type at least 3 letters of the users you wish to select to share this course with.
+          Please, type at least 3 letters of the users you wish to share with.
         </leap-form-hint-label>
         <nz-form-control>
           <nz-select
@@ -109,7 +111,7 @@
       <nz-form-item>
         <leap-form-label [required]="false">Restrict to Groups</leap-form-label>
         <leap-form-hint-label>
-          Select the groups that you want to share this course with.
+          Select the groups that you want to share with.
         </leap-form-hint-label>
         <nz-form-control class="form-control-non-flex">
           <nz-select
@@ -120,6 +122,7 @@
             nzServerSearch
             formControlName="lxpRestrictGroups"
             (nzOnSearch)="onInputLxpGroups($event)"
+            [compareWith]="compareKeyPair"
           >
             <ng-container *ngFor="let o of lxpGroups$ | async">
               <nz-option [nzValue]="o" [nzLabel]="o.value"></nz-option>
@@ -131,17 +134,18 @@
     </div>
 
     <nz-form-item *ngIf="type === 'exam'" class="mt-3">
-      <leap-form-label [required]="true">Pass Rate</leap-form-label>
+      <leap-form-label [required]="false">Pass Rate</leap-form-label>
       <leap-form-hint-label>
         This information is shown to Learners on the Learning Portal and will determine whether the user has passed the
         exam.
       </leap-form-hint-label>
-      <nz-form-control class="form-control-non-flex">
+      <nz-form-control class="form-control-non-flex"  [nzErrorTip]="errorTemplate">
         <nz-input-number
           class="pass-rate"
           type="number"
           [nzMin]="0"
           [nzMax]="100"
+          pattern="^[0-9][0-9]?$|^100$"
           formControlName="passRate"
         ></nz-input-number>
         <span class="rate-percent">%</span>
@@ -194,4 +198,10 @@
       ></nz-tag>
     </span>
   </div>
+</ng-template>
+
+<ng-template #errorTemplate let-control>
+  <ng-container *ngIf="control.hasError('pattern')">
+    This field should contain only integer number.
+  </ng-container>
 </ng-template>

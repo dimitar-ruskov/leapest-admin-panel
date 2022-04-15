@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 
 import { ActiveSelfPacedCourse, DraftSelfPacedCourse, PreSelfPacedCourse } from '../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
 import {
-  IKeyValuePair, IPageable,
-  PublishCourseToLXP,
-  PublishedCourseToLXP
+  IKeyValuePair, IPageable
 } from "../../../../../../../libs/shared/src/lib/models/interfaces";
 import {AdminPanelApiService} from "../../../../../../../libs/shared/src/lib/utils/services/common";
 import {DeferredResource} from "../../../../../../../libs/shared/src/lib/utils/common";
@@ -105,12 +103,5 @@ export class SpCoursesService {
       new HttpHeaders({}),
       updatedCourse,
     );
-  }
-
-  publishToLxp(payload: PublishCourseToLXP): Observable<DeferredResource<PublishedCourseToLXP[]>> {
-    const url = this.adminPanelApiService.prepareURL('/api/solar/partner/lxp/course/buyer/bulk/publish');
-
-    const body = [payload];
-    return this.adminPanelApiService.post(url, new HttpHeaders({}), body);
   }
 }

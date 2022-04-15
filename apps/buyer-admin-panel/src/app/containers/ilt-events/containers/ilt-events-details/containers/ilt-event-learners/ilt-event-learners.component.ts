@@ -1,8 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { GetUnenrolledILTEventLearners } from './ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.actions';
 import { Select, Store } from '@ngxs/store';
+import { first, Observable } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+
 import { IltEventLearnersUnenrolledState } from './ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.state';
-import { Observable } from 'rxjs';
+import { GetUnenrolledILTEventLearners } from './ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.actions';
 
 @Component({
   selector: 'leap-ilt-event-learners',
@@ -18,9 +20,16 @@ export class IltEventLearnersComponent implements OnInit {
   @Select(IltEventLearnersUnenrolledState.total)
   total$: Observable<number>;
 
+  isShowUnenrolled: Observable<boolean>;
+
   constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch([new GetUnenrolledILTEventLearners({ classEventId: this.classEventId })]);
+    this.isShowUnenrolled = this.total$.pipe(
+      filter((item) => !!item),
+      map((item) => !!item),
+      first(),
+    );
   }
 }

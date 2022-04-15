@@ -1,0 +1,77 @@
+@import (reference) '../../../../../styles/reference.less';
+
+.sections {
+
+  &-header {
+    font-size: 14px;
+    color: @leap-grey-text;
+  }
+
+  &-wrapper {
+    width: 620px;
+    margin-top: 15px;
+    padding: 5px 10px;
+    border: 1px solid @grey-border-color;
+    border-radius: 6px;
+  }
+
+  &-container {
+    max-height: 500px;
+    overflow: auto;
+  }
+}
+
+.section {
+
+  &-container {
+    padding: 10px;
+    margin-bottom: 2px;
+    border: 1px solid @grey-border-color;
+    border-radius: 6px;
+  }
+
+  &-header {
+    color: #26273b;
+    font-size: 16px;
+  }
+
+  &-subheader {
+    margin-bottom: 16px;
+    font-size: 16px;
+
+    a {
+      color: @leap-grey-text;
+
+      &:hover {
+        color: @edcastish;
+      }
+    }
+  }
+
+  &-value {
+    font-size: 12px;
+    color: #26273b;
+
+    &-label {
+      color: @leap-grey-text;
+    }
+  }
+}
+
+.search {
+
+  &-container {
+    margin-bottom: 10px;
+
+    leap-table-search {
+      margin-right: 0;
+
+      &::ng-deep {
+
+        .ant-input-affix-wrapper {
+          border: 1px solid @grey-border-color;
+        }
+      }
+    }
+  }
+}

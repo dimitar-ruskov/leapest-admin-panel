@@ -34,6 +34,11 @@ export class UploadSelfPacedCourseThumbnail {
 }
 
 export class PublishToLxp {
-  static readonly type = '[AP ILT Course Details] Publish To LXP';
+  static readonly type = '[AP Self-paced Course Details] Publish To LXP';
+  constructor(public readonly payload: PublishCourseToLXP) {}
+}
+
+export class PublishToLxpByDomain {
+  static readonly type = '[AP Self-paced Course Details] Publish To LXP by Domain';
   constructor(public readonly payload: PublishCourseToLXP) {}
 }

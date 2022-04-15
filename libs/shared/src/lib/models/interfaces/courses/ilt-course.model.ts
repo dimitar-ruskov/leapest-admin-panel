@@ -190,6 +190,7 @@ export interface PublishedILTCourse {
   marketplaceMaterials: InternalRepositoryMaterial[];
   enrollmentPolicy?: ConfigDto;
   specificExternalSKU?: boolean;
+  lxpCourses?: PublishedCourseToLXP[];
 }
 
 export interface DraftILTCourse {
@@ -217,16 +218,24 @@ export interface PreILTCourse {
 }
 
 export interface PublishedCourseToLXP {
-  id: string;
   code: string;
   domain: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  createdBy: string;
-  updatedBy: string;
-  groups: string[];
-  channels: string[];
+  lxpHost: string;
+  groups: IKeyValuePair[];
+  channels: IKeyValuePair[];
+  lxpPrivate?: boolean;
+  lxpRestrictUsers?: string[];
+  lxpRestrictGroups?: IKeyValuePair[];
+}
+
+export interface TargetLxpDomain {
+  domainName: string;
+  lxpHost: string;
+}
+
+export enum LxpPrivacy {
+  PRIVATE = 'Private',
+  PUBLIC = 'Public',
 }
 
 export interface InternalRepositories {

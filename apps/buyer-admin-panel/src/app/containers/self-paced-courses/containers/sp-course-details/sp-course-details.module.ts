@@ -16,6 +16,9 @@ import {SpCourseDetailsComponent} from "./sp-course-details.component";
 import {SpCourseGeneralInfoComponent} from "./containers/sp-course-general-info/sp-course-general-info.component";
 import {SpCourseVariantsComponent} from "./containers/sp-course-variants/sp-course-variants.component";
 import {
+  SpCourseGeneralDetailsComponent
+} from "./containers/sp-course-general-info/sp-course-general-details/sp-course-general-details.component";
+import {
   SpCourseMaterialsComponent
 } from "./containers/sp-course-materials/sp-course-materials.component";
 
@@ -38,12 +41,15 @@ import {
 import {
   TableControlPanelModule
 } from "../../../../../../../../libs/shared/src/lib/components/common/table-control-panel/table-control-panel.module";
-
+import {
+  CourseLxpSettingsModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/course-lxp-settings/course-lxp-settings.module";
 
 @NgModule({
   declarations: [
     SpCourseDetailsComponent,
     SpCourseGeneralInfoComponent,
+    SpCourseGeneralDetailsComponent,
     SpCourseVariantsComponent,
     SpCourseMaterialsComponent
   ],
@@ -51,6 +57,7 @@ import {
     CommonModule,
     SpCourseDetailsRoutingModule,
 
+    CourseLxpSettingsModule,
     TGridModule,
     CtaContainerModule,
     GeneralInfoModule,

@@ -25,7 +25,6 @@ import {NzUploadModule} from "ng-zorro-antd/upload";
 
 import {IltCourseDetailsRoutingModule} from "./ilt-course-details-routing.module";
 import { IltCourseDetailsComponent } from './ilt-course-details.component';
-import { IltCourseGeneralInfoComponent } from './containers/ilt-course-general-info/ilt-course-general-info.component';
 import { IltCourseMaterialsComponent } from './containers/ilt-course-materials/ilt-course-materials.component';
 import { IltCourseEventsTabComponent } from './containers/ilt-course-events-tab/ilt-course-events-tab.component';
 import { IltCourseReviewsComponent } from './containers/ilt-course-reviews/ilt-course-reviews.component';
@@ -35,6 +34,10 @@ import { IltCourseEventsBulkComponent } from './containers/ilt-course-events-tab
 import { IltCourseEventsFinishedComponent } from './containers/ilt-course-events-tab/ilt-course-events-finished/ilt-course-events-finished.component';
 import { IltCourseEventsDraftComponent } from './containers/ilt-course-events-tab/ilt-course-events-draft/ilt-course-events-draft.component';
 import { IltCourseEventsActiveComponent } from './containers/ilt-course-events-tab/ilt-course-events-active/ilt-course-events-active.component';
+import {IltCourseGeneralInfoComponent} from "./containers/ilt-course-general-info/ilt-course-general-info.component";
+import {
+  IltCourseGeneralDetailsComponent
+} from "./containers/ilt-course-general-info/ilt-course-general-details/ilt-course-general-details.component";
 import {
   BulkUploadSchedulingReportListComponent
 } from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/bulk-upload-scheduling-report/bulk-upload-scheduling-report-list/bulk-upload-scheduling-report-list.component";
@@ -133,17 +136,19 @@ import {
   CancelEventConfirmModalModule
 } from "../../../../../../../../libs/shared/src/lib/components/modals/cancel-event-confirm-modal/cancel-event-confirm-modal.module";
 import {
-  SilkEditorModule
-} from "../../../../../../../../libs/shared/src/lib/components/feature/silk-editor/silk-editor.module";
-import {
   TemplateComposerModule
 } from "../../../../../../../../libs/shared/src/lib/components/feature/template-composer/template-composer.module";
+import {
+  CourseLxpSettingsModule
+} from "../../../../../../../../libs/shared/src/lib/components/feature/course-lxp-settings/course-lxp-settings.module";
+
 
 
 @NgModule({
   declarations: [
     IltCourseDetailsComponent,
     IltCourseGeneralInfoComponent,
+    IltCourseGeneralDetailsComponent,
     IltCourseMaterialsComponent,
     IltCourseEventsTabComponent,
     IltCourseReviewsComponent,
@@ -168,6 +173,7 @@ import {
     IltCourseDetailsRoutingModule,
 
     NgxsFormPluginModule,
+    CourseLxpSettingsModule,
     MasterInternalRepoTileModule,
     CtaContainerModule,
     GeneralInfoModule,

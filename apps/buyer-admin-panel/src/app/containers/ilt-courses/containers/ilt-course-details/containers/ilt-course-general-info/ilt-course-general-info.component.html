@@ -1,22 +1,19 @@
-<leap-general-info [fields]="fields">
-  <leap-general-info-thumbnail-box
-    [thumbnailUrl]="iltCourse.thumbnailUrl"
-    [editable]="!iltCourse.editLock"
-    (generateThumbnail)="onGenerateThumbnail(iltCourse.id)"
-    (uploadThumbnail)="onUploadThumbnail(iltCourse.thumbnailUrl, iltCourse.id)"
-  ></leap-general-info-thumbnail-box>
-  <ng-template #fieldTemplate let-field>
-    <leap-general-info-field
-      [fieldTitle]="field.title"
-      [editable]="field.editable && !iltCourse.editLock"
-      (edit)="onEdit(field.id)"
-    >
-      <leap-general-info-field-value
-        [fieldValue]="field.value"
-        (delete)="deleteCertificate()"
-        (download)="downloadCertificate($event)"
-        (preview)="previewCertificate($event)"
-      ></leap-general-info-field-value>
-    </leap-general-info-field>
-  </ng-template>
-</leap-general-info>
+<nz-tabset nzType="card" class="admin-panel__card-tabset" *ngIf="iltCourse$ | async as iltCourse">
+  <nz-tab nzTitle="Details">
+    <leap-ilt-course-general-details
+      [iltCourse]="iltCourse.response"
+      *ngIf="!iltCourse.isPending; else spinnerTemplate"
+    ></leap-ilt-course-general-details>
+  </nz-tab>
+  <nz-tab nzTitle="LXP Settings" *ngIf="iltCourse.response.lxpCourses?.length">
+    <leap-course-lxp-settings
+      *ngIf="!iltCourse.isPending; else spinnerTemplate"
+      [course]="iltCourse.response"
+      (publishCourse)="publishCourse($event)"
+    ></leap-course-lxp-settings>
+  </nz-tab>
+</nz-tabset>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

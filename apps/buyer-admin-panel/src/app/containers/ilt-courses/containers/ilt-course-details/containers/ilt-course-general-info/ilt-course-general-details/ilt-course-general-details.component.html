@@ -1,0 +1,22 @@
+<leap-general-info [fields]="fields">
+  <leap-general-info-thumbnail-box
+    [thumbnailUrl]="iltCourse.thumbnailUrl"
+    [editable]="!iltCourse.editLock"
+    (generateThumbnail)="onGenerateThumbnail(iltCourse.id)"
+    (uploadThumbnail)="onUploadThumbnail(iltCourse.thumbnailUrl, iltCourse.id)"
+  ></leap-general-info-thumbnail-box>
+  <ng-template #fieldTemplate let-field>
+    <leap-general-info-field
+      [fieldTitle]="field.title"
+      [editable]="field.editable && !iltCourse.editLock"
+      (edit)="onEdit(field.id)"
+    >
+      <leap-general-info-field-value
+        [fieldValue]="field.value"
+        (delete)="deleteCertificate()"
+        (download)="downloadCertificate($event)"
+        (preview)="previewCertificate($event)"
+      ></leap-general-info-field-value>
+    </leap-general-info-field>
+  </ng-template>
+</leap-general-info>

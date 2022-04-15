@@ -2,7 +2,7 @@ import {InternalRepositoryMaterial} from "../internal-repo/internal-repository.m
 import {ConfigDto} from "../common/config-dto.model";
 import {ITrainingManager} from "../courses/ilt-event.model";
 import {IDomainData} from "../domain-data.model";
-import {ExpressCourse} from "../courses/ilt-course.model";
+import {ExpressCourse, PublishedCourseToLXP} from "../courses/ilt-course.model";
 
 export interface SelfPacedCourseClassEvent {
   id: string;
@@ -137,6 +137,7 @@ export interface ActiveSelfPacedCourse {
   enrollmentPolicy?: ConfigDto;
   externalSKU?: string;
   specificExternalSKU?: boolean;
+  lxpCourses?: PublishedCourseToLXP[];
 }
 
 export interface SPCourseLanguageVariant {

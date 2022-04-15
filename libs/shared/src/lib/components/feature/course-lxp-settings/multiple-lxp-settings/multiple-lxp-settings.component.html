@@ -1,0 +1,46 @@
+<div class="sections-header">LXP PUBLISHING DETAILS</div>
+<div class="sections-wrapper">
+  <div class="search-container">
+    <leap-table-search
+      [placeholder]="'Enter domain name...'"
+      (searchPhraseChange)="onSearch($event)"
+    ></leap-table-search>
+  </div>
+
+  <div class="sections-container">
+    <div class="section-container" *ngFor="let domain of filteredDomains">
+      <div class="section-header">{{ domain.domain }}</div>
+      <div class="section-subheader">
+        <a [href]="domain.lxpHost" target="_blank">{{ domain.lxpHost }}</a>
+      </div>
+
+      <div class="section-value">
+        <span class="section-value-label">Publish as:</span> {{ getPublishPrivacy(domain.lxpPrivate) }} Course
+      </div>
+
+      <div class="section-value">
+        <span class="section-value-label">
+          {{ domain.channels ? 'Channels:' : 'No Channels selected' }}
+        </span>
+        {{ getStringifyValue(domain.channels) }}
+      </div>
+
+      <div class="section-value">
+        <span class="section-value-label">
+          {{ domain.groups ? 'Groups:' : 'No Groups selected' }}
+        </span>
+        {{ getStringifyValue(domain.groups) }}
+      </div>
+
+      <div class="section-value" *ngIf="domain.lxpPrivate">
+        <span class="section-value-label">Restricted to (Users):</span>
+        {{ domain.lxpRestrictUsers?.join(', ') || 'N/A' }}
+      </div>
+
+      <div class="section-value" *ngIf="domain.lxpPrivate">
+        <span class="section-value-label">Restricted to (Groups):</span>
+        {{ getStringifyValue(domain.lxpRestrictGroups) || 'N/A' }}
+      </div>
+    </div>
+  </div>
+</div>

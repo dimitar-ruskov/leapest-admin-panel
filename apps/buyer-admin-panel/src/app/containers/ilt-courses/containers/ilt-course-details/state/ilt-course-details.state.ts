@@ -20,15 +20,20 @@ import {
   DiscardILTCourseMaterialsChanges,
   UpdateILTCourseAgenda,
   UpdateILTCourseMaterials,
+  PublishToLxpByDomain
 } from './ilt-course-details.actions';
 import {
   ILTEvent,
-  MasterInternalRepository,
+  MasterInternalRepository, PublishedCourseToLXP,
   PublishedILTCourse
 } from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {CourseThumbnailService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
 import {PLACEHOLDER_COURSE_THUMBNAIL_URL} from "../../../../../../../../../libs/shared/src/lib/models/constants";
+import {
+  CourseLxpSettingsService
+} from "../../../../../../../../../libs/shared/src/lib/utils/services/course-lxp-settings.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 export class IltCourseDetailsStateModel {
   activeTab: number;
@@ -96,6 +101,8 @@ export class IltCourseDetailsState {
   constructor(
     private readonly iltCoursesService: IltCoursesService,
     private readonly courseThumbnailService: CourseThumbnailService,
+    private readonly courseLxpSettingsService: CourseLxpSettingsService,
+    private readonly messageService: NzMessageService,
   ) {}
 
   @Action(ChangeILTCourseDetailsTab)
@@ -260,6 +267,19 @@ export class IltCourseDetailsState {
 
   @Action(PublishToLxp)
   PublishToLxp({ patchState, getState }: StateContext<IltCourseDetailsStateModel>, action: PublishToLxp) {
-    return this.iltCoursesService.publishToLxp(action.payload);
+    return this.courseLxpSettingsService.publishToLxp(action.payload);
+  }
+
+  @Action(PublishToLxpByDomain)
+  PublishToLxpByDomain({ patchState, getState }: StateContext<IltCourseDetailsStateModel>, action: PublishToLxp) {
+    return this.courseLxpSettingsService.publishToLxpByDomain(action.payload).pipe(
+      tap((response: DeferredResource<PublishedCourseToLXP[]>) => {
+        if (response.isSuccess) {
+          this.messageService.success('Your course will be published soon! Please refresh page, to see changes!');
+        } else if (response.error) {
+          this.messageService.error('Failed to publish course!');
+        }
+      }),
+    );
   }
 }

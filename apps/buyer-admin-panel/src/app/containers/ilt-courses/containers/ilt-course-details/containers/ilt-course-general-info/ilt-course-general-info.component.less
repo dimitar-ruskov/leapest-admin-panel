@@ -1,9 +1,62 @@
-@background-color: #fff;
+:host::ng-deep {
+  .ant-tabs-content-holder {
+    background: transparent !important;
+    padding: 0 0 30px 0 !important;
+  }
 
-:host {
-  display: block;
-  border-radius: 6px;
-  background-color: @background-color;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 40px;
+  .ant-tabs-top > .ant-tabs-nav::before {
+    border-bottom: none !important;
+  }
+
+  .ant-tabs-tab {
+    color: rgba(0, 0, 0, 0.65) !important;
+    border: none !important;
+    border-bottom: 1px solid #acadc1 !important;
+    margin-right: 0 !important;
+    min-width: 120px;
+    justify-content: center;
+    background-color: white !important;
+    &:hover {
+      background-color: #fafafa !important;
+    }
+    .ant-tabs-tab-btn {
+      &:focus {
+        color: #5bc2ad !important;
+      }
+    }
+  }
+
+  .ant-tabs-tab-active {
+    color: rgba(0, 0, 0, 0.65) !important;
+    border: 1px solid #acadc1 !important;
+    border-bottom: none !important;
+
+    .ant-tabs-tab-btn {
+      color: #5bc2ad !important;
+    }
+  }
+
+  .ant-tabs-top {
+    > .ant-tabs-nav {
+      .ant-tabs-nav-wrap {
+        .ant-tabs-nav-list {
+          .sub-tab {
+            color: rgba(0,0,0,.65);
+          }
+        }
+        .ant-tabs-tab-active {
+          .sub-tab {
+            color: #5bc2ad;
+          }
+        }
+      }
+    }
+  }
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }

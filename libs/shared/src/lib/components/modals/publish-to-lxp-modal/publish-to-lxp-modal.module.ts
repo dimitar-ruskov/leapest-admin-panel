@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {PublishToLxpModalComponent} from "./publish-to-lxp-modal.component";
+import {DeleteProtocolModule} from "../../../utils/pipes/delete-protocol-pipe/delete-protocol.module";
 
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
@@ -19,6 +20,7 @@ import {NzIconModule} from "ng-zorro-antd/icon";
     CommonModule,
     ReactiveFormsModule,
 
+    DeleteProtocolModule,
     NzFormModule,
     NzInputModule,
     NzSelectModule,

@@ -1,17 +1,19 @@
-<leap-general-info [fields]="fields" *ngIf="selfPacedCourse">
-  <leap-general-info-thumbnail-box
-    [thumbnailUrl]="selfPacedCourse.thumbnailUrl"
-    [editable]="!editLock"
-    (generateThumbnail)="onGenerateThumbnail(selfPacedCourse.id)"
-    (uploadThumbnail)="onUploadThumbnail(selfPacedCourse.thumbnailUrl, selfPacedCourse.id)"
-  ></leap-general-info-thumbnail-box>
-  <ng-template #fieldTemplate let-field>
-    <leap-general-info-field
-      [fieldTitle]="field.title"
-      [editable]="field.editable && !editLock"
-      (edit)="onEdit(field.id)"
-    >
-      <leap-general-info-field-value [fieldValue]="field.value"></leap-general-info-field-value>
-    </leap-general-info-field>
-  </ng-template>
-</leap-general-info>
+<nz-tabset nzType="card" class="admin-panel__card-tabset" *ngIf="selfPacedCourse$ | async as selfPlacedCourse">
+  <nz-tab nzTitle="Details">
+    <leap-sp-course-general-details
+      [selfPacedCourse]="selfPlacedCourse.response"
+      *ngIf="!selfPlacedCourse.isPending; else spinnerTemplate"
+    ></leap-sp-course-general-details>
+  </nz-tab>
+  <nz-tab nzTitle="LXP Settings" *ngIf="selfPlacedCourse.response.lxpCourses?.length">
+    <leap-course-lxp-settings
+      *ngIf="!selfPlacedCourse.isPending; else spinnerTemplate"
+      [course]="selfPlacedCourse.response"
+      (publishCourse)="publishCourse($event)"
+    ></leap-course-lxp-settings>
+  </nz-tab>
+</nz-tabset>
+
+<ng-template #spinnerTemplate>
+  <nz-spin class="spinner" nzSimple nzSize="large"></nz-spin>
+</ng-template>

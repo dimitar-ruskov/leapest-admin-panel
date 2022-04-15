@@ -12,7 +12,7 @@
     <leap-ilt-event-learners-enrolled [classEventId]="classEventId" [eventId]="eventId">
     </leap-ilt-event-learners-enrolled>
   </nz-tab>
-  <nz-tab nzTitle="Unenrolled" *ngIf="(total$ | async) > 0">
+  <nz-tab nzTitle="Unenrolled" *ngIf="isShowUnenrolled | async">
     <leap-ilt-event-learners-unenrolled [classEventId]="classEventId" [eventId]="eventId">
     </leap-ilt-event-learners-unenrolled>
   </nz-tab>
@@ -24,7 +24,7 @@
       <leap-ilt-event-learners-enrolled [classEventId]="classEventId" [eventId]="eventId">
       </leap-ilt-event-learners-enrolled>
     </nz-tab>
-    <nz-tab nzTitle="Unenrolled" *ngIf="(total$ | async) > 0">
+    <nz-tab nzTitle="Unenrolled" *ngIf="isShowUnenrolled | async">
       <leap-ilt-event-learners-unenrolled [classEventId]="classEventId" [eventId]="eventId">
       </leap-ilt-event-learners-unenrolled>
     </nz-tab>

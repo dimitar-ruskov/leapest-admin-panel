@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {IKeyValuePair} from "../../../models/interfaces";
+
+import {IKeyValuePair, TargetLxpDomain} from "../../../models/interfaces";
 import {COURSE_PUBLISH_STATUS} from "../../../models/constants";
 import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
 
@@ -13,6 +14,7 @@ import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
 })
 export class PublishToLxpModalComponent implements OnInit {
   @Input() name: string;
+  @Input() domain: TargetLxpDomain;
   @Input() specificExternalSKU: boolean;
   @Input() externalSKU: string;
 

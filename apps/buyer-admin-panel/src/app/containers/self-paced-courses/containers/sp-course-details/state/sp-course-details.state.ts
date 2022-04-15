@@ -12,6 +12,7 @@ import {
   UpdateSPCourseAttribute,
   UploadSelfPacedCourseThumbnail,
   PublishToLxp,
+  PublishToLxpByDomain
 } from './sp-course-details.actions';
 
 import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
@@ -21,7 +22,14 @@ import {PLACEHOLDER_COURSE_THUMBNAIL_URL} from "../../../../../../../../../libs/
 import {
   IltCourseDetailsStateModel
 } from "../../../../ilt-courses/containers/ilt-course-details/state/ilt-course-details.state";
-import {MasterInternalRepository} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {
+  MasterInternalRepository,
+  PublishedCourseToLXP
+} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {
+  CourseLxpSettingsService
+} from "../../../../../../../../../libs/shared/src/lib/utils/services/course-lxp-settings.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 export class SpCourseDetailsStateModel {
   activeTab: number;
@@ -41,6 +49,8 @@ export class SpCourseDetailsState {
   constructor(
     private readonly selfPacedCoursesService: SpCoursesService,
     private readonly courseThumbnailService: CourseThumbnailService,
+    private readonly courseLxpSettingsService: CourseLxpSettingsService,
+    private readonly messageService: NzMessageService,
   ) {}
 
   @Selector([SpCourseDetailsState])
@@ -170,6 +180,19 @@ export class SpCourseDetailsState {
 
   @Action(PublishToLxp)
   PublishToLxp({ patchState, getState }: StateContext<IltCourseDetailsStateModel>, action: PublishToLxp) {
-    return this.selfPacedCoursesService.publishToLxp(action.payload);
+    return this.courseLxpSettingsService.publishToLxp(action.payload);
+  }
+
+  @Action(PublishToLxpByDomain)
+  PublishToLxpByDomain({ patchState, getState }: StateContext<IltCourseDetailsStateModel>, action: PublishToLxp) {
+    return this.courseLxpSettingsService.publishToLxpByDomain(action.payload).pipe(
+      tap((response: DeferredResource<PublishedCourseToLXP[]>) => {
+        if (response.isSuccess) {
+          this.messageService.success('Your course will be published soon! Please refresh page, to see changes!');
+        } else if (response.error) {
+          this.messageService.error('Failed to publish course!');
+        }
+      }),
+    );
   }
 }

@@ -1,6 +1,7 @@
 <div>
-  You are about to publish <strong>{{ name }}</strong> to LXP. Your learners will be able to discover this course and
-  access and enroll for associated Course Events.
+  You are about to publish <strong>{{ name }}</strong> to
+  <strong *ngIf="domain">{{ domain.domainName + ' ' + (domain.lxpHost | deleteProtocol) }}</strong> LXP. Your learners
+  will be able to discover this course and access and enroll for associated Course Events.
 </div>
 <form nz-form [formGroup]="form">
   <div class="flex-display" *ngIf="specificExternalSKU">

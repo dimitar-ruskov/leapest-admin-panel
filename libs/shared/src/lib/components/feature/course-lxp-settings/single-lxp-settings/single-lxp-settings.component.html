@@ -1,0 +1,42 @@
+<div class="section-header">
+  LXP PUBLISHING DETAILS -
+  <a class="link" target="_blank" [href]="publishedDomain.lxpHost">View & Edit Course On LXP</a>
+</div>
+
+<div class="pills-container">
+  <div class="pills-header">LXP CHANNELS</div>
+  <ng-container *ngTemplateOutlet="pillTemplate; context: { items: publishedDomain.channels }"></ng-container>
+</div>
+
+<div class="pills-container">
+  <div class="pills-header">LXP GROUPS</div>
+  <ng-container *ngTemplateOutlet="pillTemplate; context: { items: publishedDomain.groups }"></ng-container>
+</div>
+
+<div class="section-header">PRIVACY SETTINGS</div>
+<div class="section-value">{{ getPublishPrivacy(publishedDomain.lxpPrivate) }}</div>
+<div class="section-description" *ngIf="publishedDomain.lxpPrivate">
+  The SmartCard corresponding to this course is only visible to users and groups listed in the RESTRICTED TO sections.
+</div>
+
+<div class="pills-container" *ngIf="publishedDomain.lxpPrivate">
+  <div class="pills-header">RESTRICTED TO (USERS)</div>
+  <ng-container *ngTemplateOutlet="pillTemplate; context: { items: publishedDomain.lxpRestrictUsers }"></ng-container>
+</div>
+
+<div class="pills-container" *ngIf="publishedDomain.lxpPrivate">
+  <div class="pills-header">RESTRICTED TO (GROUPS)</div>
+  <ng-container *ngTemplateOutlet="pillTemplate; context: { items: publishedDomain.lxpRestrictGroups }"></ng-container>
+</div>
+
+<ng-template #pillTemplate let-items="items">
+  <ng-container *ngIf="items?.length; else emptyTemplate">
+    <nz-tag class="pill" nzColor="default" *ngFor="let item of items">
+      {{ item?.value || item }}
+    </nz-tag>
+  </ng-container>
+
+  <ng-template #emptyTemplate>
+    <div>N/A</div>
+  </ng-template>
+</ng-template>

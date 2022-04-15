@@ -105,6 +105,8 @@ export class PublishingSettingsComponent implements OnInit {
     this.lxpDefaultLanguageControl = this.form.get('language') as FormControl;
   }
 
+  public compareKeyPair = (o1: any, o2: any): boolean => (o1 && o2 ? o1.key === o2.key : o1 === o2);
+
   public getLxpChannels(filter: string): void {
     this.lxpChannels$ = this.lxpUsersService.getLxpChannels(filter);
   }

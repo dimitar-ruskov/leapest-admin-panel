@@ -6,8 +6,7 @@ import {DeferredResource} from "../../../../../../../libs/shared/src/lib/utils/c
 import {AdminPanelApiService} from "../../../../../../../libs/shared/src/lib/utils/services/common";
 import {
   DraftILTCourse, EventReview, ILTCourse,
-  ILTEvent, ILTEventBase, ILTEventListItem, IPageable, PreILTCourse, PublishCourseToLXP,
-  PublishedCourseToLXP, PublishedILTCourse
+  ILTEvent, ILTEventBase, ILTEventListItem, IPageable, PreILTCourse, PublishedILTCourse
 } from "../../../../../../../libs/shared/src/lib/models/interfaces";
 
 @Injectable({
@@ -155,12 +154,5 @@ export class IltCoursesService {
       new HttpHeaders({}),
       body,
     );
-  }
-
-  publishToLxp(payload: PublishCourseToLXP): Observable<DeferredResource<PublishedCourseToLXP[]>> {
-    const url = this.adminPanelApiService.prepareURL('/api/solar/partner/lxp/course/buyer/bulk/publish');
-
-    const body = [payload];
-    return this.adminPanelApiService.post(url, new HttpHeaders({}), body);
   }
 }
