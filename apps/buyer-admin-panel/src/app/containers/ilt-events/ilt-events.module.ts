@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { NgxsModule } from "@ngxs/store";
-import { NzMessageModule } from "ng-zorro-antd/message";
 
 import { IltEventsRoutingModule } from "./ilt-events-routing.module";
 import { IltEventsComponent } from "./ilt-events.component";
@@ -70,8 +69,6 @@ import {
       IltEventDetailsNotificationsState,
       EmailHistoryState,
     ]),
-
-    NzMessageModule, // For MessageService in state
   ],
   providers: [EventAgendaUnsavedChangesGuard]
 })

@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { NgxsModule } from "@ngxs/store";
-import { NzMessageModule } from "ng-zorro-antd/message";
 
 import { SpCoursesState } from "./state/sp-courses.state";
 import { SpCoursesContainerRoutingModule } from "./sp-courses-container-routing.module";
@@ -62,8 +61,6 @@ import {
       SpCourseVariantExamsState,
       SpCourseVariantMaterialsTrackingState,
     ]),
-
-    NzMessageModule, // For MessageService in state
   ],
 })
 export class SpCoursesContainerModule {}

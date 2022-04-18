@@ -5,16 +5,16 @@ import * as moment from "moment";
 
 import {
   UpdateCertificateFields
-} from "../containers/certificate-details/state/certificate-details.actions";
+} from "../../../../../../apps/buyer-admin-panel/src/app/containers/certificates/containers/certificate-details/state/certificate-details.actions";
 import {
   EditCertificatePeriodComponent
-} from "../../../../../../../libs/shared/src/lib/components/modals/edit-certificate-period/edit-certificate-period.component";
+} from "../../components/modals/edit-certificate-period/edit-certificate-period.component";
 import {
   CertificateUploadFileComponent
-} from "../../../../../../../libs/shared/src/lib/components/feature/certificate-upload-file/certificate-upload-file.component";
+} from "../../components/feature/certificate-upload-file/certificate-upload-file.component";
 
-import { Certificate, GeneralInfoField } from "../../../../../../../libs/shared/src/lib/models";
-import { TextInputModalComponent } from "../../../../../../../libs/shared/src/lib/components/modals/text-input-modal/text-input-modal.component";
+import { Certificate, GeneralInfoField } from "../../models";
+import { TextInputModalComponent } from "../../components/modals/text-input-modal/text-input-modal.component";
 
 @Injectable({
   providedIn: 'root'

@@ -23,6 +23,7 @@ import { AuthInterceptor, ErrorInterceptor } from "../../../../libs/shared/src/l
 import { GroupGuard, HybridUserGuard, ProvisionUserGuard } from "../../../../libs/shared/src/lib/utils/guards";
 import { BootstrapService } from "../../../../libs/shared/src/lib/services/common/bootstrap.service";
 import { environment } from "../../../../libs/shared/src/lib/environments/environment";
+import { NzMessageModule } from "ng-zorro-antd/message";
 
 const ngZorroConfig: NzConfig = {
   notification: {
@@ -38,8 +39,9 @@ const ngZorroConfig: NzConfig = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // @TODO Are we using animations?
-    NzModalModule,
-    HttpClientModule, // @TODO Fix for Modals in services Provided in root
+    NzModalModule, // @TODO Fix for Modals in services Provided in root
+    NzMessageModule, // @TODO Fix for services Provided in root
+    HttpClientModule,
     GraphQLModule,
     OktaAuthModule,
     AppRoutingModule,

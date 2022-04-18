@@ -8,7 +8,7 @@ import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 import { CertificateDetailsState } from "../../state/certificate-details.state";
 import {
   CertificateEditInfoHandlerService
-} from "../../../../service/certificate-edit-info-handler.service";
+} from "../../../../../../../../../../libs/shared/src/lib/services/certificates/certificate-edit-info-handler.service";
 
 import { Certificate, GeneralInfoField } from "../../../../../../../../../../libs/shared/src/lib/models";
 import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
