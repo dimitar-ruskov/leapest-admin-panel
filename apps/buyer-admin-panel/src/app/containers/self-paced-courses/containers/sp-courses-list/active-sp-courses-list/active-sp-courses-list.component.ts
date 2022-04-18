@@ -7,13 +7,13 @@ import {
   ChangeActiveSPCoursesPaginationParams,
   GetActiveSelfPacedCourses,
   ResetActiveSPCoursesState,
-} from '../state/active-sp-courses-list/active-sp-courses-list.actions';
-import { ActiveSpCoursesListState } from '../state/active-sp-courses-list/active-sp-courses-list.state';
+} from './active-sp-courses-list/active-sp-courses-list.actions';
+import { ActiveSpCoursesListState } from './active-sp-courses-list/active-sp-courses-list.state';
 
-import { CreateSpCourseVariantHandlerService } from '../../../services/create-sp-course-variant-handler.service';
-import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { CreateSpCourseVariantHandlerService } from '../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/create-sp-course-variant-handler.service';
+import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {createPageableFromTableQueryParams} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-active-sp-courses-list',

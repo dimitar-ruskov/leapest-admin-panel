@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import {IKeyValuePair, TargetLxpDomain} from "../../../models/interfaces";
+import {IKeyValuePair, TargetLxpDomain} from "../../../models";
 import {COURSE_PUBLISH_STATUS} from "../../../models/constants";
 import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
 

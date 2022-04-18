@@ -3,14 +3,14 @@ import { Store } from '@ngxs/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import produce from 'immer';
 
-import { ILTCourseCreationStep } from '../../models/ilt-course-create-step.model';
+import { ILTCourseCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
 import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
 
 import {
   ILTCourse,
   ILTCourseAgenda,
   PreILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-course-create-agenda',

@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 import { CertificateDetailsState } from './state/certificate-details.state';
 import { GetCertificateDetails } from './state/certificate-details.actions';
 
-import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({

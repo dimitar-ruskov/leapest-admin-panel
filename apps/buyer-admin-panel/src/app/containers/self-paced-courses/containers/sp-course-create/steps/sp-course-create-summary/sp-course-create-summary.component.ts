@@ -8,15 +8,15 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import produce from 'immer';
 
 import { GoToSPCourseCreationStep, UpdatePreSelfPacedCourse } from '../../state/sp-course-create.actions';
-import { SPCourseCreationSteps } from '../../models/sp-course-create-step.model';
-import { PreSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseCreationSteps } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-step.model';
+import { PreSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {
   GeneralInfoField,
   IKeyValuePair, ILTCourse,
   InternalRepositoryMaterial
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {COURSE_PUBLISH_STATUS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {NotificationService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {NotificationService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
 import {AdminCoursesService, LxpUsersService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 const NO_MATERIALS_LABEL = 'This course has no materials.';

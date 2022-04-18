@@ -19,12 +19,12 @@ import { distinctUntilChanged, map, take, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import {InternalRepositoryMaterial} from "../../../models/interfaces";
+import {InternalRepositoryMaterial} from "../../../models";
 import {
   AddCourseMaterialModalComponent
 } from "../../modals/add-course-material-modal/add-course-material-modal.component";
-import {EnvironmentService} from "../../../utils/services/common";
-import {MaterialDtoHandlerService} from "../../../utils/services/material-dto-handler.service";
+import {EnvironmentService} from "../../../services/common";
+import {MaterialDtoHandlerService} from "../../../services/repository/material-dto-handler.service";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

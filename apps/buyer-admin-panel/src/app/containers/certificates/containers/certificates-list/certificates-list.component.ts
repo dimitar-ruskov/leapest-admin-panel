@@ -7,15 +7,15 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 import { CertificatesListState } from './state/certificates-list.state';
-import { CertificateCreateModalComponent } from '../../components/certificate-create-modal/certificate-create-modal.component';
-import { CertificatesService } from '../../service/certificates.service';
+import { CertificateCreateModalComponent } from '../../../../../../../../libs/shared/src/lib/components/modals/certificate-create-modal/certificate-create-modal.component';
+import { CertificatesService } from '../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service';
 import {
   ChangeCertificatesPaginationParams,
   GetCertificates,
   ResetCertificatesState,
 } from './state/certificates-list.actions';
 
-import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
 import {
   createPageableFromTableQueryParams,
   DeferredResource

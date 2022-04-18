@@ -1,6 +1,6 @@
 import {
   IPageableEmailHistory
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/email-history.model";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models/notifications/email-history.model";
 
 export class GetEmailHistory {
   static readonly type = '[AP Email History] Get Email History';

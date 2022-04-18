@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { startWith } from 'rxjs/operators';
 import * as moment from 'moment';
-import {IKeyValuePair} from "../../../../../models/interfaces";
+import {IKeyValuePair} from "../../../../../models";
 
 @Component({
   selector: 'leap-t-agenda-section-modal',

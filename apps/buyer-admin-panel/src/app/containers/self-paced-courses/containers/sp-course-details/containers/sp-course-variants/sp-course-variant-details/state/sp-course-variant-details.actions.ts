@@ -1,6 +1,6 @@
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant-learner.model';
-import {S3BucketData} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
+import {S3BucketData} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class ChangeSPCourseLanguageVariantDetailsTab {
   static readonly type = '[AP Self-paced Course Details] Change Self-paced Course Language Variant Details Tab';

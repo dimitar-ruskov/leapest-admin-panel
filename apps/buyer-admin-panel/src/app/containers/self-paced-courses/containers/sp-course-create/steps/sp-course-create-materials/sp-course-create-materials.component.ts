@@ -9,8 +9,8 @@ import {
   GoToSPCourseCreationStep,
   UpdatePreSelfPacedCourse,
 } from '../../state/sp-course-create.actions';
-import { SPCourseCreationSteps } from '../../models/sp-course-create-step.model';
-import { PreSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseCreationSteps } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-step.model';
+import { PreSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 
 const NO_MATERIALS_LABEL = 'This course has no materials yet. Please add your material, in order to continue';
 

@@ -18,20 +18,20 @@ import {
 import {
   CourseCategory,
   EnrollmentPolicyKeys, GeneralInfoField, IKeyValuePair, S3BucketData
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {DEFAULT_QUILL_EDITOR_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {
   EditExternalSKUModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
 import {
   ActiveSelfPacedCourse
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model";
 import {
   CourseCategoryAndSubcategoryHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-category-and-subcategory-handler.service";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-category-and-subcategory-handler.service";
 import {
   CourseThumbnailHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-thumbnail-handler.service";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
 import {IGlobalStateModel} from "../../../../../../../state/state.model";
 import {LmsCategoriesService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
 import {

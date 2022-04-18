@@ -4,18 +4,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
 
-import { CertificateCoursesState } from '../../state/certificate-courses.state';
+import { CertificateCoursesState } from './state/certificate-courses.state';
 import {
   ChangeCertCoursesPaginationParams,
   GetCertificateCourses,
   ResetCertificateCoursesState,
-} from '../../state/certificate-courses.actions';
+} from './state/certificate-courses.actions';
 
 import {
   createPageableFromTableQueryParams,
   DeferredResource
 } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DraftILTCourse, IPageable} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DraftILTCourse, IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 const NO_COURSES_TEXT = 'No matching courses!';
 

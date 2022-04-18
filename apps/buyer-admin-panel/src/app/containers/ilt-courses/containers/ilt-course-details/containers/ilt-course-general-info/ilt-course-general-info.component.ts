@@ -8,7 +8,7 @@ import {DeferredResource} from "../../../../../../../../../../libs/shared/src/li
 import {
   PublishCourseToLXP,
   PublishedILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 
 @Component({

@@ -1,7 +1,7 @@
-import {IKeyValuePair} from "../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IKeyValuePair} from "../../../../../../../libs/shared/src/lib/models";
 import {
   IPublishingSettings
-} from "../../../../../../../libs/shared/src/lib/models/interfaces/publishing/publishing.model";
+} from "../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
 
 export class EditTabValue {
   static readonly type = '[AP Publishing] Edit Tab Value';

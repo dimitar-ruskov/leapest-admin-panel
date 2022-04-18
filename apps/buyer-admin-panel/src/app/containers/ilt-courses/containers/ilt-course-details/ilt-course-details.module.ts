@@ -40,22 +40,16 @@ import {
 } from "./containers/ilt-course-general-info/ilt-course-general-details/ilt-course-general-details.component";
 import {
   BulkUploadSchedulingReportListComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/bulk-upload-scheduling-report/bulk-upload-scheduling-report-list/bulk-upload-scheduling-report-list.component";
+} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk-upload-details/bulk-upload-scheduling-report/bulk-upload-scheduling-report-list/bulk-upload-scheduling-report-list.component";
 import {
   IltCourseEventsBulkUploadDetailsComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/ilt-course-events-bulk-upload-details.component";
-import {
-  BulkUploadValidationReportIssuesModalComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/bulk-upload-validation-report/bulk-upload-validation-report-issues-modal/bulk-upload-validation-report-issues-modal.component";
+} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk-upload-details/ilt-course-events-bulk-upload-details.component";
 import {
   BulkUploadSchedulingReportComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/bulk-upload-scheduling-report/bulk-upload-scheduling-report.component";
+} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk-upload-details/bulk-upload-scheduling-report/bulk-upload-scheduling-report.component";
 import {
   BulkUploadValidationReportComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/bulk-upload-validation-report/bulk-upload-validation-report.component";
-import {
-  BulkUploadModalComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/bulk-upload-modal/bulk-upload-modal.component";
+} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk-upload-details/bulk-upload-validation-report/bulk-upload-validation-report.component";
 import {
   MasterInternalRepoTileModule
 } from "../../../../../../../../libs/shared/src/lib/components/feature/master-internal-repo-tile/master-internal-repo-tile.module";
@@ -141,8 +135,9 @@ import {
 import {
   CourseLxpSettingsModule
 } from "../../../../../../../../libs/shared/src/lib/components/feature/course-lxp-settings/course-lxp-settings.module";
-
-
+import {
+  BulkUploadValidationReportIssuesModalModule
+} from "../../../../../../../../libs/shared/src/lib/components/modals/bulk-upload-validation-report-issues-modal/bulk-upload-validation-report-issues-modal.module";
 
 @NgModule({
   declarations: [
@@ -156,15 +151,13 @@ import {
     IltCourseNotificationDetailsComponent,
     IltCourseReviewsComponent,
     IltCourseEventsBulkComponent,
-    BulkUploadModalComponent,
     IltCourseEventsBulkUploadDetailsComponent,
     BulkUploadValidationReportComponent,
     BulkUploadSchedulingReportComponent,
     BulkUploadSchedulingReportListComponent,
     IltCourseEventsActiveComponent,
     IltCourseEventsFinishedComponent,
-    IltCourseEventsDraftComponent,
-    BulkUploadValidationReportIssuesModalComponent,
+    IltCourseEventsDraftComponent
   ],
   imports: [
     CommonModule,
@@ -202,6 +195,7 @@ import {
     CreateSubCategoryModalModule,
     CreateCategoryModalModule,
     CancelEventConfirmModalModule,
+    BulkUploadValidationReportIssuesModalModule,
 
     NzFormModule,
     NzTableModule,

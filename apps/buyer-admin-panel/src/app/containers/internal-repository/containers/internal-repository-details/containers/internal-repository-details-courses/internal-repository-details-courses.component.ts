@@ -7,16 +7,16 @@ import {NzTableQueryParams} from 'ng-zorro-antd/table';
 
 import {
   InternalRepositoryCourseListItem
-} from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-course-list-item.model';
+} from '../../../../../../../../../../libs/shared/src/lib/models/internal-repo/internal-repository-course-list-item.model';
 import {
   ChangeInternalRepositoryCoursesPaginationParams,
   GetInternalRepositoryCourses
-} from '../../state/internal-repository-courses.actions';
+} from './state/internal-repository-courses.actions';
 import {
   InternalRepositoryCoursesState
-} from '../../state/internal-repository-courses.state';
+} from './state/internal-repository-courses.state';
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {TGridInputModel} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {TGridInputModel} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-internal-repository-details-courses',

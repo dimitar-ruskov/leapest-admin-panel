@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class ChangeILTEventMaterialTrackingFilterSKU {
   static readonly type = '[AP ILT Event Material Tracking] Change ILT Event Material Tracking Filter SKU';

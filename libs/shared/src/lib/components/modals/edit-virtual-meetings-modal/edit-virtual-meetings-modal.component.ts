@@ -17,9 +17,9 @@ import {
   CourseEventInstructorsCollision,
   ILTCourseAgendaDay,
   ILTInstructor
-} from "../../../models/interfaces";
+} from "../../../models";
 import {CustomValidators} from "../../../utils/common";
-import {EnvironmentService} from "../../../utils/services/common";
+import {EnvironmentService} from "../../../services/common";
 import {
   AdminCoursesService,
   ConferencingToolService,

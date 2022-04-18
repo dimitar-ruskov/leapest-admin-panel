@@ -3,16 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
+import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
 import {
   SPCourseLanguageVariantCreationStep,
   SPCourseLanguageVariantCreationSteps
-} from '../models/sp-course-create-variant-step.model';
+} from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
 import {
   CreatePreSPCourseLanguageVariant,
   GetPreSPCourseLanguageVariant, GoToSPCourseLanguageVariantCreationStep, UpdatePreSPCourseLanguageVariant
 } from './sp-course-variant-create.actions';
-import { SpCourseLanguageVariantsService } from '../../../../../../services/sp-course-language-variants.service';
+import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
 import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 

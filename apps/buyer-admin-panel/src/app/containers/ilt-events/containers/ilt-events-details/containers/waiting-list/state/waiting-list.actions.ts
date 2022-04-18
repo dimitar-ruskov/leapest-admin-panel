@@ -1,4 +1,4 @@
-import {ILTEventLearner, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventLearner, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetWaitingList {
   static readonly type = '[AP Waiting List] Get Waiting List';

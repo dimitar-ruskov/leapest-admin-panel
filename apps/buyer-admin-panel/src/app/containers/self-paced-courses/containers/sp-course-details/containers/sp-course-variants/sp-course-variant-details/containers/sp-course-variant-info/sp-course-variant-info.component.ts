@@ -15,19 +15,19 @@ import {
   UploadSPCourseLanguageVariantThumbnail
 } from '../../state/sp-course-variant-details.actions';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {
   prepareGeneralInfoFields,
   prepareMaterialsFields,
   prepareVariantDetailsFields
-} from "../../../../../../../services/sp-course-variants-handler.service";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-variants-handler.service";
 import {
   GeneralInfoField,
   MaterialsInfoField, S3BucketData
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   CourseThumbnailHandlerService
-} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/services/course-thumbnail-handler.service";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
 
 @Component({
   selector: 'leap-sp-course-variant-info',

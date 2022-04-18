@@ -5,10 +5,10 @@ import { Observable, of, timer } from 'rxjs';
 import { catchError, switchMap, takeWhile, tap, map, filter, take } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { AttendanceTrackingService } from '../../../services/attendance-tracking.service';
-import { IltEventLearnersService } from '../../../services/ilt-event-learners.service';
-import { IltEventsService } from '../../../services/ilt-events.service';
-import { WaitingListService } from '../../../services/waiting-list.service';
+import { AttendanceTrackingService } from '../../../../../../../../../libs/shared/src/lib/services/events/attendance-tracking.service';
+import { IltEventLearnersService } from '../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-learners.service';
+import { IltEventsService } from '../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
+import { WaitingListService } from '../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service';
 import {
   ChangeILTEventExamsPaginationParams,
   GetILTEventExams,
@@ -66,7 +66,7 @@ import {
   AssignLearnersResponse, FlattenedCourseDetails,
   ILTEvent, ILTEventAttendance,
   ILTEventAttendancesByUser, ILTEventBulkMarkAttendancesPayload, IPageable
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../libs/shared/src/lib/models";
 import {AdminCoursesService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
 
 export class IltEventDetailsStateModel {

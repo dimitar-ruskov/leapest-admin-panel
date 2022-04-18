@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import {ISearchMetadata, ISearchParams} from "../../../models/interfaces/notifications/notifications.model";
+import {ISearchMetadata, ISearchParams} from "../../../models/notifications/notifications.model";
 
 @Component({
   selector: 'leap-notification-filter-pills',

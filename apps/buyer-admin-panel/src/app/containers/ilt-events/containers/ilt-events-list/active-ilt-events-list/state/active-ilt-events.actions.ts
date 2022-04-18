@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetActiveILTEvents {
   static readonly type = '[AP ILT Events] Get Active ILT Events';

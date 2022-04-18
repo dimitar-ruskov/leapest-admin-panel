@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import {ILTEventLearner} from "../../../../models/interfaces";
+import {ILTEventLearner} from "../../../../models";
 
 @Component({
   selector: 'leap-attendance-tracking-unmark-completion-modal',

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import {NotificationResetLevel} from "../../../models/interfaces/notifications/notifications.model";
+import {NotificationResetLevel} from "../../../models/notifications/notifications.model";
 
 @Component({
   selector: 'leap-notification-change-modal',

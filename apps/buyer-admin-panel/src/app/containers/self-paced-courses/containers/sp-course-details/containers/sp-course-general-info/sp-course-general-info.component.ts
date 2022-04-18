@@ -7,10 +7,10 @@ import {PublishToLxpByDomain} from "../../state/sp-course-details.actions";
 import {SpCourseDetailsState} from "../../state/sp-course-details.state";
 
 import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {PublishCourseToLXP} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {PublishCourseToLXP} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   ActiveSelfPacedCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model";
+} from "../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model";
 
 @Component({
   selector: 'leap-sp-course-general-info',

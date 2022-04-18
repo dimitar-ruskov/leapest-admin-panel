@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import {IKeyValuePair} from "../../../models/interfaces";
+import {IKeyValuePair} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

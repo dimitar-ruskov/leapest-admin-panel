@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { IltEventsService } from '../../../../services/ilt-events.service';
+import { IltEventsService } from '../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
 import {
   CancelILTEvent,
   ChangeActiveILTEventsPaginationParams,
@@ -10,7 +10,7 @@ import {
   ResetActiveILTEventsState,
 } from './active-ilt-events.actions';
 
-import {ILTEventListItem, IPageable} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventListItem, IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
 

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { filter, tap } from 'rxjs/operators';
 
-import { NotificationsService } from '../../../service/notifications.service';
+import { NotificationsService } from '../../../../../../../../../libs/shared/src/lib/services/notifications/notifications.service';
 import { ChangePage, FetchNotifications, ToggleSort, ClearSearchForm } from './notifications-list.actions';
 
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {IPageable, Sort} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable, Sort} from "../../../../../../../../../libs/shared/src/lib/models";
 import {
   NotificationModel
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
 
 export interface ISearchParams {
   filter?: string;

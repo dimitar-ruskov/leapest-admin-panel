@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { NotificationsService } from '../../../service/notifications.service';
+import { NotificationsService } from '../../../../../../../../../libs/shared/src/lib/services/notifications/notifications.service';
 import {
   ClearNotificationDetails,
   ClearNotificationDetailsPartial,
@@ -18,7 +18,7 @@ import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/u
 import {
   NotificationModel, NotificationPayloadModel,
   ReportingDomainsMap
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
 
 export class NotificationDetailsStateModel {
   details: DeferredResource<NotificationModel>;

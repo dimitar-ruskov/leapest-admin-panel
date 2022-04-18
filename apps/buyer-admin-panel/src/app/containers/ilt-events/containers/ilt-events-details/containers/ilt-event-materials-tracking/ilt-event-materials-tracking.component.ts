@@ -28,7 +28,7 @@ import {
   IKeyValuePair,
   ILTEvent,
   InternalRepositoryMaterial, MaterialCompletionReport
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   MaterialsTrackingDetailsModalComponent

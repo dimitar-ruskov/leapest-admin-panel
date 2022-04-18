@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {IKeyValuePair} from "../../../models/interfaces";
+import {IKeyValuePair} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

@@ -16,7 +16,7 @@ import {
   FixedTableColumn,
   FixedTableColumnsConfig,
 } from '../../../../utils/directives/table-column-paginator/fixed-table-columns-config';
-import { BulkCompleteAttendanceEvent } from '../../../../models/interfaces/events/bulk-complete-attendance-event.model';
+import { BulkCompleteAttendanceEvent } from '../../../../models/events/bulk-complete-attendance-event.model';
 import { AttendanceTrackingReasonModalComponent } from '../attendance-tracking-reason-modal/attendance-tracking-reason-modal.component';
 import {
   ILTEventAttendance,
@@ -26,7 +26,7 @@ import {
   IltEventAttendanceStatusValue,
   ILTEventCustomAttendanceLight,
   ILTEventLearner, IPageable
-} from "../../../../models/interfaces";
+} from "../../../../models";
 import {createPageableFromTableQueryParams, DeferredResource} from "../../../../utils/common";
 
 const NO_LEARNERS_TEXT = 'There are no learners enrolled in this course event';

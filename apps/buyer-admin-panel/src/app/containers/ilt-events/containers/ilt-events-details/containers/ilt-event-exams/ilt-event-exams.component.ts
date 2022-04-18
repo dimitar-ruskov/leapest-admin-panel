@@ -29,7 +29,7 @@ import {
   ExamCompletionReport,
   IKeyValuePair,
   ILTEvent, InternalRepositoryMaterial
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({

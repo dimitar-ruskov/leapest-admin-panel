@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OktaAuthStateService } from '@okta/okta-angular';
-import {IDomainData, IProfile} from "../../../models/interfaces";
-import {EnvironmentService} from "../../../utils/services/common";
+import {IDomainData, IProfile} from "../../../models";
+import {EnvironmentService} from "../../../services/common";
 
 @Component({
   selector: 'leap-navbar',

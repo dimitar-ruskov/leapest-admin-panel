@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanDeactivate } from '@angular/router';
 import { OktaAuthStateService } from '@okta/okta-angular';
-import {EnvironmentService} from "../../services/common";
+import {EnvironmentService} from "../../../services/common";
 
 @Injectable()
 export class ProvisionUserGuard implements CanDeactivate<any> {

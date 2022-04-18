@@ -7,8 +7,8 @@ import {IltCoursesState} from "./state/ilt-courses.state";
 import { IltCoursesContainerRoutingModule } from './ilt-courses-container-routing.module';
 import {ILTCourseCreateState} from "./containers/ilt-course-create/state/ilt-course-create.state";
 import {IltCoursesListState} from "./containers/ilt-courses-list/state/ilt-courses-list.state";
-import {DraftILTCoursesState} from "./containers/ilt-courses-list/state/draft-ilt-courses.state";
-import {PublishedILTCoursesState} from "./containers/ilt-courses-list/state/published-ilt-courses.state";
+import {DraftILTCoursesState} from "./containers/ilt-courses-list/draft-ilt-courses-list/state/draft-ilt-courses.state";
+import {PublishedILTCoursesState} from "./containers/ilt-courses-list/published-ilt-courses-list/state/published-ilt-courses.state";
 import {
   IltCourseReviewsState
 } from "./containers/ilt-course-details/containers/ilt-course-reviews/state/ilt-course-reviews.state";

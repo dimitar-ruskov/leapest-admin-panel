@@ -6,7 +6,7 @@ import { Moment } from 'moment';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import {IKeyValuePair, ILTCourseAgendaDay} from "../../../../../models/interfaces";
+import {IKeyValuePair, ILTCourseAgendaDay} from "../../../../../models";
 
 const CANCEL_BUTTON_TEXT = 'Cancel';
 const SAVE_CHANGES_BUTTON_TEXT = 'Save Changes';

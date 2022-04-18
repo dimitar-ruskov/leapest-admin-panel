@@ -4,17 +4,17 @@ import produce from 'immer';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { InternalRepositoryService } from '../../../service/internal-repository.service';
-import { InternalRepositoryCoursesState } from './internal-repository-courses.state';
+import { InternalRepositoryService } from '../../../../../../../../../libs/shared/src/lib/services/repository/internal/internal-repository.service';
+import { InternalRepositoryCoursesState } from '../containers/internal-repository-details-courses/state/internal-repository-courses.state';
 import {
   GetInternalRepositoryDetails,
   UpdateAssessmentDetails,
   UpdateParentInternalRepository,
 } from './internal-repository-details.actions';
-import { InternalRepositoryVariantsState } from './internal-repository-variants.state';
+import { InternalRepositoryVariantsState } from '../containers/internal-repository-details-variants/state/internal-repository-variants.state';
 
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {InternalRepository} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {InternalRepository} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class InternalRepositoryDetailsStateModel {
   internalRepository: DeferredResource<InternalRepository> | null;

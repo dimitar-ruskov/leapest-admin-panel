@@ -21,6 +21,7 @@ import { NzModalModule } from "ng-zorro-antd/modal";
 
 import { InternalRepositoryRoutingModule } from './internal-repository-routing.module';
 import { InternalRepositoryComponent } from './internal-repository.component';
+import {InternalRepositoryState} from "./state/internal-repository.state";
 import { InternalRepositoryListComponent } from './containers/internal-repository-list/internal-repository-list.component';
 import { InternalRepositoryListState } from './containers/internal-repository-list/state/internal-repository-list.state';
 import { InternalRepositoryDetailsComponent } from './containers/internal-repository-details/internal-repository-details.component';
@@ -28,12 +29,8 @@ import { InternalRepositoryDetailsInfoComponent } from './containers/internal-re
 import { InternalRepositoryDetailsVariantsComponent } from './containers/internal-repository-details/containers/internal-repository-details-variants/internal-repository-details-variants.component';
 import { InternalRepositoryDetailsCoursesComponent } from './containers/internal-repository-details/containers/internal-repository-details-courses/internal-repository-details-courses.component';
 import { InternalRepositoryDetailsState } from './containers/internal-repository-details/state/internal-repository-details.state';
-import { InternalRepositoryVariantsState } from './containers/internal-repository-details/state/internal-repository-variants.state';
-import { InternalRepositoryCoursesState } from './containers/internal-repository-details/state/internal-repository-courses.state';
-import { InternalRepositoryCreateModalComponent } from './containers/internal-repository-create-modal/internal-repository-create-modal.component';
-import { InternalRepoHostedModalComponent } from './containers/internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
-import { InternalRepoTypeModalComponent } from './containers/internal-repository-create-modal/steps/internal-repo-type-modal/internal-repo-type-modal.component';
-import { InternalRepoExternalModalComponent } from './containers/internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
+import { InternalRepositoryVariantsState } from './containers/internal-repository-details/containers/internal-repository-details-variants/state/internal-repository-variants.state';
+import { InternalRepositoryCoursesState } from './containers/internal-repository-details/containers/internal-repository-details-courses/state/internal-repository-courses.state';
 
 import {
   TableSearchModule
@@ -61,11 +58,10 @@ import {
 } from "../../../../../../libs/shared/src/lib/components/modals/edit-pass-rate-modal/edit-pass-rate-modal.module";
 import {
   EditInternalRepoNameModalModule
-} from "../../../../../../libs/shared/src/lib/components/modals/edit-internal-repo-name-modal/edit-internal-repo-name-modal.module";
+} from "../../../../../../libs/shared/src/lib/components/feature/internal-repo/edit-internal-repo-name-modal/edit-internal-repo-name-modal.module";
 import {
   CreationLoaderModalModule
-} from "./components/creation-loader-modal/creation-loader-modal.module";
-import {InternalRepositoryState} from "./state/internal-repository.state";
+} from "../../../../../../libs/shared/src/lib/components/feature/internal-repo/creation-loader-modal/creation-loader-modal.module";
 
 @NgModule({
   declarations: [
@@ -74,11 +70,7 @@ import {InternalRepositoryState} from "./state/internal-repository.state";
     InternalRepositoryDetailsComponent,
     InternalRepositoryDetailsInfoComponent,
     InternalRepositoryDetailsVariantsComponent,
-    InternalRepositoryDetailsCoursesComponent,
-    InternalRepositoryCreateModalComponent,
-    InternalRepoHostedModalComponent,
-    InternalRepoTypeModalComponent,
-    InternalRepoExternalModalComponent,
+    InternalRepositoryDetailsCoursesComponent
   ],
   imports: [
     CommonModule,
@@ -121,7 +113,6 @@ import {InternalRepositoryState} from "./state/internal-repository.state";
     NzUploadModule,
     NzDropDownModule,
     NzToolTipModule,
-    NzStepsModule,
     NzModalModule
   ]
 })

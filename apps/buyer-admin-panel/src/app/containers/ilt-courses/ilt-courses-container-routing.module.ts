@@ -5,7 +5,7 @@ import { IltCoursesContainerComponent } from './ilt-courses-container.component'
 import { IltCourseNotificationDetailsComponent } from './containers/ilt-course-details/containers/ilt-course-notifications/ilt-course-notification-details/ilt-course-notification-details.component';
 import {
   IltCourseEventsBulkUploadDetailsComponent
-} from "./containers/ilt-course-details/containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/ilt-course-events-bulk-upload-details.component";
+} from "./containers/ilt-course-details/containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk-upload-details/ilt-course-events-bulk-upload-details.component";
 
 import {CourseAgendaUnsavedChangesGuard, CourseMaterialsUnsavedChangesGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
 

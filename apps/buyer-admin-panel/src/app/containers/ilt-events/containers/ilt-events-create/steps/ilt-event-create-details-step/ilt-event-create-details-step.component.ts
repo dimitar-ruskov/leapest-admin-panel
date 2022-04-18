@@ -8,19 +8,19 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import produce from 'immer';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 
-import { ILTEventCreationStep } from '../../models/ilt-event-create-step.model';
+import { ILTEventCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
 import { GoToEventCreationStep, UpdateILTEventDetails } from '../../state/ilt-events-create.actions';
 
 import {
   IKeyValuePair,
   ILTEvent, ITrainingManager,
   LearnersBulkImportResponse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {COURSE_WAITING_LIST_LIMIT} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {
   EnvironmentService,
   UploadService
-} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+} from "../../../../../../../../../../libs/shared/src/lib/services/common";
 import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 @Component({

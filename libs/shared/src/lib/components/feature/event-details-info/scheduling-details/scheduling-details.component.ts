@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import {GeneralInfoField, ILTEvent} from "../../../../models/interfaces";
+import {GeneralInfoField, ILTEvent} from "../../../../models";
 import {getFullAddress} from "../../../../utils/common";
 
 @Component({

@@ -27,7 +27,7 @@ import {
   CourseCategory,
   EnrollmentPolicyKeys, GeneralInfoField, IKeyValuePair,
   PublishedILTCourse, S3BucketData
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditCourseNameModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-course-name-modal/edit-course-name-modal.component";
@@ -37,11 +37,11 @@ import {
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
 import {
   CourseCategoryAndSubcategoryHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-category-and-subcategory-handler.service";
-import {DownloadSphinxService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-category-and-subcategory-handler.service";
+import {DownloadSphinxService} from "../../../../../../../../../../../libs/shared/src/lib/services/common";
 import {
   CourseThumbnailHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-thumbnail-handler.service";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
 import {IGlobalStateModel} from "../../../../../../../state/state.model";
 import {
   CertificatePreviewComponent

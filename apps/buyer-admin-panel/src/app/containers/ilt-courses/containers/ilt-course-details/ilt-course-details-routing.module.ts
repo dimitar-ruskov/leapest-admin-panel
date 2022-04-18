@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {IltCourseDetailsComponent} from "./ilt-course-details.component";
 import {
   IltCourseEventsBulkUploadDetailsComponent
-} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/components/ilt-course-events-bulk-upload-details/ilt-course-events-bulk-upload-details.component";
+} from "./containers/ilt-course-events-tab/ilt-course-events-bulk/ilt-course-events-bulk-upload-details/ilt-course-events-bulk-upload-details.component";
 import {
   IltCourseNotificationDetailsComponent
 } from "./containers/ilt-course-notifications/ilt-course-notification-details/ilt-course-notification-details.component";

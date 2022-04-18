@@ -42,7 +42,7 @@ import {
 
 import {
   InternalRepoTileModule
-} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo-tile/internal-repo-tile.module";
+} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repo-tile/internal-repo-tile.module";
 import {
   EventHeaderSectionsModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/feature/event-header-sections/event-header-sections.module";

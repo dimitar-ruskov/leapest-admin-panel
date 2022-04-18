@@ -4,15 +4,15 @@ import { Observable } from 'rxjs';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import { DraftILTCoursesState } from '../state/draft-ilt-courses.state';
+import { DraftILTCoursesState } from './state/draft-ilt-courses.state';
 import {
   ChangeDraftILTCoursesPaginationParams,
   DeleteDraftILTCourse,
   GetDraftILTCourses,
   ResetDraftILTCoursesState,
-} from '../state/draft-ilt-courses.actions';
+} from './state/draft-ilt-courses.actions';
 
-import {DraftILTCourse} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {DraftILTCourse} from "../../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({

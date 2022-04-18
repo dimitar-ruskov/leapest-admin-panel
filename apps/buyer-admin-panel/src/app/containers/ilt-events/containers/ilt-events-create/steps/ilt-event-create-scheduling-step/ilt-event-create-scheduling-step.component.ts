@@ -17,7 +17,7 @@ import produce from 'immer';
 import * as moment from 'moment';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
-import { ILTEventCreationStep } from '../../models/ilt-event-create-step.model';
+import { ILTEventCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
 import { GoToEventCreationStep, UpdateILTEventDetails } from '../../state/ilt-events-create.actions';
 import {IGlobalStateModel} from "../../../../../../state/state.model";
 
@@ -28,7 +28,7 @@ import {
   ILTCourseAgendaDay,
   ILTEvent, ILTInstructor,
   Venue
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {CustomValidators, DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   InstructorsCollisionsWarningsComponent
@@ -41,7 +41,7 @@ import {
 import {
   BasicUserModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/basic-user-modal/basic-user-modal.component";
-import {EnvironmentService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
 import {
   AddAddressModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/add-address-modal/add-address-modal.component";

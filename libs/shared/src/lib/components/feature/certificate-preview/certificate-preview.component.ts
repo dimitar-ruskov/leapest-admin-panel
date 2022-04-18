@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import {DownloadSphinxService} from "../../../utils/services/common";
+import {DownloadSphinxService} from "../../../services/common";
 
 @Component({
   selector: 'leap-certificate-preview',

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./basic-user-modal.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BasicUserModalComponent implements OnInit {
+export class BasicUserModalComponent {
   @Input() userLabel = 'user'
 
   form: FormGroup = this.fb.group({
@@ -17,6 +17,4 @@ export class BasicUserModalComponent implements OnInit {
   });
 
   constructor(private readonly fb: FormBuilder) { }
-
-  ngOnInit(): void {}
 }

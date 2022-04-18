@@ -12,7 +12,7 @@ import {
   ResetSPCourseLanguageVariantsState,
 } from './state/sp-course-variants.actions';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { IltEventLearnersService } from '../../../../../../services/ilt-event-learners.service';
+import { IltEventLearnersService } from '../../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-learners.service';
 import { ChangePendingILTEventLearnersPaginationParams, GetPendingILTEventLearners, ResetPendingILTEventLearnersState } from './ilt-event-learners-pending.actions';
 
 import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {ILTEventLearner, IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventLearner, IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   DEFAULT_INITIAL_PAGINATION_PARAMS
 } from "../../../../../../../../../../../../libs/shared/src/lib/models/constants";

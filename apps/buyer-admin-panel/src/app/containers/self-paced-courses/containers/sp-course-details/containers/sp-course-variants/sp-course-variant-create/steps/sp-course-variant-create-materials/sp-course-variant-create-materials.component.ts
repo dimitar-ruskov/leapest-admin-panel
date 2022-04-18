@@ -10,15 +10,15 @@ import {
   GoToSPCourseLanguageVariantCreationStep,
   UpdatePreSPCourseLanguageVariant,
 } from '../../state/sp-course-variant-create.actions';
-import { SPCourseLanguageVariantCreationSteps } from '../../models/sp-course-create-variant-step.model';
+import { SPCourseLanguageVariantCreationSteps } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
+import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
 import {
   MaterialDtoHandlerService,
   MaterialDTOsMap,
   NOT_ALL_EXAMS_CONFIGURED_TOOLTIP_TEXT
-} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/services/material-dto-handler.service";
-import {InternalRepositoryMaterial} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/repository/material-dto-handler.service";
+import {InternalRepositoryMaterial} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-variant-create-materials',

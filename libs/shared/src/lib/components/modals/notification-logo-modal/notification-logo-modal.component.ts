@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/
 import { Subscription } from 'rxjs';
 
 import { NzUploadFile } from 'ng-zorro-antd/upload/interface';
-import {DownloadSphinxService, EnvironmentService, UploadService} from "../../../utils/services/common";
+import {DownloadSphinxService, EnvironmentService, UploadService} from "../../../services/common";
 
 @Component({
   selector: 'leap-notification-logo-modal',

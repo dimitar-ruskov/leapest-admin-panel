@@ -9,7 +9,7 @@ import produce from 'immer';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsCanDeactivateFn } from 'ng-zorro-antd/tabs';
 
-import { EventInfoEditHandlerService } from '../../services/event-info-edit-handler.service';
+import { EventInfoEditHandlerService } from '../../../../../../../../libs/shared/src/lib/services/events/event-info-edit-handler.service';
 import {
   AssignLearnersToILTEvent,
   ChangeILTEventAttendancesFilter,
@@ -28,12 +28,12 @@ import {
   ILTCourseAgenda,
   ILTEvent,
   ILTEventLearner
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   AssignUsersModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/assign-users-modal/assign-users-modal.component";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/services/common";
 import {
   EventAgendaController,
   EventAgendaUnsavedChangesGuard

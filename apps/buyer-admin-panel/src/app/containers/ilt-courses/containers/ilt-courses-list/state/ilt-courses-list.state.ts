@@ -4,11 +4,11 @@ import { tap } from 'rxjs/operators';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 
 import { ChangeILTCoursesListTab, CreatePreILTCourse, ScheduleILTCourseEvent } from './ilt-courses-list.actions';
-import { PublishedILTCoursesState } from './published-ilt-courses.state';
-import { DraftILTCoursesState } from './draft-ilt-courses.state';
-import { IltCoursesService } from '../../../services/ilt-courses.service';
+import { PublishedILTCoursesState } from '../published-ilt-courses-list/state/published-ilt-courses.state';
+import { DraftILTCoursesState } from '../draft-ilt-courses-list/state/draft-ilt-courses.state';
+import { IltCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
 
-import {ILTEvent, PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEvent, PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class ILTCoursesListStateModel {

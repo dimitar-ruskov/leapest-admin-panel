@@ -25,8 +25,8 @@ import {
 import {
   ILabeledItem,
   NotificationModel, NotificationPayloadModel
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
-import {IPageable, Sort} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
+import {IPageable, Sort} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-notifications-listing',

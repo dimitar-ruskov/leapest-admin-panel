@@ -8,9 +8,9 @@ import {
   GetAllEventsByType,
   ResetCourseEventsState,
 } from './ilt-course-events-common.actions';
-import { IltCoursesService } from '../../../../../services/ilt-courses.service';
+import { IltCoursesService } from '../../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
 
-import {ILTEventListItem, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventListItem, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 

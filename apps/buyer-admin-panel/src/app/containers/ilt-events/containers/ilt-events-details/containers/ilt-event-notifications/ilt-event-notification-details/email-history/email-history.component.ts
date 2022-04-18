@@ -13,9 +13,9 @@ import {
   PreviewNotificationHistoryTemplate
 } from "./state/email-history.action";
 import {EmailHistoryState} from "./state/email-history.state";
-import { EmailNotification, IPageableEmailHistory } from '../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/email-history.model';
-import { EmailHistoryService } from '../../../../../../services/email-history.service';
-import { ResendEmailModalComponent } from './components/resend-email-modal/resend-email-modal.component';
+import { EmailNotification, IPageableEmailHistory } from '../../../../../../../../../../../../libs/shared/src/lib/models/notifications/email-history.model';
+import { EmailHistoryService } from '../../../../../../../../../../../../libs/shared/src/lib/services/events/email-history.service';
+import { ResendEmailModalComponent } from '../../../../../../../../../../../../libs/shared/src/lib/components/modals/resend-email-modal/resend-email-modal.component';
 
 import {
   createPageableFromTableQueryParams,
@@ -24,8 +24,8 @@ import {
 import {
   EnvironmentService,
   NotificationService
-} from "../../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
-import {IProfile} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/common";
+import {IProfile} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 const NO_LEARNERS_TEXT = 'No notifications have been sent';

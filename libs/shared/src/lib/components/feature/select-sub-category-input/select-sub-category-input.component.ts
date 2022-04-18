@@ -18,7 +18,7 @@ import {
 } from "../../modals/select-sub-category-modal/select-sub-category-modal.component";
 
 import {LmsSubCategoriesService} from "../../../utils/services";
-import {CourseSubCategory} from "../../../models/interfaces";
+import {CourseSubCategory} from "../../../models";
 
 @Component({
   selector: 'leap-select-sub-category-input',

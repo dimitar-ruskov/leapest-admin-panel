@@ -12,8 +12,8 @@ import {
   ILTEventAttendance,
   IltEventAttendanceStatusKey, IltEventAttendanceStatusKeys, IltEventAttendanceStatusValue,
   IltEventAttendanceStatusValues
-} from "../../../../models/interfaces";
-import {EnvironmentService} from "../../../../utils/services/common";
+} from "../../../../models";
+import {EnvironmentService} from "../../../../services/common";
 
 interface ILTEventAttendanceStatusOption {
   value: IltEventAttendanceStatusKey;

@@ -9,10 +9,10 @@ import {
   ResetInstructorDetailsState,
   UpdateInstructor,
 } from './instructor-details.actions';
-import { InstructorsService } from '../../../service/instructors.service';
+import { InstructorsService } from '../../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service';
 
-import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
-import {ILTEventListItem, IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/instructors/instructor.model';
+import {ILTEventListItem, IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
 

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import {ConfigDto, MasterInternalRepository} from "../../../models/interfaces";
-import {EnvironmentService} from "../../../utils/services/common";
+import {ConfigDto, MasterInternalRepository} from "../../../models";
+import {EnvironmentService} from "../../../services/common";
 
 @Component({
   selector: 'leap-master-internal-repo-tile',

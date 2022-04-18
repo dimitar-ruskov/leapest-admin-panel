@@ -11,7 +11,7 @@ import {IGlobalStateModel} from "../../../../../../state/state.model";
 import {
   NotificationLogoModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/notification-logo-modal/notification-logo-modal.component";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-notifications-settings',

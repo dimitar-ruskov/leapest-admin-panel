@@ -4,7 +4,7 @@ import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { concatMap, filter, map, take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import {CourseEventInstructorsCollision, ILTInstructor} from "../../../models/interfaces";
+import {CourseEventInstructorsCollision, ILTInstructor} from "../../../models";
 import {
   AdminCoursesService,
   ConferencingToolService,

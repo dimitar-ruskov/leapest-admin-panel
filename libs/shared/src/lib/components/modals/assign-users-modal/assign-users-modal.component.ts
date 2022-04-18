@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import {IKeyValuePair, ILTEvent, ILTEventLearner, TFormControlConfigOption} from "../../../models/interfaces";
-import {SPCourseLanguageVariant} from "../../../models/interfaces/sp-courses/sp-course.model";
-import {EnvironmentService, UploadService} from "../../../utils/services/common";
+import {IKeyValuePair, ILTEvent, ILTEventLearner, TFormControlConfigOption} from "../../../models";
+import {SPCourseLanguageVariant} from "../../../models/courses/sp-courses/sp-course.model";
+import {EnvironmentService, UploadService} from "../../../services/common";
 import {
   SPCourseLanguageVariantLearner
-} from "../../../models/interfaces/sp-courses/sp-course-language-variant-learner.model";
+} from "../../../models/courses/sp-courses/sp-course-language-variant-learner.model";
 import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
 
 @Component({

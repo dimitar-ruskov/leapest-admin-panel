@@ -3,14 +3,14 @@ import { Select } from '@ngxs/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { InternalRepositoryEditInfoHandlerService } from '../../../../service/internal-repository-edit-info-handler.service';
+import { InternalRepositoryEditInfoHandlerService } from '../../../../../../../../../../libs/shared/src/lib/services/repository/internal/internal-repository-edit-info-handler.service';
 import { InternalRepositoryDetailsState } from '../../state/internal-repository-details.state';
 
 import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   GeneralInfoField,
   InternalRepository
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-internal-repository-details-info',

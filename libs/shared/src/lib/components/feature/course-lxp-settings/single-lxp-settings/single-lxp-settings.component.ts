@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import {LxpPrivacy, PublishedCourseToLXP} from "../../../../models/interfaces";
+import {LxpPrivacy, PublishedCourseToLXP} from "../../../../models";
 
 @Component({
   selector: 'leap-single-lxp-settings',

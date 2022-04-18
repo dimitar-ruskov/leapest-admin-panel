@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetSPCourseLanguageVariants {
   static readonly type = '[AP Self-paced Course Details] Get Active Self-paced Course Language Variants';

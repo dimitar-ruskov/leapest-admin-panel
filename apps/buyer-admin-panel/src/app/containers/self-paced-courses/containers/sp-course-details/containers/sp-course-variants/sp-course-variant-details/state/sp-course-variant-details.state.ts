@@ -15,15 +15,15 @@ import {
   UploadLearnersFromCSVToLanguageVariant,
   UploadSPCourseLanguageVariantThumbnail,
 } from './sp-course-variant-details.actions';
-import { SpCourseLanguageVariantsService } from '../../../../../../services/sp-course-language-variants.service';
-import { SpCourseVariantExamsState } from './sp-course-variant-exams/sp-course-variant-exams.state';
-import { SpCourseVariantMaterialsTrackingState } from './sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state';
-import { SpCourseVariantLearnersEnrolledState } from './sp-course-variant-learners/sp-course-variant-learners-enrolled.state';
-import { SpliceSPCourseLanguageVariantLearnersEnrolled } from './sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
-import { SpliceSPCourseLanguageVariantLearnersPending } from './sp-course-variant-learners/sp-course-variant-learners-pending.actions';
-import { SpCourseVariantLearnersPendingState } from './sp-course-variant-learners/sp-course-variant-learners-pending.state';
+import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
+import { SpCourseVariantExamsState } from '../containers/sp-course-variant-exams/sp-course-variant-exams/sp-course-variant-exams.state';
+import { SpCourseVariantMaterialsTrackingState } from '../containers/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state';
+import { SpCourseVariantLearnersEnrolledState } from '../containers/sp-course-variant-learners/sp-course-variant-learners/sp-course-variant-learners-enrolled.state';
+import { SpliceSPCourseLanguageVariantLearnersEnrolled } from '../containers/sp-course-variant-learners/sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
+import { SpliceSPCourseLanguageVariantLearnersPending } from '../containers/sp-course-variant-learners/sp-course-variant-learners/sp-course-variant-learners-pending.actions';
+import { SpCourseVariantLearnersPendingState } from '../containers/sp-course-variant-learners/sp-course-variant-learners/sp-course-variant-learners-pending.state';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {CourseThumbnailService} from "../../../../../../../../../../../../libs/shared/src/lib/utils/services";
 import {

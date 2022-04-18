@@ -10,12 +10,12 @@ import {
 import {
   SpCourseVariantCreateState
 } from "../sp-course-variant-create/state/sp-course-variant-create.state";
-import { SpCourseLanguageVariantsService } from '../../../../../services/sp-course-language-variants.service';
+import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {SpCourseVariantDetailsState} from "../sp-course-variant-details/state/sp-course-variant-details.state";
 
 export class SpCourseVariantsStateModel {

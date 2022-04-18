@@ -4,13 +4,13 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { ILTEventCreationStep } from './models/ilt-event-create-step.model';
+import { ILTEventCreationStep } from '../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
 import { GetILTEventDetails, ResetEventBase } from './state/ilt-events-create.actions';
 import { IltEventsCreateState } from './state/ilt-events-create.state';
 
-import {ILTEvent, ILTEventBase} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEvent, ILTEventBase} from "../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-ilt-events-create',

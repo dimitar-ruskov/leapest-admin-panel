@@ -6,7 +6,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { PublishingState } from '../../../../state/publishing.state';
 import {
   IPublishingSettings, IPublishingTab
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces/publishing/publishing.model";
+} from "../../../../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
 
 
 @Component({

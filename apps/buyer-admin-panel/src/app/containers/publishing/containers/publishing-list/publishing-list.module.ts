@@ -7,6 +7,14 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzRadioModule} from "ng-zorro-antd/radio";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzTagModule} from "ng-zorro-antd/tag";
+import {NzIconModule} from "ng-zorro-antd/icon";
 
 import { PublishingListComponent } from './publishing-list.component';
 import { PublishingSettingsComponent } from './containers/publishing-settings/publishing-settings.component';
@@ -27,14 +35,6 @@ import {
 import {
   TableGridModule
 } from "../../../../../../../../libs/shared/src/lib/components/common/table-grid/table-grid.module";
-import {NzFormModule} from "ng-zorro-antd/form";
-import {NzSelectModule} from "ng-zorro-antd/select";
-import {NzRadioModule} from "ng-zorro-antd/radio";
-import {NzInputNumberModule} from "ng-zorro-antd/input-number";
-import {NzButtonModule} from "ng-zorro-antd/button";
-import {NzInputModule} from "ng-zorro-antd/input";
-import {NzTagModule} from "ng-zorro-antd/tag";
-import {NzIconModule} from "ng-zorro-antd/icon";
 
 
 @NgModule({

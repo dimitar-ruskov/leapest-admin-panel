@@ -1,0 +1,38 @@
+@import (reference) "../../../../styles/reference";
+
+nz-form-label {
+    margin-bottom: 10px;
+}
+
+leap-form-guidance {
+    margin-bottom: 5px;
+}
+
+ul {
+    margin-top: 5px;
+    list-style-type: none;
+    padding: 0;
+    max-height: 370px;
+    overflow-y: scroll;
+}
+
+li {
+    margin-top: 2px;
+    padding: 5px 15px 5px;
+    border: 1px solid #9c9db5;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 16px;
+
+    &:hover {
+        transition: 0.1s;
+        background-color: #f0f0f5;
+        cursor: pointer;
+    }
+}
+
+nz-switch::ng-deep {
+  .ant-switch {
+    background-color: @edcastish;
+  }
+}

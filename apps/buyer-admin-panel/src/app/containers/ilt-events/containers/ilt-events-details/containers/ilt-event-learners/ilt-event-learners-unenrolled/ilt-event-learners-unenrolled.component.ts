@@ -11,10 +11,10 @@ import { IltEventLearnersUnenrolledState } from './state/ilt-event-learners-unen
 import { ExportLearnerFromILTEvent } from '../../../state/ilt-event-details.actions';
 import {IGlobalStateModel} from "../../../../../../../state/state.model";
 
-import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/constants/ilt-event-learners.model';
+import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-learners.model';
 import {PAGINATION_LIMIT_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {ILTEventUnenrolledLearner} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventUnenrolledLearner} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-event-learners-unenrolled',

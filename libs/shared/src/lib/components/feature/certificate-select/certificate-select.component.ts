@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {IConfigCertificatesDictionary, IKeyValuePair} from "../../../models/interfaces";
-import {DownloadSphinxService} from "../../../utils/services/common";
+import {IConfigCertificatesDictionary, IKeyValuePair} from "../../../models";
+import {DownloadSphinxService} from "../../../services/common";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {CertificatePreviewComponent} from "../certificate-preview/certificate-preview.component";
 

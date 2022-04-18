@@ -17,12 +17,12 @@ import {
 import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   BulkUploadsSchedulingSummary, BulkUploadsValidationReport, CourseEventsBulkUploads, PublishingReportByStatus
-} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/courses/ilt-course-events-bulk";
+} from "../../../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-events-bulk";
 import {
   DEFAULT_INITIAL_PAGINATION_PARAMS
 } from "../../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IltCourseEventsBulkService} from "../service/ilt-course-events-bulk.service";
-import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IltCourseEventsBulkService} from "../../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-course-events-bulk.service";
+import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class IltCourseEventsBulkUploadsStateModel {

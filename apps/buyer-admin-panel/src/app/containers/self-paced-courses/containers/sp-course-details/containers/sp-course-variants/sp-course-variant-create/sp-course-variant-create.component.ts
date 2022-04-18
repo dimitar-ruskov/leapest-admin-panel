@@ -8,12 +8,12 @@ import {
   SPCourseLanguageVariantCreationStep,
   SPCourseLanguageVariantCreationSteps,
   SPCourseLanguageVariantCreationStepsList,
-} from './models/sp-course-create-variant-step.model';
+} from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
 import { SpCourseVariantCreateState } from './state/sp-course-variant-create.state';
 import { GetPreSPCourseLanguageVariant } from './state/sp-course-variant-create.actions';
-import {SPCourseCreationSteps} from "../../../../sp-course-create/models/sp-course-create-step.model";
+import {SPCourseCreationSteps} from "../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-step.model";
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
+import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({

@@ -10,8 +10,8 @@ import {
   CreatePreSelfPacedCourse,
 } from './state/sp-courses-list.actions';
 
-import { PreSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {IKeyValuePair} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { PreSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import {IKeyValuePair} from "../../../../../../../../libs/shared/src/lib/models";
 import {
   CreateNewCourseModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/create-new-course-modal/create-new-course-modal.component";

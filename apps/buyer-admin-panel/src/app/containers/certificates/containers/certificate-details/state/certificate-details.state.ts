@@ -5,12 +5,12 @@ import { tap } from 'rxjs/operators';
 import produce from 'immer';
 
 import { GetCertificateDetails, UpdateCertificateFields } from './certificate-details.actions';
-import { CertificateCoursesState } from './certificate-courses.state';
-import { CertificateIssuedState } from './certificate-issued.state';
-import { CertificatesService } from '../../../service/certificates.service';
+import { CertificateCoursesState } from '../containers/certificate-courses/state/certificate-courses.state';
+import { CertificateIssuedState } from '../containers/certificate-issued/state/certificate-issued.state';
+import { CertificatesService } from '../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service';
 
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import { Certificate } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import { Certificate } from '../../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
 
 
 export class CertificateDetailsStateModel {

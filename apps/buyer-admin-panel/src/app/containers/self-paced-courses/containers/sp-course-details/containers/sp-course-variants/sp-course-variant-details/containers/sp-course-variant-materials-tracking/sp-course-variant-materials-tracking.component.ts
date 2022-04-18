@@ -21,14 +21,14 @@ import {
   ChangeSPCourseLanguageVariantMaterialSKU,
   ChangeSPCourseLanguageVariantMaterialsTrackingPage,
   GetSPCourseLanguageVariantMaterialsTrackingList,
-} from '../../state/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.actions';
-import { SpCourseVariantMaterialsTrackingState } from '../../state/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state';
+} from './sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.actions';
+import { SpCourseVariantMaterialsTrackingState } from './sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {
   IKeyValuePair,
   InternalRepositoryMaterial, IPageable, MaterialCompletionReport
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   createPageableFromTableQueryParams,
   DeferredResource

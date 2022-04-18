@@ -1,5 +1,5 @@
-import { ILTEventCreationStep } from '../models/ilt-event-create-step.model';
-import {ILTEvent} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { ILTEventCreationStep } from '../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
+import {ILTEvent} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetILTEventDetails {
   static readonly type = '[AP ILT Events] Get ILT Event Details';

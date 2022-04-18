@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import produce from 'immer';
 
-import { SpCoursesService } from '../../../services/sp-courses.service';
+import { SpCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service';
 import { SpCourseVariantsState } from '../containers/sp-course-variants/state/sp-course-variants.state';
 import {
   ChangeSelfPacedCourseDetailsTab,
@@ -15,7 +15,7 @@ import {
   PublishToLxpByDomain
 } from './sp-course-details.actions';
 
-import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {CourseThumbnailService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
 import {PLACEHOLDER_COURSE_THUMBNAIL_URL} from "../../../../../../../../../libs/shared/src/lib/models/constants";
@@ -25,10 +25,10 @@ import {
 import {
   MasterInternalRepository,
   PublishedCourseToLXP
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../libs/shared/src/lib/models";
 import {
   CourseLxpSettingsService
-} from "../../../../../../../../../libs/shared/src/lib/utils/services/course-lxp-settings.service";
+} from "../../../../../../../../../libs/shared/src/lib/services/publishing/course-lxp-settings.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 
 export class SpCourseDetailsStateModel {

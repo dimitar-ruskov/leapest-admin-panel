@@ -1,7 +1,7 @@
 import { Action, State, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { filter, tap } from 'rxjs/operators';
-import { IltCourseNotificationsService } from '../../../../../services/ilt-course-notifications.service';
+import { IltCourseNotificationsService } from '../../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-course-notifications.service';
 import {
   FetchCourseDetailsILTNotifications,
   GetNotificationDetails,
@@ -20,9 +20,9 @@ import {DeferredResource} from "../../../../../../../../../../../libs/shared/src
 import {
   NotificationModel,
   ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
 import {NotificationListFiltersService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
-import {IPageable, Sort} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable, Sort} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export interface ISearchParams {
   filter?: string;

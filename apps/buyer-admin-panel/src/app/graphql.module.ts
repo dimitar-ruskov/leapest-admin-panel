@@ -4,7 +4,7 @@ import {HttpLink} from 'apollo-angular/http';
 import {InMemoryCache, ApolloLink, from} from '@apollo/client/core';
 import {setContext} from '@apollo/client/link/context';
 import { OktaAuthStateService } from '@okta/okta-angular';
-import {EnvironmentService} from "../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../libs/shared/src/lib/services/common";
 
 async function getOktaAccessToken(oktaAuthStateService: OktaAuthStateService): Promise<string> {
   const accessToken = (await oktaAuthStateService['oktaAuth'].tokenManager.get('accessToken'))?.accessToken;

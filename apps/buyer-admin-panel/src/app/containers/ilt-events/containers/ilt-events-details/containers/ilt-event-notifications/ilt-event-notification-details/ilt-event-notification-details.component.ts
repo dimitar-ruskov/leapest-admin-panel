@@ -29,16 +29,16 @@ import {
   NotificationModel, NotificationPayloadModel,
   NotificationRecipientsListModel, NotificationResetLevel,
   ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
 import {
   NotificationChangeModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-change-modal/notification-change-modal.component";
 import {
   NotificationRecipientsModalComponent
-} from "./notification-recipients-modal/notification-recipients-modal.component";
+} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-recipients-modal/notification-recipients-modal.component";
 import {
   TemplateComposerModel
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/template-composer.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/template-composer.model";
 
 @Component({
   selector: 'leap-ilt-event-notification-details',

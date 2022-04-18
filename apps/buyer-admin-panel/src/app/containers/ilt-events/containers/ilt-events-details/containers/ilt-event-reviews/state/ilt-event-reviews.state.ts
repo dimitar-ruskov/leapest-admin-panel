@@ -8,10 +8,10 @@ import {
   DeleteCourseEventReview,
   ChangeEventReviewsPaginationParams,
 } from './ilt-event-reviews.actions';
-import { IltEventsService } from '../../../../../services/ilt-events.service';
+import { IltEventsService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
 
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EventReview, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {EventReview, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 
 export class EventReviewsStateModel {

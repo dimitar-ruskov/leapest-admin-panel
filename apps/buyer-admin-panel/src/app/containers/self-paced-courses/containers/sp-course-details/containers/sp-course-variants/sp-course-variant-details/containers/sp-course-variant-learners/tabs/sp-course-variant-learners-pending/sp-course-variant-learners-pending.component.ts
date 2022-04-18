@@ -4,20 +4,20 @@ import { Observable } from 'rxjs';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import { SpCourseVariantLearnersPendingState } from '../../../../state/sp-course-variant-learners/sp-course-variant-learners-pending.state';
+import { SpCourseVariantLearnersPendingState } from '../../sp-course-variant-learners/sp-course-variant-learners-pending.state';
 import {
   ChangeSPCourseLanguageVariantLearnersPendingPage,
   ChangeSPCourseLanguageVariantLearnersPendingPaginationParams, ExportLearnerFromEvent,
   GetSPCourseLanguageVariantLearnersPending,
-} from '../../../../state/sp-course-variant-learners/sp-course-variant-learners-pending.actions';
+} from '../../sp-course-variant-learners/sp-course-variant-learners-pending.actions';
 import {
   ApproveSPCourseLanguageVariantLearnerRegistrationRequest,
   RejectSPCourseLanguageVariantLearnerRegistrationRequest,
 } from '../../../../state/sp-course-variant-details.actions';
 
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant-learner.model';
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {ExportLearnersTypes} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import {ExportLearnersTypes} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   PAGINATION_LIMIT_CONFIG
 } from "../../../../../../../../../../../../../../../libs/shared/src/lib/models/constants";

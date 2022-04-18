@@ -7,15 +7,15 @@ import {
   SPCourseCreationStep,
   SPCourseCreationSteps,
   SPCourseCreationStepsList
-} from '../models/sp-course-create-step.model';
+} from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-step.model';
 import {
   CancelSPCourseCreation,
   GetPreSelfPacedCourse,
   GoToSPCourseCreationStep,
   UpdatePreSelfPacedCourse
 } from './sp-course-create.actions';
-import { SpCoursesService } from '../../../services/sp-courses.service';
-import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { SpCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service';
+import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 

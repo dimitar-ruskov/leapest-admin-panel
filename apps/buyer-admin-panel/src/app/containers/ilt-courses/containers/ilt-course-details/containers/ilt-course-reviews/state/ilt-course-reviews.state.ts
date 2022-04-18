@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { IltCoursesService } from '../../../../../services/ilt-courses.service';
+import { IltCoursesService } from '../../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
 import { GetCourseReviews, ResetCourseReviewsListState, ChangeCourseReviewsPaginationParams, DeleteCourseReview } from './ilt-course-reviews.action';
 
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EventReview, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {EventReview, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 
 export class IltCourseReviewsStateModel {

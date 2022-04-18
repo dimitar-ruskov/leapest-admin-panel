@@ -15,15 +15,15 @@ import {
   ResetInstructorDetailsState,
   UpdateInstructor,
 } from './state/instructor-details.actions';
-import { InstructorCreateModalComponent } from '../../components/instructor-create-modal/instructor-create-modal.component';
+import { InstructorCreateModalComponent } from '../../../../../../../../libs/shared/src/lib/components/modals/instructor-create-modal/instructor-create-modal.component';
 
-import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
-import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/instructors/instructor.model';
+import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../libs/shared/src/lib/models";
 import {
   createFiltersFromDateRangeSelect, createPageableFromTableQueryParams,
   DeferredResource
 } from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {NotificationService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {NotificationService} from "../../../../../../../../libs/shared/src/lib/services/common";
 
 const NO_EVENTS_TEXT = 'No events issued';
 

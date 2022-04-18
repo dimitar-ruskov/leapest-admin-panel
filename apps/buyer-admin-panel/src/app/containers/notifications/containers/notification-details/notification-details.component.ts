@@ -28,13 +28,13 @@ import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/util
 import {
   NotificationModel, NotificationPayloadModel,
   ReportingDomainsMap
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
 import {
   NotificationChangeModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/notification-change-modal/notification-change-modal.component";
 import {
   TemplateComposerModel
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/template-composer.model";
+} from "../../../../../../../../libs/shared/src/lib/models/notifications/template-composer.model";
 
 @Component({
   selector: 'leap-notification-details',

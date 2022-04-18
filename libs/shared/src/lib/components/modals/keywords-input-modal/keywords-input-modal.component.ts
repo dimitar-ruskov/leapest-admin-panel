@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-import {IKeyValuePair} from "../../../models/interfaces";
+import {IKeyValuePair} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

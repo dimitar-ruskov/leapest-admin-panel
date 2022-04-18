@@ -4,7 +4,7 @@ import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import {IKeyValuePair, Venue} from "../../../models/interfaces";
+import {IKeyValuePair, Venue} from "../../../models";
 import {getFullAddress} from "../../../utils/common";
 import {AdminCoursesService} from "../../../utils/services";
 

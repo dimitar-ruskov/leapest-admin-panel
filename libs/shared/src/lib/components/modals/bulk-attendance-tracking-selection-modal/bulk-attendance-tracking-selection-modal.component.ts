@@ -11,7 +11,7 @@ import {
   BulkAttendanceTrackingCompletionTypeKeys,
   IKeyValuePair, IltEventAttendanceStatusKeys,
   IltEventAttendanceStatusValues
-} from "../../../models/interfaces";
+} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

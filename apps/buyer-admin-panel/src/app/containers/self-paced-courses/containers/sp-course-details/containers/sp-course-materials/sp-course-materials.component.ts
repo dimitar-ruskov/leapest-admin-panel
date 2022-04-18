@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 
 import { SpCourseDetailsState } from '../../state/sp-course-details.state';
-import {MasterInternalRepository} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {MasterInternalRepository} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-materials',

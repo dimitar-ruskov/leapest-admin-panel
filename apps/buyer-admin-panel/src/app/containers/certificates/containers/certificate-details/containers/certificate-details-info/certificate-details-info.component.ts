@@ -6,15 +6,15 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 import { CertificateDetailsState } from '../../state/certificate-details.state';
-import { CertificateEditInfoHandlerService } from '../../../../service/certificate-edit-info-handler.service';
+import { CertificateEditInfoHandlerService } from '../../../../../../../../../../libs/shared/src/lib/services/certificates/certificate-edit-info-handler.service';
 
-import { Certificate } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import { Certificate } from '../../../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
 import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   CertificatePreviewComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.component";
-import {GeneralInfoField} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {GeneralInfoField} from "../../../../../../../../../../libs/shared/src/lib/models";
+import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-certificate-details-info',

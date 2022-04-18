@@ -7,16 +7,16 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { catchError, filter, finalize } from 'rxjs/operators';
 import produce from 'immer';
 
-import { ILTCourseCreationStep } from '../../models/ilt-course-create-step.model';
+import { ILTCourseCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
 import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
 
 import {
   GeneralInfoField,
   IKeyValuePair, ILTCourse,
   InternalRepositoryMaterial, PreILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {COURSE_PUBLISH_STATUS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {NotificationService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {NotificationService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
 import {AdminCoursesService, LxpUsersService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 

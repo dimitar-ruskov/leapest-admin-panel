@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { InternalRepositoryService } from '../../../service/internal-repository.service';
+import { InternalRepositoryService } from '../../../../../../../../../libs/shared/src/lib/services/repository/internal/internal-repository.service';
 import {
   ChangeInternalRepositoriesPaginationParams,
   DeleteInternalRepository,
   GetInternalRepositories,
   ResetInternalRepositoriesState,
 } from './internal-repository-list.actions';
-import {InternalRepository, IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {InternalRepository, IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
 

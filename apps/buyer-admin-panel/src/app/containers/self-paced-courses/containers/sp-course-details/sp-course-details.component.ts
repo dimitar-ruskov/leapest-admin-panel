@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { CreateSpCourseVariantHandlerService } from '../../services/create-sp-course-variant-handler.service';
+import { CreateSpCourseVariantHandlerService } from '../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/create-sp-course-variant-handler.service';
 import { SpCourseDetailsState } from './state/sp-course-details.state';
 import {
   ChangeSelfPacedCourseDetailsTab,
   GetActiveSelfPacedCourse, PublishToLxp,
 } from './state/sp-course-details.actions';
 
-import { ActiveSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { ActiveSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/services/common";
 import {
   PublishToLxpModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/publish-to-lxp-modal/publish-to-lxp-modal.component";

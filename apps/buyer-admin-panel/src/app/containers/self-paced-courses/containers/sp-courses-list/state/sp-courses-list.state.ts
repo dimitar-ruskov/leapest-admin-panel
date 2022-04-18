@@ -6,12 +6,12 @@ import { tap } from 'rxjs/operators';
 import {
   ChangeSelfPacedCoursesListTab, CreatePreSelfPacedCourse, GetFullLanguageDictionary
 } from './sp-courses-list.actions';
-import { ActiveSpCoursesListState } from './active-sp-courses-list/active-sp-courses-list.state';
-import { DraftSpCoursesListState } from './draft-sp-courses-list/draft-sp-courses-list.state';
-import { SpCoursesService } from '../../../services/sp-courses.service';
+import { ActiveSpCoursesListState } from '../active-sp-courses-list/active-sp-courses-list/active-sp-courses-list.state';
+import { DraftSpCoursesListState } from '../draft-sp-courses-list/draft-sp-courses-list/draft-sp-courses-list.state';
+import { SpCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service';
 
-import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {IKeyValuePair} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import {IKeyValuePair} from "../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 

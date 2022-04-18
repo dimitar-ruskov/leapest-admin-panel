@@ -7,8 +7,8 @@ import {
   ILT_COURSE_CREATION_STEPS_LIST,
   ILTCourseCreationStep,
   ILTCourseCreationStepType,
-} from '../models/ilt-course-create-step.model';
-import { IltCoursesService } from '../../../services/ilt-courses.service';
+} from '../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
+import { IltCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
 import {
   CancelILTCourseCreation,
   GetPreILTCourse,
@@ -17,7 +17,7 @@ import {
 } from './ilt-course-create.actions';
 
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class ILTCourseCreateStateModel {
   currentStep: ILTCourseCreationStepType | null;

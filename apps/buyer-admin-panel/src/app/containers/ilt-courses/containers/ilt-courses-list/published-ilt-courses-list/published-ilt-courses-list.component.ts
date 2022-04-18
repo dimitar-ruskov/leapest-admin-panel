@@ -3,17 +3,17 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import { PublishedILTCoursesState } from '../state/published-ilt-courses.state';
+import { PublishedILTCoursesState } from './state/published-ilt-courses.state';
 import {
   ChangePublishedILTCoursesPaginationParams,
   GetPublishedILTCourses,
   ResetPublishedILTCoursesState,
-} from '../state/published-ilt-courses.actions';
-import { ScheduleCourseEventHandlerService } from '../../../services/schedule-course-event-handler.service';
+} from './state/published-ilt-courses.actions';
+import { ScheduleCourseEventHandlerService } from '../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/schedule-course-event-handler.service';
 
-import {PublishedILTCourse} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {PublishedILTCourse} from "../../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-published-ilt-courses-list',

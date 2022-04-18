@@ -1,7 +1,7 @@
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   NotificationPayloadModel
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
 
 export class FetchEventDetailsILTNotifications {
   static readonly type = '[AP ILT Event Details] Fetch Event Details ILT Notifications';

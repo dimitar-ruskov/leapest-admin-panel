@@ -14,7 +14,7 @@ import {
   ResetActiveILTEventsState,
 } from './state/active-ilt-events.actions';
 import { ActiveIltEventsState } from './state/active-ilt-events.state';
-import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../../libs/shared/src/lib/models";
 import {
   createFiltersFromDateRangeSelect,
   createPageableFromTableQueryParams
@@ -23,7 +23,7 @@ import {
 import {
   CancelEventConfirmModalComponent
 } from "../../../../../../../../../libs/shared/src/lib/components/modals/cancel-event-confirm-modal/cancel-event-confirm-modal.component";
-import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-active-ilt-events-list',

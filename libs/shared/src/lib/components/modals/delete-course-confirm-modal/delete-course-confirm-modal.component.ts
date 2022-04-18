@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } 
 import * as moment from 'moment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import {ILTEvent} from "../../../models/interfaces";
+import {ILTEvent} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

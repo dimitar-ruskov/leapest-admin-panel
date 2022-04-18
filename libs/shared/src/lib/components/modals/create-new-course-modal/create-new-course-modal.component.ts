@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, TrackByFunction, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import {IKeyValuePair} from "../../../models/interfaces";
+import {IKeyValuePair} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 @Component({

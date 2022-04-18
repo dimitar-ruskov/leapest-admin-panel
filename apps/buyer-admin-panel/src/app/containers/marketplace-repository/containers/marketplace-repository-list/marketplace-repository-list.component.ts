@@ -8,9 +8,9 @@ import {
   GetMarketplaceRepositories,
   ResetMarketplaceRepositoriesState,
 } from './state/marketplace-repository-list.actions';
-import { IMarketplaceProduct } from '../../../../../../../../libs/shared/src/lib/models/interfaces/marketplace-repo/marketplace-repository-product.model';
+import { IMarketplaceProduct } from '../../../../../../../../libs/shared/src/lib/models/marketplace-repo/marketplace-repository-product.model';
 import {createPageableFromTableQueryParams} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/services/common";
 import {CURRENCY_DICTIONARY} from "../../../../../../../../libs/shared/src/lib/models/constants";
 
 @Component({

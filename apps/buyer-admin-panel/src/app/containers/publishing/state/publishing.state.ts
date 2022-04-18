@@ -3,14 +3,14 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { combineLatest, filter, map } from 'rxjs';
 
-import { PublishingService } from '../service/publishing.service';
+import { PublishingService } from '../../../../../../../libs/shared/src/lib/services/publishing/publishing.service';
 import { EditTabValue, GetIRSettings, GetGeneralSettings } from './publishing.actions';
 
-import {IKeyValuePair} from "../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IKeyValuePair} from "../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../libs/shared/src/lib/utils/common";
 import {
   IPublishingSettings, IPublishingTab
-} from "../../../../../../../libs/shared/src/lib/models/interfaces/publishing/publishing.model";
+} from "../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
 
 export class PublishingStateModel {
   internalRepoTabs: IPublishingTab[];

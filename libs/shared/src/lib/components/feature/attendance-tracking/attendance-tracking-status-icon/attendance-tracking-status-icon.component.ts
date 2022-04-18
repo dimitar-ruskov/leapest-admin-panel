@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, HostBinding, Input } from '@angular/core';
 
-import {IltEventAttendanceStatusKey, IltEventAttendanceStatusKeys} from "../../../../models/interfaces";
-import {EnvironmentService} from "../../../../utils/services/common";
+import {IltEventAttendanceStatusKey, IltEventAttendanceStatusKeys} from "../../../../models";
+import {EnvironmentService} from "../../../../services/common";
 
 @Component({
   selector: 'leap-attendance-tracking-status-icon',

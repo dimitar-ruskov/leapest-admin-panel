@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import produce, { Draft } from 'immer';
 
-import { IltCoursesService } from '../../../services/ilt-courses.service';
+import { IltCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
 import { IltCourseReviewsState } from '../containers/ilt-course-reviews/state/ilt-course-reviews.state';
 import { IltCourseDetailsNotificationsState } from '../containers/ilt-course-notifications/state/ilt-course-details-notifications.state';
 import { IltCourseEventsBulkUploadsState } from '../containers/ilt-course-events-tab/ilt-course-events-bulk/state/ilt-course-events-bulk.state';
@@ -26,13 +26,13 @@ import {
   ILTEvent,
   MasterInternalRepository, PublishedCourseToLXP,
   PublishedILTCourse
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {CourseThumbnailService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
 import {PLACEHOLDER_COURSE_THUMBNAIL_URL} from "../../../../../../../../../libs/shared/src/lib/models/constants";
 import {
   CourseLxpSettingsService
-} from "../../../../../../../../../libs/shared/src/lib/utils/services/course-lxp-settings.service";
+} from "../../../../../../../../../libs/shared/src/lib/services/publishing/course-lxp-settings.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 
 export class IltCourseDetailsStateModel {

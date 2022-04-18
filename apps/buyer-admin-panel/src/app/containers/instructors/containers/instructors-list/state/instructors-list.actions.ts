@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetInstructors {
   static readonly type = '[AP Instructors List] Get Instructors';

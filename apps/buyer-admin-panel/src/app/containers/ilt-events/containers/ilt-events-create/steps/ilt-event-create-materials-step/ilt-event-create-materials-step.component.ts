@@ -14,7 +14,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Draft, produce } from 'immer';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { ILTEventCreationStep } from '../../models/ilt-event-create-step.model';
+import { ILTEventCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
 import { GoToEventCreationStep, UpdateILTEventDetails } from '../../state/ilt-events-create.actions';
 import {IGlobalStateModel} from "../../../../../../state/state.model";
 
@@ -22,13 +22,13 @@ import {
   IConfigCertificatesDictionary,
   ILTEvent,
   InternalRepositoryMaterial
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditCourseCertificateComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/edit-course-certificate/edit-course-certificate.component";
 import {
   MaterialDtoHandlerService
-} from "../../../../../../../../../../libs/shared/src/lib/utils/services/material-dto-handler.service";
+} from "../../../../../../../../../../libs/shared/src/lib/services/repository/material-dto-handler.service";
 
 @Component({
   selector: 'leap-ilt-event-create-materials-step',

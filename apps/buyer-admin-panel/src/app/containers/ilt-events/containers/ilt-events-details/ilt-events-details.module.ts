@@ -35,7 +35,6 @@ import { EventReviewsComponent } from './containers/ilt-event-reviews/ilt-event-
 import { IltEventNotificationDetailsComponent } from './containers/ilt-event-notifications/ilt-event-notification-details/ilt-event-notification-details.component';
 import { IltEventNotificationsComponent } from './containers/ilt-event-notifications/ilt-event-notifications.component';
 import { EmailHistoryComponent } from './containers/ilt-event-notifications/ilt-event-notification-details/email-history/email-history.component';
-import { ResendEmailModalComponent } from './containers/ilt-event-notifications/ilt-event-notification-details/email-history/components/resend-email-modal/resend-email-modal.component';
 import { IltEventLearnersUnenrolledComponent } from './containers/ilt-event-learners/ilt-event-learners-unenrolled/ilt-event-learners-unenrolled.component';
 import { IltEventLearnersComponent } from './containers/ilt-event-learners/ilt-event-learners.component';
 import { FlattenedCourseInfoModule } from '../../../../../../../../libs/shared/src/lib/components/feature/flattened-course-info/flattened-course-info.module';
@@ -50,7 +49,7 @@ import {
 } from "../../../../../../../../libs/shared/src/lib/components/feature/notification-filter-pills/notification-filter-pills.module";
 import {
   InternalRepoTileModule
-} from "../../../../../../../../libs/shared/src/lib/components/feature/internal-repo-tile/internal-repo-tile.module";
+} from "../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repo-tile/internal-repo-tile.module";
 import {
   EventHeaderSectionsModule
 } from "../../../../../../../../libs/shared/src/lib/components/feature/event-header-sections/event-header-sections.module";
@@ -78,10 +77,10 @@ import {
 } from "../../../../../../../../libs/shared/src/lib/utils/pipes/group-master-internal-repos-by-type-pipe/group-master-internal-repos-by-type-pipe.module";
 import {
   HtmlBypassPipeModule
-} from "../../../../../../../../libs/shared/src/lib/utils/pipes/common/html-bypass/html-bypass-pipe.module";
+} from "../../../../../../../../libs/shared/src/lib/utils/pipes/html-bypass/html-bypass-pipe.module";
 import {
   NotificationRecipientsModalModule
-} from "./containers/ilt-event-notifications/ilt-event-notification-details/notification-recipients-modal/notification-recipients-modal.module";
+} from "../../../../../../../../libs/shared/src/lib/components/modals/notification-recipients-modal/notification-recipients-modal.module";
 import {
   EditWaitingListModalModule
 } from "../../../../../../../../libs/shared/src/lib/components/modals/edit-waiting-list-modal/edit-waiting-list-modal.module";
@@ -121,6 +120,9 @@ import {
 import {
   TemplateComposerModule
 } from "../../../../../../../../libs/shared/src/lib/components/feature/template-composer/template-composer.module";
+import {
+  ResendEmailModalModule
+} from "../../../../../../../../libs/shared/src/lib/components/modals/resend-email-modal/resend-email-modal.module";
 
 
 @NgModule({
@@ -138,7 +140,6 @@ import {
     IltEventNotificationsComponent,
     IltEventNotificationDetailsComponent,
     EmailHistoryComponent,
-    ResendEmailModalComponent,
     AttendanceTrackingComponent
   ],
   imports: [
@@ -179,6 +180,7 @@ import {
     EditAddressModalModule,
     BasicUserModalModule,
     AddAddressModalModule,
+    ResendEmailModalModule,
 
     NzTabsModule,
     NzEmptyModule,

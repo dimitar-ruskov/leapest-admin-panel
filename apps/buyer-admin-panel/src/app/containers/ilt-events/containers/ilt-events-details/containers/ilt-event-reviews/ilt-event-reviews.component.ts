@@ -13,7 +13,7 @@ import {
 } from './state/ilt-event-reviews.actions';
 import { EventReviewsState } from './state/ilt-event-reviews.state';
 
-import {EventReview} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {EventReview} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent

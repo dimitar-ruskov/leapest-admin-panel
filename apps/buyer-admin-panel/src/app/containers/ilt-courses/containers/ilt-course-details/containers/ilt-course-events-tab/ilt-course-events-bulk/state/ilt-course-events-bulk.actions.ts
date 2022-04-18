@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class CourseEventsCsvUploadsList {
   static readonly type = '[AP ILT Course Events Bulk Upload] Course Events CSV Uploads Listing';

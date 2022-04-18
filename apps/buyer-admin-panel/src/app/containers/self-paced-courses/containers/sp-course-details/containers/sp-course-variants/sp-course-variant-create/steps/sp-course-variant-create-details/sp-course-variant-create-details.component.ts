@@ -10,15 +10,15 @@ import {
   GoToSPCourseLanguageVariantCreationStep,
   UpdatePreSPCourseLanguageVariant,
 } from '../../state/sp-course-variant-create.actions';
-import { SPCourseLanguageVariantCreationSteps } from '../../models/sp-course-create-variant-step.model';
+import { SPCourseLanguageVariantCreationSteps } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
-import {IKeyValuePair} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
+import {IKeyValuePair} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {getOptionsFromMap} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   COURSE_COMPLETION_OPTIONS_MAP,
   REGISTRATION_APPROVAL_OPTIONS_MAP, SELF_REGISTRATION_OPTIONS_MAP
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/constants/registration-options";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models/events/registration-options";
 import {AdminCoursesService} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 

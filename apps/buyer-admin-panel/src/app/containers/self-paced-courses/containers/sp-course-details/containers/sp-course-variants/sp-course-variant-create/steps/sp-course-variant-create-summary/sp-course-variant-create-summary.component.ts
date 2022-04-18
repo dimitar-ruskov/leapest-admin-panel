@@ -10,19 +10,19 @@ import {
   GoToSPCourseLanguageVariantCreationStep,
   UpdatePreSPCourseLanguageVariant,
 } from '../../state/sp-course-variant-create.actions';
-import { SPCourseLanguageVariantCreationSteps } from '../../models/sp-course-create-variant-step.model';
+import { SPCourseLanguageVariantCreationSteps } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
 import {
   prepareGeneralInfoFields,
   prepareMaterialsFields,
   prepareVariantDetailsFields
-} from "../../../../../../../services/sp-course-variants-handler.service";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-variants-handler.service";
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
+import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
 import {
   GeneralInfoField,
   MaterialsInfoField
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {NotificationService} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
+import {NotificationService} from "../../../../../../../../../../../../../libs/shared/src/lib/services/common";
 
 
 @Component({

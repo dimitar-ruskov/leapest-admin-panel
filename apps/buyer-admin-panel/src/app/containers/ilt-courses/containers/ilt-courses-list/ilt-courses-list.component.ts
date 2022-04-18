@@ -8,7 +8,7 @@ import { IltCoursesListState } from './state/ilt-courses-list.state';
 import { ChangeILTCoursesListTab, CreatePreILTCourse } from './state/ilt-courses-list.actions';
 import {IGlobalStateModel} from "../../../../state/state.model";
 
-import {IKeyValuePair, PreILTCourse} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IKeyValuePair, PreILTCourse} from "../../../../../../../../libs/shared/src/lib/models";
 import {
   CreateNewCourseModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/create-new-course-modal/create-new-course-modal.component";

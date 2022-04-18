@@ -14,9 +14,9 @@ import {
   ResetInternalRepositoriesState,
 } from './state/internal-repository-list.actions';
 import { InternalRepositoryListState } from './state/internal-repository-list.state';
-import { InternalRepositoryCreateModalComponent } from '../internal-repository-create-modal/internal-repository-create-modal.component';
+import { InternalRepositoryCreateModalComponent } from '../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repository-create-modal/internal-repository-create-modal.component';
 
-import {InternalRepository} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {InternalRepository} from "../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent

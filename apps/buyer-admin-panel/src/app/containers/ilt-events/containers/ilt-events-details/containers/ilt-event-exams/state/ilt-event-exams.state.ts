@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { IltEventsService } from '../../../../../services/ilt-events.service';
+import { IltEventsService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
 import { ChangeILTEventExamsFilterSKU, ChangeILTEventExamsPaginationParams, GetILTEventExams, ResetILTEventExamsState } from './ilt-event-exams.actions';
 
-import {ExamCompletionReport, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ExamCompletionReport, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 

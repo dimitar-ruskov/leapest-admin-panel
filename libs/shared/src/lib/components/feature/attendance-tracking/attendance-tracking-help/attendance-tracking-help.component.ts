@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import {IltEventAttendanceStatusHints, IltEventAttendanceStatusKeys} from "../../../../models/interfaces";
-import {EnvironmentService} from "../../../../utils/services/common";
+import {IltEventAttendanceStatusHints, IltEventAttendanceStatusKeys} from "../../../../models";
+import {EnvironmentService} from "../../../../services/common";
 
 const ATTENDANCE_TRACKING_HELP_TEXT = "Manage and track your learners' attendance";
 

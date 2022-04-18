@@ -14,7 +14,7 @@ import {
   DeleteCourseReview,
 } from './state/ilt-course-reviews.action';
 
-import {EventReview} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {EventReview} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";

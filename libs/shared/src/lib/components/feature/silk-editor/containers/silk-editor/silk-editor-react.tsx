@@ -109,7 +109,7 @@ const Element = ({ attributes, children, element }) => {
               cursor: 'default',
               pointerEvents: 'none',
             }}
-            href="#"
+            href="libs/shared/src/lib/components/feature/silk-editor/containers/silk-editor/silk-editor-react#"
             title={element.placeholder.value}>
             {element.placeholder.displayValue}
             {children}

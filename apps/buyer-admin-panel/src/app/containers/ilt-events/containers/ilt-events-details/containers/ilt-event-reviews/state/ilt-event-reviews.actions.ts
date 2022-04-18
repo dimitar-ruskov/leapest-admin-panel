@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetCourseEventReviews {
   static readonly type = '[AP Event Reviews] Get Course Event Reviews';

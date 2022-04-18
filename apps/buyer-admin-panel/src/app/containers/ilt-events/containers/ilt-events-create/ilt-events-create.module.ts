@@ -57,7 +57,7 @@ import {
 } from "../../../../../../../../libs/shared/src/lib/components/common/no-materials/no-materials.module";
 import {
   InternalRepoTileModule
-} from "../../../../../../../../libs/shared/src/lib/components/feature/internal-repo-tile/internal-repo-tile.module";
+} from "../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repo-tile/internal-repo-tile.module";
 import {
   EditCourseCertificateModule
 } from "../../../../../../../../libs/shared/src/lib/components/feature/edit-course-certificate/edit-course-certificate.module";

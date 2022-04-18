@@ -3,7 +3,7 @@ import {ApolloError, ApolloQueryResult, FetchResult} from "@apollo/client/core";
 
 import { DeferredResource } from './deferred-resource';
 import { catchError, map, startWith } from 'rxjs/operators';
-import {AmberResponse} from "../../models/interfaces";
+import {AmberResponse} from "../../models";
 
 namespace DeferredResourceUtils {
   export const wrapObservable = <T>(observable: Observable<ApolloQueryResult<T> | FetchResult<T>>): Observable<DeferredResource<T>> => {

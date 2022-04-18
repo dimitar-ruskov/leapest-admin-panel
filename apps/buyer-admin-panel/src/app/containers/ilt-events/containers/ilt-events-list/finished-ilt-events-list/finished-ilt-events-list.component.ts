@@ -8,7 +8,7 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { ChangeFinishedILTEventsPaginationParams, GetFinishedILTEvents, ResetFinishedILTEventsState } from './state/finished-ilt-events.actions';
 import { FinishedIltEventsState } from './state/finished-ilt-events.state';
 
-import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../../libs/shared/src/lib/models";
 import {
   createFiltersFromDateRangeSelect,
   createPageableFromTableQueryParams

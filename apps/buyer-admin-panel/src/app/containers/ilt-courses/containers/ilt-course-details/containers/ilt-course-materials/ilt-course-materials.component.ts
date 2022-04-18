@@ -5,7 +5,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
   InternalRepositoryMaterial,
   PublishedILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 export type ButtonState = 'loading' | 'active' | 'disabled';
 

@@ -13,10 +13,10 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 import {IGlobalStateModel} from "../../../../../../state/state.model";
 
-import {IKeyValuePair} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IKeyValuePair} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   IPublishingSettings
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces/publishing/publishing.model";
+} from "../../../../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
 import {COURSE_PUBLISH_STATUS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {LxpUsersService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 

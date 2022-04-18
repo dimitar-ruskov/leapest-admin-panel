@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, TrackByFunction, Output, EventEmitter } from '@angular/core';
-import {CertificateInfo, GeneralInfoFieldValue, GeneralInfoUser} from "../../../../models/interfaces";
+import {CertificateInfo, GeneralInfoFieldValue, GeneralInfoUser} from "../../../../models";
 
 @Component({
   selector: 'leap-general-info-field-value',

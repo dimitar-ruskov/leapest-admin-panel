@@ -13,7 +13,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import {FormLabelModule} from "../../common/form-label/form-label.module";
 import {NoMaterialsModule} from "../../common/no-materials/no-materials.module";
 import {MaterialRepoToMasterPipe} from "./pipes/material-repo-to-master.pipe";
-import {VariantSelectModalModule} from "../../modals/variant-select-modal/variant-select-modal.module";
+import {VariantSelectModalModule} from "../../internal-repo/variant-select-modal/variant-select-modal.module";
 import {AddCourseMaterialModalModule} from "../../modals/add-course-material-modal/add-course-material-modal.module";
 
 @NgModule({

@@ -22,9 +22,9 @@ import {
   ILTCourseAgenda,
   ILTCourseAgendaDay,
   ILTCourseAgendaDaySection
-} from "../../../models/interfaces";
-import {EnvironmentService} from "../../../utils/services/common";
-import {TimezoneService} from "../../../utils/services/common/timezone.service";
+} from "../../../models";
+import {EnvironmentService} from "../../../services/common";
+import {TimezoneService} from "../../../services/common/timezone.service";
 import {formatDate} from "../../../utils/common";
 
 const WARNING_MODAL_MESSAGE =

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import {InternalRepositoryDTO} from "../../../models/interfaces";
-import {EnvironmentService} from "../../../utils/services/common";
+import {InternalRepositoryDTO} from "../../../models";
+import {EnvironmentService} from "../../../services/common";
 
 
 const SELECT_VARIANT_LABEL = 'Select variant';

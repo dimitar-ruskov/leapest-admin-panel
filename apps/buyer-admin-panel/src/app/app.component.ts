@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Observable, take} from "rxjs";
 import {Select} from "@ngxs/store";
 
-import {EnvironmentService} from "../../../../libs/shared/src/lib/utils/services/common";
-import {IDomainData} from "../../../../libs/shared/src/lib/models/interfaces";
+import {EnvironmentService} from "../../../../libs/shared/src/lib/services/common";
+import {IDomainData} from "../../../../libs/shared/src/lib/models";
 import {IGlobalStateModel} from "./state/state.model";
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Observable} from "rxjs";
 import { map } from 'rxjs/operators';
-import {ITrainingManager} from "../../../models/interfaces";
+import {ITrainingManager} from "../../../models";
 import {AdminCoursesService} from "../../../utils/services";
 
 

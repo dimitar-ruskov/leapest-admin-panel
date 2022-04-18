@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {tap} from 'rxjs/operators';
-import {IltEventsService} from '../../../../../services/ilt-events.service';
+import {IltEventsService} from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
 
 import {
   ChangeILTEventMaterialTrackingFilterSKU,
@@ -15,7 +15,7 @@ import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../.
 import {
   IPageable,
   MaterialCompletionReport
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class IltEventMaterialsTrackingStateModel {
   filterSku: string;

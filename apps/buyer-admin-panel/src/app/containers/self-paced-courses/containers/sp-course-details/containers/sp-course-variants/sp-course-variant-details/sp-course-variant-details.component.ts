@@ -13,16 +13,16 @@ import {
   UpdateSPCourseLanguageVariantAttribute,
   UploadLearnersFromCSVToLanguageVariant,
 } from './state/sp-course-variant-details.actions';
-import { GetSPCourseLanguageVariantLearnersEnrolled } from './state/sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
-import { GetSPCourseLanguageVariantExams } from './state/sp-course-variant-exams/sp-course-variant-exams.actions';
+import { GetSPCourseLanguageVariantLearnersEnrolled } from './containers/sp-course-variant-learners/sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
+import { GetSPCourseLanguageVariantExams } from './containers/sp-course-variant-exams/sp-course-variant-exams/sp-course-variant-exams.actions';
 import { SpCourseVariantDetailsState } from './state/sp-course-variant-details.state';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant-learner.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
 import {
   EditTrainingManagerModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-training-manager-modal/edit-training-manager-modal.component";
-import {IKeyValuePair, ILTEvent} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IKeyValuePair, ILTEvent} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditCourseCompletionModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-course-completion-modal/edit-course-completion-modal.component";
@@ -36,7 +36,7 @@ import {
 import {
   AssignUsersModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/assign-users-modal/assign-users-modal.component";
-import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/services/common";
 import {AdminCoursesService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 @Component({

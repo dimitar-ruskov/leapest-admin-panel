@@ -21,7 +21,6 @@ import { SpCourseVariantCreateComponent } from './sp-course-variant-create.compo
 import {
   SpCourseVariantCreateSummaryComponent
 } from "./steps/sp-course-variant-create-summary/sp-course-variant-create-summary.component";
-import {CreateVariantModalComponent} from "./modals/create-language-variant-modal/create-variant-modal.component";
 import {
   SpCourseVariantCreateDetailsComponent
 } from "./steps/sp-course-variant-create-details/sp-course-variant-create-details.component";
@@ -43,10 +42,11 @@ import {
 } from "../../../../../../../../../../../libs/shared/src/lib/components/common/general-info/general-info.module";
 import {
   InternalRepoTileModule
-} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo-tile/internal-repo-tile.module";
+} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repo-tile/internal-repo-tile.module";
 import {
   CourseMaterialsInputModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/feature/course-materials-input/course-materials-input.module";
+import {CreateVariantModalModule} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/create-language-variant-modal/create-variant-modal.module";
 
 
 @NgModule({
@@ -54,8 +54,7 @@ import {
     SpCourseVariantCreateComponent,
     SpCourseVariantCreateMaterialsComponent,
     SpCourseVariantCreateDetailsComponent,
-    SpCourseVariantCreateSummaryComponent,
-    CreateVariantModalComponent
+    SpCourseVariantCreateSummaryComponent
   ],
   imports: [
     CommonModule,
@@ -66,6 +65,7 @@ import {
       component: SpCourseVariantCreateComponent
     }]),
 
+    CreateVariantModalModule,
     FormLabelModule,
     CreationStepperModule,
     InternalRepoTileModule,
@@ -77,7 +77,6 @@ import {
     NzFormModule,
     NzSelectModule,
     NzInputModule,
-    NzLayoutModule,
     NzStepsModule,
     NzSpinModule,
     NzRadioModule,

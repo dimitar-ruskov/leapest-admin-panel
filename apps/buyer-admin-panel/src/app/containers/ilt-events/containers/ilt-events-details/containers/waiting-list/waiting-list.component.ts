@@ -16,15 +16,15 @@ import {
   ResetWaitingListState,
 } from './state/waiting-list.actions';
 import { WaitingListState } from './state/waiting-list.state';
-import { WaitingListService } from '../../../../services/waiting-list.service';
-import { EventInfoEditHandlerService } from '../../../../services/event-info-edit-handler.service';
+import { WaitingListService } from '../../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service';
+import { EventInfoEditHandlerService } from '../../../../../../../../../../libs/shared/src/lib/services/events/event-info-edit-handler.service';
 
 import {
   EnrollmentPolicyKeys,
   IKeyValuePair,
   ILTEvent,
   ILTEventLearner
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   RemoveWaitingListModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/remove-waiting-list-modal/remove-waiting-list-modal.component";

@@ -13,8 +13,8 @@ import {
 import { IltEventLearnersEnrolledState } from './state/ilt-event-learners-enrolled.state';
 import {IGlobalStateModel} from "../../../../../../../state/state.model";
 
-import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/constants/ilt-event-learners.model';
-import {ILTEventLearner} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-learners.model';
+import {ILTEventLearner} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {PAGINATION_LIMIT_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {

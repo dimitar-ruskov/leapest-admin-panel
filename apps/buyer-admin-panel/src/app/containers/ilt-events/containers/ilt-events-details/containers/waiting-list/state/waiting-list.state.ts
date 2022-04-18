@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { WaitingListService } from '../../../../../services/waiting-list.service';
+import { WaitingListService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service';
 import {
   AddWaitingListLearners,
   ChangeWaitingListPaginationParams,
@@ -17,7 +17,7 @@ import {
 import {
   AssignLearnersResponse,
   ILTEventLearner, IPageable
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 

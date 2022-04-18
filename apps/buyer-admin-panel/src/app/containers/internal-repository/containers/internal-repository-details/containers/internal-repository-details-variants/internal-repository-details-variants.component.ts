@@ -11,12 +11,12 @@ import {
   ChangeInternalRepositoryVariantsPaginationParams,
   DeleteInternalRepositoryVariant,
   GetInternalRepositoryVariants,
-} from '../../state/internal-repository-variants.actions';
-import { InternalRepositoryVariantsState } from '../../state/internal-repository-variants.state';
-import { InternalRepoExternalModalComponent } from '../../../internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
-import { InternalRepoHostedModalComponent } from '../../../internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
+} from './state/internal-repository-variants.actions';
+import { InternalRepositoryVariantsState } from './state/internal-repository-variants.state';
+import { InternalRepoExternalModalComponent } from '../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
+import { InternalRepoHostedModalComponent } from '../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
 
-import { InternalRepositoryVariantDTO } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-variant-dto.model';
+import { InternalRepositoryVariantDTO } from '../../../../../../../../../../libs/shared/src/lib/models/internal-repo/internal-repository-variant-dto.model';
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";

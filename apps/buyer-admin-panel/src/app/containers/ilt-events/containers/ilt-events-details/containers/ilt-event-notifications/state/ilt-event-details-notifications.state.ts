@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { filter, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { IltEventNotificationsService } from '../../../../../services/ilt-event-notifications.service';
+import { IltEventNotificationsService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-notifications.service';
 import {
   FetchEventDetailsILTNotifications,
   ToggleSort,
@@ -25,8 +25,8 @@ import {
   NotificationModel,
   NotificationRecipientsListModel,
   ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
-import {IPageable, Sort} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
+import {IPageable, Sort} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {IGlobalStateModel} from "../../../../../../../state/state.model";
 
 

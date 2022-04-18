@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
 import produce, { Draft } from 'immer';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ILTCourseCreationStep } from '../../models/ilt-course-create-step.model';
-import { IltCoursesService } from '../../../../services/ilt-courses.service';
+import { ILTCourseCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
+import { IltCoursesService } from '../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
 import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
 import {IGlobalStateModel} from "../../../../../../state/state.model";
 
 import {
   IConfigCertificatesDictionary, ILTCourse,
   InternalRepositoryMaterial, PreILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 @Component({

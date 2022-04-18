@@ -10,9 +10,9 @@ import {
   ResetCourseEventsState,
 } from '../state/ilt-course-events-common.actions';
 
-import {ILTEventListItem} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventListItem} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/services/common";
 
 @Component({
   selector: 'leap-ilt-course-events-finished',

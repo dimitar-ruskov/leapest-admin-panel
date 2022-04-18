@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import { IltCourseEventsBulkService } from './service/ilt-course-events-bulk.service';
+import { IltCourseEventsBulkService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-course-events-bulk.service';
 import { IltCourseEventsBulkUploadsState } from './state/ilt-course-events-bulk.state';
 import {
   ChangeEventUploadsPaginationParams,
@@ -14,11 +14,11 @@ import {
 } from './state/ilt-course-events-bulk.actions';
 
 import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/services/common";
 import {
   CourseEventsBulkUploads
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/courses/ilt-course-events-bulk";
-import {BulkUploadModalComponent} from "./components/bulk-upload-modal/bulk-upload-modal.component";
+} from "../../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-events-bulk";
+import {BulkUploadModalComponent} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/bulk-upload-modal/bulk-upload-modal.component";
 
 @Component({
   selector: 'leap-ilt-course-events-bulk',

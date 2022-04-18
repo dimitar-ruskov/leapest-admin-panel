@@ -19,7 +19,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {GraphQLModule} from "./graphql.module";
 import {environment} from "../environments/environment";
 import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
-import {BootstrapService} from "../../../../libs/shared/src/lib/utils/services/common";
+import {BootstrapService} from "../../../../libs/shared/src/lib/services/common";
 import {GroupGuard, HybridUserGuard, ProvisionUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
 import {CoreState} from "./state/core.state";
 import {SetDomainData} from "./state/core.actions";

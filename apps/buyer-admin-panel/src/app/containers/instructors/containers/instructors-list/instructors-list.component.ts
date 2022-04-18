@@ -12,10 +12,10 @@ import {
   ResetInstructorsState,
 } from './state/instructors-list.actions';
 import { InstructorsListState } from './state/instructors-list.state';
-import { InstructorCreateModalComponent } from '../../components/instructor-create-modal/instructor-create-modal.component';
-import { InstructorsService } from '../../service/instructors.service';
+import { InstructorCreateModalComponent } from '../../../../../../../../libs/shared/src/lib/components/modals/instructor-create-modal/instructor-create-modal.component';
+import { InstructorsService } from '../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service';
 
-import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
+import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/instructors/instructor.model';
 import {
   createPageableFromTableQueryParams,
   DeferredResource

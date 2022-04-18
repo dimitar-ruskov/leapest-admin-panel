@@ -8,11 +8,11 @@ import {
   SPCourseCreationStep,
   SPCourseCreationSteps,
   SPCourseCreationStepsList,
-} from './models/sp-course-create-step.model';
+} from '../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-step.model';
 import { SpCourseCreateState } from './state/sp-course-create.state';
 import { GetPreSelfPacedCourse } from './state/sp-course-create.actions';
 
-import { PreSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { PreSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({

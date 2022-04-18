@@ -17,19 +17,19 @@ import { Select, Store } from '@ngxs/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
 
-import { SpCourseVariantExamsState } from '../../state/sp-course-variant-exams/sp-course-variant-exams.state';
+import { SpCourseVariantExamsState } from './sp-course-variant-exams/sp-course-variant-exams.state';
 import {
   ChangeSPCourseLanguageVariantExamSKU,
   ChangeSPCourseLanguageVariantExamsPage,
   GetSPCourseLanguageVariantExams,
-} from '../../state/sp-course-variant-exams/sp-course-variant-exams.actions';
+} from './sp-course-variant-exams/sp-course-variant-exams.actions';
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import { SPCourseLanguageVariantExam } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant-exam.model';
+import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import { SPCourseLanguageVariantExam } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-exam.model';
 import {
   IKeyValuePair,
   InternalRepositoryMaterial, IPageable
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   createPageableFromTableQueryParams,
   DeferredResource

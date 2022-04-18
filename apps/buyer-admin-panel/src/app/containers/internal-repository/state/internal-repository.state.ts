@@ -6,10 +6,10 @@ import {
 } from "../containers/internal-repository-details/state/internal-repository-details.state";
 import {
   InternalRepositoryVariantsState
-} from "../containers/internal-repository-details/state/internal-repository-variants.state";
+} from "../containers/internal-repository-details/containers/internal-repository-details-variants/state/internal-repository-variants.state";
 import {
   InternalRepositoryCoursesState
-} from "../containers/internal-repository-details/state/internal-repository-courses.state";
+} from "../containers/internal-repository-details/containers/internal-repository-details-courses/state/internal-repository-courses.state";
 
 @State({
   name: 'internalRepository',

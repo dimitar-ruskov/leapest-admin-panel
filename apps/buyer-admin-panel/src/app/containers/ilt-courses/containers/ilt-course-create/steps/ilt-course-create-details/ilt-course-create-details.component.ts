@@ -6,7 +6,7 @@ import { Store, Select } from '@ngxs/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import produce, { Draft } from 'immer';
 
-import { ILTCourseCreationStep } from '../../models/ilt-course-create-step.model';
+import { ILTCourseCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
 import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
 import {IGlobalStateModel} from "../../../../../../state/state.model";
 
@@ -14,7 +14,7 @@ import {
   CourseCategory,
   CourseSubCategory,
   IKeyValuePair, PreILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   COURSE_WAITING_LIST_LIMIT,
   DEFAULT_QUILL_EDITOR_CONFIG

@@ -8,7 +8,7 @@ import { NzTabsCanDeactivateFn } from 'ng-zorro-antd/tabs';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import produce, { Draft } from 'immer';
 
-import { ScheduleCourseEventHandlerService } from '../../services/schedule-course-event-handler.service';
+import { ScheduleCourseEventHandlerService } from '../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/schedule-course-event-handler.service';
 import { IltCourseDetailsState } from './state/ilt-course-details.state';
 import {
   ChangeILTCourseDetailsTab,
@@ -24,7 +24,7 @@ import {
 import {
   ILTCourseAgenda, InternalRepositories,
   InternalRepositoryMaterial, PublishedILTCourse
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../libs/shared/src/lib/models";
 import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   CourseAgendaController, CourseAgendaUnsavedChangesGuard, CourseMaterialsController,
@@ -33,7 +33,7 @@ import {
 import {
   DeleteCourseConfirmModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/delete-course-confirm-modal/delete-course-confirm-modal.component";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/services/common";
 import {ButtonState} from "./containers/ilt-course-materials/ilt-course-materials.component";
 import {
   PublishToLxpModalComponent
