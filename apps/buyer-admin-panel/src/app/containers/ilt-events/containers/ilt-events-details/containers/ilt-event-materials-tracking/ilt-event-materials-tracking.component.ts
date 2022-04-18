@@ -1,35 +1,36 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
-  TrackByFunction,
   ChangeDetectorRef,
+  Component,
+  Input,
   OnDestroy,
+  OnInit,
   SimpleChanges,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Select, Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map } from 'rxjs/operators';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+  TrackByFunction
+} from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { BehaviorSubject, Observable } from "rxjs";
+import { distinctUntilChanged, filter, map } from "rxjs/operators";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
 import {
   ChangeILTEventMaterialTrackingFilterSKU,
   ChangeILTEventMaterialTrackingListPaginationParams,
   GetILTEventMaterialTrackingList,
-  ResetILTEventMaterialTrackingListState,
-} from './state/ilt-event-materials-tracking.actions';
-import { IltEventMaterialsTrackingState } from './state/ilt-event-materials-tracking.state';
+  ResetILTEventMaterialTrackingListState
+} from "./state/ilt-event-materials-tracking.actions";
+import { IltEventMaterialsTrackingState } from "./state/ilt-event-materials-tracking.state";
 
 import {
   IKeyValuePair,
   ILTEvent,
-  InternalRepositoryMaterial, MaterialCompletionReport
+  InternalRepositoryMaterial,
+  MaterialCompletionReport
 } from "../../../../../../../../../../libs/shared/src/lib/models";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   MaterialsTrackingDetailsModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/materials-tracking-details-modal/materials-tracking-details-modal.component";

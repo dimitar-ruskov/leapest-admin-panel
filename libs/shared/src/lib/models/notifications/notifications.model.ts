@@ -85,11 +85,6 @@ export interface ISearchMetadata {
   totalCount: number;
 }
 
-export interface ILabeledItem {
-  id: string;
-  value?: string;
-}
-
 export interface ReportingDomainsMap {
   [domain: string]: boolean;
 }

@@ -1,23 +1,26 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import {take, tap} from 'rxjs/operators';
-import { patch } from '@ngxs/store/operators';
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { take, tap } from "rxjs/operators";
+import { patch } from "@ngxs/store/operators";
 
-import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
+import {
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
 import {
   ChangeSPCourseLanguageVariantLearnersPendingPage,
-  ChangeSPCourseLanguageVariantLearnersPendingPaginationParams, ExportLearnerFromEvent,
+  ChangeSPCourseLanguageVariantLearnersPendingPaginationParams,
+  ExportLearnerFromEvent,
   GetSPCourseLanguageVariantLearnersPending,
-  SpliceSPCourseLanguageVariantLearnersPending,
-} from './sp-course-variant-learners-pending.actions';
+  SpliceSPCourseLanguageVariantLearnersPending
+} from "./sp-course-variant-learners-pending.actions";
 
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
-import {DeferredResource} from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  DEFAULT_INITIAL_PAGINATION_PARAMS
-} from "../../../../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
-import {NzMessageService} from "ng-zorro-antd/message";
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable,
+  SPCourseLanguageVariantLearner
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 export class SpCourseVariantLearnersPendingStateModel {
   loading: boolean;

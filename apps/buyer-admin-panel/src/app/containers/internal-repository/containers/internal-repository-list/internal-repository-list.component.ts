@@ -1,26 +1,28 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import * as moment from 'moment';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { take, takeUntil } from "rxjs/operators";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import * as moment from "moment";
 
 import {
   ChangeInternalRepositoriesPaginationParams,
   DeleteInternalRepository,
   GetInternalRepositories,
-  ResetInternalRepositoriesState,
-} from './state/internal-repository-list.actions';
-import { InternalRepositoryListState } from './state/internal-repository-list.state';
-import { InternalRepositoryCreateModalComponent } from '../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repository-create-modal/internal-repository-create-modal.component';
+  ResetInternalRepositoriesState
+} from "./state/internal-repository-list.actions";
+import { InternalRepositoryListState } from "./state/internal-repository-list.state";
 
-import {InternalRepository} from "../../../../../../../../libs/shared/src/lib/models";
-import {createPageableFromTableQueryParams} from "../../../../../../../../libs/shared/src/lib/utils/common";
+import { InternalRepository } from "../../../../../../../../libs/shared/src/lib/models";
+import { createPageableFromTableQueryParams } from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";
+import {
+  InternalRepositoryCreateModalComponent
+} from "../../../../../../../../libs/shared/src/lib/components/modals/internal-repository-create-modal/internal-repository-create-modal.component";
 
 @Component({
   selector: 'leap-internal-repository-list',

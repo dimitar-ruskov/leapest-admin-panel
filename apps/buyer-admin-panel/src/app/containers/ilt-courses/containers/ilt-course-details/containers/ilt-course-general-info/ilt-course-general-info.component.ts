@@ -1,15 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
 
-import { PublishToLxpByDomain } from '../../state/ilt-course-details.actions';
-import { IltCourseDetailsState } from '../../state/ilt-course-details.state';
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {
-  PublishCourseToLXP,
-  PublishedILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models";
-
+import { PublishToLxpByDomain } from "../../state/ilt-course-details.actions";
+import { IltCourseDetailsState } from "../../state/ilt-course-details.state";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { PublishCourseToLXP, PublishedILTCourse } from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-course-general-info',

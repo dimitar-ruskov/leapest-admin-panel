@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
+import { SPCourseLanguageVariant } from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 @Component({

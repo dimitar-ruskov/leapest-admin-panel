@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
 
-import { NotificationsState } from '../../state/notifications.state';
-import { ChangeNotificationsTab } from '../../state/notifications.actions';
+import { NotificationsState } from "../../state/notifications.state";
+import { ChangeNotificationsTab } from "../../state/notifications.actions";
 
 @Component({
   selector: 'leap-notifications',

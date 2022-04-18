@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
-import { EventInfoEditHandlerService } from '../../../../../../../../../../libs/shared/src/lib/services/events/event-info-edit-handler.service';
+import { EventInfoEditHandlerService } from "../../../../services/event-info-edit-handler.service";
 
 import {
   CertificateInfo,
@@ -12,7 +12,9 @@ import {
 import {
   CertificatePreviewComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.component";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
+import {
+  DownloadSphinxService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 @Component({
   selector: 'leap-ilt-event-info',

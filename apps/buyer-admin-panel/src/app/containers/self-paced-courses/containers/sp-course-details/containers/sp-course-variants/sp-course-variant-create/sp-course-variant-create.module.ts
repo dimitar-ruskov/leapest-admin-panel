@@ -1,23 +1,22 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzStepsModule } from 'ng-zorro-antd/steps';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzCollapseModule } from 'ng-zorro-antd/collapse';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
-import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzFormModule } from "ng-zorro-antd/form";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzInputModule } from "ng-zorro-antd/input";
+import { NzStepsModule } from "ng-zorro-antd/steps";
+import { NzSpinModule } from "ng-zorro-antd/spin";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzCollapseModule } from "ng-zorro-antd/collapse";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { NzRadioModule } from "ng-zorro-antd/radio";
+import { NzSwitchModule } from "ng-zorro-antd/switch";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
 
-import { SpCourseVariantCreateComponent } from './sp-course-variant-create.component';
+import { SpCourseVariantCreateComponent } from "./sp-course-variant-create.component";
 import {
   SpCourseVariantCreateSummaryComponent
 } from "./steps/sp-course-variant-create-summary/sp-course-variant-create-summary.component";
@@ -41,12 +40,14 @@ import {
   GeneralInfoModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/common/general-info/general-info.module";
 import {
-  InternalRepoTileModule
-} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repo-tile/internal-repo-tile.module";
-import {
   CourseMaterialsInputModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/feature/course-materials-input/course-materials-input.module";
-import {CreateVariantModalModule} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/create-language-variant-modal/create-variant-modal.module";
+import {
+  CreateVariantModalModule
+} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/create-language-variant-modal/create-variant-modal.module";
+import {
+  InternalRepoTileModule
+} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo-tile/internal-repo-tile.module";
 
 
 @NgModule({

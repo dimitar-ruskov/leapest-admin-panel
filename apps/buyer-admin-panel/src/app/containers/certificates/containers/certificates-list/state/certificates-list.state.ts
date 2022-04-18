@@ -1,17 +1,21 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
-import { CertificatesService } from '../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
+import {
+  CertificatesService
+} from "../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service";
 import {
   ChangeCertificatesPaginationParams,
   GetCertificates,
-  ResetCertificatesState,
-} from './certificates-list.actions';
+  ResetCertificatesState
+} from "./certificates-list.actions";
 
-import { Certificate } from '../../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  Certificate,
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class CertificatesListStateModel {
   loading: boolean;

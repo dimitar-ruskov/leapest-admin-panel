@@ -1,16 +1,22 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 import {
   AmberResponse,
   EventReview,
-  ExamCompletionReport, IKeyValuePair,
-  ILTEvent, ILTEventBase, ILTEventLearner, ILTEventListItem, IPageable, MaterialCompletionReport,
+  ExamCompletionReport,
+  IKeyValuePair,
+  ILTEvent,
+  ILTEventBase,
+  ILTEventLearner,
+  ILTEventListItem,
+  IPageable,
+  MaterialCompletionReport,
   PublishedILTCourse
 } from "../../models";
-import {DeferredResource} from "../../utils/common";
-import {AdminPanelApiService} from "../common";
+import { DeferredResource } from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
 
 
 @Injectable({

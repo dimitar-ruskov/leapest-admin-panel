@@ -1,17 +1,20 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpHeaders, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
-import { ISearchParams } from '../../../../../../apps/buyer-admin-panel/src/app/containers/ilt-events/containers/ilt-events-details/containers/ilt-event-notifications/state/ilt-event-details-notifications.state';
-
+import { DeferredResource } from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
+import { EnvironmentService } from "../common/environment.service";
 import {
-  NotificationModel, NotificationPayloadModel,
+  IPageable, ISearchParams,
+  NotificationModel,
+  NotificationPayloadModel,
   NotificationRecipientsListModel,
-  NotificationsListModel, ReportingDomainsMap
-} from "../../models/notifications/notifications.model";
-import {IPageable, Sort, SortObj} from "../../models";
-import {AdminPanelApiService, EnvironmentService} from "../common";
-import {DeferredResource} from "../../utils/common";
+  NotificationsListModel,
+  ReportingDomainsMap,
+  Sort,
+  SortObj
+} from "../../models";
 
 @Injectable({
   providedIn: 'root',

@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpHeaders, HttpParams } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import { ActiveSelfPacedCourse, DraftSelfPacedCourse, PreSelfPacedCourse } from '../../../models/courses/sp-courses/sp-course.model';
 import {
-  IKeyValuePair, IPageable
+  ActiveSelfPacedCourse,
+  DraftSelfPacedCourse,
+  IKeyValuePair,
+  IPageable,
+  PreSelfPacedCourse
 } from "../../../models";
-import {AdminPanelApiService} from "../../common";
-import {DeferredResource} from "../../../utils/common";
+import { DeferredResource } from "../../../utils/common";
+import { AdminPanelApiService } from "../../common/admin-panel-api.service";
 
 @Injectable({
   providedIn: 'root',

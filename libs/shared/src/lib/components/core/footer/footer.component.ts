@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {EnvironmentService} from "../../../services/common";
+import { EnvironmentService } from "../../../services/common/environment.service";
 
 
 @Component({

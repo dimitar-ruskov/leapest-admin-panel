@@ -1,33 +1,34 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table/ng-zorro-antd-table";
 
-
-import { RemoveSPCourseLanguageVariantLearner } from '../../../../state/sp-course-variant-details.actions';
-import { GetSPCourseLanguageVariantExams } from '../../../sp-course-variant-exams/sp-course-variant-exams/sp-course-variant-exams.actions';
-import { SpCourseVariantLearnersEnrolledState } from '../../sp-course-variant-learners/sp-course-variant-learners-enrolled.state';
+import { RemoveSPCourseLanguageVariantLearner } from "../../../../state/sp-course-variant-details.actions";
 import {
-  ChangeSPCourseLanguageVariantLearnersEnrolledPage,
-  ChangeSPCourseLanguageVariantLearnersEnrolledPaginationParams,
-  ExportLearnerFromSPCourseLanguageVariantLearnersEnrolled,
-  GetSPCourseLanguageVariantLearnersEnrolled,
-} from '../../sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
+  ExportLearnersTypes,
+  PAGINATION_LIMIT_CONFIG,
+  SPCourseLanguageVariant,
+  SPCourseLanguageVariantLearner
+} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models";
 
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
-import {ExportLearnersTypes} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models";
-import {
-  PAGINATION_LIMIT_CONFIG
-} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {
   createPageableFromTableQueryParams
 } from "../../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";
+import {
+  ChangeSPCourseLanguageVariantLearnersEnrolledPage,
+  ChangeSPCourseLanguageVariantLearnersEnrolledPaginationParams,
+  ExportLearnerFromSPCourseLanguageVariantLearnersEnrolled,
+  GetSPCourseLanguageVariantLearnersEnrolled
+} from "../../state/sp-course-variant-learners-enrolled.actions";
+import { SpCourseVariantLearnersEnrolledState } from "../../state/sp-course-variant-learners-enrolled.state";
+import {
+  GetSPCourseLanguageVariantExams
+} from "../../../sp-course-variant-exams/state/sp-course-variant-exams.actions";
 
 
 const REMOVAL_MODAL_CONTENT = {

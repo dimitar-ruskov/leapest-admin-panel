@@ -1,14 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { ChangeInternalRepositoryCoursesPaginationParams, GetInternalRepositoryCourses, ResetInternalRepositoryCoursesState } from './internal-repository-courses.actions';
+import {
+  ChangeInternalRepositoryCoursesPaginationParams,
+  GetInternalRepositoryCourses,
+  ResetInternalRepositoryCoursesState
+} from "./internal-repository-courses.actions";
 
-import { InternalRepositoryCourseListItem } from '../../../../../../../../../../../libs/shared/src/lib/models/internal-repo/internal-repository-course-list-item.model';
-import { InternalRepositoryService } from '../../../../../../../../../../../libs/shared/src/lib/services/repository/internal/internal-repository.service';
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  InternalRepositoryCourseListItem,
+  IPageable
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  InternalRepositoryService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/materials/internal-repo/internal-repository.service";
 
 export class InternalRepositoryCoursesStateModel {
     loading: boolean;

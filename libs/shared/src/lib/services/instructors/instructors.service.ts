@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { InstructorLite } from '../../models/instructors/instructor.model';
-import {ILTEventListItem, IPageable} from "../../models";
-import {AdminPanelApiService} from "../common";
+import {ILTEventListItem, IPageable, InstructorLite} from "../../models";
 import {DeferredResource} from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
 
 @Injectable({
   providedIn: 'root'

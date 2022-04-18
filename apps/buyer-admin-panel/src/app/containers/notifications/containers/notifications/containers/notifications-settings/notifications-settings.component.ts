@@ -1,17 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalService } from "ng-zorro-antd/modal";
 
-import { GetNotificationsSettings, UpdateNotificationsLogo } from '../../state/notifications-settings.action';
-import { NotificationsSettingsStateModel } from '../../state/notifications-settings.state';
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { GetNotificationsSettings, UpdateNotificationsLogo } from "../../state/notifications-settings.action";
+import { NotificationsSettingsStateModel } from "../../state/notifications-settings.state";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
 import {
   NotificationLogoModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/notification-logo-modal/notification-logo-modal.component";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
+import {
+  DownloadSphinxService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 @Component({
   selector: 'leap-notifications-settings',

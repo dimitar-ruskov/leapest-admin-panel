@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Certificate, CreateCourseModel, GeneralCertificate } from '../../models/certificates/certificate.model';
-
-import {AdminPanelApiService} from "../common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
 import {DeferredResource} from "../../utils/common";
-import {DraftILTCourse, IPageable, S3Resource} from "../../models";
+import {
+  Certificate,
+  CreateCourseModel,
+  DraftILTCourse,
+  GeneralCertificate,
+  IPageable,
+  S3Resource
+} from "../../models";
 
 @Injectable({
   providedIn: 'root'

@@ -1,28 +1,28 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import {OKTA_CONFIG, OktaAuthGuard, OktaAuthModule} from "@okta/okta-angular";
-import {OktaAuth} from "@okta/okta-auth-js";
-import {NgxsModule, Store} from "@ngxs/store";
-import {NgxsFormPluginModule} from "@ngxs/form-plugin";
-import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
-import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
-import {QuillModule} from "ngx-quill";
-import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
-import {en_US, NZ_I18N} from "ng-zorro-antd/i18n";
-import {NzModalModule} from "ng-zorro-antd/modal";
+import { OKTA_CONFIG, OktaAuthGuard, OktaAuthModule } from "@okta/okta-angular";
+import { OktaAuth } from "@okta/okta-auth-js";
+import { NgxsModule, Store } from "@ngxs/store";
+import { NgxsFormPluginModule } from "@ngxs/form-plugin";
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { NgxsLoggerPluginModule } from "@ngxs/logger-plugin";
+import { QuillModule } from "ngx-quill";
+import { NZ_CONFIG, NzConfig } from "ng-zorro-antd/core/config";
+import { en_US, NZ_I18N } from "ng-zorro-antd/i18n";
+import { NzModalModule } from "ng-zorro-antd/modal";
 
-import { AppComponent } from './app.component';
-import {AppRoutingModule} from "./app-routing.module";
-import {GraphQLModule} from "./graphql.module";
-import {environment} from "../environments/environment";
-import {AuthInterceptor, ErrorInterceptor} from "../../../../libs/shared/src/lib/utils/interceptors";
-import {BootstrapService} from "../../../../libs/shared/src/lib/services/common";
-import {GroupGuard, HybridUserGuard, ProvisionUserGuard} from "../../../../libs/shared/src/lib/utils/guards";
-import {CoreState} from "./state/core.state";
-import {SetDomainData} from "./state/core.actions";
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { GraphQLModule } from "./graphql.module";
+import { CoreState } from "./state/core.state";
+import { SetDomainData } from "./state/core.actions";
+import { AuthInterceptor, ErrorInterceptor } from "../../../../libs/shared/src/lib/utils/interceptors";
+import { GroupGuard, HybridUserGuard, ProvisionUserGuard } from "../../../../libs/shared/src/lib/utils/guards";
+import { BootstrapService } from "../../../../libs/shared/src/lib/services/common/bootstrap.service";
+import { environment } from "../../../../libs/shared/src/lib/environments/environment";
 
 const ngZorroConfig: NzConfig = {
   notification: {

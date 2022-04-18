@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PublishingContainerComponent } from './publishing-container.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { PublishingContainerComponent } from "./publishing-container.component";
 
 const routes: Routes = [
   {

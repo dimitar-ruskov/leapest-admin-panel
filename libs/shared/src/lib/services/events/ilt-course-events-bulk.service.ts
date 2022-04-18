@@ -2,16 +2,16 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import {AdminPanelApiService} from "../common";
+import {AdminPanelApiService} from "../common/admin-panel-api.service";
 import {DeferredResource} from "../../utils/common";
-import {IPageable} from "../../models";
 import {
   BulkUploadsSchedulingSummary,
   BulkUploadsValidationReport,
   CourseEventsBulkUploads,
   PublishingReportByStatus,
-  UploadCourseEventsCsv
-} from "../../models/courses/ilt-courses/ilt-course-events-bulk";
+  UploadCourseEventsCsv,
+  IPageable
+} from "../../models";
 
 @Injectable({
   providedIn: 'root',

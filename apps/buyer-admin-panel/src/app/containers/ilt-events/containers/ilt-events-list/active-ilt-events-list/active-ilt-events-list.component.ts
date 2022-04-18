@@ -1,20 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import * as moment from 'moment';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import * as moment from "moment";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
 import {
   CancelILTEvent,
   ChangeActiveILTEventsPaginationParams,
   GetActiveILTEvents,
-  ResetActiveILTEventsState,
-} from './state/active-ilt-events.actions';
-import { ActiveIltEventsState } from './state/active-ilt-events.state';
-import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../../libs/shared/src/lib/models";
+  ResetActiveILTEventsState
+} from "./state/active-ilt-events.actions";
+import { ActiveIltEventsState } from "./state/active-ilt-events.state";
+import { IFilterSelectedDates, ILTEventListItem } from "../../../../../../../../../libs/shared/src/lib/models";
 import {
   createFiltersFromDateRangeSelect,
   createPageableFromTableQueryParams
@@ -23,7 +23,7 @@ import {
 import {
   CancelEventConfirmModalComponent
 } from "../../../../../../../../../libs/shared/src/lib/components/modals/cancel-event-confirm-modal/cancel-event-confirm-modal.component";
-import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/services/common";
+import { EnvironmentService } from "../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 @Component({
   selector: 'leap-active-ilt-events-list',

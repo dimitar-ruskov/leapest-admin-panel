@@ -1,22 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { Observable } from "rxjs";
 
 import {
   ChangeSchedulingReportPaginationParams,
   CourseEventsBulkUploadsSchedulingReportByType,
   CourseEventsBulkUploadsSchedulingSummary,
-  ResetSchedulingReportState,
-} from '../../../state/ilt-course-events-bulk.actions';
-import { IltCourseEventsBulkUploadsState } from '../../../state/ilt-course-events-bulk.state';
+  ResetSchedulingReportState
+} from "../../../state/ilt-course-events-bulk.actions";
+import { IltCourseEventsBulkUploadsState } from "../../../state/ilt-course-events-bulk.state";
 
-import {
-  PublishingReportByStatus
-} from "../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-events-bulk";
 import {
   createPageableFromTableQueryParams
 } from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { PublishingReportByStatus } from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-bulk-upload-scheduling-report-list',

@@ -69,6 +69,7 @@ export * from './marketplace-repo/product.model';
 export * from './notifications/email-history.model';
 export * from './notifications/notifications.model';
 export * from './notifications/template-composer.model';
+export * from './notifications/notification-list-filters.model';
 
 // Publishing
 export * from './publishing/course-publish-status.model';

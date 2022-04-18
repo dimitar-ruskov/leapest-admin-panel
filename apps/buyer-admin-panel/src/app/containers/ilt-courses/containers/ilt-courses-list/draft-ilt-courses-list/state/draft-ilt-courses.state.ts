@@ -1,18 +1,24 @@
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { patch, removeItem } from '@ngxs/store/operators';
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { patch, removeItem } from "@ngxs/store/operators";
 
-import { IltCoursesService } from '../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
+import {
+  IltCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service";
 import {
   ChangeDraftILTCoursesPaginationParams,
   DeleteDraftILTCourse,
-  GetDraftILTCourses, ResetDraftILTCoursesState
-} from './draft-ilt-courses.actions';
+  GetDraftILTCourses,
+  ResetDraftILTCoursesState
+} from "./draft-ilt-courses.actions";
 
-import {DraftILTCourse, IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  DraftILTCourse,
+  IPageable
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 
 export class DraftILTCoursesStateModel {

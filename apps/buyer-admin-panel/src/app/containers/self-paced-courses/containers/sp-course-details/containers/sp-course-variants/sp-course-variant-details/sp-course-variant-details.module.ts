@@ -1,22 +1,22 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { NzLayoutModule } from "ng-zorro-antd/layout";
+import { NzSpinModule } from "ng-zorro-antd/spin";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
+import { NzFormModule } from "ng-zorro-antd/form";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
 
-import { SpCourseVariantDetailsComponent } from './sp-course-variant-details.component';
-import {SpCourseVariantInfoComponent} from "./containers/sp-course-variant-info/sp-course-variant-info.component";
-import {SpCourseVariantExamsComponent} from "./containers/sp-course-variant-exams/sp-course-variant-exams.component";
+import { SpCourseVariantDetailsComponent } from "./sp-course-variant-details.component";
+import { SpCourseVariantInfoComponent } from "./containers/sp-course-variant-info/sp-course-variant-info.component";
+import { SpCourseVariantExamsComponent } from "./containers/sp-course-variant-exams/sp-course-variant-exams.component";
 import {
   SpCourseVariantMaterialsTrackingComponent
 } from "./containers/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.component";
@@ -41,9 +41,6 @@ import {
 } from "../../../../../../../../../../../libs/shared/src/lib/components/common/no-materials/no-materials.module";
 
 import {
-  InternalRepoTileModule
-} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repo-tile/internal-repo-tile.module";
-import {
   EventHeaderSectionsModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/feature/event-header-sections/event-header-sections.module";
 import {
@@ -59,7 +56,9 @@ import {
 import {
   CreationStepperModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/common/creation-stepper/creation-stepper.module";
-import {TGridModule} from "../../../../../../../../../../../libs/shared/src/lib/components/common/t-grid/t-grid.module";
+import {
+  TGridModule
+} from "../../../../../../../../../../../libs/shared/src/lib/components/common/t-grid/t-grid.module";
 import {
   GroupMasterInternalReposByTypePipeModule
 } from "../../../../../../../../../../../libs/shared/src/lib/utils/pipes/group-master-internal-repos-by-type-pipe/group-master-internal-repos-by-type-pipe.module";
@@ -75,6 +74,9 @@ import {
 import {
   AssignUsersModalModule
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/assign-users-modal/assign-users-modal.module";
+import {
+  InternalRepoTileModule
+} from "../../../../../../../../../../../libs/shared/src/lib/components/feature/internal-repo-tile/internal-repo-tile.module";
 
 
 @NgModule({

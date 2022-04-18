@@ -1,14 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { Observable, timer } from 'rxjs';
-import { delayWhen, filter, map, retryWhen } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {InternalRepository, InternalRepositoryDTO} from "../../../models";
-import {DeferredResource} from "../../../utils/common";
-import {
-  InternalRepositoryService
-} from "../../../services/repository/internal/internal-repository.service";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { Observable, timer } from "rxjs";
+import { delayWhen, filter, map, retryWhen } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+
+import { InternalRepository, InternalRepositoryDTO } from "../../../models";
+import { DeferredResource } from "../../../utils/common";
+import { InternalRepositoryService } from "../../../services/materials/internal-repo/internal-repository.service";
+
 
 @Component({
   selector: 'leap-creation-loader-modal',

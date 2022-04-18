@@ -1,21 +1,26 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { Observable } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
-import { ResetInternalRepositoryCoursesState } from './containers/internal-repository-details-courses/state/internal-repository-courses.actions';
-import { GetInternalRepositoryDetails } from './state/internal-repository-details.actions';
-import { InternalRepositoryDetailsState } from './state/internal-repository-details.state';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { Observable } from "rxjs";
+import { take, takeUntil } from "rxjs/operators";
 import {
-  GetInternalRepositoryVariants,
+  ResetInternalRepositoryCoursesState
+} from "./containers/internal-repository-details-courses/state/internal-repository-courses.actions";
+import { GetInternalRepositoryDetails } from "./state/internal-repository-details.actions";
+import { InternalRepositoryDetailsState } from "./state/internal-repository-details.state";
+import {
   ResetInternalRepositoryVariantsState
-} from './containers/internal-repository-details-variants/state/internal-repository-variants.actions';
-import { InternalRepoHostedModalComponent } from '../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
-import { InternalRepoExternalModalComponent } from '../../../../../../../../libs/shared/src/lib/components/feature/internal-repo/internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
+} from "./containers/internal-repository-details-variants/state/internal-repository-variants.actions";
 
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {InternalRepository} from "../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
+import { InternalRepository } from "../../../../../../../../libs/shared/src/lib/models";
+import {
+  InternalRepoHostedModalComponent
+} from "../../../../../../../../libs/shared/src/lib/components/modals/internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component";
+import {
+  InternalRepoExternalModalComponent
+} from "../../../../../../../../libs/shared/src/lib/components/modals/internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component";
 
 @Component({
   selector: 'leap-internal-repository-details',
@@ -45,7 +50,7 @@ export class InternalRepositoryDetailsComponent implements OnInit {
       ]);
     });
 
-    // @TODO need to be added after navigation from loader modal
+    // @TODO George need to be added after navigation from loader modal
     // this.store.dispatch([
     //   new GetInternalRepositoryVariants({ sku: this.internalRepo.parentSKU }),
     //   new GetInternalRepositoryDetails(this.internalRepo.parentSKU),

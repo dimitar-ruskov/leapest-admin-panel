@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IKeyValuePair} from "../../../models";
-import {AdminCoursesService} from "../../../utils/services";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-edit-internal-repo-name-modal',

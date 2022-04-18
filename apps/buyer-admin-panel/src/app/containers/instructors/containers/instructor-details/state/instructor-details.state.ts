@@ -1,20 +1,25 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
 import {
   ChangeInstructorDetailsPaginationParams,
   GetEvents,
   GetInstructor,
   ResetInstructorDetailsState,
-  UpdateInstructor,
-} from './instructor-details.actions';
-import { InstructorsService } from '../../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service';
+  UpdateInstructor
+} from "./instructor-details.actions";
+import {
+  InstructorsService
+} from "../../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service";
 
-import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/instructors/instructor.model';
-import {ILTEventListItem, IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  ILTEventListItem,
+  InstructorLite,
+  IPageable
+} from "../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class InstructorDetailsStateModel {
   loading: boolean;

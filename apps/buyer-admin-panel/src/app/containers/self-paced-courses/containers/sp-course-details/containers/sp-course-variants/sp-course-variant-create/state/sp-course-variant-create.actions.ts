@@ -1,8 +1,8 @@
 import {
   PreSPCourseLanguageVariant,
-  PreSPCourseLanguageVariantCreatePayload
-} from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
-import { SPCourseLanguageVariantCreationStep } from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
+  PreSPCourseLanguageVariantCreatePayload,
+  SPCourseLanguageVariantCreationStep
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class CreatePreSPCourseLanguageVariant {
   static readonly type = '[AP Self-paced Courses] Create Pre Self-paced Course Language Variant';

@@ -1,12 +1,22 @@
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
-import { IltEventsService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
-import { ChangeILTEventExamsFilterSKU, ChangeILTEventExamsPaginationParams, GetILTEventExams, ResetILTEventExamsState } from './ilt-event-exams.actions';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
+import {
+  IltEventsService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
+import {
+  ChangeILTEventExamsFilterSKU,
+  ChangeILTEventExamsPaginationParams,
+  GetILTEventExams,
+  ResetILTEventExamsState
+} from "./ilt-event-exams.actions";
 
-import {ExamCompletionReport, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  ExamCompletionReport,
+  IPageable
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class IltEventExamsStateModel {
   filterSku: string;

@@ -1,14 +1,16 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { BulkUploadValidationReportIssuesModalComponent } from '../../../../../../../../../../../../../libs/shared/src/lib/components/modals/bulk-upload-validation-report-issues-modal/bulk-upload-validation-report-issues-modal.component';
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
+import {
+  BulkUploadValidationReportIssuesModalComponent
+} from "../../../../../../../../../../../../../libs/shared/src/lib/components/modals/bulk-upload-validation-report-issues-modal/bulk-upload-validation-report-issues-modal.component";
 import {
   BulkUploadsValidationReport,
   BulkUploadsValidationReportErrors
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-events-bulk";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   DownloadSphinxService
-} from "../../../../../../../../../../../../../libs/shared/src/lib/services/common";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 @Component({
   selector: 'leap-bulk-upload-validation-report',

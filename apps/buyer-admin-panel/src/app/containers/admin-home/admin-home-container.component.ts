@@ -1,22 +1,25 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import {Select, Store} from '@ngxs/store';
-import {Observable} from "rxjs";
-import { OktaAuthStateService } from '@okta/okta-angular';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { OktaAuthStateService } from "@okta/okta-angular";
 
-import {EnvironmentService} from "../../../../../../libs/shared/src/lib/services/common";
-import {IDomainData, IProfile, TMenuInputModel} from "../../../../../../libs/shared/src/lib/models";
+import { IDomainData, IProfile, TMenuInputModel } from "../../../../../../libs/shared/src/lib/models";
 import {
   FetchTimezones,
   GetCertificatesDictionary,
   GetConferencingToolsDictionary,
   GetCourseLevelDictionary,
-  GetCustomAttendanceDictionary, GetEnrollmentCauseTypeDictionary,
+  GetCustomAttendanceDictionary,
+  GetEnrollmentCauseTypeDictionary,
   GetILTLanguageDictionary,
-  GetIRLanguageDictionary, GetIRTypeList,
+  GetIRLanguageDictionary,
+  GetIRTypeList,
   GetLearnerProfile,
-  GetMaterialTypes, GetUnenrollmentCauseTypeDictionary
+  GetMaterialTypes,
+  GetUnenrollmentCauseTypeDictionary
 } from "../../state/core.actions";
+import { EnvironmentService } from "../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 @Component({
   selector: 'buyer-admin-home-container',

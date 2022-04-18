@@ -1,17 +1,16 @@
-import { Component, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit } from "@angular/core";
 import { Observable } from 'rxjs';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { filter, tap } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
-import {createPageableFromTableQueryParams} from "../../../utils/common";
+import { createPageableFromTableQueryParams, DeferredResource } from "../../../utils/common";
 import {
+  IPageable,
   NotificationRecipientModel,
   NotificationRecipientsListModel
-} from "../../../models/notifications/notifications.model";
-import {
-  GetNotificationRecipients
-} from "../../../../../../../apps/buyer-admin-panel/src/app/containers/ilt-events/containers/ilt-events-details/containers/ilt-event-notifications/state/ilt-event-details-notifications.actions";
+} from "../../../models";
+import { IltEventNotificationsService } from "../../../services/events/ilt-event-notifications.service";
 
 @Component({
   selector: 'leap-notification-recipients-modal',
@@ -20,16 +19,25 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class NotificationRecipientsModalComponent {
+export class NotificationRecipientsModalComponent implements OnInit {
   @Input() recipients$: Observable<NotificationRecipientsListModel>;
-  @Input() recipientsLoading$: Observable<boolean>;
   @Input() details: { eventId: string; trigger: string; recipient: string };
 
-  loading: boolean;
+  recipients: NotificationRecipientsListModel;
+  recipientsLoading: boolean;
 
   trackByFn: TrackByFunction<NotificationRecipientModel> = (index, item) => item.userName;
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly eventNotificationsService: IltEventNotificationsService) {}
+
+  ngOnInit(): void {
+    this.recipients$
+      .pipe(
+        untilDestroyed(this),
+        filter(recipients => !!recipients)
+      )
+      .subscribe((recipients: NotificationRecipientsListModel) => this.recipients = recipients);
+  }
 
   getRecipientName(recipient: NotificationRecipientModel): string {
     if (recipient.firstName || recipient.lastName) {
@@ -39,19 +47,28 @@ export class NotificationRecipientsModalComponent {
     }
   }
 
+  getRecipientsList(eventId: string, trigger: string, recipient: string, pageable: IPageable): void {
+    this.eventNotificationsService.getRecipients(eventId, trigger, recipient, pageable).pipe(
+      untilDestroyed(this),
+      tap((data: DeferredResource<NotificationRecipientsListModel>) => {
+        this.recipientsLoading = true;
+        if (data.isSuccess) {
+          this.recipientsLoading = false;
+          this.recipients = data.response;
+        }
+      })
+    )
+  }
+
   onSearchChange(search: string): void {
-    this.store.dispatch(
-      new GetNotificationRecipients(this.details.eventId, this.details.trigger, this.details.recipient, {
-        filter: search,
-        page: 1,
-      }),
-    );
+    this.getRecipientsList(this.details.eventId, this.details.trigger, this.details.recipient, {
+      filter: search,
+      page: 1,
+    });
   }
 
   onQueryParamsChange(queryParams: NzTableQueryParams): void {
     const pageable = createPageableFromTableQueryParams(queryParams);
-    this.store.dispatch(
-      new GetNotificationRecipients(this.details.eventId, this.details.trigger, this.details.recipient, pageable),
-    );
+    this.getRecipientsList(this.details.eventId, this.details.trigger, this.details.recipient, pageable);
   }
 }

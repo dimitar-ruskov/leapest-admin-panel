@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Select } from '@ngxs/store';
+import { ChangeDetectionStrategy, Component, TrackByFunction } from "@angular/core";
+import { Observable } from "rxjs";
+import { Select } from "@ngxs/store";
 
-import { SpCourseDetailsState } from '../../state/sp-course-details.state';
-import {MasterInternalRepository} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { SpCourseDetailsState } from "../../state/sp-course-details.state";
+import { MasterInternalRepository } from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-materials',

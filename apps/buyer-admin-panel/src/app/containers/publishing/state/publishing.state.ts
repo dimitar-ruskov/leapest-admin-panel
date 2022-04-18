@@ -1,16 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
-import { combineLatest, filter, map } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
+import { combineLatest, filter, map } from "rxjs";
 
-import { PublishingService } from '../../../../../../../libs/shared/src/lib/services/publishing/publishing.service';
-import { EditTabValue, GetIRSettings, GetGeneralSettings } from './publishing.actions';
-
-import {IKeyValuePair} from "../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../libs/shared/src/lib/utils/common";
-import {
-  IPublishingSettings, IPublishingTab
-} from "../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
+import { PublishingService } from "../../../../../../../libs/shared/src/lib/services/publishing/publishing.service";
+import { EditTabValue, GetGeneralSettings, GetIRSettings } from "./publishing.actions";
+import { IKeyValuePair, IPublishingSettings, IPublishingTab } from "../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../libs/shared/src/lib/utils/common";
 
 export class PublishingStateModel {
   internalRepoTabs: IPublishingTab[];

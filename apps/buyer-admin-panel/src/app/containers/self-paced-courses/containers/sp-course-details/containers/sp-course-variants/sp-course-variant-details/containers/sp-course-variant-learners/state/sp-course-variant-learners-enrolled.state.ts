@@ -1,24 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { patch } from '@ngxs/store/operators';
-import { filter, take, tap } from 'rxjs/operators';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { patch } from "@ngxs/store/operators";
+import { filter, take, tap } from "rxjs/operators";
+import { NzMessageService } from "ng-zorro-antd/message";
 
-import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
+import {
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
 import {
   ChangeSPCourseLanguageVariantLearnersEnrolledPage,
   ChangeSPCourseLanguageVariantLearnersEnrolledPaginationParams,
   ExportLearnerFromSPCourseLanguageVariantLearnersEnrolled,
   GetSPCourseLanguageVariantLearnersEnrolled,
-  SpliceSPCourseLanguageVariantLearnersEnrolled,
-} from './sp-course-variant-learners-enrolled.actions';
+  SpliceSPCourseLanguageVariantLearnersEnrolled
+} from "./sp-course-variant-learners-enrolled.actions";
 
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
-import {DeferredResource} from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+
 import {
-  DEFAULT_INITIAL_PAGINATION_PARAMS
-} from "../../../../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable,
+  SPCourseLanguageVariantLearner
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class SpCourseVariantLearnersEnrolledStateModel {

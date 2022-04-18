@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
-import {CertificateInfo} from "../../../models";
-import {EnvironmentService} from "../../../services/common";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
+import { CertificateInfo } from "../../../models";
+
+import { EnvironmentService } from "../../../services/common/environment.service";
 
 @Component({
   selector: 'leap-certificate-view',

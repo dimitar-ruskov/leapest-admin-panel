@@ -1,32 +1,35 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
-import { SpCourseVariantLearnersPendingState } from '../../sp-course-variant-learners/sp-course-variant-learners-pending.state';
-import {
-  ChangeSPCourseLanguageVariantLearnersPendingPage,
-  ChangeSPCourseLanguageVariantLearnersPendingPaginationParams, ExportLearnerFromEvent,
-  GetSPCourseLanguageVariantLearnersPending,
-} from '../../sp-course-variant-learners/sp-course-variant-learners-pending.actions';
+
 import {
   ApproveSPCourseLanguageVariantLearnerRegistrationRequest,
-  RejectSPCourseLanguageVariantLearnerRegistrationRequest,
-} from '../../../../state/sp-course-variant-details.actions';
+  RejectSPCourseLanguageVariantLearnerRegistrationRequest
+} from "../../../../state/sp-course-variant-details.actions";
 
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {ExportLearnersTypes} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
-  PAGINATION_LIMIT_CONFIG
-} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models/constants";
+  ExportLearnersTypes,
+  PAGINATION_LIMIT_CONFIG,
+  SPCourseLanguageVariant,
+  SPCourseLanguageVariantLearner
+} from "../../../../../../../../../../../../../../../libs/shared/src/lib/models";
+
 import {
   createPageableFromTableQueryParams
 } from "../../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";
+import {
+  ChangeSPCourseLanguageVariantLearnersPendingPage,
+  ChangeSPCourseLanguageVariantLearnersPendingPaginationParams,
+  ExportLearnerFromEvent,
+  GetSPCourseLanguageVariantLearnersPending
+} from "../../state/sp-course-variant-learners-pending.actions";
+import { SpCourseVariantLearnersPendingState } from "../../state/sp-course-variant-learners-pending.state";
 
 
 const REJECTION_MODAL_CONTENT = {

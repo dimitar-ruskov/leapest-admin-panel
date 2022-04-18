@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
 
-import { NotificationsListState } from '../containers/notifications/state/notifications-list.state';
-import { NotificationsSettingsState } from '../containers/notifications/state/notifications-settings.state';
-import { NotificationDetailsState } from '../containers/notification-details/state/notification-details.state';
-import { ChangeNotificationsTab } from './notifications.actions';
+import { NotificationsListState } from "../containers/notifications/state/notifications-list.state";
+import { NotificationsSettingsState } from "../containers/notifications/state/notifications-settings.state";
+import { NotificationDetailsState } from "../containers/notification-details/state/notification-details.state";
+import { ChangeNotificationsTab } from "./notifications.actions";
 
 export class NotificationsStateModel {
   activeTab: number;

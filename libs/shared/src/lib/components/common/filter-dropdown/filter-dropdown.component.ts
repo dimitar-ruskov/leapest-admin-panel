@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {FilterParamList} from "../../../utils/services";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { FilterParamList } from "../../../models";
+
 
 @Component({
   selector: 'leap-filter-dropdown',

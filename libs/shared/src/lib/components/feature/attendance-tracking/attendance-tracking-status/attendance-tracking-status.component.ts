@@ -5,15 +5,17 @@ import {
   EventEmitter,
   Input,
   Output,
-  TrackByFunction,
-} from '@angular/core';
+  TrackByFunction
+} from "@angular/core";
 
 import {
   ILTEventAttendance,
-  IltEventAttendanceStatusKey, IltEventAttendanceStatusKeys, IltEventAttendanceStatusValue,
+  IltEventAttendanceStatusKey,
+  IltEventAttendanceStatusKeys,
+  IltEventAttendanceStatusValue,
   IltEventAttendanceStatusValues
 } from "../../../../models";
-import {EnvironmentService} from "../../../../services/common";
+import { EnvironmentService } from "../../../../services/common/environment.service";
 
 interface ILTEventAttendanceStatusOption {
   value: IltEventAttendanceStatusKey;

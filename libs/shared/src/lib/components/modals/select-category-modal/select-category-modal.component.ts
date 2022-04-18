@@ -1,8 +1,9 @@
-import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit } from '@angular/core';
-import { NzModalRef } from 'ng-zorro-antd/modal';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {CourseCategory} from "../../../models";
-import {LmsCategoriesService} from "../../../utils/services";
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { NzModalRef } from "ng-zorro-antd/modal";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+
+import { CourseCategory } from "../../../models";
+import { LmsCategoriesService } from "../../../services/courses/lms-categories.service";
 
 @Component({
   selector: 'leap-select-category-modal',

@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { NotificationsService } from '../../../../../../../../../libs/shared/src/lib/services/notifications/notifications.service';
-import { GetNotificationsSettings, UpdateNotificationsLogo } from './notifications-settings.action';
-
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  NotificationPlaceholderModel
-} from "../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
+  NotificationsService
+} from "../../../../../../../../../libs/shared/src/lib/services/notifications/notifications.service";
+import { GetNotificationsSettings, UpdateNotificationsLogo } from "./notifications-settings.action";
+
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { NotificationPlaceholderModel } from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class NotificationsSettingsStateModel {
   notificationLogoBucket: string;

@@ -1,10 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
-import {DeferredResource} from "../../../utils/common";
-import {ConferencingToolService} from "../../../utils/services";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Observable } from "rxjs";
+import { switchMap, take } from "rxjs/operators";
+
+import { DeferredResource } from "../../../utils/common";
+import { ConferencingToolService } from "../../../services/events/conferencing-tool.service";
 
 type PageType = 'details' | 'create';
 

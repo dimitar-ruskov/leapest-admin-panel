@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+
 import {AmberResponse, IKeyValuePair} from "../../models";
-import {EnvironmentService} from "../common";
+import { EnvironmentService } from "../common/environment.service";
 
 @Injectable({
   providedIn: 'root',

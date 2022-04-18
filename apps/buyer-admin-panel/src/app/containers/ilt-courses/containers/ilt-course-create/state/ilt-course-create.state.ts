@@ -1,23 +1,25 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { tap } from "rxjs/operators";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+
+import {
+  CancelILTCourseCreation,
+  GetPreILTCourse,
+  GoToILTCourseCreationStep,
+  UpdatePreILTCourse
+} from "./ilt-course-create.actions";
 
 import {
   ILT_COURSE_CREATION_STEPS_LIST,
   ILTCourseCreationStep,
   ILTCourseCreationStepType,
-} from '../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
-import { IltCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
+  PreILTCourse
+} from "../../../../../../../../../libs/shared/src/lib/models";
 import {
-  CancelILTCourseCreation,
-  GetPreILTCourse,
-  GoToILTCourseCreationStep,
-  UpdatePreILTCourse,
-} from './ilt-course-create.actions';
-
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models";
+  IltCoursesService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class ILTCourseCreateStateModel {
   currentStep: ILTCourseCreationStepType | null;

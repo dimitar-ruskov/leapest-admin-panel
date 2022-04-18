@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import produce from 'immer';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
+import produce from "immer";
 
-import { GetCertificateDetails, UpdateCertificateFields } from './certificate-details.actions';
-import { CertificateCoursesState } from '../containers/certificate-courses/state/certificate-courses.state';
-import { CertificateIssuedState } from '../containers/certificate-issued/state/certificate-issued.state';
-import { CertificatesService } from '../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service';
+import { GetCertificateDetails, UpdateCertificateFields } from "./certificate-details.actions";
+import { CertificateCoursesState } from "../containers/certificate-courses/state/certificate-courses.state";
+import { CertificateIssuedState } from "../containers/certificate-issued/state/certificate-issued.state";
+import {
+  CertificatesService
+} from "../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service";
 
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import { Certificate } from '../../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { Certificate } from "../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class CertificateDetailsStateModel {

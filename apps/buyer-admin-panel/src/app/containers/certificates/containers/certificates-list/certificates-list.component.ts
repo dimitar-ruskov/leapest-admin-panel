@@ -15,11 +15,11 @@ import {
   ResetCertificatesState,
 } from './state/certificates-list.actions';
 
-import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
 import {
   createPageableFromTableQueryParams,
   DeferredResource
 } from "../../../../../../../../libs/shared/src/lib/utils/common";
+import { Certificate } from "../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-certificates-list',

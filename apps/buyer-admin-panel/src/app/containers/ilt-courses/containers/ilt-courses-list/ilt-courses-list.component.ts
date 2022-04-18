@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { take, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { take, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
-import { IltCoursesListState } from './state/ilt-courses-list.state';
-import { ChangeILTCoursesListTab, CreatePreILTCourse } from './state/ilt-courses-list.actions';
-import {IGlobalStateModel} from "../../../../state/state.model";
+import { IltCoursesListState } from "./state/ilt-courses-list.state";
+import { ChangeILTCoursesListTab, CreatePreILTCourse } from "./state/ilt-courses-list.actions";
+import { IGlobalStateModel } from "../../../../state/state.model";
 
-import {IKeyValuePair, PreILTCourse} from "../../../../../../../../libs/shared/src/lib/models";
+import { IKeyValuePair, PreILTCourse } from "../../../../../../../../libs/shared/src/lib/models";
 import {
   CreateNewCourseModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/create-new-course-modal/create-new-course-modal.component";

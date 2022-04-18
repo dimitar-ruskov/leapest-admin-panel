@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SpCoursesContainerComponent } from './sp-courses-container.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { SpCoursesContainerComponent } from "./sp-courses-container.component";
 
 const routes: Routes = [
   {

@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { State } from '@ngxs/store';
-import {InternalRepositoryListState} from "../containers/internal-repository-list/state/internal-repository-list.state";
+import { Injectable } from "@angular/core";
+import { State } from "@ngxs/store";
+import {
+  InternalRepositoryListState
+} from "../containers/internal-repository-list/state/internal-repository-list.state";
 import {
   InternalRepositoryDetailsState
 } from "../containers/internal-repository-details/state/internal-repository-details.state";

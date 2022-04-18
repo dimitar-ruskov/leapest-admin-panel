@@ -1,14 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
 
-import { CertificateDetailsState } from './state/certificate-details.state';
-import { GetCertificateDetails } from './state/certificate-details.actions';
+import { CertificateDetailsState } from "./state/certificate-details.state";
+import { GetCertificateDetails } from "./state/certificate-details.actions";
 
-import { Certificate } from '../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
+import { Certificate } from "../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
 
 @Component({
   selector: 'leap-certificate-details',

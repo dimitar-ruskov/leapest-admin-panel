@@ -1,24 +1,26 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import * as moment from 'moment';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import * as moment from "moment";
 
-import { IltCourseEventsCommonState } from '../state/ilt-course-events-common.state';
+import { IltCourseEventsCommonState } from "../state/ilt-course-events-common.state";
 import {
   CancelCourseEvent,
   ChangeEventsPaginationParams,
   GetAllEventsByType,
-  ResetCourseEventsState,
-} from '../state/ilt-course-events-common.actions';
+  ResetCourseEventsState
+} from "../state/ilt-course-events-common.actions";
 
-import {ILTEventListItem} from "../../../../../../../../../../../libs/shared/src/lib/models";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { ILTEventListItem } from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   CancelEventConfirmModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/cancel-event-confirm-modal/cancel-event-confirm-modal.component";
-import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/services/common";
+import {
+  EnvironmentService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 @Component({
   selector: 'leap-ilt-course-events-active',

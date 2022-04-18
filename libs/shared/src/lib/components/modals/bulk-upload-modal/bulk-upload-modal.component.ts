@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OktaAuthStateService } from '@okta/okta-angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import {
-  EnvironmentService,
-  UploadService
-} from "../../../services/common";
+import { UploadService } from "../../../services/common/upload.service";
+import { EnvironmentService } from "../../../services/common/environment.service";
 
 @Component({
   selector: 'leap-bulk-upload-modal',

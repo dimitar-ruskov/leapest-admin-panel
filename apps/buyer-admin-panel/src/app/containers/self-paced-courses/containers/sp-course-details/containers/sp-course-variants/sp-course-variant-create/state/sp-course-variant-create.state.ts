@@ -1,19 +1,23 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
-import {
-  SPCourseLanguageVariantCreationStep,
-  SPCourseLanguageVariantCreationSteps
-} from '../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
 import {
   CreatePreSPCourseLanguageVariant,
-  GetPreSPCourseLanguageVariant, GoToSPCourseLanguageVariantCreationStep, UpdatePreSPCourseLanguageVariant
-} from './sp-course-variant-create.actions';
-import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
-import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+  GetPreSPCourseLanguageVariant,
+  GoToSPCourseLanguageVariantCreationStep,
+  UpdatePreSPCourseLanguageVariant
+} from "./sp-course-variant-create.actions";
+import {
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
+import { DeferredResource } from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  PreSPCourseLanguageVariant,
+  SPCourseLanguageVariantCreationStep,
+  SPCourseLanguageVariantCreationSteps
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class SpCourseVariantCreateStateModel {

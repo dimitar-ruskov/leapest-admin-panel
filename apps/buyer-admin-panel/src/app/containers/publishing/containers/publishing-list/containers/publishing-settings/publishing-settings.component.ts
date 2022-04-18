@@ -1,24 +1,20 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Select } from '@ngxs/store';
-import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Observable } from "rxjs";
+import { Select } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
-import {IKeyValuePair} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
+  COURSE_PUBLISH_STATUS,
+  IKeyValuePair,
   IPublishingSettings
-} from "../../../../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
-import {COURSE_PUBLISH_STATUS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {LxpUsersService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  LxpUsersService
+} from "../../../../../../../../../../libs/shared/src/lib/services/publishing/lxp-users.service";
+
 
 @Component({
   selector: 'leap-publishing-settings',

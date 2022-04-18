@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { GetFullLanguageDictionary } from './containers/sp-courses-list/state/sp-courses-list.actions';
-import { Store } from '@ngxs/store';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { GetFullLanguageDictionary } from "./containers/sp-courses-list/state/sp-courses-list.actions";
+import { Store } from "@ngxs/store";
 
 @Component({
   selector: 'leap-sp-courses-container',

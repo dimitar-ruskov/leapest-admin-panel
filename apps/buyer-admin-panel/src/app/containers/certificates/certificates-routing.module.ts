@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CertificatesComponent } from './certificates.component';
-import { CertificatesListComponent } from './containers/certificates-list/certificates-list.component';
-import { CertificateDetailsComponent } from './containers/certificate-details/certificate-details.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { CertificatesComponent } from "./certificates.component";
+import { CertificatesListComponent } from "./containers/certificates-list/certificates-list.component";
+import { CertificateDetailsComponent } from "./containers/certificate-details/certificate-details.component";
 
 const routes: Routes = [
   {

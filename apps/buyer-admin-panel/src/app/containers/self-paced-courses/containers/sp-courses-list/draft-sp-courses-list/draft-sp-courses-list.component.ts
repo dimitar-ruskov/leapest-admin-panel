@@ -1,19 +1,18 @@
-import { Component, ChangeDetectionStrategy, OnInit, TrackByFunction } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { Observable } from "rxjs";
+import { Select, Store } from "@ngxs/store";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { NzModalService } from "ng-zorro-antd/modal";
 
-import { DraftSpCoursesListState } from './draft-sp-courses-list/draft-sp-courses-list.state';
+import { createPageableFromTableQueryParams } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DraftSelfPacedCourse } from "../../../../../../../../../libs/shared/src/lib/models";
+import { DraftSpCoursesListState } from "./state/draft-sp-courses-list.state";
 import {
   ChangeDraftSPCoursesPaginationParams,
   DeleteDraftSPCourse,
   GetDraftSelfPacedCourses,
-  ResetDraftSPCoursesState,
-} from './draft-sp-courses-list/draft-sp-courses-list.actions';
-
-import { DraftSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {createPageableFromTableQueryParams} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+  ResetDraftSPCoursesState
+} from "./state/draft-sp-courses-list.actions";
 
 @Component({
   selector: 'leap-draft-sp-courses-list',

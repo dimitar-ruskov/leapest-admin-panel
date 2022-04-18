@@ -1,16 +1,21 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
 
-import { EmailHistoryService } from '../../../../../../../../../../../../../libs/shared/src/lib/services/events/email-history.service';
+import {
+  EmailHistoryService
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/events/email-history.service";
 import {
   ChangeEmailHistoryPaginationParams,
   GetEmailHistory,
   PreviewNotificationHistoryTemplate
 } from "./email-history.action";
 
-import { EmailNotification, IPageableEmailHistory } from '../../../../../../../../../../../../../libs/shared/src/lib/models/notifications/email-history.model';
-import {DeferredResource} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  EmailNotification,
+  IPageableEmailHistory
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 const DEFAULT_INITIAL_PAGINATION_PARAMS: IPageableEmailHistory = {

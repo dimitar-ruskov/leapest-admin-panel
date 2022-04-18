@@ -3,7 +3,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import {DeferredResource} from "../../../utils/common";
-import {AdminPanelApiService} from "../../common";
+import { AdminPanelApiService } from "../../common/admin-panel-api.service";
 import {
   DraftILTCourse, EventReview, ILTCourse,
   ILTEvent, ILTEventBase, ILTEventListItem, IPageable, PreILTCourse, PublishedILTCourse

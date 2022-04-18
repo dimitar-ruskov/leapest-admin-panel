@@ -1,25 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import {
-  SPCourseLanguageVariantCreationStep
-} from "../../../models/courses/sp-courses/sp-course-create-variant-step.model";
+import { DeferredResource } from "../../../utils/common";
+import { AdminPanelApiService } from "../../common/admin-panel-api.service";
 
-import { SPCourseLanguageVariant } from '../../../models/courses/sp-courses/sp-course.model';
-import {
-  PreSPCourseLanguageVariant,
-  PreSPCourseLanguageVariantCreatePayload,
-  UpdateSpCourseLanguageVariantLearnersResponse,
-} from '../../../models/courses/sp-courses/sp-course-language-variant.model';
-import { SPCourseLanguageVariantLearner } from '../../../models/courses/sp-courses/sp-course-language-variant-learner.model';
-import { SPCourseLanguageVariantExam } from '../../../models/courses/sp-courses/sp-course-language-variant-exam.model';
-import {AdminPanelApiService} from "../../common";
-import {DeferredResource} from "../../../utils/common";
 import {
   ExportLearnersDto,
   IPageable,
-  MaterialCompletionReport
+  MaterialCompletionReport,
+  PreSPCourseLanguageVariant,
+  PreSPCourseLanguageVariantCreatePayload,
+  SPCourseLanguageVariant,
+  SPCourseLanguageVariantCreationStep,
+  SPCourseLanguageVariantExam,
+  SPCourseLanguageVariantLearner,
+  UpdateSpCourseLanguageVariantLearnersResponse
 } from "../../../models";
 
 

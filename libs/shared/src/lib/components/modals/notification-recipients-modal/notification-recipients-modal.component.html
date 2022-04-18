@@ -7,11 +7,11 @@
 <nz-table
   nzTableLayout="fixed"
   [nzFrontPagination]="false"
-  [nzData]="(recipients$ | async)?.data"
-  [nzLoading]="recipientsLoading$ | async"
-  [nzTotal]="(recipients$ | async)?.count"
-  [nzPageSize]="(recipients$ | async)?.limit"
-  [nzPageIndex]="(recipients$ | async)?.page"
+  [nzData]="recipients.data"
+  [nzLoading]="recipientsLoading"
+  [nzTotal]="recipients.count"
+  [nzPageSize]="recipients?.limit"
+  [nzPageIndex]="recipients?.page"
   [nzNoResult]="'There are no recipients'"
   (nzQueryParams)="onQueryParamsChange($event)"
   leapTableGrid
@@ -24,7 +24,7 @@
       </th>
     </tr>
   </thead>
-  <tbody *ngIf="(recipients$ | async)?.data.length">
+  <tbody *ngIf="recipients?.data.length">
     <tr *ngFor="let recipient of recipientsTable.data; trackBy: trackByFn" leapTableGridRow>
       <td>
         <div class="primary-text">

@@ -1,18 +1,18 @@
-import {ILTInstructor} from "../events/ilt-event.model";
-import {S3Resource} from "../common/s3-resource.model";
-import {ILTEventAttendanceStatus} from "../events/ilt-event-attendance.model";
+import { ILTInstructor } from "../events/ilt-event.model";
+import { S3Resource } from "../common/s3-resource.model";
+import { ILTEventAttendanceStatus } from "../events/ilt-event-attendance.model";
 
 export interface Certificate extends CreateCourseModel {
-  id: string | null;
-  createdAt: string;
-  updatedAt: string;
-  createdBy: string;
-  updatedBy: string;
-  createdByUser: ILTInstructor;
-  updatedByUser: ILTInstructor;
-  sku: string;
+  id: string;
+  createdAt?: string;
+  updatedAt?: string;
+  createdBy?: string;
+  updatedBy?: string;
+  createdByUser?: ILTInstructor;
+  updatedByUser?: ILTInstructor;
+  sku?: string;
   type?: string | null;
-  status: ILTEventAttendanceStatus;
+  status?: ILTEventAttendanceStatus;
 }
 
 export interface CreateCourseModel extends S3Resource {

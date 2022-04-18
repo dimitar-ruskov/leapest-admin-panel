@@ -1,17 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import {AdminPanelApiService} from "../../common";
-import { InternalRepositoryCourseListItem } from '../../../models/internal-repo/internal-repository-course-list-item.model';
-import { InternalRepositoryVariantDTO } from '../../../models/internal-repo/internal-repository-variant-dto.model';
 import {
-  FormValue, IConfigType,
+  FormValue,
+  IConfigType,
   InternalRepository,
-  InternalRepositoryDTO, IPageable,
-  IRContent, IRCreatePayload
+  InternalRepositoryCourseListItem,
+  InternalRepositoryDTO,
+  InternalRepositoryVariantDTO,
+  IPageable,
+  IRContent,
+  IRCreatePayload
 } from "../../../models";
-import {DeferredResource} from "../../../utils/common";
+import { DeferredResource } from "../../../utils/common";
+import { AdminPanelApiService } from "../../common/admin-panel-api.service";
 
 @Injectable({
   providedIn: 'root',

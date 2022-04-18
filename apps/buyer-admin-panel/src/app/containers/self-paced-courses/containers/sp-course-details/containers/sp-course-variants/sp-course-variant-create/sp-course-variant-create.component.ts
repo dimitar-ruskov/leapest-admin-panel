@@ -1,20 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Observable } from "rxjs";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+import { SpCourseVariantCreateState } from "./state/sp-course-variant-create.state";
+import { GetPreSPCourseLanguageVariant } from "./state/sp-course-variant-create.actions";
+
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
+  PreSPCourseLanguageVariant,
+  SPCourseCreationSteps,
   SPCourseLanguageVariantCreationStep,
   SPCourseLanguageVariantCreationSteps,
-  SPCourseLanguageVariantCreationStepsList,
-} from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
-import { SpCourseVariantCreateState } from './state/sp-course-variant-create.state';
-import { GetPreSPCourseLanguageVariant } from './state/sp-course-variant-create.actions';
-import {SPCourseCreationSteps} from "../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-step.model";
-
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+  SPCourseLanguageVariantCreationStepsList
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-variant-create',

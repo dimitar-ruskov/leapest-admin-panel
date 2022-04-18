@@ -1,4 +1,4 @@
-import { ILTEventCreationStep } from '../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
+import { ILTEventCreationStep } from '../../../../../../../../../libs/shared/src/lib/models';
 import {ILTEvent} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetILTEventDetails {

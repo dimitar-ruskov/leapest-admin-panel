@@ -1,26 +1,21 @@
-import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
-import { filter, tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, State, StateContext } from "@ngxs/store";
+import { filter, tap } from "rxjs/operators";
 
-import { NotificationsService } from '../../../../../../../../../libs/shared/src/lib/services/notifications/notifications.service';
-import { ChangePage, FetchNotifications, ToggleSort, ClearSearchForm } from './notifications-list.actions';
-
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {IPageable, Sort} from "../../../../../../../../../libs/shared/src/lib/models";
 import {
-  NotificationModel
-} from "../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
+  NotificationsService
+} from "../../../../../../../../../libs/shared/src/lib/services/notifications/notifications.service";
+import { ChangePage, ClearSearchForm, FetchNotifications, ToggleSort } from "./notifications-list.actions";
 
-export interface ISearchParams {
-  filter?: string;
-  recipient?: string[];
-  trigger?: string[];
-  venue?: string[];
-}
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  IPageable,
+  ISearchMetadata,
+  ISearchParams,
+  NotificationModel,
+  Sort
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
-export interface ISearchMetadata {
-  totalCount: number;
-}
 
 export class NotificationsListStateModel {
   notifications: DeferredResource<NotificationModel[]>;

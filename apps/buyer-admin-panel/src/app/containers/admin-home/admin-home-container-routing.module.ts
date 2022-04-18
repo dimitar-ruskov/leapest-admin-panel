@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {AdminHomeContainerComponent} from "./admin-home-container.component";
-import {AdminUserGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { AdminHomeContainerComponent } from "./admin-home-container.component";
+import { AdminUserGuard } from "../../../../../../libs/shared/src/lib/utils/guards";
 
 const routes: Routes = [
   {

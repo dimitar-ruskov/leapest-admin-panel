@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
-import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject, forkJoin, Observable, of } from "rxjs";
+import { catchError, filter, switchMap, take, tap } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
-import {IKeyValuePair, Venue} from "../../../models";
-import {getFullAddress} from "../../../utils/common";
-import {AdminCoursesService} from "../../../utils/services";
+import { IKeyValuePair, Venue } from "../../../models";
+import { getFullAddress } from "../../../utils/common";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-edit-address-modal',

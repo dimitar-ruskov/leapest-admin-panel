@@ -1,29 +1,35 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
-import { catchError, filter, take } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable, of } from "rxjs";
+import { catchError, filter, take } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
-import { InstructorDetailsState } from './state/instructor-details.state';
+import { InstructorDetailsState } from "./state/instructor-details.state";
 import {
   ChangeInstructorDetailsPaginationParams,
   GetEvents,
   GetInstructor,
   ResetInstructorDetailsState,
-  UpdateInstructor,
-} from './state/instructor-details.actions';
-import { InstructorCreateModalComponent } from '../../../../../../../../libs/shared/src/lib/components/modals/instructor-create-modal/instructor-create-modal.component';
-
-import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/instructors/instructor.model';
-import {IFilterSelectedDates, ILTEventListItem} from "../../../../../../../../libs/shared/src/lib/models";
+  UpdateInstructor
+} from "./state/instructor-details.actions";
 import {
-  createFiltersFromDateRangeSelect, createPageableFromTableQueryParams,
+  InstructorCreateModalComponent
+} from "../../../../../../../../libs/shared/src/lib/components/modals/instructor-create-modal/instructor-create-modal.component";
+
+import {
+  IFilterSelectedDates,
+  ILTEventListItem,
+  InstructorLite
+} from "../../../../../../../../libs/shared/src/lib/models";
+import {
+  createFiltersFromDateRangeSelect,
+  createPageableFromTableQueryParams,
   DeferredResource
 } from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {NotificationService} from "../../../../../../../../libs/shared/src/lib/services/common";
+import { NotificationService } from "../../../../../../../../libs/shared/src/lib/services/common/notification.service";
 
 const NO_EVENTS_TEXT = 'No events issued';
 
@@ -45,7 +51,7 @@ export class InstructorDetailsComponent implements OnInit {
   searchPhrase$: Observable<string>;
 
   @Select(InstructorDetailsState.instructor)
-  instructor$: Observable<InstructorLite>;
+  instructor$: Observable<DeferredResource<InstructorLite>>;
 
   @Select(InstructorDetailsState.instructorEvents)
   events$: Observable<DeferredResource<ILTEventListItem[]>>;

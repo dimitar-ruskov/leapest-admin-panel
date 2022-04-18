@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { Injectable } from "@angular/core";
+import { Store } from "@ngxs/store";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
-import { ScheduleILTCourseEvent } from '../../../../../../../apps/buyer-admin-panel/src/app/containers/ilt-courses/containers/ilt-courses-list/state/ilt-courses-list.actions';
-import {ILTEventBase, PublishedILTCourse} from "../../../models";
+import { ScheduleILTCourseEvent } from "../containers/ilt-courses-list/state/ilt-courses-list.actions";
+import { ILTEventBase, PublishedILTCourse } from "../../../../../../../libs/shared/src/lib/models";
 import {
   EventCreateModalComponent
-} from "../../../components/modals/event-create-modal/event-create-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/event-create-modal/event-create-modal.component";
 
 @Injectable({
   providedIn: 'root',

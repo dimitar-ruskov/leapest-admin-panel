@@ -12,7 +12,7 @@ import {
   IKeyValuePair, IltEventAttendanceStatusKeys,
   IltEventAttendanceStatusValues
 } from "../../../models";
-import {AdminCoursesService} from "../../../utils/services";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-bulk-attendance-tracking-selection-modal',

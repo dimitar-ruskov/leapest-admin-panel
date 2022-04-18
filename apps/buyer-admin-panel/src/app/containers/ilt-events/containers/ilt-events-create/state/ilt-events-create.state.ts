@@ -1,19 +1,18 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { IltEventsService } from '../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
-import { ILTEventCreationStep } from '../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-create-step.model';
+import { IltEventsService } from "../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
 import {
   GetILTEventDetails,
   GoToEventCreationStep,
   ResetEventBase,
-  UpdateILTEventDetails,
-} from './ilt-events-create.actions';
+  UpdateILTEventDetails
+} from "./ilt-events-create.actions";
 
-import {ILTEvent, ILTEventBase} from "../../../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { ILTEvent, ILTEventBase, ILTEventCreationStep } from "../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class IltEventsCreateStateModel {
   iltEvent: DeferredResource<ILTEvent>;

@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Store } from '@ngxs/store';
-import { Observable, timer, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import {DeferredResource} from "../../utils/common";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
+import { Store } from "@ngxs/store";
+import { Observable, of, timer } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
+import { DeferredResource } from "../../utils/common";
 import DeferredResourceUtils from "../../utils/common/deferred-resource.utils";
-import {AdminPanelApiService, EnvironmentService} from "../common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
+import { EnvironmentService } from "../common/environment.service";
 import {
   AmberResponse,
   AssignLearnersResponse,
   ConferencingTool,
   ExamCompletionReport,
   ExamShortInfo,
-  FlattenedCourseDetails, ICauseType,
+  FlattenedCourseDetails,
+  ICauseType,
   IConfigCertificatesDictionary,
   IKeyValuePair,
   ILTEvent,

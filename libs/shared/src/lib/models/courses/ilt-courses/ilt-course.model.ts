@@ -2,8 +2,8 @@ import { InternalRepositoryMaterial } from '../../internal-repo/internal-reposit
 import { ITrainingManager } from '../../events/ilt-event.model';
 import {IKeyValuePair} from "../../common/dictionary.model";
 import {ConfigDto} from "../../common/config-dto.model";
-import {Certificate} from "../certificates/ceritificate.model";
 import {IDomainData} from "../../common/domain-data.model";
+import { Certificate } from "../../certificates/certificate.model";
 
 export interface ILTCourseAgendaDaySection {
   description?: string;

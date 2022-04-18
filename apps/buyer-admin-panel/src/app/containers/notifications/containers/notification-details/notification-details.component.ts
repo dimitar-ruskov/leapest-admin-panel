@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { OktaAuthStateService } from '@okta/okta-angular';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { OktaAuthStateService } from "@okta/okta-angular";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { filter } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { NzModalService } from "ng-zorro-antd/modal";
 
 import {
   ClearNotificationDetails,
@@ -16,25 +16,25 @@ import {
   PreviewNotificationTemplate,
   ResetNotificationTemplate,
   TestEmail,
-  UpdateNotificationTemplate,
-} from './state/notification-details.action';
-import { ChangeNotificationsTab } from '../../state/notifications.actions';
-import {IGlobalStateModel} from "../../../../state/state.model";
+  UpdateNotificationTemplate
+} from "./state/notification-details.action";
+import { ChangeNotificationsTab } from "../../state/notifications.actions";
+import { IGlobalStateModel } from "../../../../state/state.model";
 
 import {
   NotificationPreviewModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/notification-preview-modal/notification-preview-modal.component";
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  NotificationModel, NotificationPayloadModel,
-  ReportingDomainsMap
-} from "../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
+  NotificationModel,
+  NotificationPayloadModel,
+  ReportingDomainsMap,
+  TemplateComposerModel
+} from "../../../../../../../../libs/shared/src/lib/models";
 import {
   NotificationChangeModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/notification-change-modal/notification-change-modal.component";
-import {
-  TemplateComposerModel
-} from "../../../../../../../../libs/shared/src/lib/models/notifications/template-composer.model";
+
 
 @Component({
   selector: 'leap-notification-details',

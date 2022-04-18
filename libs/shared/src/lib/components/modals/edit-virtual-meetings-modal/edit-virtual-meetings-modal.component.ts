@@ -12,6 +12,7 @@ import { Select } from '@ngxs/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { concatMap, filter, map, switchMap, take } from 'rxjs/operators';
+
 import {
   ConferencingTool,
   CourseEventInstructorsCollision,
@@ -19,12 +20,13 @@ import {
   ILTInstructor
 } from "../../../models";
 import {CustomValidators} from "../../../utils/common";
-import {EnvironmentService} from "../../../services/common";
+import { EnvironmentService } from "../../../services/common/environment.service";
 import {
-  AdminCoursesService,
-  ConferencingToolService,
   CourseEventInstructorsCollisionService
-} from "../../../utils/services";
+} from "../../../services/events/course-event-instructors-collision.service";
+import { ConferencingToolService } from "../../../services/events/conferencing-tool.service";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
+
 
 const ZOOM_GUIDE = 'https://edcast-docs.document360.io/v1/docs/web-conferencing-in-edcast-courses-events';
 

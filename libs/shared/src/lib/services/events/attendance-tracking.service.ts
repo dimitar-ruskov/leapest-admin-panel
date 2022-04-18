@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 import {
   AmberResponse,
@@ -11,10 +11,11 @@ import {
   ILTEventAttendancesByUser,
   ILTEventAttendanceUpdatePayload,
   ILTEventBulkMarkAttendancesPayload,
-  ILTEventCustomAttendanceLight, IPageable
+  ILTEventCustomAttendanceLight,
+  IPageable
 } from "../../models";
-import {AdminPanelApiService} from "../common";
-import {DeferredResource} from "../../utils/common";
+import { DeferredResource } from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
 
 @Injectable({
   providedIn: 'root',

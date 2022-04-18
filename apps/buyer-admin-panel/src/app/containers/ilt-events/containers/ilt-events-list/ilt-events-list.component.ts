@@ -1,17 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import {map, switchMap} from "rxjs/operators";
-import {Observable, of} from "rxjs";
-import { OktaAuthStateService } from '@okta/okta-angular';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { map, switchMap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { OktaAuthStateService } from "@okta/okta-angular";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
-import { IltEventsService } from '../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
-import { ChangeILTEventsListTab } from './state/ilt-events.actions';
-import {IltEventsListState} from "./state/ilt-events.state";
+import { IltEventsService } from "../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
+import { ChangeILTEventsListTab } from "./state/ilt-events.actions";
+import { IltEventsListState } from "./state/ilt-events.state";
 
-import {IKeyValuePair, ILTEventBase} from "../../../../../../../../libs/shared/src/lib/models";
+import { IKeyValuePair, ILTEventBase } from "../../../../../../../../libs/shared/src/lib/models";
 import {
   EventCreateModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/event-create-modal/event-create-modal.component";

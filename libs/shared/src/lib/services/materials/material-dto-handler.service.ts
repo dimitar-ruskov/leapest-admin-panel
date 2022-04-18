@@ -4,11 +4,12 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import produce, { Draft } from 'immer';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import {ConfigDto, InternalRepositoryDTO, InternalRepositoryMaterial} from "../../models";
 import {
   VariantSelectModalComponent,
   VariantSelectModalFormValue
-} from "../components/feature/internal-repo/variant-select-modal/variant-select-modal.component";
+} from "../../components/modals/variant-select-modal/variant-select-modal.component";
 
 export const NOT_ALL_EXAMS_CONFIGURED_TOOLTIP_TEXT = 'Please select the activation date for exams';
 

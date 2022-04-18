@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { ChangeInstructorsPaginationParams, GetInstructors, ResetInstructorsState } from './instructors-list.actions';
-import { InstructorsService } from '../../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service';
+import { ChangeInstructorsPaginationParams, GetInstructors, ResetInstructorsState } from "./instructors-list.actions";
+import {
+  InstructorsService
+} from "../../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service";
 
-import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/instructors/instructor.model';
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  InstructorLite,
+  IPageable
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class InstructorsListStateModel {
   loading: boolean;

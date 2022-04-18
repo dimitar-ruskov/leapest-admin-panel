@@ -1,32 +1,33 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { Select, Store } from '@ngxs/store';
-import produce, { Draft } from 'immer';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Observable, of } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
+import { Select, Store } from "@ngxs/store";
+import produce, { Draft } from "immer";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
 import {
   AssignLearnersToLanguageVariant,
   ChangeSPCourseLanguageVariantDetailsTab,
   GetSPCourseLanguageVariant,
   UpdateSPCourseLanguageVariantAttribute,
-  UploadLearnersFromCSVToLanguageVariant,
-} from './state/sp-course-variant-details.actions';
-import { GetSPCourseLanguageVariantLearnersEnrolled } from './containers/sp-course-variant-learners/sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
-import { GetSPCourseLanguageVariantExams } from './containers/sp-course-variant-exams/sp-course-variant-exams/sp-course-variant-exams.actions';
-import { SpCourseVariantDetailsState } from './state/sp-course-variant-details.state';
+  UploadLearnersFromCSVToLanguageVariant
+} from "./state/sp-course-variant-details.actions";
+import { SpCourseVariantDetailsState } from "./state/sp-course-variant-details.state";
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import { SPCourseLanguageVariantLearner } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-learner.model';
 import {
   EditTrainingManagerModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-training-manager-modal/edit-training-manager-modal.component";
-import {IKeyValuePair, ILTEvent} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  IKeyValuePair,
+  ILTEvent,
+  SPCourseLanguageVariant,
+  SPCourseLanguageVariantLearner
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditCourseCompletionModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-course-completion-modal/edit-course-completion-modal.component";
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   EditExternalSKUModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
@@ -36,8 +37,18 @@ import {
 import {
   AssignUsersModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/assign-users-modal/assign-users-modal.component";
-import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/services/common";
-import {AdminCoursesService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
+import {
+  GetSPCourseLanguageVariantExams
+} from "./containers/sp-course-variant-exams/state/sp-course-variant-exams.actions";
+import {
+  EnvironmentService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
+import {
+  GetSPCourseLanguageVariantLearnersEnrolled
+} from "./containers/sp-course-variant-learners/state/sp-course-variant-learners-enrolled.actions";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-sp-course-variant-details',

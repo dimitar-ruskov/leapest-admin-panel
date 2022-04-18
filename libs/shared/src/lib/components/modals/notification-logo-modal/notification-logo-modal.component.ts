@@ -1,8 +1,10 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-
 import { NzUploadFile } from 'ng-zorro-antd/upload/interface';
-import {DownloadSphinxService, EnvironmentService, UploadService} from "../../../services/common";
+
+import { UploadService } from "../../../services/common/upload.service";
+import { EnvironmentService } from "../../../services/common/environment.service";
+import { DownloadSphinxService } from "../../../services/common/download-sphinx.service";
 
 @Component({
   selector: 'leap-notification-logo-modal',

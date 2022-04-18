@@ -1,25 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { startWith, take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { startWith, take } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { NzModalRef } from "ng-zorro-antd/modal";
 
-import { InternalRepositoryService } from '../../../../../services/repository/internal/internal-repository.service';
-import { InternalRepositoryHandlerService } from '../../../../../services/repository/internal/internal-repository-handler.service';
+import { IKeyValuePair, InternalRepositoryDTO } from "../../../../../models";
+import {
+  InternalRepositoryHandlerService
+} from "../../../../../services/materials/internal-repo/internal-repository-handler.service";
+import { NotificationService } from "../../../../../services/common/notification.service";
+import { EnvironmentService } from "../../../../../services/common/environment.service";
+import { InternalRepositoryService } from "../../../../../services/materials/internal-repo/internal-repository.service";
+import { AdminCoursesService } from "../../../../../services/events/admin-courses.service";
 
-import {
-  IKeyValuePair,
-  InternalRepositoryDTO
-} from "../../../../../models";
-import {IGlobalStateModel} from "../../../../../../../../../apps/buyer-admin-panel/src/app/state/state.model";
-import {
-  EnvironmentService,
-  NotificationService
-} from "../../../../../services/common";
-import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 export const URL_REGEX = '^(http[s]?:\\/\\/)([0-9A-Za-z-\\._]+)+((\\.[a-zA-Z]{2,15})+)(\\/(.)*)?$';
 
@@ -44,10 +40,10 @@ export class InternalRepoExternalModalComponent implements OnInit {
   @Output() back: EventEmitter<void> = new EventEmitter();
   @Output() onClose: EventEmitter<void> = new EventEmitter();
 
-  @Select((state: IGlobalStateModel) => state.core.iltMaterialExternalTypes)
+  @Select(state => state.core.iltMaterialExternalTypes)
   iltMaterialExternalTypes$: Observable<IKeyValuePair[]>;
 
-  @Select((state: IGlobalStateModel) => state.core.internalRepositoryLanguages)
+  @Select(state => state.core.internalRepositoryLanguages)
   iltLanguageDictionary$: Observable<IKeyValuePair[]>;
 
   public form: FormGroup;

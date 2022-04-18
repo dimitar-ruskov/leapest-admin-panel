@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { patch, removeItem } from '@ngxs/store/operators';
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { patch, removeItem } from "@ngxs/store/operators";
 
 import {
   ChangeDraftSPCoursesPaginationParams,
   DeleteDraftSPCourse,
-  GetDraftSelfPacedCourses, ResetDraftSPCoursesState
-} from './draft-sp-courses-list.actions';
-import { SpCoursesService } from '../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service';
+  GetDraftSelfPacedCourses,
+  ResetDraftSPCoursesState
+} from "./draft-sp-courses-list.actions";
+import {
+  SpCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service";
 
-import { DraftSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  DraftSelfPacedCourse,
+  IPageable
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 export class DraftSpCoursesListStateModel {
   loading: boolean;

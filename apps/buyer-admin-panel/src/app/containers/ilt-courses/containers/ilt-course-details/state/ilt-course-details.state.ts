@@ -1,39 +1,47 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
-import produce, { Draft } from 'immer';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
+import produce, { Draft } from "immer";
+import { NzMessageService } from "ng-zorro-antd/message";
 
-import { IltCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
-import { IltCourseReviewsState } from '../containers/ilt-course-reviews/state/ilt-course-reviews.state';
-import { IltCourseDetailsNotificationsState } from '../containers/ilt-course-notifications/state/ilt-course-details-notifications.state';
-import { IltCourseEventsBulkUploadsState } from '../containers/ilt-course-events-tab/ilt-course-events-bulk/state/ilt-course-events-bulk.state';
-import { IltCourseEventsCommonState } from '../containers/ilt-course-events-tab/state/ilt-course-events-common.state';
+import {
+  IltCoursesService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service";
+import { IltCourseReviewsState } from "../containers/ilt-course-reviews/state/ilt-course-reviews.state";
+import {
+  IltCourseDetailsNotificationsState
+} from "../containers/ilt-course-notifications/state/ilt-course-details-notifications.state";
+import {
+  IltCourseEventsBulkUploadsState
+} from "../containers/ilt-course-events-tab/ilt-course-events-bulk/state/ilt-course-events-bulk.state";
+import { IltCourseEventsCommonState } from "../containers/ilt-course-events-tab/state/ilt-course-events-common.state";
 import {
   ChangeILTCourseDetailsTab,
   DeleteCourse,
+  DiscardILTCourseAgendaChanges,
+  DiscardILTCourseMaterialsChanges,
   GenerateILTCourseThumbnail,
   GetILTCourse,
   PublishToLxp,
-  UpdateILTCourseAttribute,
-  UploadILTCourseThumbnail,
-  DiscardILTCourseAgendaChanges,
-  DiscardILTCourseMaterialsChanges,
+  PublishToLxpByDomain,
   UpdateILTCourseAgenda,
+  UpdateILTCourseAttribute,
   UpdateILTCourseMaterials,
-  PublishToLxpByDomain
-} from './ilt-course-details.actions';
+  UploadILTCourseThumbnail
+} from "./ilt-course-details.actions";
 import {
   ILTEvent,
-  MasterInternalRepository, PublishedCourseToLXP,
+  MasterInternalRepository, PLACEHOLDER_COURSE_THUMBNAIL_URL,
+  PublishedCourseToLXP,
   PublishedILTCourse
 } from "../../../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {CourseThumbnailService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
-import {PLACEHOLDER_COURSE_THUMBNAIL_URL} from "../../../../../../../../../libs/shared/src/lib/models/constants";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   CourseLxpSettingsService
 } from "../../../../../../../../../libs/shared/src/lib/services/publishing/course-lxp-settings.service";
-import {NzMessageService} from "ng-zorro-antd/message";
+import {
+  CourseThumbnailService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail.service";
 
 export class IltCourseDetailsStateModel {
   activeTab: number;

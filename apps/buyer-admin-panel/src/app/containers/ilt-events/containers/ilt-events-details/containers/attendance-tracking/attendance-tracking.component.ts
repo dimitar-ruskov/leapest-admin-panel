@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subject } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, withLatestFrom } from 'rxjs/operators';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-import { BulkCompleteAttendanceEvent } from '../../../../../../../../../../libs/shared/src/lib/models/events/bulk-complete-attendance-event.model';
-import { IltEventDetailsState } from '../../state/ilt-event-details.state';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable, Subject } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { filter, withLatestFrom } from "rxjs/operators";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { IltEventDetailsState } from "../../state/ilt-event-details.state";
 import {
   BulkCompleteILTEventAttendances,
   BulkMarkILTEventAttendances,
@@ -16,22 +14,32 @@ import {
   CompleteILTEventAttendance,
   GetILTEventAttendancesByUsers,
   UnmarkCompletion,
-  UpdateILTEventAttendance,
-} from '../../state/ilt-event-details.actions';
-import { AttendanceTrackingService } from '../../../../../../../../../../libs/shared/src/lib/services/events/attendance-tracking.service';
-import { AttendanceTrackingUnmarkCompletionModalComponent } from '../../../../../../../../../../libs/shared/src/lib/components/feature/attendance-tracking/attendance-tracking-unmark-completion-modal/attendance-tracking-unmark-completion-modal.component';
+  UpdateILTEventAttendance
+} from "../../state/ilt-event-details.actions";
+import {
+  AttendanceTrackingService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/attendance-tracking.service";
+import {
+  AttendanceTrackingUnmarkCompletionModalComponent
+} from "../../../../../../../../../../libs/shared/src/lib/components/feature/attendance-tracking/attendance-tracking-unmark-completion-modal/attendance-tracking-unmark-completion-modal.component";
 
 import {
   BulkAttendanceTrackingCompletionTypeKeys,
+  BulkCompleteAttendanceEvent,
   ILTEvent,
-  ILTEventAttendance, ILTEventAttendanceCompletionPayload, ILTEventAttendanceCompletionPayloadAttendance,
+  ILTEventAttendance,
+  ILTEventAttendanceCompletionPayload,
+  ILTEventAttendanceCompletionPayloadAttendance,
   ILTEventAttendancesByUser,
-  IltEventAttendanceStatusKey, ILTEventAttendanceUpdatePayload,
-  ILTEventBulkMarkAttendancesPayload, ILTEventCustomAttendanceLight, ILTEventLearner,
+  IltEventAttendanceStatusKey,
+  ILTEventAttendanceUpdatePayload,
+  ILTEventBulkMarkAttendancesPayload,
+  ILTEventCustomAttendanceLight,
+  ILTEventLearner,
   IPageable
 } from "../../../../../../../../../../libs/shared/src/lib/models";
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 import {
   BulkAttendanceTrackingSelectionModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/bulk-attendance-tracking-selection-modal/bulk-attendance-tracking-selection-modal.component";

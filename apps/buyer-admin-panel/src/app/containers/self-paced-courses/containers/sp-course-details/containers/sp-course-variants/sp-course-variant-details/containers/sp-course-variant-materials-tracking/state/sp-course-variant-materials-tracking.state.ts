@@ -1,16 +1,18 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { patch } from '@ngxs/store/operators';
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import { patch } from "@ngxs/store/operators";
 
-import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
+import {
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
 import {
   ChangeSPCourseLanguageVariantMaterialSKU,
   ChangeSPCourseLanguageVariantMaterialsTrackingPage,
   GetSPCourseLanguageVariantMaterialsTrackingList
-} from './sp-course-variant-materials-tracking.actions';
+} from "./sp-course-variant-materials-tracking.actions";
 
-import {DeferredResource} from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   IPageable,
   MaterialCompletionReport

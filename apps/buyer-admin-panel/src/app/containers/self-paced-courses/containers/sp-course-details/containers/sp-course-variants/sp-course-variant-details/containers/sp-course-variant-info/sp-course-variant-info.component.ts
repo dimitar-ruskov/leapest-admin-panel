@@ -1,21 +1,20 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
+  Component,
   EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
   Output,
-  SimpleChanges,
-  OnChanges
-} from '@angular/core';
-import { Store } from '@ngxs/store';
+  SimpleChanges
+} from "@angular/core";
+import { Store } from "@ngxs/store";
 
 import {
   GenerateSPCourseLanguageVariantThumbnail,
   UploadSPCourseLanguageVariantThumbnail
-} from '../../state/sp-course-variant-details.actions';
+} from "../../state/sp-course-variant-details.actions";
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
 import {
   prepareGeneralInfoFields,
   prepareMaterialsFields,
@@ -23,7 +22,9 @@ import {
 } from "../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-variants-handler.service";
 import {
   GeneralInfoField,
-  MaterialsInfoField, S3BucketData
+  MaterialsInfoField,
+  S3BucketData,
+  SPCourseLanguageVariant
 } from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   CourseThumbnailHandlerService

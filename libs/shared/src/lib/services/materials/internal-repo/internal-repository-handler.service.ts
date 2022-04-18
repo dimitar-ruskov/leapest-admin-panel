@@ -3,7 +3,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import {InternalRepositoryDTO} from "../../../models";
 import {
   CreationLoaderModalComponent
-} from "../../components/feature/internal-repo/creation-loader-modal/creation-loader-modal.component";
+} from "../../../components/modals/creation-loader-modal/creation-loader-modal.component";
 
 @Injectable({
   providedIn: 'root',

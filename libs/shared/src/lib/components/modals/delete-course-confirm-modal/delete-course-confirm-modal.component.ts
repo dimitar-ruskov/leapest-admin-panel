@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import * as moment from 'moment';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import * as moment from "moment";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
-import {ILTEvent} from "../../../models";
-import {AdminCoursesService} from "../../../utils/services";
+import { ILTEvent } from "../../../models";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-delete-course-confirm-modal',

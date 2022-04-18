@@ -1,14 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { CourseEventsBulkUploadsSchedulingSummary } from '../../state/ilt-course-events-bulk.actions';
-import { IltCourseEventsBulkUploadsState } from '../../state/ilt-course-events-bulk.state';
-import {
-  BulkUploadsValidationReport
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-events-bulk";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+
+import { CourseEventsBulkUploadsSchedulingSummary } from "../../state/ilt-course-events-bulk.actions";
+import { IltCourseEventsBulkUploadsState } from "../../state/ilt-course-events-bulk.state";
+
+import { BulkUploadsValidationReport } from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   DownloadSphinxService
-} from "../../../../../../../../../../../../../libs/shared/src/lib/services/common";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 @Component({
   selector: 'leap-bulk-upload-scheduling-report',

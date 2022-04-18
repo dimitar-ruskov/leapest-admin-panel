@@ -1,22 +1,24 @@
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
 
 import {
   ChangeSPCourseLanguageVariantsPaginationParams,
   GetSPCourseLanguageVariants,
-  ResetSPCourseLanguageVariantsState,
-} from './sp-course-variants.actions';
+  ResetSPCourseLanguageVariantsState
+} from "./sp-course-variants.actions";
+import { SpCourseVariantCreateState } from "../sp-course-variant-create/state/sp-course-variant-create.state";
 import {
-  SpCourseVariantCreateState
-} from "../sp-course-variant-create/state/sp-course-variant-create.state";
-import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
-import {SpCourseVariantDetailsState} from "../sp-course-variant-details/state/sp-course-variant-details.state";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable,
+  SPCourseLanguageVariant
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { SpCourseVariantDetailsState } from "../sp-course-variant-details/state/sp-course-variant-details.state";
 
 export class SpCourseVariantsStateModel {
   loading: boolean;

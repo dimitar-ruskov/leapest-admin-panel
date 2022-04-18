@@ -2,9 +2,9 @@ import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import {IKeyValuePair, TargetLxpDomain} from "../../../models";
-import {COURSE_PUBLISH_STATUS} from "../../../models/constants";
-import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
+import { COURSE_PUBLISH_STATUS, IKeyValuePair, TargetLxpDomain } from "../../../models";
+import { LxpUsersService } from "../../../services/publishing/lxp-users.service";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-publish-to-lxp-modal',

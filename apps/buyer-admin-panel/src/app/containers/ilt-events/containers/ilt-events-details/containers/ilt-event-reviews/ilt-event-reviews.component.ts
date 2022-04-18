@@ -1,20 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import * as moment from 'moment';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import * as moment from "moment";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
 import {
-  GetCourseEventReviews,
-  DeleteCourseEventReview,
   ChangeEventReviewsPaginationParams,
-  ResetEventReviewsListState,
-} from './state/ilt-event-reviews.actions';
-import { EventReviewsState } from './state/ilt-event-reviews.state';
+  DeleteCourseEventReview,
+  GetCourseEventReviews,
+  ResetEventReviewsListState
+} from "./state/ilt-event-reviews.actions";
+import { EventReviewsState } from "./state/ilt-event-reviews.state";
 
-import {EventReview} from "../../../../../../../../../../libs/shared/src/lib/models";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { EventReview } from "../../../../../../../../../../libs/shared/src/lib/models";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";

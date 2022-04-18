@@ -1,35 +1,39 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import produce from 'immer';
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import produce from "immer";
+import { NzMessageService } from "ng-zorro-antd/message";
 
-import { SpCoursesService } from '../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service';
-import { SpCourseVariantsState } from '../containers/sp-course-variants/state/sp-course-variants.state';
+import {
+  SpCoursesService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service";
+import { SpCourseVariantsState } from "../containers/sp-course-variants/state/sp-course-variants.state";
 import {
   ChangeSelfPacedCourseDetailsTab,
   GenerateSelfPacedCourseThumbnail,
   GetActiveSelfPacedCourse,
-  UpdateSPCourseAttribute,
-  UploadSelfPacedCourseThumbnail,
   PublishToLxp,
-  PublishToLxpByDomain
-} from './sp-course-details.actions';
+  PublishToLxpByDomain,
+  UpdateSPCourseAttribute,
+  UploadSelfPacedCourseThumbnail
+} from "./sp-course-details.actions";
 
-import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {CourseThumbnailService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
-import {PLACEHOLDER_COURSE_THUMBNAIL_URL} from "../../../../../../../../../libs/shared/src/lib/models/constants";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   IltCourseDetailsStateModel
 } from "../../../../ilt-courses/containers/ilt-course-details/state/ilt-course-details.state";
 import {
+  ActiveSelfPacedCourse,
   MasterInternalRepository,
+  PLACEHOLDER_COURSE_THUMBNAIL_URL,
   PublishedCourseToLXP
 } from "../../../../../../../../../libs/shared/src/lib/models";
 import {
   CourseLxpSettingsService
 } from "../../../../../../../../../libs/shared/src/lib/services/publishing/course-lxp-settings.service";
-import {NzMessageService} from "ng-zorro-antd/message";
+import {
+  CourseThumbnailService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail.service";
 
 export class SpCourseDetailsStateModel {
   activeTab: number;

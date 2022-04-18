@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { OktaAuthStateService } from '@okta/okta-angular';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { OktaAuthStateService } from "@okta/okta-angular";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Observable } from "rxjs";
+import { filter } from "rxjs/operators";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 import {
   ClearNotificationDetails,
@@ -17,19 +17,15 @@ import {
   PreviewNotificationTemplate,
   ResetNotificationTemplate,
   TestEmail,
-  UpdateNotificationTemplate,
-} from '../state/ilt-event-details-notifications.actions';
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
+  UpdateNotificationTemplate
+} from "../state/ilt-event-details-notifications.actions";
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 
 import {
   NotificationPreviewModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-preview-modal/notification-preview-modal.component";
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {
-  NotificationModel, NotificationPayloadModel,
-  NotificationRecipientsListModel, NotificationResetLevel,
-  ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+
 import {
   NotificationChangeModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-change-modal/notification-change-modal.component";
@@ -37,8 +33,13 @@ import {
   NotificationRecipientsModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-recipients-modal/notification-recipients-modal.component";
 import {
+  NotificationModel,
+  NotificationPayloadModel,
+  NotificationRecipientsListModel,
+  NotificationResetLevel,
+  ReportingDomainsMap,
   TemplateComposerModel
-} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/template-composer.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-event-notification-details',
@@ -53,9 +54,6 @@ export class IltEventNotificationDetailsComponent implements OnInit, OnDestroy {
 
   @Select((state: IGlobalStateModel) => state.iltEvents.iltEventDetails['iltEventDetailsNotifications'].recipients)
   recipients$: Observable<NotificationRecipientsListModel>;
-
-  @Select((state: IGlobalStateModel) => state.iltEvents.iltEventDetails['iltEventDetailsNotifications'].recipientsLoading)
-  recipientsLoading$: Observable<boolean>;
 
   @Select((state: IGlobalStateModel) => state.iltEvents.iltEventDetails['iltEventDetailsNotifications'].testEmail)
   testEmail$: Observable<DeferredResource<string>>;
@@ -279,7 +277,6 @@ export class IltEventNotificationDetailsComponent implements OnInit, OnDestroy {
       nzContent: NotificationRecipientsModalComponent,
       nzComponentParams: {
         recipients$: this.recipients$,
-        recipientsLoading$: this.recipientsLoading$,
         details: {
           trigger: this.trigger,
           recipient: this.recipient,

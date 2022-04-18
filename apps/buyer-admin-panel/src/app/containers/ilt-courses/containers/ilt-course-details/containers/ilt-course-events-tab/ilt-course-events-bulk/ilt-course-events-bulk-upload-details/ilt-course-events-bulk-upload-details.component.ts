@@ -1,21 +1,24 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Observable } from "rxjs";
 
-import { IltCourseEventsBulkService } from '../../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-course-events-bulk.service';
-import { IltCourseEventsBulkUploadsState } from '../state/ilt-course-events-bulk.state';
+import {
+  IltCourseEventsBulkService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-course-events-bulk.service";
+import { IltCourseEventsBulkUploadsState } from "../state/ilt-course-events-bulk.state";
 import {
   ChangeReportTab,
   CourseEventsBulkUploadsSchedulingSummary,
-  CourseEventsBulkUploadsValidationReport,
-} from '../state/ilt-course-events-bulk.actions';
-
+  CourseEventsBulkUploadsValidationReport
+} from "../state/ilt-course-events-bulk.actions";
 import {
-  BulkUploadsSchedulingSummary, BulkUploadsValidationReport
-} from "../../../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-events-bulk";
+  BulkUploadsSchedulingSummary,
+  BulkUploadsValidationReport
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
+
 
 @Component({
   selector: 'leap-ilt-course-events-bulk-upload-details',

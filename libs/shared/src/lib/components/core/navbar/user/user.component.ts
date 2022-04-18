@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {EnvironmentService} from "../../../../services/common";
-import {IProfile} from "../../../../models";
+import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+
+import { IProfile } from "../../../../models";
+import { EnvironmentService } from "../../../../services/common/environment.service";
 
 @Component({
   selector: 'leap-user',

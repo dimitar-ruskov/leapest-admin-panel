@@ -1,10 +1,10 @@
 import { Component, ChangeDetectionStrategy, Input, forwardRef, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
+
 import { SelectCategoryModalComponent } from '../../modals/select-category-modal/select-category-modal.component';
 import {CourseCategory} from "../../../models";
-import {LmsCategoriesService} from "../../../utils/services";
-
+import { LmsCategoriesService } from "../../../services/courses/lms-categories.service";
 
 @Component({
   selector: 'leap-select-category-input',

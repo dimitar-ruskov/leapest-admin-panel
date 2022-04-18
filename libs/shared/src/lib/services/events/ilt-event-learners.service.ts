@@ -9,8 +9,8 @@ import {
   ILTEventLearner, ILTEventUnenrolledLearner,
   IPageable
 } from "../../models";
-import {AdminPanelApiService} from "../common";
 import {DeferredResource} from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
 
 @Injectable({
   providedIn: 'root',

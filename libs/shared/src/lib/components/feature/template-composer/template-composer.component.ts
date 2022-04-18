@@ -1,33 +1,33 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Input,
-  Output,
+  Component,
   EventEmitter,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import {map} from "rxjs/operators";
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+  Input,
+  OnInit,
+  Output
+} from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Subject } from "rxjs";
+import { map } from "rxjs/operators";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+import { CustomValidators, DeferredResource } from "../../../utils/common";
+import { ComposerComponent, ComposerEmittedEventType } from "../silk-editor/models/silk-editor.model";
+import { ActionCreator } from "../silk-editor/actions/action-creator";
+import { Action } from "../silk-editor/actions/actions";
+import { AddLinkModalComponent } from "../../modals/add-link-modal/add-link-modal.component";
+import { AddLinkTextModalComponent } from "../../modals/add-link-text-modal/add-link-text-modal.component";
+import { TemplateComposerService } from "../../../services/notifications/template-composer.service";
+import { FormUtilService } from "../../../services/common/form-util.service";
 import {
+  NotificationModel,
   PlaceholderModel,
   TemplateComposerMessageModel,
-  TemplateComposerModel,
-} from '../../../models/notifications/template-composer.model';
-import {CustomValidators, DeferredResource} from "../../../utils/common";
-import {FormUtilService} from "../../../services/common";
-import {ComposerComponent, ComposerEmittedEventType} from "../silk-editor/models/silk-editor.model";
-import {ActionCreator} from "../silk-editor/actions/action-creator";
-import {NotificationModel} from "../../../models/notifications/notifications.model";
-import {Action} from "../silk-editor/actions/actions";
-import {AddLinkModalComponent} from "../../modals/add-link-modal/add-link-modal.component";
-import {AddLinkTextModalComponent} from "../../modals/add-link-text-modal/add-link-text-modal.component";
-import {TemplateComposerService} from "../../../services/notifications/template-composer.service";
+  TemplateComposerModel
+} from "../../../models";
 
 @Component({
   selector: 'leap-template-composer',

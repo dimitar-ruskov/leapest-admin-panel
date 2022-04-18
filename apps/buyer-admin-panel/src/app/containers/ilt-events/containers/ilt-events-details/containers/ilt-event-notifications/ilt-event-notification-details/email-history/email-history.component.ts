@@ -1,31 +1,40 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { filter } from "rxjs/operators";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { NzModalService } from "ng-zorro-antd/modal";
 
 import {
   ChangeEmailHistoryPaginationParams,
   GetEmailHistory,
   PreviewNotificationHistoryTemplate
 } from "./state/email-history.action";
-import {EmailHistoryState} from "./state/email-history.state";
-import { EmailNotification, IPageableEmailHistory } from '../../../../../../../../../../../../libs/shared/src/lib/models/notifications/email-history.model';
-import { EmailHistoryService } from '../../../../../../../../../../../../libs/shared/src/lib/services/events/email-history.service';
-import { ResendEmailModalComponent } from '../../../../../../../../../../../../libs/shared/src/lib/components/modals/resend-email-modal/resend-email-modal.component';
+import { EmailHistoryState } from "./state/email-history.state";
 
+import {
+  EmailHistoryService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/events/email-history.service";
+import {
+  ResendEmailModalComponent
+} from "../../../../../../../../../../../../libs/shared/src/lib/components/modals/resend-email-modal/resend-email-modal.component";
 import {
   createPageableFromTableQueryParams,
   DeferredResource
 } from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  EnvironmentService,
+  EmailNotification,
+  IPageableEmailHistory,
+  IProfile
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
+import {
   NotificationService
-} from "../../../../../../../../../../../../libs/shared/src/lib/services/common";
-import {IProfile} from "../../../../../../../../../../../../libs/shared/src/lib/models";
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/common/notification.service";
+import {
+  EnvironmentService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 
 const NO_LEARNERS_TEXT = 'No notifications have been sent';

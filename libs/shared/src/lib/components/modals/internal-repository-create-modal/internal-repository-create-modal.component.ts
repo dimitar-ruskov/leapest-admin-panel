@@ -16,7 +16,7 @@ import {
   IRCreationSteps,
   IRCreationStepsList,
   IRTile,
-} from '../../../models/internal-repo/internal-repository-create-step.model';
+} from '../../../models';
 
 @Component({
   selector: 'leap-internal-repository-create-modal',

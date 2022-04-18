@@ -1,22 +1,23 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  TrackByFunction,
-  Input,
-  forwardRef,
-  OnChanges,
-  SimpleChanges,
-  OnInit,
   ChangeDetectorRef,
-  Output,
+  Component,
   EventEmitter,
-} from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {IConfigCertificatesDictionary, IKeyValuePair} from "../../../models";
-import {DownloadSphinxService} from "../../../services/common";
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
-import {CertificatePreviewComponent} from "../certificate-preview/certificate-preview.component";
+  forwardRef,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TrackByFunction
+} from "@angular/core";
+import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+
+import { IConfigCertificatesDictionary, IKeyValuePair } from "../../../models";
+import { CertificatePreviewComponent } from "../certificate-preview/certificate-preview.component";
+import { DownloadSphinxService } from "../../../services/common/download-sphinx.service";
 
 export interface SelectedCertificate {
   key: string;

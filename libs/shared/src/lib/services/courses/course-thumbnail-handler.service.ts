@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import {EnvironmentService, UploadService} from "../common";
-import {S3BucketData} from "../../models";
+
 import {
   UploadThumbnailModalComponent
 } from "../../components/modals/upload-thumbnail-modal/upload-thumbnail-modal.component";
+import { UploadService } from "../common/upload.service";
+import { EnvironmentService } from "../common/environment.service";
+import {S3BucketData} from "../../models";
 
 @Injectable({
   providedIn: 'root'

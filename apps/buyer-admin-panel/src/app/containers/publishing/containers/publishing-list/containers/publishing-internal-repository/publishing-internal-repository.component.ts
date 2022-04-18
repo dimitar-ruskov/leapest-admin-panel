@@ -1,13 +1,10 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from "@angular/core";
+import { Select } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { UntilDestroy } from "@ngneat/until-destroy";
 
-import { PublishingState } from '../../../../state/publishing.state';
-import {
-  IPublishingSettings, IPublishingTab
-} from "../../../../../../../../../../libs/shared/src/lib/models/publishing/publishing.model";
-
+import { PublishingState } from "../../../../state/publishing.state";
+import { IPublishingSettings, IPublishingTab } from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-publishing-internal-repository',

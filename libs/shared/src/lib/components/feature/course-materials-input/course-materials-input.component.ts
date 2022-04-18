@@ -1,31 +1,32 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Input,
-  TrackByFunction,
+  Component,
   forwardRef,
+  Input,
   OnDestroy,
   OnInit,
-} from '@angular/core';
+  TrackByFunction
+} from "@angular/core";
 import {
   AbstractControl,
   ControlValueAccessor,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
-  Validator,
-} from '@angular/forms';
-import { distinctUntilChanged, map, take, tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import {InternalRepositoryMaterial} from "../../../models";
+  Validator
+} from "@angular/forms";
+import { distinctUntilChanged, map, take, tap } from "rxjs/operators";
+import { BehaviorSubject, Observable } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalService } from "ng-zorro-antd/modal";
+
+import { InternalRepositoryMaterial } from "../../../models";
 import {
   AddCourseMaterialModalComponent
 } from "../../modals/add-course-material-modal/add-course-material-modal.component";
-import {EnvironmentService} from "../../../services/common";
-import {MaterialDtoHandlerService} from "../../../services/repository/material-dto-handler.service";
-import {AdminCoursesService} from "../../../utils/services";
+import { EnvironmentService } from "../../../services/common/environment.service";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
+import { MaterialDtoHandlerService } from "../../../services/materials/material-dto-handler.service";
 
 @Component({
   selector: 'leap-course-materials-input',

@@ -1,75 +1,78 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
-import produce, { Draft } from 'immer';
-import * as moment from 'moment';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { switchMap, take, takeUntil } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Store } from "@ngxs/store";
+import produce, { Draft } from "immer";
+import * as moment from "moment";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { switchMap, take, takeUntil } from "rxjs/operators";
 
 import {
   DisableWaitingList,
   EnableWaitingList,
   GenerateEventThumbnail,
   UpdateILTEventAttribute,
-  UploadEventThumbnail,
-} from '../../../../../../apps/buyer-admin-panel/src/app/containers/ilt-events/containers/ilt-events-details/state/ilt-event-details.actions';
+  UploadEventThumbnail
+} from "../containers/ilt-events-details/state/ilt-event-details.actions";
 
 import {
   ConferencingTool,
   IKeyValuePair,
   ILTCourseAgendaDay,
   ILTEvent,
-  ILTInstructor, S3BucketData
-} from "../../models";
-import {formatDate} from "../../utils/common";
+  ILTInstructor,
+  S3BucketData
+} from "../../../../../../../libs/shared/src/lib/models";
+import { formatDate } from "../../../../../../../libs/shared/src/lib/utils/common";
+import { AdminCoursesService } from "../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
+
+
 import {
   EditTrainingManagerModalComponent
-} from "../../components/modals/edit-training-manager-modal/edit-training-manager-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-training-manager-modal/edit-training-manager-modal.component";
 import {
   EditExternalSKUModalComponent
-} from "../../components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
 import {
   EditSelfRegistrationModalComponent
-} from "../../components/modals/edit-self-registration-modal/edit-self-registration-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-self-registration-modal/edit-self-registration-modal.component";
 import {
   EditConferenceLinkModalComponent
-} from "../../components/modals/edit-conference-link-modal/edit-conference-link-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-conference-link-modal/edit-conference-link-modal.component";
 import {
   CourseThumbnailHandlerService
-} from "../courses/course-thumbnail-handler.service";
+} from "../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
 import {
   EditAttendanceTrackingSettingsModalComponent
-} from "../../components/modals/edit-attendance-tracking-settings-modal/edit-attendance-tracking-settings-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-attendance-tracking-settings-modal/edit-attendance-tracking-settings-modal.component";
 import {
   EditAddressModalComponent
-} from "../../components/modals/edit-address-modal/edit-address-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-address-modal/edit-address-modal.component";
 import {
   EditTimezoneModalComponent
-} from "../../components/modals/edit-timezone-modal/edit-timezone-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-timezone-modal/edit-timezone-modal.component";
 import {
   EditInstructorsModalComponent
-} from "../../components/modals/edit-instructors-modal/edit-instructors-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-instructors-modal/edit-instructors-modal.component";
 import {
   EditLanguageModalComponent
-} from "../../components/modals/edit-language-modal/edit-language-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-language-modal/edit-language-modal.component";
 import {
   BasicUserModalComponent
-} from "../../components/modals/basic-user-modal/basic-user-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/basic-user-modal/basic-user-modal.component";
 import {
   EditCourseCertificateComponent
-} from "../../components/feature/edit-course-certificate/edit-course-certificate.component";
+} from "../../../../../../../libs/shared/src/lib/components/feature/edit-course-certificate/edit-course-certificate.component";
 import {
   EditNumberOfLearnersModalComponent
-} from "../../components/modals/edit-number-of-learners-modal/edit-number-of-learners-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-number-of-learners-modal/edit-number-of-learners-modal.component";
 import {
   EditWaitingListModalComponent
-} from "../../components/modals/edit-waiting-list-modal/edit-waiting-list-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-waiting-list-modal/edit-waiting-list-modal.component";
 import {
   AddAddressModalComponent
-} from "../../components/modals/add-address-modal/add-address-modal.component";
-import {AdminCoursesService} from "../../../../../../../libs/shared/src/lib/utils/services";
+} from "../../../../../../../libs/shared/src/lib/components/modals/add-address-modal/add-address-modal.component";
 import {
   EditVirtualMeetingsModalComponent
-} from "../../components/modals/edit-virtual-meetings-modal/edit-virtual-meetings-modal.component";
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-virtual-meetings-modal/edit-virtual-meetings-modal.component";
 
 
 @Injectable({

@@ -1,21 +1,28 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import produce, { Draft } from 'immer';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import produce, { Draft } from "immer";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ILTCourseCreationStep } from '../../../../../../../../../../libs/shared/src/lib/models/courses/ilt-courses/ilt-course-create-step.model';
-import { IltCoursesService } from '../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service';
-import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { GoToILTCourseCreationStep, UpdatePreILTCourse } from "../../state/ilt-course-create.actions";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
 import {
-  IConfigCertificatesDictionary, ILTCourse,
-  InternalRepositoryMaterial, PreILTCourse
+  IltCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service";
+import {
+  Certificate,
+  IConfigCertificatesDictionary,
+  ILTCourse,
+  ILTCourseCreationStep,
+  InternalRepositoryMaterial,
+  PreILTCourse
 } from "../../../../../../../../../../libs/shared/src/lib/models";
-import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-ilt-course-create-materials',
@@ -90,7 +97,8 @@ export class IltCourseCreateMaterialsComponent implements OnInit {
         ...internalRepositories.learner.map((material) => ({ ...material, userType: { configKey: 'learner' } })),
         ...internalRepositories.instructor.map((material) => ({ ...material, userType: { configKey: 'instructor' } })),
       ];
-      draft.participationCertificate = certificate ? { id: certificate } : null;
+
+      draft.participationCertificate = certificate ? { id: certificate } as Certificate : null;
     });
 
     this.updating = true;

@@ -13,7 +13,7 @@ import {
   ResetIssuedCertificatesState,
 } from './state/certificate-issued.actions';
 
-import { GeneralCertificate } from '../../../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
+import { GeneralCertificate, IPageable } from '../../../../../../../../../../libs/shared/src/lib/models';
 import {
   createPageableFromTableQueryParams,
   DeferredResource
@@ -21,8 +21,9 @@ import {
 import {
   CertificatePreviewComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.component";
-import {IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/services/common";
+import {
+  DownloadSphinxService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 const NO_CERTIFICATES_TEXT = 'No certificates issued';
 

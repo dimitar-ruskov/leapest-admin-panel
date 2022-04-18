@@ -1,25 +1,27 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { Observable } from "rxjs";
 
 import {
   ApproveLearnerRegistrationRequest,
   ExportLearnerFromILTEvent,
-  RejectLearnerRegistrationRequest,
-} from '../../../state/ilt-event-details.actions';
+  RejectLearnerRegistrationRequest
+} from "../../../state/ilt-event-details.actions";
 import {
   ChangePendingILTEventLearnersPaginationParams,
   GetPendingILTEventLearners,
-  ResetPendingILTEventLearnersState,
-} from './state/ilt-event-learners-pending.actions';
-import { IltEventLearnersPendingState } from './state/ilt-event-learners-pending.state';
+  ResetPendingILTEventLearnersState
+} from "./state/ilt-event-learners-pending.actions";
+import { IltEventLearnersPendingState } from "./state/ilt-event-learners-pending.state";
 
-import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-learners.model';
-import {ILTEventLearner} from "../../../../../../../../../../../libs/shared/src/lib/models";
-import {PAGINATION_LIMIT_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  ExportLearnersTypes,
+  ILTEventLearner,
+  PAGINATION_LIMIT_CONFIG
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";

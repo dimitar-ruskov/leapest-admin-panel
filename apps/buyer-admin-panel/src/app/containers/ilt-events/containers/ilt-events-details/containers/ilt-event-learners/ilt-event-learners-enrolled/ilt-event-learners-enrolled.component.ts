@@ -1,22 +1,24 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction, Input } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableFilterList, NzTableQueryParams } from 'ng-zorro-antd/table';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableFilterList, NzTableQueryParams } from "ng-zorro-antd/table";
+import { Observable } from "rxjs";
 
-import { ExportLearnerFromILTEvent, RemoveLearnerFromILTEvent } from '../../../state/ilt-event-details.actions';
+import { ExportLearnerFromILTEvent, RemoveLearnerFromILTEvent } from "../../../state/ilt-event-details.actions";
 import {
   ChangeEnrolledILTEventLearnersPaginationParams,
   GetEnrolledILTEventLearners,
-  ResetEnrolledILTEventLearnersState,
-} from './state/ilt-event-learners-enrolled.actions';
-import { IltEventLearnersEnrolledState } from './state/ilt-event-learners-enrolled.state';
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
+  ResetEnrolledILTEventLearnersState
+} from "./state/ilt-event-learners-enrolled.actions";
+import { IltEventLearnersEnrolledState } from "./state/ilt-event-learners-enrolled.state";
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 
-import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/events/ilt-event-learners.model';
-import {ILTEventLearner} from "../../../../../../../../../../../libs/shared/src/lib/models";
-import {PAGINATION_LIMIT_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  ExportLearnersTypes,
+  ILTEventLearner,
+  PAGINATION_LIMIT_CONFIG
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";

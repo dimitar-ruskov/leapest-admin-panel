@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../../../../apps/buyer-admin-panel/src/environments/environment";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',

@@ -1,17 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
 import {
   ChangePublishedILTCoursesPaginationParams,
   GetPublishedILTCourses,
   ResetPublishedILTCoursesState
-} from './published-ilt-courses.actions';
-import {IltCoursesService} from "../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service";
+} from "./published-ilt-courses.actions";
+import {
+  IltCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-courses.service";
 
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {IPageable, PublishedILTCourse} from "../../../../../../../../../../libs/shared/src/lib/models";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable,
+  PublishedILTCourse
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class PublishedILTCoursesStateModel {

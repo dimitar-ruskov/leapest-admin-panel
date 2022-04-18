@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'leap-ilt-course-events-tab',
@@ -6,11 +6,9 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   styleUrls: ['./ilt-course-events-tab.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IltCourseEventsTabComponent implements OnInit {
+export class IltCourseEventsTabComponent {
   @Input() parentId: string;
   @Input() sku: string;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

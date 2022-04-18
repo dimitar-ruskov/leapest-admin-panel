@@ -1,24 +1,26 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import produce, { Draft } from 'immer';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { filter } from "rxjs/operators";
+import { BehaviorSubject, Observable } from "rxjs";
+import { Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import produce, { Draft } from "immer";
 
 import {
   GoToSPCourseLanguageVariantCreationStep,
-  UpdatePreSPCourseLanguageVariant,
-} from '../../state/sp-course-variant-create.actions';
-import { SPCourseLanguageVariantCreationSteps } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-create-variant-step.model';
+  UpdatePreSPCourseLanguageVariant
+} from "../../state/sp-course-variant-create.actions";
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant.model';
+import {
+  InternalRepositoryMaterial,
+  PreSPCourseLanguageVariant,
+  SPCourseLanguageVariantCreationSteps
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   MaterialDtoHandlerService,
   MaterialDTOsMap,
   NOT_ALL_EXAMS_CONFIGURED_TOOLTIP_TEXT
-} from "../../../../../../../../../../../../../libs/shared/src/lib/services/repository/material-dto-handler.service";
-import {InternalRepositoryMaterial} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/materials/material-dto-handler.service";
 
 @Component({
   selector: 'leap-sp-course-variant-create-materials',

@@ -1,36 +1,32 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
   ChangeDetectorRef,
-  Renderer2,
-  Output,
+  Component,
   EventEmitter,
-} from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
-import { filter, startWith, switchMap, take } from 'rxjs/operators';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+  Input,
+  OnInit,
+  Output,
+  Renderer2
+} from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Observable } from "rxjs";
+import { filter, startWith, switchMap, take } from "rxjs/operators";
+import { NzModalRef } from "ng-zorro-antd/modal";
 
-import { InternalRepositoryService } from '../../../../../services/repository/internal/internal-repository.service';
-import { InternalRepositoryHandlerService } from '../../../../../services/repository/internal/internal-repository-handler.service';
+import { ExamShortInfo, IKeyValuePair, InternalRepositoryDTO, IRContent } from "../../../../../models";
+import { DeferredResource } from "../../../../../utils/common";
+import {
+  InternalRepositoryHandlerService
+} from "../../../../../services/materials/internal-repo/internal-repository-handler.service";
+import { UploadService } from "../../../../../services/common/upload.service";
+import { EnvironmentService } from "../../../../../services/common/environment.service";
+import { NotificationService } from "../../../../../services/common/notification.service";
+import { InternalRepositoryService } from "../../../../../services/materials/internal-repo/internal-repository.service";
+import { AdminCoursesService } from "../../../../../services/events/admin-courses.service";
 
-import {
-  ExamShortInfo,
-  IKeyValuePair,
-  InternalRepositoryDTO, IRContent
-} from "../../../../../models";
-import {IGlobalStateModel} from "../../../../../../../../../apps/buyer-admin-panel/src/app/state/state.model";
-import {DeferredResource} from "../../../../../utils/common";
-import {
-  EnvironmentService, NotificationService,
-  UploadService
-} from "../../../../../services/common";
-import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
 
 @Component({
   selector: 'leap-internal-repo-hosted-modal',
@@ -54,10 +50,10 @@ export class InternalRepoHostedModalComponent implements OnInit {
   @Output() back: EventEmitter<void> = new EventEmitter();
   @Output() onClose: EventEmitter<void> = new EventEmitter();
 
-  @Select((state: IGlobalStateModel) => state.core.iltMaterialTypes)
+  @Select(state => state.core.iltMaterialTypes)
   iltMaterialTypes$: Observable<IKeyValuePair[]>;
 
-  @Select((state: IGlobalStateModel) => state.core.internalRepositoryLanguages)
+  @Select(state => state.core.internalRepositoryLanguages)
   iltLanguageDictionary$: Observable<IKeyValuePair[]>;
 
   public form: FormGroup;

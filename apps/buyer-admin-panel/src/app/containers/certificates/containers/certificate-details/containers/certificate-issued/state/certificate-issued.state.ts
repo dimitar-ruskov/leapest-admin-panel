@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { CertificatesService } from '../../../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service';
+import {
+  CertificatesService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/certificates/certificates.service";
 import {
   ChangeIssuedCertificatesPaginationParams,
   GetIssuedCertificates,
-  ResetIssuedCertificatesState,
-} from './certificate-issued.actions';
+  ResetIssuedCertificatesState
+} from "./certificate-issued.actions";
 
-import { GeneralCertificate } from '../../../../../../../../../../../libs/shared/src/lib/models/certificates/certificate.model';
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  GeneralCertificate,
+  IPageable
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class CertificateIssuedStateModel {
   certificates: GeneralCertificate[] | null;

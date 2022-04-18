@@ -4,30 +4,8 @@ import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import {AdminPanelApiService} from "../common/admin-panel-api.service";
-import {IKeyValuePair} from "../../models";
+import { FilterList, FilterParamList, IKeyValuePair } from "../../models";
 import {DeferredResource} from "../../utils/common";
-
-export interface FilterParamList {
-  text: string;
-  value: string;
-  selected?: boolean;
-}
-
-export interface FilterList {
-  key: string;
-  value: string[];
-}
-
-export interface ILabeledItem {
-  id: string;
-  value?: string;
-}
-
-export interface ListFilters {
-  trigger: ILabeledItem[];
-  venue: ILabeledItem[];
-  recipient: ILabeledItem[];
-}
 
 @Injectable({
   providedIn: 'root',

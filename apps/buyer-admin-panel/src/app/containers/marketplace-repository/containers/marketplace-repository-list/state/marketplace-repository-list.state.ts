@@ -1,17 +1,19 @@
-import {ApolloQueryResult} from '@apollo/client/core';
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, tap } from 'rxjs/operators';
-import { MarketplaceRepositoryService } from '../../../../../../../../../libs/shared/src/lib/services/repository/marketplace/marketplace-repository.service';
+import { ApolloQueryResult } from "@apollo/client/core";
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { catchError, tap } from "rxjs/operators";
+import { of } from "rxjs";
+
 import {
   ChangeMarketplaceRepositoriesPaginationParams,
   GetMarketplaceRepositories,
-  ResetMarketplaceRepositoriesState,
-} from './marketplace-repository-list.actions';
-import { IApolloResp, IMarketplaceProduct } from '../../../../../../../../../libs/shared/src/lib/models/marketplace-repo/marketplace-repository-product.model';
+  ResetMarketplaceRepositoriesState
+} from "./marketplace-repository-list.actions";
 
-import { of } from 'rxjs';
-import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
+import { IApolloResp, IMarketplaceProduct, IPageable } from "../../../../../../../../../libs/shared/src/lib/models";
+import {
+  MarketplaceRepositoryService
+} from "../../../../../../../../../libs/shared/src/lib/services/materials/marketplace-repo/marketplace-repository.service";
 
 export const INITIAL_PAGINATION_PARAMS: IPageable = {
   limit: 10,

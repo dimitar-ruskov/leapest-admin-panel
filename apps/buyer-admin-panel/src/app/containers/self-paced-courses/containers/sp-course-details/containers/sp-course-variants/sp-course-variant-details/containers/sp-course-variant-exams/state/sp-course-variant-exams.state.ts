@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
-import { patch } from '@ngxs/store/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
+import { patch } from "@ngxs/store/operators";
 
-import { SpCourseLanguageVariantsService } from '../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service';
+import {
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
 import {
   ChangeSPCourseLanguageVariantExamSKU,
   ChangeSPCourseLanguageVariantExamsPage,
   GetSPCourseLanguageVariantExams
-} from './sp-course-variant-exams.actions';
+} from "./sp-course-variant-exams.actions";
 
-import { SPCourseLanguageVariantExam } from '../../../../../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course-language-variant-exam.model';
-import {DeferredResource} from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {IPageable} from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  IPageable,
+  SPCourseLanguageVariantExam
+} from "../../../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class SpCourseVariantExamsStateModel {

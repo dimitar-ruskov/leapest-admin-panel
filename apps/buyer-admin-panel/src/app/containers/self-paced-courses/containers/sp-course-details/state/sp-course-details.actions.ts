@@ -1,5 +1,8 @@
-import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {PublishCourseToLXP, S3BucketData} from "../../../../../../../../../libs/shared/src/lib/models";
+import {
+  ActiveSelfPacedCourse,
+  PublishCourseToLXP,
+  S3BucketData
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class ChangeSelfPacedCourseDetailsTab {

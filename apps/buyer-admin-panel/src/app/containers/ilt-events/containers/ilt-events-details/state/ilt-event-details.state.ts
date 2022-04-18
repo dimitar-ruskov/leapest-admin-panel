@@ -1,37 +1,51 @@
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import produce, { Draft } from 'immer';
-import { Observable, of, timer } from 'rxjs';
-import { catchError, switchMap, takeWhile, tap, map, filter, take } from 'rxjs/operators';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import produce, { Draft } from "immer";
+import { Observable, of, timer } from "rxjs";
+import { catchError, filter, map, switchMap, take, takeWhile, tap } from "rxjs/operators";
+import { NzMessageService } from "ng-zorro-antd/message";
 
-import { AttendanceTrackingService } from '../../../../../../../../../libs/shared/src/lib/services/events/attendance-tracking.service';
-import { IltEventLearnersService } from '../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-learners.service';
-import { IltEventsService } from '../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
-import { WaitingListService } from '../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service';
+import {
+  AttendanceTrackingService
+} from "../../../../../../../../../libs/shared/src/lib/services/events/attendance-tracking.service";
+import {
+  IltEventLearnersService
+} from "../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-learners.service";
+import { IltEventsService } from "../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
+import {
+  WaitingListService
+} from "../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service";
 import {
   ChangeILTEventExamsPaginationParams,
-  GetILTEventExams,
-} from '../containers/ilt-event-exams/state/ilt-event-exams.actions';
-import { IltEventExamsState } from '../containers/ilt-event-exams/state/ilt-event-exams.state';
+  GetILTEventExams
+} from "../containers/ilt-event-exams/state/ilt-event-exams.actions";
+import { IltEventExamsState } from "../containers/ilt-event-exams/state/ilt-event-exams.state";
 import {
   ChangeEnrolledILTEventLearnersPaginationParams,
-  GetEnrolledILTEventLearners,
-} from '../containers/ilt-event-learners/ilt-event-learners-enrolled/state/ilt-event-learners-enrolled.actions';
-import { IltEventLearnersEnrolledState } from '../containers/ilt-event-learners/ilt-event-learners-enrolled/state/ilt-event-learners-enrolled.state';
-import { GetPendingILTEventLearners } from '../containers/ilt-event-learners/ilt-event-learners-pending/state/ilt-event-learners-pending.actions';
-import { IltEventLearnersPendingState } from '../containers/ilt-event-learners/ilt-event-learners-pending/state/ilt-event-learners-pending.state';
+  GetEnrolledILTEventLearners
+} from "../containers/ilt-event-learners/ilt-event-learners-enrolled/state/ilt-event-learners-enrolled.actions";
+import {
+  IltEventLearnersEnrolledState
+} from "../containers/ilt-event-learners/ilt-event-learners-enrolled/state/ilt-event-learners-enrolled.state";
+import {
+  GetPendingILTEventLearners
+} from "../containers/ilt-event-learners/ilt-event-learners-pending/state/ilt-event-learners-pending.actions";
+import {
+  IltEventLearnersPendingState
+} from "../containers/ilt-event-learners/ilt-event-learners-pending/state/ilt-event-learners-pending.state";
 import {
   ChangeILTEventMaterialTrackingListPaginationParams,
-  GetILTEventMaterialTrackingList,
-} from '../containers/ilt-event-materials-tracking/state/ilt-event-materials-tracking.actions';
-import { IltEventMaterialsTrackingState } from '../containers/ilt-event-materials-tracking/state/ilt-event-materials-tracking.state';
+  GetILTEventMaterialTrackingList
+} from "../containers/ilt-event-materials-tracking/state/ilt-event-materials-tracking.actions";
+import {
+  IltEventMaterialsTrackingState
+} from "../containers/ilt-event-materials-tracking/state/ilt-event-materials-tracking.state";
 import {
   ChangeWaitingListPaginationParams,
-  GetWaitingList,
-} from '../containers/waiting-list/state/waiting-list.actions';
-import { WaitingListState } from '../containers/waiting-list/state/waiting-list.state';
-import { EventReviewsState } from '../containers/ilt-event-reviews/state/ilt-event-reviews.state';
+  GetWaitingList
+} from "../containers/waiting-list/state/waiting-list.actions";
+import { WaitingListState } from "../containers/waiting-list/state/waiting-list.state";
+import { EventReviewsState } from "../containers/ilt-event-reviews/state/ilt-event-reviews.state";
 import {
   ApproveLearnerRegistrationRequest,
   AssignLearnersToILTEvent,
@@ -44,6 +58,7 @@ import {
   DisableWaitingList,
   DiscardILTEventAgendaChanges,
   EnableWaitingList,
+  ExportLearnerFromILTEvent,
   GenerateEventThumbnail,
   GetCompleteILTEventDetails,
   GetILTEventAttendancesByUsers,
@@ -54,20 +69,29 @@ import {
   UpdateILTEventAttendance,
   UpdateILTEventAttribute,
   UploadEventThumbnail,
-  UploadLearnersFromCSVToILTEvent,
-  ExportLearnerFromILTEvent,
-} from './ilt-event-details.actions';
-import { IltEventDetailsNotificationsState } from '../containers/ilt-event-notifications/state/ilt-event-details-notifications.state';
-import { EmailHistoryState } from '../containers/ilt-event-notifications/ilt-event-notification-details/email-history/state/email-history.state';
+  UploadLearnersFromCSVToILTEvent
+} from "./ilt-event-details.actions";
+import {
+  IltEventDetailsNotificationsState
+} from "../containers/ilt-event-notifications/state/ilt-event-details-notifications.state";
+import {
+  EmailHistoryState
+} from "../containers/ilt-event-notifications/ilt-event-notification-details/email-history/state/email-history.state";
 
-import { DeferredResource } from '../../../../../../../../../libs/shared/src/lib/utils/common';
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   AmberResponse,
-  AssignLearnersResponse, FlattenedCourseDetails,
-  ILTEvent, ILTEventAttendance,
-  ILTEventAttendancesByUser, ILTEventBulkMarkAttendancesPayload, IPageable
+  AssignLearnersResponse,
+  FlattenedCourseDetails,
+  ILTEvent,
+  ILTEventAttendance,
+  ILTEventAttendancesByUser,
+  ILTEventBulkMarkAttendancesPayload,
+  IPageable
 } from "../../../../../../../../../libs/shared/src/lib/models";
-import {AdminCoursesService} from "../../../../../../../../../libs/shared/src/lib/utils/services";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 export class IltEventDetailsStateModel {
   iltEvent: DeferredResource<ILTEvent>;

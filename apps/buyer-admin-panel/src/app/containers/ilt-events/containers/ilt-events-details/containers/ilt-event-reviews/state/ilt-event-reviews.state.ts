@@ -1,18 +1,23 @@
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
 import {
-  GetCourseEventReviews,
-  ResetEventReviewsListState,
-  DeleteCourseEventReview,
   ChangeEventReviewsPaginationParams,
-} from './ilt-event-reviews.actions';
-import { IltEventsService } from '../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service';
+  DeleteCourseEventReview,
+  GetCourseEventReviews,
+  ResetEventReviewsListState
+} from "./ilt-event-reviews.actions";
+import {
+  IltEventsService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
 
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EventReview, IPageable} from "../../../../../../../../../../../libs/shared/src/lib/models";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  EventReview,
+  IPageable
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class EventReviewsStateModel {
   loading: boolean;

@@ -1,17 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { MarketplaceRepositoryListState } from './state/marketplace-repository-list.state';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+
+import { MarketplaceRepositoryListState } from "./state/marketplace-repository-list.state";
 import {
   ChangeMarketplaceRepositoriesPaginationParams,
   GetMarketplaceRepositories,
-  ResetMarketplaceRepositoriesState,
-} from './state/marketplace-repository-list.actions';
-import { IMarketplaceProduct } from '../../../../../../../../libs/shared/src/lib/models/marketplace-repo/marketplace-repository-product.model';
-import {createPageableFromTableQueryParams} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/services/common";
-import {CURRENCY_DICTIONARY} from "../../../../../../../../libs/shared/src/lib/models/constants";
+  ResetMarketplaceRepositoriesState
+} from "./state/marketplace-repository-list.actions";
+import { createPageableFromTableQueryParams } from "../../../../../../../../libs/shared/src/lib/utils/common";
+import { CURRENCY_DICTIONARY, IMarketplaceProduct } from "../../../../../../../../libs/shared/src/lib/models";
+import { EnvironmentService } from "../../../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 @Component({
   selector: 'leap-marketplace-repository-list',

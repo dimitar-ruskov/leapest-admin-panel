@@ -1,39 +1,38 @@
-import { Action, State, StateContext, Store } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { filter, tap } from 'rxjs/operators';
-import { IltCourseNotificationsService } from '../../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-course-notifications.service';
+import { Action, State, StateContext, Store } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { filter, tap } from "rxjs/operators";
+
 import {
+  ChangePage,
+  ClearNotificationDetails,
+  ClearNotificationDetailsPartial,
+  ClearSearchForm,
   FetchCourseDetailsILTNotifications,
   GetNotificationDetails,
-  ClearNotificationDetailsPartial,
+  GetReportingManagerMapping,
+  PreviewNotificationTemplate,
+  ResetNotificationTemplate,
   TestEmail,
   ToggleSort,
-  ResetNotificationTemplate,
-  UpdateNotificationTemplate,
-  PreviewNotificationTemplate,
-  ClearNotificationDetails,
-  ChangePage,
-  GetReportingManagerMapping,
-  ClearSearchForm,
-} from './ilt-course-details-notifications.actions';
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+  UpdateNotificationTemplate
+} from "./ilt-course-details-notifications.actions";
+
 import {
+  IltCourseNotificationsService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/ilt-courses/ilt-course-notifications.service";
+import {
+  NotificationListFiltersService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/notifications/notification-list-filters.service";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  IPageable,
+  ISearchMetadata,
+  ISearchParams,
   NotificationModel,
-  ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/notifications/notifications.model";
-import {NotificationListFiltersService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
-import {IPageable, Sort} from "../../../../../../../../../../../libs/shared/src/lib/models";
+  ReportingDomainsMap,
+  Sort
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
-export interface ISearchParams {
-  filter?: string;
-  recipient?: string[];
-  trigger?: string[];
-  venue?: string[];
-}
-
-export interface ISearchMetadata {
-  totalCount: number;
-}
 
 export class IltCourseDetailsNotificationsStateModel {
   notifications: DeferredResource<NotificationModel[]>;

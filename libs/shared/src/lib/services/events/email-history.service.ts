@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import {
-  EmailNotification,
-  IPageableEmailHistory,
-} from '../../models/notifications/email-history.model';
-
-import {AdminPanelApiService} from "../common";
 import {DeferredResource} from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
+import { EmailNotification, IPageableEmailHistory } from "../../models";
 
 @Injectable({
   providedIn: 'root',

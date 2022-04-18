@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {AdminPanelApiService} from "../common";
-import {DeferredResource} from "../../utils/common";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+
+import { DeferredResource } from "../../utils/common";
+import { AdminPanelApiService } from "../common/admin-panel-api.service";
 
 @Injectable({
   providedIn: 'root',

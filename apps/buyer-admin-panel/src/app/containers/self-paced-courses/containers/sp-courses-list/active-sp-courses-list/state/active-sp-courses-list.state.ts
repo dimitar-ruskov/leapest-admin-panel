@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
 
-import { SpCoursesService } from '../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service';
+import {
+  SpCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service";
 import {
   ChangeActiveSPCoursesPaginationParams,
   GetActiveSelfPacedCourses,
   ResetActiveSPCoursesState
-} from './active-sp-courses-list.actions';
+} from "./active-sp-courses-list.actions";
 
-import { ActiveSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/courses/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IPageable} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  ActiveSelfPacedCourse,
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 export class ActiveSpCoursesListStateModel {
   loading: boolean;
