@@ -92,6 +92,9 @@ import {
 import {
   AdminCoursesService
 } from "../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
+import {
+  IltEventLearnersUnenrolledState
+} from "../containers/ilt-event-learners/ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.state";
 
 export class IltEventDetailsStateModel {
   iltEvent: DeferredResource<ILTEvent>;
@@ -110,6 +113,7 @@ export class IltEventDetailsStateModel {
   },
   children: [
     IltEventLearnersEnrolledState,
+    IltEventLearnersUnenrolledState,
     IltEventLearnersPendingState,
     IltEventMaterialsTrackingState,
     IltEventExamsState,

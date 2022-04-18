@@ -1,6 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
+import {
+  CourseAgendaUnsavedChangesGuard,
+  CourseMaterialsUnsavedChangesGuard
+} from "../../../../../../../../libs/shared/src/lib/utils/guards";
 import { IltCourseDetailsComponent } from "./ilt-course-details.component";
 import {
   IltCourseEventsBulkUploadDetailsComponent
@@ -9,10 +13,12 @@ import {
   IltCourseNotificationDetailsComponent
 } from "./containers/ilt-course-notifications/ilt-course-notification-details/ilt-course-notification-details.component";
 
+
 const routes: Routes = [
   {
     path: '',
-    component: IltCourseDetailsComponent
+    component: IltCourseDetailsComponent,
+    canDeactivate: [CourseAgendaUnsavedChangesGuard, CourseMaterialsUnsavedChangesGuard],
   },
   {
     path: 'notifications/:trigger/:recipient/:venue',

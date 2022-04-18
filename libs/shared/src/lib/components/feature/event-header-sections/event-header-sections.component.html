@@ -218,7 +218,7 @@
           (details?.course?.format?.configKey !== 'selfPacedCourse'
             ? isIltEventEditable || details?.selfRegistration
             : true) &&
-          details.isInternal
+          details?.isInternal
         "
         (click)="onEditPropClicked('registrationApproval')"
         >Edit</a
@@ -336,7 +336,7 @@
         <span>Waiting List</span>
         <span *ngIf="!isWaitingListEnabled" style="margin-left: 4px">(disabled)</span>
         <a
-          *ngIf="isIltEventEditable && !details?.isInProgress && details.isInternal"
+          *ngIf="isIltEventEditable && !details?.isInProgress && details?.isInternal"
           style="margin-left: 6px"
           (click)="onEditPropClicked('waitingList')"
           >Edit</a
@@ -516,7 +516,7 @@
         (click)="onAssignUsersClick()"
         style="margin-top: 15px;"
         [disabled]="
-          !details.isInternal ||
+          !details?.isInternal ||
           details?.userLock ||
             (0 === details?.remainingSeats && details?.course?.format?.configKey !== 'selfPacedCourse')
         "

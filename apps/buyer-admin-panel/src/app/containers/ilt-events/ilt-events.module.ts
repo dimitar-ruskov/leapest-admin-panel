@@ -6,7 +6,6 @@ import { IltEventsRoutingModule } from "./ilt-events-routing.module";
 import { IltEventsComponent } from "./ilt-events.component";
 import { IltEventsState } from "./state/ilt-events.state";
 
-import { EventAgendaUnsavedChangesGuard } from "../../../../../../libs/shared/src/lib/utils/guards";
 import { IltEventsCreateState } from "./containers/ilt-events-create/state/ilt-events-create.state";
 import {
   ActiveIltEventsState
@@ -69,7 +68,6 @@ import {
       IltEventDetailsNotificationsState,
       EmailHistoryState,
     ]),
-  ],
-  providers: [EventAgendaUnsavedChangesGuard]
+  ]
 })
 export class IltEventsModule { }

@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { IltEventsComponent } from "./ilt-events.component";
-import { EventAgendaUnsavedChangesGuard } from "../../../../../../libs/shared/src/lib/utils/guards";
 
 const routes: Routes = [
   {
@@ -26,7 +25,6 @@ const routes: Routes = [
         loadChildren: async () =>
           import('./containers/ilt-events-details/ilt-events-details.module')
             .then((m) => m.IltEventsDetailsModule),
-        canDeactivate: [EventAgendaUnsavedChangesGuard],
       },
     ],
   },
@@ -34,6 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class IltEventsRoutingModule {}
