@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import {
   InternalRepositoryMaterial,
   PublishedILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 export type ButtonState = 'loading' | 'active' | 'disabled';
 

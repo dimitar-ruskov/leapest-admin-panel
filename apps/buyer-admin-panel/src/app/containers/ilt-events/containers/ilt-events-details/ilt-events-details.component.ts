@@ -1,15 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { OktaAuthStateService } from '@okta/okta-angular';
-import { Select, Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import produce from 'immer';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTabsCanDeactivateFn } from 'ng-zorro-antd/tabs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { OktaAuthStateService } from "@okta/okta-angular";
+import { Select, Store } from "@ngxs/store";
+import { Observable, of } from "rxjs";
+import { map, switchMap, take } from "rxjs/operators";
+import { UntilDestroy } from "@ngneat/until-destroy";
+import produce from "immer";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTabsCanDeactivateFn } from "ng-zorro-antd/tabs";
 
-import { EventInfoEditHandlerService } from '../../services/event-info-edit-handler.service';
+import { EventInfoEditHandlerService } from "../../services/event-info-edit-handler.service";
 import {
   AssignLearnersToILTEvent,
   ChangeILTEventAttendancesFilter,
@@ -18,27 +18,27 @@ import {
   GetCompleteILTEventDetails,
   GetILTEventAttendancesByUsers,
   UpdateILTEventAgenda,
-  UploadLearnersFromCSVToILTEvent,
-} from './state/ilt-event-details.actions';
-import { IltEventDetailsState } from './state/ilt-event-details.state';
+  UploadLearnersFromCSVToILTEvent
+} from "./state/ilt-event-details.actions";
+import { IltEventDetailsState } from "./state/ilt-event-details.state";
 
-import { WaitingListState } from './containers/waiting-list/state/waiting-list.state';
+import { WaitingListState } from "./containers/waiting-list/state/waiting-list.state";
 import {
   IKeyValuePair,
   ILTCourseAgenda,
   ILTEvent,
   ILTEventLearner
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
+} from "../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   AssignUsersModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/assign-users-modal/assign-users-modal.component";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
 import {
   EventAgendaController,
   EventAgendaUnsavedChangesGuard
 } from "../../../../../../../../libs/shared/src/lib/utils/guards";
-import {AdminCoursesService} from "../../../../../../../../libs/shared/src/lib/utils/services";
+import { EnvironmentService } from "../../../../../../../../libs/shared/src/lib/services/common/environment.service";
+import { AdminCoursesService } from "../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 export type ButtonState = 'loading' | 'active' | 'disabled';
 

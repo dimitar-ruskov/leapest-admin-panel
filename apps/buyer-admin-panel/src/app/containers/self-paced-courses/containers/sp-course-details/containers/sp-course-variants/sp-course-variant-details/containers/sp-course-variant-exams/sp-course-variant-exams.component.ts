@@ -1,39 +1,39 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
-  TrackByFunction,
   ChangeDetectorRef,
-  OnDestroy,
-  SimpleChanges,
+  Component,
+  Input,
   OnChanges,
-} from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, map, withLatestFrom } from 'rxjs/operators';
-import { Select, Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  TrackByFunction
+} from "@angular/core";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { distinctUntilChanged, filter, map, withLatestFrom } from "rxjs/operators";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzTableQueryParams } from "ng-zorro-antd/table/ng-zorro-antd-table";
 
-import { SpCourseVariantExamsState } from '../../state/sp-course-variant-exams/sp-course-variant-exams.state';
-import {
-  ChangeSPCourseLanguageVariantExamSKU,
-  ChangeSPCourseLanguageVariantExamsPage,
-  GetSPCourseLanguageVariantExams,
-} from '../../state/sp-course-variant-exams/sp-course-variant-exams.actions';
-
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import { SPCourseLanguageVariantExam } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant-exam.model';
 import {
   IKeyValuePair,
-  InternalRepositoryMaterial, IPageable
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+  InternalRepositoryMaterial,
+  IPageable,
+  SPCourseLanguageVariant,
+  SPCourseLanguageVariantExam
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   createPageableFromTableQueryParams,
   DeferredResource
 } from "../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  ChangeSPCourseLanguageVariantExamSKU,
+  ChangeSPCourseLanguageVariantExamsPage,
+  GetSPCourseLanguageVariantExams
+} from "./state/sp-course-variant-exams.actions";
+import { SpCourseVariantExamsState } from "./state/sp-course-variant-exams.state";
 
 @Component({
   selector: 'leap-sp-course-variant-exams',

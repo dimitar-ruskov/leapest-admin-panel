@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import {FlattenedCourseDetails} from "../../../models/interfaces";
-import {EnvironmentService} from "../../../utils/services/common";
+import { FlattenedCourseDetails } from "../../../models";
+import { EnvironmentService } from "../../../services/common/environment.service";
 
 //TODO - Update this component using general-info component
 @Component({

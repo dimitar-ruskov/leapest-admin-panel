@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import {IKeyValuePair} from "../../../models/interfaces";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { Select } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { IKeyValuePair } from "../../../models";
 
 @Component({
   selector: 'leap-edit-course-certificate',

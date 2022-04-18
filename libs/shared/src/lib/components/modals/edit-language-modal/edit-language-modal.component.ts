@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject, Observable } from "rxjs";
+import { take } from "rxjs/operators";
 
-import {IKeyValuePair} from "../../../models/interfaces";
-import {AdminCoursesService} from "../../../utils/services";
+import { IKeyValuePair } from "../../../models";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-edit-language-modal',

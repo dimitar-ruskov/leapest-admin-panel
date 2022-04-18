@@ -1,28 +1,30 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngxs/store';
-import { catchError, filter, finalize } from 'rxjs/operators';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Store } from "@ngxs/store";
+import { catchError, filter, finalize } from "rxjs/operators";
+import { BehaviorSubject, Observable, of } from "rxjs";
 
 
 import {
   GoToSPCourseLanguageVariantCreationStep,
-  UpdatePreSPCourseLanguageVariant,
-} from '../../state/sp-course-variant-create.actions';
-import { SPCourseLanguageVariantCreationSteps } from '../../models/sp-course-create-variant-step.model';
+  UpdatePreSPCourseLanguageVariant
+} from "../../state/sp-course-variant-create.actions";
 import {
   prepareGeneralInfoFields,
   prepareMaterialsFields,
   prepareVariantDetailsFields
-} from "../../../../../../../services/sp-course-variants-handler.service";
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-variants-handler.service";
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
 import {
   GeneralInfoField,
-  MaterialsInfoField
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {NotificationService} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+  MaterialsInfoField,
+  PreSPCourseLanguageVariant,
+  SPCourseLanguageVariantCreationSteps
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  NotificationService
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/common/notification.service";
 
 
 @Component({

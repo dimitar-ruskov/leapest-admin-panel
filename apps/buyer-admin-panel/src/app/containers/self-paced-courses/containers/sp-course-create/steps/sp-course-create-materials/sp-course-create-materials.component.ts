@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import produce from 'immer';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import produce from "immer";
 
 import {
   CancelSPCourseCreation,
   GoToSPCourseCreationStep,
-  UpdatePreSelfPacedCourse,
-} from '../../state/sp-course-create.actions';
-import { SPCourseCreationSteps } from '../../models/sp-course-create-step.model';
-import { PreSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+  UpdatePreSelfPacedCourse
+} from "../../state/sp-course-create.actions";
+import { PreSelfPacedCourse, SPCourseCreationSteps } from "../../../../../../../../../../libs/shared/src/lib/models";
 
 const NO_MATERIALS_LABEL = 'This course has no materials yet. Please add your material, in order to continue';
 

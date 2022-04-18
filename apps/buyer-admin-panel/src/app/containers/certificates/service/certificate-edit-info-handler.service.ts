@@ -1,17 +1,20 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import * as moment from 'moment';
+import { Injectable } from "@angular/core";
+import { Store } from "@ngxs/store";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import * as moment from "moment";
 
-import { UpdateCertificateFields } from '../containers/certificate-details/state/certificate-details.actions';
-import { EditCertificatePeriodComponent } from '../components/edit-certificate-period/edit-certificate-period.component';
-import { CertificateUploadFileComponent } from '../components/certificate-upload-file/certificate-upload-file.component';
-
-import { Certificate } from '../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
 import {
-  TextInputModalComponent
-} from "../../../../../../../libs/shared/src/lib/components/modals/text-input-modal/text-input-modal.component";
-import {GeneralInfoField} from "../../../../../../../libs/shared/src/lib/models/interfaces";
+  UpdateCertificateFields
+} from "../containers/certificate-details/state/certificate-details.actions";
+import {
+  EditCertificatePeriodComponent
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-certificate-period/edit-certificate-period.component";
+import {
+  CertificateUploadFileComponent
+} from "../../../../../../../libs/shared/src/lib/components/feature/certificate-upload-file/certificate-upload-file.component";
+
+import { Certificate, GeneralInfoField } from "../../../../../../../libs/shared/src/lib/models";
+import { TextInputModalComponent } from "../../../../../../../libs/shared/src/lib/components/modals/text-input-modal/text-input-modal.component";
 
 @Injectable({
   providedIn: 'root'

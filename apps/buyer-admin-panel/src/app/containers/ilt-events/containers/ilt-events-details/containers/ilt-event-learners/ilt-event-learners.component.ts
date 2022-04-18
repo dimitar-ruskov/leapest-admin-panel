@@ -1,10 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { first, Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { first, Observable } from "rxjs";
+import { filter, map } from "rxjs/operators";
 
-import { IltEventLearnersUnenrolledState } from './ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.state';
-import { GetUnenrolledILTEventLearners } from './ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.actions';
+import {
+  IltEventLearnersUnenrolledState
+} from "./ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.state";
+import {
+  GetUnenrolledILTEventLearners
+} from "./ilt-event-learners-unenrolled/state/ilt-event-learners-unenrolled.actions";
 
 @Component({
   selector: 'leap-ilt-event-learners',

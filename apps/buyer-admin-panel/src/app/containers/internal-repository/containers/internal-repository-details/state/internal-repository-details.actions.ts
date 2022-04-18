@@ -1,4 +1,4 @@
-import {InternalRepository} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {InternalRepository} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetInternalRepositoryDetails {
   static readonly type = '[Internal Repository Details] Get Internal Repository Details';

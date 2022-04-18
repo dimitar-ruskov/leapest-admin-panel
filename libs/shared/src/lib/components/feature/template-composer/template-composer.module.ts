@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {SilkEditorModule} from "../silk-editor/silk-editor.module";
-import { TemplateComposerComponent } from './containers/template-composer/template-composer.component';
-import { PlaceholderPickerComponent } from './components/placeholder-picker/placeholder-picker.component';
+import { TemplateComposerComponent } from './template-composer.component';
+import { PlaceholderPickerComponent } from './placeholder-picker/placeholder-picker.component';
 import {FormGuidanceModule} from "../../common/form-guidance/form-guidance.module";
 import {AddLinkTextModalModule} from "../../modals/add-link-text-modal/add-link-text-modal.module";
 import {AddLinkModalModule} from "../../modals/add-link-modal/add-link-modal.module";

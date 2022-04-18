@@ -1,5 +1,4 @@
-import { InstructorLite } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
-import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { InstructorLite, IPageable } from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetInstructor {
   static readonly type = '[AP Instructor Details] Get Instructor Details';

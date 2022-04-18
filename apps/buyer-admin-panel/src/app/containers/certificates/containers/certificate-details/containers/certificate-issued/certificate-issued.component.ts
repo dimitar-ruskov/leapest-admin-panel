@@ -6,14 +6,14 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import * as moment from 'moment';
 
-import { CertificateIssuedState } from '../../state/certificate-issued.state';
+import { CertificateIssuedState } from './state/certificate-issued.state';
 import {
   ChangeIssuedCertificatesPaginationParams,
   GetIssuedCertificates,
   ResetIssuedCertificatesState,
-} from '../../state/certificate-issued.actions';
+} from './state/certificate-issued.actions';
 
-import { GeneralCertificate } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
+import { GeneralCertificate, IPageable } from '../../../../../../../../../../libs/shared/src/lib/models';
 import {
   createPageableFromTableQueryParams,
   DeferredResource
@@ -21,8 +21,9 @@ import {
 import {
   CertificatePreviewComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.component";
-import {IPageable} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {
+  DownloadSphinxService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 const NO_CERTIFICATES_TEXT = 'No certificates issued';
 

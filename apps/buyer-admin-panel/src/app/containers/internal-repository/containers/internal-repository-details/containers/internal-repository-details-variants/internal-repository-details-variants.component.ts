@@ -1,26 +1,30 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { map, take, takeUntil } from 'rxjs/operators';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import * as moment from 'moment';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { map, take, takeUntil } from "rxjs/operators";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import * as moment from "moment";
 
 import {
   ChangeInternalRepositoryVariantsPaginationParams,
   DeleteInternalRepositoryVariant,
-  GetInternalRepositoryVariants,
-} from '../../state/internal-repository-variants.actions';
-import { InternalRepositoryVariantsState } from '../../state/internal-repository-variants.state';
-import { InternalRepoExternalModalComponent } from '../../../internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component';
-import { InternalRepoHostedModalComponent } from '../../../internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component';
+  GetInternalRepositoryVariants
+} from "./state/internal-repository-variants.actions";
+import { InternalRepositoryVariantsState } from "./state/internal-repository-variants.state";
 
-import { InternalRepositoryVariantDTO } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-variant-dto.model';
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { InternalRepositoryVariantDTO } from "../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  InternalRepoHostedModalComponent
+} from "../../../../../../../../../../libs/shared/src/lib/components/modals/internal-repository-create-modal/steps/internal-repo-hosted-modal/internal-repo-hosted-modal.component";
+import {
+  InternalRepoExternalModalComponent
+} from "../../../../../../../../../../libs/shared/src/lib/components/modals/internal-repository-create-modal/steps/internal-repo-external-modal/internal-repo-external-modal.component";
 
 @Component({
   selector: 'leap-internal-repository-details-variants',

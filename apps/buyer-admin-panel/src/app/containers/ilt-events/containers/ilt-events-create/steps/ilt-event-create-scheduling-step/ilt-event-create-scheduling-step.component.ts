@@ -1,59 +1,59 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-  TrackByFunction,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
-import { filter, map, startWith, switchMap, take } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
-import produce from 'immer';
-import * as moment from 'moment';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-import { ILTEventCreationStep } from '../../models/ilt-event-create-step.model';
-import { GoToEventCreationStep, UpdateILTEventDetails } from '../../state/ilt-events-create.actions';
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable, of } from "rxjs";
+import { filter, map, startWith, switchMap, take } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
+import produce from "immer";
+import * as moment from "moment";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { GoToEventCreationStep, UpdateILTEventDetails } from "../../state/ilt-events-create.actions";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
 import {
   ConferencingTool,
   CourseEventInstructorsCollision,
   IKeyValuePair,
   ILTCourseAgendaDay,
-  ILTEvent, ILTInstructor,
+  ILTEvent,
+  ILTEventCreationStep,
+  ILTInstructor,
   Venue
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {CustomValidators, DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { CustomValidators, DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   InstructorsCollisionsWarningsComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/instructors-collisions-warnings/instructors-collisions-warnings.component";
-import {
-  AdminCoursesService,
-  ConferencingToolService,
-  CourseEventInstructorsCollisionService
-} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
+
 import {
   BasicUserModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/basic-user-modal/basic-user-modal.component";
-import {EnvironmentService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
 import {
   AddAddressModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/add-address-modal/add-address-modal.component";
+import {
+  EnvironmentService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
+import {
+  CourseEventInstructorsCollisionService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/course-event-instructors-collision.service";
+import {
+  ConferencingToolService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/conferencing-tool.service";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
-const ZOOM_GUIDE = 'https://edcast-docs.document360.io/v1/docs/web-conferencing-in-edcast-courses-events';
-const DISABLED_CHECKBOX = 'Registration closes after event starts. Once started, Event cannot be cancelled.';
+const ZOOM_GUIDE = "https://edcast-docs.document360.io/v1/docs/web-conferencing-in-edcast-courses-events";
+const DISABLED_CHECKBOX = "Registration closes after event starts. Once started, Event cannot be cancelled.";
 
 @Component({
-  selector: 'leap-ilt-event-create-scheduling-step',
-  templateUrl: './ilt-event-create-scheduling-step.component.html',
-  styleUrls: ['./ilt-event-create-scheduling-step.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: "leap-ilt-event-create-scheduling-step",
+  templateUrl: "./ilt-event-create-scheduling-step.component.html",
+  styleUrls: ["./ilt-event-create-scheduling-step.component.less"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @UntilDestroy()
 export class IltEventCreateSchedulingStepComponent implements OnInit {
@@ -69,39 +69,39 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
   registrationDeadlineDependsOnEventStartDateOptions: { key: boolean; value: string }[] = [
     {
       key: true,
-      value: 'Registration closes 12 hours prior the start of the Course Event',
+      value: "Registration closes 12 hours prior the start of the Course Event"
     },
     {
       key: false,
-      value: 'Registration closes at a specified date',
-    },
+      value: "Registration closes at a specified date"
+    }
   ];
 
   attendanceTrackingOptions: { key: boolean; value: string; hint: string }[] = [
     {
       key: false,
-      value: 'Manual',
-      hint: 'The Event Manager will manually indicate attendance for each learner',
+      value: "Manual",
+      hint: "The Event Manager will manually indicate attendance for each learner"
     },
     {
       key: true,
-      value: 'Automatic',
+      value: "Automatic",
       hint: `Attendance will be automatically classified based on the following scale: 0% = "Not Attended"; 1-75% = "Partially Attended"; ≥76% = "Attended".
-        To receive this information, please make sure that your instructor "Ends" the zoom meeting. Simply closing the meeting window will not record the attendance tracking.`,
-    },
+        To receive this information, please make sure that your instructor "Ends" the zoom meeting. Simply closing the meeting window will not record the attendance tracking.`
+    }
   ];
 
   completionOptions: { key: boolean; value: string; hint: string }[] = [
     {
       key: false,
-      value: 'Manual',
-      hint: 'The Event Manager will manually indicate course completion for each learner.',
+      value: "Manual",
+      hint: "The Event Manager will manually indicate course completion for each learner."
     },
     {
       key: true,
-      value: 'Automatic',
-      hint: 'Completion will be automatically registered based on your criteria.',
-    },
+      value: "Automatic",
+      hint: "Completion will be automatically registered based on your criteria."
+    }
   ];
 
   instructorDropdownOpen = false;
@@ -125,43 +125,43 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
     attendanceTracking: [],
     completion: [],
     completionPercent: [],
-    automaticCancellation: false,
+    automaticCancellation: false
   });
 
   get sessions(): FormArray {
-    return this.form.get('sessions') as FormArray;
+    return this.form.get("sessions") as FormArray;
   }
 
   get conferencingTool(): FormControl {
-    return this.form.get('conferencingTool') as FormControl;
+    return this.form.get("conferencingTool") as FormControl;
   }
 
   get countryControl(): FormControl {
-    return this.form.get('country') as FormControl;
+    return this.form.get("country") as FormControl;
   }
 
   get completionControl(): FormControl {
-    return this.form.get('completion') as FormControl;
+    return this.form.get("completion") as FormControl;
   }
 
   get attendanceTrackingControl(): FormControl {
-    return this.form.get('attendanceTracking') as FormControl;
+    return this.form.get("attendanceTracking") as FormControl;
   }
 
   get cityControl(): FormControl {
-    return this.form.get('city') as FormControl;
+    return this.form.get("city") as FormControl;
   }
 
   get venueControl(): FormControl {
-    return this.form.get('venue') as FormControl;
+    return this.form.get("venue") as FormControl;
   }
 
   get registrationDeadlineDependsOnEventStartDate(): FormControl {
-    return this.form.get('registrationDeadlineDependsOnEventStartDate') as FormControl;
+    return this.form.get("registrationDeadlineDependsOnEventStartDate") as FormControl;
   }
 
   get instructorsControl(): FormControl {
-    return this.form.get('instructors') as FormControl;
+    return this.form.get("instructors") as FormControl;
   }
 
   constructor(
@@ -173,19 +173,21 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
     private readonly modalService: NzModalService,
     private readonly detector: ChangeDetectorRef,
     private readonly conferencingService: ConferencingToolService,
-    private readonly validationService: CourseEventInstructorsCollisionService,
-  ) {}
+    private readonly validationService: CourseEventInstructorsCollisionService
+  ) {
+  }
 
   trackByFn: TrackByFunction<FormControl> = (index: number) => index;
+
   private initFormArray(): void {
     this.iltEvent.hierarchicalAgenda.forEach((day: ILTCourseAgendaDay, index: number) => {
       this.sessions.push(
         this.fb.group({
           enabled: day.externalMeetingEnabled,
-          link: [day.meeting?.joinURL ? day.meeting.joinURL : '', [CustomValidators.url]],
+          link: [day.meeting?.joinURL ? day.meeting.joinURL : "", [CustomValidators.url]],
           date: day.startDateTime,
-          index,
-        }),
+          index
+        })
       );
     });
   }
@@ -205,7 +207,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
 
     this.form.patchValue({
       instructors: this.iltEvent.instructors ? this.iltEvent.instructors : [],
-      conferencingTool: this.iltEvent.externalMeetingType || 'manual',
+      conferencingTool: this.iltEvent.externalMeetingType || "manual",
       registrationDeadlineDependsOnEventStartDate: this.iltEvent.isInternal
         ? this.iltEvent.registrationDeadlineDependsOnEventStartDate
         : true,
@@ -221,7 +223,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
       attendanceTracking: !!this.iltEvent.automaticAttendanceTracking,
       completion: !!this.iltEvent.automaticAttendanceCompletion,
       completionPercent: this.iltEvent.completionRate || 80,
-      automaticCancellation: this.iltEvent.automaticCancellation || false,
+      automaticCancellation: this.iltEvent.automaticCancellation || false
     });
 
     this.instructorsControl.setAsyncValidators([this.validateInstructors.bind(this)]);
@@ -233,30 +235,30 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
           return this.validationService.checkForCollision({
             eventId: this.iltEvent.id,
             instructors: instructors.map((i) => i.id),
-            dates: this.iltEvent.hierarchicalAgenda.map((d) => moment(d.startDateTime).toISOString()),
+            dates: this.iltEvent.hierarchicalAgenda.map((d) => moment(d.startDateTime).toISOString())
           });
         }),
-        untilDestroyed(this),
+        untilDestroyed(this)
       )
       .subscribe((val: DeferredResource<CourseEventInstructorsCollision[]>) => {
         if (val.isSuccess && val.response?.length) {
           const modal = this.modalService.create({
             nzContent: InstructorsCollisionsWarningsComponent,
             nzComponentParams: {
-              instructorCollisions: val.response,
+              instructorCollisions: val.response
             },
-            nzWrapClassName: 'modal-class',
+            nzWrapClassName: "modal-class",
             nzWidth: 660,
             nzCloseIcon: null,
             nzFooter: [
               {
-                label: 'Save Changes',
-                type: 'primary',
+                label: "Save Changes",
+                type: "primary",
                 onClick: async (data) => {
                   modal.destroy();
-                },
-              },
-            ],
+                }
+              }
+            ]
           });
         }
       });
@@ -276,7 +278,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
             this.formInited = true;
           }
           return this.adminCourseService.getILTVenueCitiesDictionary(country);
-        }),
+        })
       );
       this.venues$ = this.cityControl.valueChanges.pipe(
         startWith(this.cityControl.value),
@@ -292,16 +294,16 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
           } else {
             return of([]);
           }
-        }),
+        })
       );
     } else {
       this.conferencingTool.setValidators([Validators.required]);
       this.conferencingTool.valueChanges
         .pipe(
           startWith(this.conferencingTool.value),
-          filter((val) => val !== 'manual'),
+          filter((val) => val !== "manual"),
           switchMap((val) => this.conferencingService.checkIfAccountIsPro(val)),
-          untilDestroyed(this),
+          untilDestroyed(this)
         )
         .subscribe((res) => {
           this.isSelectedConferenceToolAccountPro = res.data;
@@ -319,7 +321,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
     const {
       registrationDeadlineDependsOnEventStartDate,
       registrationPeriodEndDate,
-      registrationPeriodEndTime,
+      registrationPeriodEndTime
     } = this.form.getRawValue();
     if (registrationDeadlineDependsOnEventStartDate) {
       return true;
@@ -332,7 +334,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
   }
 
   openGuide(): void {
-    window.open(ZOOM_GUIDE, '_blank', 'noopener,noreferrer');
+    window.open(ZOOM_GUIDE, "_blank", "noopener,noreferrer");
   }
 
   disabledDate = (current: Date): boolean => {
@@ -352,7 +354,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
         a.externalMeetingType = formValue.conferencingTool;
         a.hierarchicalAgenda.forEach((day: ILTCourseAgendaDay, index: number) => {
           day.externalMeetingEnabled = formValue.sessions[index].enabled;
-          if (formValue.conferencingTool === 'manual') {
+          if (formValue.conferencingTool === "manual") {
             day.meeting = { joinURL: formValue.sessions[index].link };
           }
         });
@@ -366,7 +368,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
         a.registrationDeadlineDependsOnEventStartDate = formValue.registrationDeadlineDependsOnEventStartDate;
         a.registrationDeadline = this.formatDate(
           formValue.registrationPeriodEndDate,
-          formValue.registrationPeriodEndTime,
+          formValue.registrationPeriodEndTime
         );
         a.automaticCancellation = this.isRegistrationBeforeStart ? formValue.automaticCancellation : false;
       }
@@ -376,41 +378,41 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
     });
 
     this.store
-      .dispatch([new UpdateILTEventDetails(payload, 'scheduling')])
+      .dispatch([new UpdateILTEventDetails(payload, "scheduling")])
       .pipe(untilDestroyed(this))
       .subscribe(
         () => {
           this.updating = false;
           this.store.dispatch(new GoToEventCreationStep(ILTEventCreationStep.SUMMARY));
         },
-        () => (this.updating = false),
+        () => (this.updating = false)
       );
   }
 
   activateConferencingTool(ct: ConferencingTool) {
     window.location.replace(
-      `https://zoom.us/oauth/authorize?response_type=code&client_id=${ct.clientId}&state=create,${this.iltEvent.id}&redirect_uri=${window.location.origin}/hw/admin/zoom-auth-landing`,
+      `https://zoom.us/oauth/authorize?response_type=code&client_id=${ct.clientId}&state=create,${this.iltEvent.id}&redirect_uri=${window.location.origin}/hw/admin/zoom-auth-landing`
     );
   }
 
   openAddVenueModal(): void {
     const modal: NzModalRef = this.modalService.create({
-      nzTitle: 'Add New Venue',
+      nzTitle: "Add New Venue",
       nzContent: AddAddressModalComponent,
-      nzWrapClassName: 'modal-class',
+      nzWrapClassName: "modal-class",
       nzWidth: 660,
       nzComponentParams: {
-        countries: this.allCountries,
+        countries: this.allCountries
       },
       nzFooter: [
         {
-          label: 'Cancel',
-          type: 'text',
-          onClick: () => modal.destroy(),
+          label: "Cancel",
+          type: "text",
+          onClick: () => modal.destroy()
         },
         {
-          label: 'Proceed',
-          type: 'primary',
+          label: "Proceed",
+          type: "primary",
           disabled: (d) => !d.form.valid,
           onClick: async (data) => {
             const formValue: Venue = data.form.getRawValue();
@@ -425,20 +427,20 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
                 this.venueControl.patchValue(result.id);
                 modal.destroy();
               });
-          },
-        },
-      ],
+          }
+        }
+      ]
     });
     const instance = modal.getContentComponent();
     setTimeout(() => {
       instance.form
-        .get('country')
+        .get("country")
         .valueChanges.pipe(
-          switchMap((val: string) => this.adminCourseService.getStateDictionary(val)),
-          untilDestroyed(this),
-        )
+        switchMap((val: string) => this.adminCourseService.getStateDictionary(val)),
+        untilDestroyed(this)
+      )
         .subscribe((res) => {
-          instance.form.get('state').patchValue(null);
+          instance.form.get("state").patchValue(null);
           instance.states = res;
         });
     }, 200);
@@ -446,24 +448,24 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
 
   formatDate(date: Date, time: Date): string {
     if (!date || !time) {
-      return 'N/A';
+      return "N/A";
     }
-    const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString();
-    const day = date.getDate() < 10 ? '0' + date.getDate().toString() : date.getDate().toString();
-    const hours = time.getHours() < 10 ? '0' + time.getHours().toString() : time.getHours().toString();
-    const minutes = time.getMinutes() < 10 ? '0' + time.getMinutes().toString() : time.getMinutes().toString();
-    const seconds = time.getSeconds() < 10 ? '0' + time.getSeconds().toString() : time.getSeconds().toString();
+    const month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString();
+    const day = date.getDate() < 10 ? "0" + date.getDate().toString() : date.getDate().toString();
+    const hours = time.getHours() < 10 ? "0" + time.getHours().toString() : time.getHours().toString();
+    const minutes = time.getMinutes() < 10 ? "0" + time.getMinutes().toString() : time.getMinutes().toString();
+    const seconds = time.getSeconds() < 10 ? "0" + time.getSeconds().toString() : time.getSeconds().toString();
 
-    return date.getFullYear().toString() + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds;
+    return date.getFullYear().toString() + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds;
   }
 
   get checkLinks(): boolean {
-    if (this.iltEvent.classEvent.virtualVenue && this.conferencingTool.value === 'manual') {
-      if (this.sessions.controls.filter((session) => session.get('enabled').value).length === 0) {
+    if (this.iltEvent.classEvent.virtualVenue && this.conferencingTool.value === "manual") {
+      if (this.sessions.controls.filter((session) => session.get("enabled").value).length === 0) {
         return true;
       }
       for (const session of this.sessions.controls) {
-        if (session.get('enabled').value && !session.get('link').value) {
+        if (session.get("enabled").value && !session.get("link").value) {
           return true;
         }
       }
@@ -479,7 +481,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
   }
 
   validateInstructors(control: AbstractControl) {
-    if (this.conferencingTool.value === 'manual' || this.updating === true) {
+    if (this.conferencingTool.value === "manual" || this.updating === true) {
       this.updating = false;
       return of(null);
     }
@@ -495,32 +497,32 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
           } else {
             return null;
           }
-        }),
+        })
       )
       .toPromise();
   }
 
   openAddInstructorModal(): void {
     const modal: NzModalRef = this.modalService.create({
-      nzTitle: 'Add New Instructor',
+      nzTitle: "Add New Instructor",
       nzContent: BasicUserModalComponent,
-      nzWrapClassName: 'modal-class',
+      nzWrapClassName: "modal-class",
       nzWidth: 660,
       nzComponentParams: {
-        userLabel: 'Instructor',
+        userLabel: "Instructor"
       },
       nzFooter: [
         {
-          label: 'Cancel',
-          type: 'text',
-          onClick: () => modal.destroy(),
+          label: "Cancel",
+          type: "text",
+          onClick: () => modal.destroy()
         },
         {
-          label: 'Proceed',
-          type: 'primary',
+          label: "Proceed",
+          type: "primary",
           disabled: (d) => !d.form.valid,
           onClick: async (data) => {
-            const formValue: ILTInstructor = { ...data.form.getRawValue(), source: 'ext' };
+            const formValue: ILTInstructor = { ...data.form.getRawValue(), source: "ext" };
             let addedInstructor: ILTInstructor;
             return this.adminCourseService
               .addInstructor(formValue)
@@ -528,7 +530,7 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
                 switchMap((inst) => {
                   addedInstructor = inst;
                   return this.adminCourseService.getInstructors();
-                }),
+                })
               )
               .toPromise()
               .then((_) => {
@@ -536,9 +538,9 @@ export class IltEventCreateSchedulingStepComponent implements OnInit {
                 this.instructors$ = of(_);
                 this.instructorsControl.patchValue([...this.instructorsControl.value, addedInstructor]);
               });
-          },
-        },
-      ],
+          }
+        }
+      ]
     });
   }
 }

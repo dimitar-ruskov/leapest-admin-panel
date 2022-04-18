@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {ConfigDto, InternalRepositoryDTO} from "../../../models/interfaces";
+import {ConfigDto, InternalRepositoryDTO} from "../../../models";
 
 export interface VariantSelectModalFormValue {
   variantId: number;

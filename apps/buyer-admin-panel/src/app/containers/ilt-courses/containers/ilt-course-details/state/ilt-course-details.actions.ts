@@ -2,7 +2,7 @@ import {
   PublishCourseToLXP,
   PublishedILTCourse,
   S3BucketData
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class ChangeILTCourseDetailsTab {
   static readonly type = '[AP ILT Course Details] Change ILT Course Details Tab';

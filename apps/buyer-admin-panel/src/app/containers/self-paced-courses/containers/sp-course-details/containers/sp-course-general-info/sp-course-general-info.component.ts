@@ -1,16 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { UntilDestroy } from "@ngneat/until-destroy";
 
-import {PublishToLxpByDomain} from "../../state/sp-course-details.actions";
-import {SpCourseDetailsState} from "../../state/sp-course-details.state";
+import { PublishToLxpByDomain } from "../../state/sp-course-details.actions";
+import { SpCourseDetailsState } from "../../state/sp-course-details.state";
 
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {PublishCourseToLXP} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {
-  ActiveSelfPacedCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { ActiveSelfPacedCourse, PublishCourseToLXP } from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-general-info',

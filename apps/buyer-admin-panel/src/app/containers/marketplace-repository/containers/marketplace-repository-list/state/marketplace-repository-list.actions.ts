@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetMarketplaceRepositories {
   static readonly type = '[Marketplace Repository List] Get Marketplace Repositories';

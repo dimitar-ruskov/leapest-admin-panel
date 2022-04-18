@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import {EnvironmentService} from "../../../utils/services/common";
+
+import { EnvironmentService } from "../../../services/common/environment.service";
 
 @Component({
   selector: 'leap-upload-thumbnail-modal',

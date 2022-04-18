@@ -46,8 +46,8 @@
         "prodin": {
           "fileReplacements": [
             {
-              "replace": "apps/buyer-admin-panel/src/environments/environment.ts",
-              "with": "apps/buyer-admin-panel/src/environments/environment.prodin.ts"
+              "replace": "libs/shared/src/lib/environments/environment.ts",
+              "with": "libs/shared/src/lib/environments/environment.prodin.ts"
             }
           ],
           "optimization": true,
@@ -62,8 +62,8 @@
         "prod": {
           "fileReplacements": [
             {
-              "replace": "apps/buyer-admin-panel/src/environments/environment.ts",
-              "with": "apps/buyer-admin-panel/src/environments/environment.prod.ts"
+              "replace": "libs/shared/src/lib/environments/environment.ts",
+              "with": "libs/shared/src/lib/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -78,8 +78,8 @@
         "test": {
           "fileReplacements": [
             {
-              "replace": "apps/buyer-admin-panel/src/environments/environment.ts",
-              "with": "apps/buyer-admin-panel/src/environments/environment.test.ts"
+              "replace": "libs/shared/src/lib/environments/environment.ts",
+              "with": "libs/shared/src/lib/environments/environment.test.ts"
             }
           ],
           "optimization": true,
@@ -94,8 +94,8 @@
         "preview": {
           "fileReplacements": [
             {
-              "replace": "apps/buyer-admin-panel/src/environments/environment.ts",
-              "with": "apps/buyer-admin-panel/src/environments/environment.preview.ts"
+              "replace": "libs/shared/src/lib/environments/environment.ts",
+              "with": "libs/shared/src/lib/environments/environment.preview.ts"
             }
           ],
           "optimization": true,
@@ -110,8 +110,8 @@
         "swat": {
           "fileReplacements": [
             {
-              "replace": "apps/buyer-admin-panel/src/environments/environment.ts",
-              "with": "apps/buyer-admin-panel/src/environments/environment.swat.ts"
+              "replace": "libs/shared/src/lib/environments/environment.ts",
+              "with": "libs/shared/src/lib/environments/environment.swat.ts"
             }
           ],
           "optimization": true,

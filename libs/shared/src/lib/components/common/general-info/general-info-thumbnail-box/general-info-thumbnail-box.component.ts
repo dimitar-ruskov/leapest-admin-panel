@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import {EnvironmentService} from "../../../../utils/services/common";
+import { EnvironmentService } from "../../../../services/common/environment.service";
 
 @Component({
   selector: 'leap-general-info-thumbnail-box',

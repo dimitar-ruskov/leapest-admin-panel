@@ -1,17 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { take, tap } from "rxjs/operators";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
-import { SpCoursesListState } from './state/sp-courses-list.state';
-import {
-  ChangeSelfPacedCoursesListTab,
-  CreatePreSelfPacedCourse,
-} from './state/sp-courses-list.actions';
+import { SpCoursesListState } from "./state/sp-courses-list.state";
+import { ChangeSelfPacedCoursesListTab, CreatePreSelfPacedCourse } from "./state/sp-courses-list.actions";
 
-import { PreSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {IKeyValuePair} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { IKeyValuePair, PreSelfPacedCourse } from "../../../../../../../../libs/shared/src/lib/models";
 import {
   CreateNewCourseModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/create-new-course-modal/create-new-course-modal.component";

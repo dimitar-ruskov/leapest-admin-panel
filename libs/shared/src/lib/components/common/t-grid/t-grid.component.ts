@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
 import { BehaviorSubject } from 'rxjs';
 import {DeferredResource} from "../../../utils/common";
-import {IPageable, TGridInputModel} from "../../../models/interfaces";
+import {IPageable, TGridInputModel} from "../../../models";
 
 @Component({
   selector: 'leap-t-grid',

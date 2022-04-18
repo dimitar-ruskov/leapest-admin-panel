@@ -1,45 +1,39 @@
-import { Action, State, StateContext, Store } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { filter, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Action, State, StateContext, Store } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { filter, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
 
-import { IltEventNotificationsService } from '../../../../../services/ilt-event-notifications.service';
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 import {
-  FetchEventDetailsILTNotifications,
-  ToggleSort,
   ChangePage,
-  TestEmail,
   ClearNotificationDetails,
-  GetNotificationDetails,
-  PreviewNotificationTemplate,
-  UpdateNotificationTemplate,
-  ResetNotificationTemplate,
   ClearNotificationDetailsPartial,
-  GetReportingManagerMapping,
-  GetNotificationRecipients,
   ClearSearchForm,
-} from './ilt-event-details-notifications.actions';
+  FetchEventDetailsILTNotifications,
+  GetNotificationDetails,
+  GetNotificationRecipients,
+  GetReportingManagerMapping,
+  PreviewNotificationTemplate,
+  ResetNotificationTemplate,
+  TestEmail,
+  ToggleSort,
+  UpdateNotificationTemplate
+} from "./ilt-event-details-notifications.actions";
 
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
+  IltEventNotificationsService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-notifications.service";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+
+import {
+  IPageable,
+  ISearchMetadata,
+  ISearchParams,
   NotificationModel,
   NotificationRecipientsListModel,
-  ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
-import {IPageable, Sort} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
-
-
-export interface ISearchParams {
-  filter?: string;
-  recipient?: string[];
-  trigger?: string[];
-  venue?: string;
-}
-
-export interface ISearchMetadata {
-  totalCount: number;
-}
+  ReportingDomainsMap,
+  Sort
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class IltEventDetailsNotificationsStateModel {
   notifications: DeferredResource<any[]>;
@@ -105,7 +99,7 @@ export class IltEventDetailsNotificationsState {
     const venue = event?.classEvent?.virtualVenue ? 'v-ilt' : 'ilt';
     const { searchForm, pagination, sort } = getState();
 
-    const filters: ISearchParams = { ...searchForm.model, venue };
+    const filters: ISearchParams = { ...searchForm.model, venue: [venue] };
 
     return this.service.list(eventSku, filters, sort, pagination).pipe(
       filter((x) => x.isSuccess),

@@ -1,19 +1,23 @@
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { IltEventLearnersService } from '../../../../../../services/ilt-event-learners.service';
+import {
+  IltEventLearnersService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-event-learners.service";
 import {
   ChangeUnenrolledILTEventLearnersPaginationParams,
   GetUnenrolledILTEventLearners,
-  ResetUnenrolledILTEventLearnersState,
-} from './ilt-event-learners-unenrolled.actions';
+  ResetUnenrolledILTEventLearnersState
+} from "./ilt-event-learners-unenrolled.actions";
 
-import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {ILTEventLearner, IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { DeferredResource } from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  DEFAULT_INITIAL_PAGINATION_PARAMS
-} from "../../../../../../../../../../../../libs/shared/src/lib/models/constants";
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  ILTEventLearner,
+  IPageable
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
+
 
 export class IltEventLearnersUnenrolledStateModel {
   loading: boolean;

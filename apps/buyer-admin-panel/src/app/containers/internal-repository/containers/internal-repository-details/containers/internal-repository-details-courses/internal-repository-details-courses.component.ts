@@ -1,31 +1,31 @@
-import {ChangeDetectionStrategy, Component, TrackByFunction} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Select, Store} from '@ngxs/store';
-import {Observable} from 'rxjs';
-import {map, take} from 'rxjs/operators';
-import {NzTableQueryParams} from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, TrackByFunction } from "@angular/core";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { map, take } from "rxjs/operators";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
-import {
-  InternalRepositoryCourseListItem
-} from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/internal-repo/internal-repository-course-list-item.model';
 import {
   ChangeInternalRepositoryCoursesPaginationParams,
   GetInternalRepositoryCourses
-} from '../../state/internal-repository-courses.actions';
+} from "./state/internal-repository-courses.actions";
 import {
   InternalRepositoryCoursesState
-} from '../../state/internal-repository-courses.state';
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {TGridInputModel} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "./state/internal-repository-courses.state";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  InternalRepositoryCourseListItem,
+  TGridInputModel
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
-  selector: 'leap-internal-repository-details-courses',
-  templateUrl: './internal-repository-details-courses.component.html',
-  styleUrls: ['./internal-repository-details-courses.component.less'],
+  selector: "leap-internal-repository-details-courses",
+  templateUrl: "./internal-repository-details-courses.component.html",
+  styleUrls: ["./internal-repository-details-courses.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InternalRepositoryDetailsCoursesComponent {
-  sku: string
+  sku: string;
   config: TGridInputModel;
 
   @Select(InternalRepositoryCoursesState.loading)
@@ -51,7 +51,7 @@ export class InternalRepositoryDetailsCoursesComponent {
   constructor(private route: ActivatedRoute, private router: Router, private store: Store) {
     this.route.paramMap.pipe(
       take(1),
-      map((paramMap: ParamMap) => paramMap.get('sku'))
+      map((paramMap: ParamMap) => paramMap.get("sku"))
     ).subscribe((sku: string) => {
       this.sku = sku;
     });
@@ -72,8 +72,9 @@ export class InternalRepositoryDetailsCoursesComponent {
       new GetInternalRepositoryCourses({ sku: this.sku })
     ]);
   }
+
   goToCourse(id: string) {
-    this.router.navigate(['admin', 'ilt-courses', 'details', id])
+    this.router.navigate(["admin", "ilt-courses", "details", id]);
   }
 
 }

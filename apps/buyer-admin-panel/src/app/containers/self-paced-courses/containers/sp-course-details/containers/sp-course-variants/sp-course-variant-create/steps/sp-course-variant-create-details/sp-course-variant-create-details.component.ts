@@ -1,25 +1,28 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, interval, Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import produce from 'immer';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { BehaviorSubject, interval, Observable } from "rxjs";
+import { distinctUntilChanged, filter, map, switchMap } from "rxjs/operators";
+import produce from "immer";
 
 import {
   GoToSPCourseLanguageVariantCreationStep,
-  UpdatePreSPCourseLanguageVariant,
-} from '../../state/sp-course-variant-create.actions';
-import { SPCourseLanguageVariantCreationSteps } from '../../models/sp-course-create-variant-step.model';
+  UpdatePreSPCourseLanguageVariant
+} from "../../state/sp-course-variant-create.actions";
 
-import { PreSPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course-language-variant.model';
-import {IKeyValuePair} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {getOptionsFromMap} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   COURSE_COMPLETION_OPTIONS_MAP,
-  REGISTRATION_APPROVAL_OPTIONS_MAP, SELF_REGISTRATION_OPTIONS_MAP
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/constants/registration-options";
-import {AdminCoursesService} from "../../../../../../../../../../../../../libs/shared/src/lib/utils/services";
+  IKeyValuePair,
+  PreSPCourseLanguageVariant,
+  REGISTRATION_APPROVAL_OPTIONS_MAP,
+  SELF_REGISTRATION_OPTIONS_MAP,
+  SPCourseLanguageVariantCreationSteps
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
+import { getOptionsFromMap } from "../../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 
 @Component({

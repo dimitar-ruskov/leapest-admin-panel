@@ -1,34 +1,29 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   Input,
   OnChanges,
-  SimpleChanges,
   OnDestroy,
-  TrackByFunction,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, map, withLatestFrom } from 'rxjs/operators';
-import { Select, Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+  OnInit,
+  SimpleChanges,
+  TrackByFunction
+} from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { distinctUntilChanged, filter, map, withLatestFrom } from "rxjs/operators";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
-import {
-  ChangeSPCourseLanguageVariantMaterialSKU,
-  ChangeSPCourseLanguageVariantMaterialsTrackingPage,
-  GetSPCourseLanguageVariantMaterialsTrackingList,
-} from '../../state/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.actions';
-import { SpCourseVariantMaterialsTrackingState } from '../../state/sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state';
-
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
 import {
   IKeyValuePair,
-  InternalRepositoryMaterial, IPageable, MaterialCompletionReport
-} from "../../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+  InternalRepositoryMaterial,
+  IPageable,
+  MaterialCompletionReport,
+  SPCourseLanguageVariant
+} from "../../../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   createPageableFromTableQueryParams,
   DeferredResource
@@ -36,6 +31,12 @@ import {
 import {
   MaterialsTrackingDetailsModalComponent
 } from "../../../../../../../../../../../../../libs/shared/src/lib/components/modals/materials-tracking-details-modal/materials-tracking-details-modal.component";
+import {
+  ChangeSPCourseLanguageVariantMaterialSKU,
+  ChangeSPCourseLanguageVariantMaterialsTrackingPage,
+  GetSPCourseLanguageVariantMaterialsTrackingList
+} from "./state/sp-course-variant-materials-tracking.actions";
+import { SpCourseVariantMaterialsTrackingState } from "./state/sp-course-variant-materials-tracking.state";
 
 
 @Component({

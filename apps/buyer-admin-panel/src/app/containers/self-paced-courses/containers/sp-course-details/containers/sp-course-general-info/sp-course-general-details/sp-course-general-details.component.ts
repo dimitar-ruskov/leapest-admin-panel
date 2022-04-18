@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { untilDestroyed } from "@ngneat/until-destroy";
 import {
   GenerateSelfPacedCourseThumbnail,
   UpdateSPCourseAttribute,
@@ -11,29 +11,29 @@ import {
 import {
   TextInputModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/text-input-modal/text-input-modal.component";
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 import {
   EditLevelModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-level-modal/edit-level-modal.component";
 import {
+  ActiveSelfPacedCourse,
   CourseCategory,
-  EnrollmentPolicyKeys, GeneralInfoField, IKeyValuePair, S3BucketData
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DEFAULT_QUILL_EDITOR_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
+  DEFAULT_QUILL_EDITOR_CONFIG,
+  EnrollmentPolicyKeys,
+  GeneralInfoField,
+  IKeyValuePair,
+  S3BucketData
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditExternalSKUModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
 import {
-  ActiveSelfPacedCourse
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model";
-import {
   CourseCategoryAndSubcategoryHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-category-and-subcategory-handler.service";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-category-and-subcategory-handler.service";
 import {
   CourseThumbnailHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-thumbnail-handler.service";
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
-import {LmsCategoriesService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 import {
   KeywordsInputModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/keywords-input-modal/keywords-input-modal.component";
@@ -43,6 +43,9 @@ import {
 import {
   EditEnrollPolicyModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-enroll-policy-modal/edit-enroll-policy-modal.component";
+import {
+  LmsCategoriesService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/lms-categories.service";
 
 @Component({
   selector: 'leap-sp-course-general-details',

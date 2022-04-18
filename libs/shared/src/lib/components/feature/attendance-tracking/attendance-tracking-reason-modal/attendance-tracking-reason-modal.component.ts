@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/f
 import { of } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import {ILTEventCustomAttendanceLight} from "../../../../models/interfaces";
+import {ILTEventCustomAttendanceLight} from "../../../../models";
 
 @Component({
   selector: 'leap-attendance-tracking-reason-modal',

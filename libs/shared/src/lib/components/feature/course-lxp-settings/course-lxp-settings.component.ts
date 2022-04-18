@@ -10,10 +10,10 @@ import {
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { filter, map } from 'rxjs/operators';
 
-import { CourseLxpSettingsService } from '../../../utils/services/course-lxp-settings.service';
+import { CourseLxpSettingsService } from '../../../services/publishing/course-lxp-settings.service';
 import {DeferredResource} from "../../../utils/common";
-import {PublishCourseToLXP, PublishedILTCourse, TargetLxpDomain} from "../../../models/interfaces";
-import {ActiveSelfPacedCourse} from "../../../models/interfaces/sp-courses/sp-course.model";
+import {PublishCourseToLXP, PublishedILTCourse, TargetLxpDomain} from "../../../models";
+import {ActiveSelfPacedCourse} from "../../../models/courses/sp-courses/sp-course.model";
 import {PublishToLxpModalComponent} from "../../modals/publish-to-lxp-modal/publish-to-lxp-modal.component";
 
 @Component({

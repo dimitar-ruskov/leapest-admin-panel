@@ -1,19 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { map, take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { map, take } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { NzTableQueryParams } from "ng-zorro-antd/table/ng-zorro-antd-table";
 
-import { SpCourseVariantsState } from './state/sp-course-variants.state';
+import { SpCourseVariantsState } from "./state/sp-course-variants.state";
 import {
   ChangeSPCourseLanguageVariantsPaginationParams,
   GetSPCourseLanguageVariants,
-  ResetSPCourseLanguageVariantsState,
-} from './state/sp-course-variants.actions';
+  ResetSPCourseLanguageVariantsState
+} from "./state/sp-course-variants.actions";
 
-import { SPCourseLanguageVariant } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { SPCourseLanguageVariant } from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-variants',

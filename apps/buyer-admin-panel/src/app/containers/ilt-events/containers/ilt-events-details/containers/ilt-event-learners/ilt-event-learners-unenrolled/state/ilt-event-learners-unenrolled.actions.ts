@@ -1,4 +1,4 @@
-import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetUnenrolledILTEventLearners {
   static readonly type = '[AP ILT Event Learners] Get Unenrolled ILT Event Learners';

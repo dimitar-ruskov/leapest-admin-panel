@@ -1,20 +1,22 @@
-import { Component, ChangeDetectionStrategy, TrackByFunction, Input } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { NzTableFilterList, NzTableQueryParams } from 'ng-zorro-antd/table';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { NzTableFilterList, NzTableQueryParams } from "ng-zorro-antd/table";
+import { Observable } from "rxjs";
 
 import {
   ChangeUnenrolledILTEventLearnersPaginationParams,
-  GetUnenrolledILTEventLearners,
-} from './state/ilt-event-learners-unenrolled.actions';
-import { IltEventLearnersUnenrolledState } from './state/ilt-event-learners-unenrolled.state';
-import { ExportLearnerFromILTEvent } from '../../../state/ilt-event-details.actions';
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
+  GetUnenrolledILTEventLearners
+} from "./state/ilt-event-learners-unenrolled.actions";
+import { IltEventLearnersUnenrolledState } from "./state/ilt-event-learners-unenrolled.state";
+import { ExportLearnerFromILTEvent } from "../../../state/ilt-event-details.actions";
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 
-import { ExportLearnersTypes } from '../../../../../../../../../../../libs/shared/src/lib/models/constants/ilt-event-learners.model';
-import {PAGINATION_LIMIT_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {ILTEventUnenrolledLearner} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  ExportLearnersTypes,
+  ILTEventUnenrolledLearner,
+  PAGINATION_LIMIT_CONFIG
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-event-learners-unenrolled',

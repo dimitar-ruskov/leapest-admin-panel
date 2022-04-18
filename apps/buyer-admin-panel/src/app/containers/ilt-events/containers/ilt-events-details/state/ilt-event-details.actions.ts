@@ -1,8 +1,12 @@
 import {
   IKeyValuePair,
-  ILTEvent, ILTEventAttendanceCompletionPayload, ILTEventAttendanceUpdatePayload, ILTEventBulkMarkAttendancesPayload,
-  ILTEventLearner, S3BucketData
-} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+  ILTEvent,
+  ILTEventAttendanceCompletionPayload,
+  ILTEventAttendanceUpdatePayload,
+  ILTEventBulkMarkAttendancesPayload,
+  ILTEventLearner,
+  S3BucketData
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class GetCompleteILTEventDetails {

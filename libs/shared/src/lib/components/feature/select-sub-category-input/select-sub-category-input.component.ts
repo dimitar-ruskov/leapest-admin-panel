@@ -1,24 +1,24 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   forwardRef,
+  Input,
   OnChanges,
   SimpleChanges,
-  Input,
-  ChangeDetectorRef,
-  TrackByFunction,
-} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { filter, map, tap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+  TrackByFunction
+} from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Observable } from "rxjs";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { filter, map, tap } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+
 import {
   SelectSubCategoryModalComponent
 } from "../../modals/select-sub-category-modal/select-sub-category-modal.component";
-
-import {LmsSubCategoriesService} from "../../../utils/services";
-import {CourseSubCategory} from "../../../models/interfaces";
+import { CourseSubCategory } from "../../../models";
+import { LmsSubCategoriesService } from "../../../services/courses/lms-sub-categories.service";
 
 @Component({
   selector: 'leap-select-sub-category-input',

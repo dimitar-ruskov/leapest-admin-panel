@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {RouterModule} from "@angular/router";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTableModule } from "ng-zorro-antd/table";
+import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzLayoutModule } from "ng-zorro-antd/layout";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
 
-import {SpCoursesListComponent} from "./sp-courses-list.component";
-import {DraftSpCoursesListComponent} from "./draft-sp-courses-list/draft-sp-courses-list.component";
-import {ActiveSpCoursesListComponent} from "./active-sp-courses-list/active-sp-courses-list.component";
+import { SpCoursesListComponent } from "./sp-courses-list.component";
+import { DraftSpCoursesListComponent } from "./draft-sp-courses-list/draft-sp-courses-list.component";
+import { ActiveSpCoursesListComponent } from "./active-sp-courses-list/active-sp-courses-list.component";
 
 import {
   TableSearchModule

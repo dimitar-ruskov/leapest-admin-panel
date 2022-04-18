@@ -1,24 +1,32 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { catchError, filter, finalize } from 'rxjs/operators';
-import produce from 'immer';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Store } from "@ngxs/store";
+import { Observable, of } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { catchError, filter, finalize } from "rxjs/operators";
+import produce from "immer";
 
-import { ILTCourseCreationStep } from '../../models/ilt-course-create-step.model';
-import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
+import { GoToILTCourseCreationStep, UpdatePreILTCourse } from "../../state/ilt-course-create.actions";
 
 import {
+  COURSE_PUBLISH_STATUS,
   GeneralInfoField,
-  IKeyValuePair, ILTCourse,
-  InternalRepositoryMaterial, PreILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {COURSE_PUBLISH_STATUS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {NotificationService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
-import {AdminCoursesService, LxpUsersService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
-
+  IKeyValuePair,
+  ILTCourse,
+  ILTCourseCreationStep,
+  InternalRepositoryMaterial,
+  PreILTCourse
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  NotificationService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/notification.service";
+import {
+  LxpUsersService
+} from "../../../../../../../../../../libs/shared/src/lib/services/publishing/lxp-users.service";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 const NO_MATERIALS_LABEL = 'This course has no materials.';
 

@@ -1,19 +1,20 @@
-import { Component, ChangeDetectionStrategy, OnInit, TrackByFunction } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { NzTableQueryParams } from 'ng-zorro-antd/table/ng-zorro-antd-table';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { Observable } from "rxjs";
+import { Select, Store } from "@ngxs/store";
+import { NzTableQueryParams } from "ng-zorro-antd/table/ng-zorro-antd-table";
 
+import {
+  CreateSpCourseVariantHandlerService
+} from "../../../service/create-sp-course-variant-handler.service";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   ChangeActiveSPCoursesPaginationParams,
   GetActiveSelfPacedCourses,
-  ResetActiveSPCoursesState,
-} from '../state/active-sp-courses-list/active-sp-courses-list.actions';
-import { ActiveSpCoursesListState } from '../state/active-sp-courses-list/active-sp-courses-list.state';
-
-import { CreateSpCourseVariantHandlerService } from '../../../services/create-sp-course-variant-handler.service';
-import { ActiveSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {createPageableFromTableQueryParams} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../../libs/shared/src/lib/utils/services/common";
+  ResetActiveSPCoursesState
+} from "./state/active-sp-courses-list.actions";
+import { ActiveSpCoursesListState } from "./state/active-sp-courses-list.state";
+import { ActiveSelfPacedCourse } from "../../../../../../../../../libs/shared/src/lib/models";
+import { EnvironmentService } from "../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 @Component({
   selector: 'leap-active-sp-courses-list',

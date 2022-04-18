@@ -12,7 +12,7 @@ import {
   ILTEvent,
   ILTInstructor,
   ITrainingManager
-} from "../../../models/interfaces";
+} from "../../../models";
 
 @Component({
   selector: 'leap-event-details-info',

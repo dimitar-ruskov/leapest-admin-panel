@@ -1,31 +1,28 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
-  Output,
+  Component,
   EventEmitter,
-  ViewChild,
-  TemplateRef,
+  Input,
   OnChanges,
+  OnInit,
+  Output,
   SimpleChanges,
-} from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { take } from 'rxjs/operators';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import produce from 'immer';
+  TemplateRef,
+  ViewChild
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { take } from "rxjs/operators";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import produce from "immer";
 
-import { EditAgendaDateTimeModalComponent } from './modals/edit-agenda-date-time-modal/edit-agenda-date-time-modal.component';
-import { TAgendaSectionModalComponent } from './modals/t-agenda-section-modal/t-agenda-section-modal.component';
 import {
-  IKeyValuePair,
-  ILTCourseAgenda,
-  ILTCourseAgendaDay,
-  ILTCourseAgendaDaySection
-} from "../../../models/interfaces";
-import {EnvironmentService} from "../../../utils/services/common";
-import {TimezoneService} from "../../../utils/services/common/timezone.service";
-import {formatDate} from "../../../utils/common";
+  EditAgendaDateTimeModalComponent
+} from "./modals/edit-agenda-date-time-modal/edit-agenda-date-time-modal.component";
+import { TAgendaSectionModalComponent } from "./modals/t-agenda-section-modal/t-agenda-section-modal.component";
+import { IKeyValuePair, ILTCourseAgenda, ILTCourseAgendaDay, ILTCourseAgendaDaySection } from "../../../models";
+import { TimezoneService } from "../../../services/common/timezone.service";
+import { formatDate } from "../../../utils/common";
+import { EnvironmentService } from "../../../services/common/environment.service";
 
 const WARNING_MODAL_MESSAGE =
   'Warning: Changing the agenda will send updated calendar invitations to enrolled learners, course instructor and the training manager';

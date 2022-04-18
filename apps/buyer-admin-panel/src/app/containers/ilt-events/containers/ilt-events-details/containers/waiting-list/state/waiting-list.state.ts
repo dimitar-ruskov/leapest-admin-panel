@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { catchError, tap } from "rxjs/operators";
+import { of } from "rxjs";
 
-import { WaitingListService } from '../../../../../services/waiting-list.service';
+import {
+  WaitingListService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service";
 import {
   AddWaitingListLearners,
   ChangeWaitingListPaginationParams,
@@ -11,15 +13,16 @@ import {
   GetWaitingList,
   PromoteWaitingListLearner,
   RemoveWaitingListLearners,
-  ResetWaitingListState,
-} from './waiting-list.actions';
+  ResetWaitingListState
+} from "./waiting-list.actions";
 
 import {
   AssignLearnersResponse,
-  ILTEventLearner, IPageable
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  ILTEventLearner,
+  IPageable
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class WaitingListStateModel {
   loading: boolean;

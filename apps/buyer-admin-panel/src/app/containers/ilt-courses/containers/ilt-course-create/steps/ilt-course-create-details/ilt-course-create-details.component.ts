@@ -1,25 +1,26 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { of, Observable, interval } from 'rxjs';
-import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
-import { Store, Select } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import produce, { Draft } from 'immer';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { interval, Observable, of } from "rxjs";
+import { distinctUntilChanged, map, switchMap } from "rxjs/operators";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import produce, { Draft } from "immer";
 
-import { ILTCourseCreationStep } from '../../models/ilt-course-create-step.model';
-import { GoToILTCourseCreationStep, UpdatePreILTCourse } from '../../state/ilt-course-create.actions';
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { GoToILTCourseCreationStep, UpdatePreILTCourse } from "../../state/ilt-course-create.actions";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
 import {
-  CourseCategory,
-  CourseSubCategory,
-  IKeyValuePair, PreILTCourse
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+  AdminCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 import {
   COURSE_WAITING_LIST_LIMIT,
-  DEFAULT_QUILL_EDITOR_CONFIG
-} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
+  CourseCategory,
+  CourseSubCategory,
+  DEFAULT_QUILL_EDITOR_CONFIG,
+  IKeyValuePair,
+  ILTCourseCreationStep,
+  PreILTCourse
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-course-create-details',

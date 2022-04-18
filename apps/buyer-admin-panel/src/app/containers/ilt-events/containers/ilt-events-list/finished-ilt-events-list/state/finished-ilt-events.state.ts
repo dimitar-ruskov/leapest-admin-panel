@@ -1,13 +1,20 @@
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
 
-import { IltEventsService } from '../../../../services/ilt-events.service';
-import { ChangeFinishedILTEventsPaginationParams, GetFinishedILTEvents, ResetFinishedILTEventsState } from './finished-ilt-events.actions';
+import { IltEventsService } from "../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
+import {
+  ChangeFinishedILTEventsPaginationParams,
+  GetFinishedILTEvents,
+  ResetFinishedILTEventsState
+} from "./finished-ilt-events.actions";
 
-import {ILTEventListItem, IPageable} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
+import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  ILTEventListItem,
+  IPageable
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 export class FinishedIltEventsStateModel {
   loading: boolean;

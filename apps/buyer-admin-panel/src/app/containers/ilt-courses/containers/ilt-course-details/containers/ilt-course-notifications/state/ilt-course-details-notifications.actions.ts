@@ -1,6 +1,6 @@
 import {
   NotificationPayloadModel
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class FetchCourseDetailsILTNotifications {
   static readonly type = '[AP ILT Course Details] Fetch Course Details ILT Notifications';

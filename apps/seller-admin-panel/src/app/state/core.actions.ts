@@ -1,4 +1,4 @@
-import {IDomainData} from "../../../../../libs/shared/src/lib/models/interfaces";
+import {IDomainData} from "../../../../../libs/shared/src/lib/models";
 
 export class GetLearnerProfile {
   static readonly type = '[Core] Get Learner Profile';

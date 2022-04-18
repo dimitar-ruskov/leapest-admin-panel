@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {FlattenedCourseDetails, InternalRepositoryMaterial} from "../../../models/interfaces";
+import {FlattenedCourseDetails, InternalRepositoryMaterial} from "../../../models";
 
 @Pipe({
   name: 'concatMaterialsPipe',

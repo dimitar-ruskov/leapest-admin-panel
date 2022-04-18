@@ -1,24 +1,28 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TrackByFunction } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
-import { IltCourseEventsBulkService } from './service/ilt-course-events-bulk.service';
-import { IltCourseEventsBulkUploadsState } from './state/ilt-course-events-bulk.state';
+import { IltCourseEventsBulkUploadsState } from "./state/ilt-course-events-bulk.state";
 import {
   ChangeEventUploadsPaginationParams,
   CourseEventsCsvUploadsList,
-  ResetCourseEventsCsvUploadsListState,
-} from './state/ilt-course-events-bulk.actions';
+  ResetCourseEventsCsvUploadsListState
+} from "./state/ilt-course-events-bulk.actions";
 
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {EnvironmentService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
 import {
-  CourseEventsBulkUploads
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/courses/ilt-course-events-bulk";
-import {BulkUploadModalComponent} from "./components/bulk-upload-modal/bulk-upload-modal.component";
+  IltCourseEventsBulkService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-course-events-bulk.service";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  BulkUploadModalComponent
+} from "../../../../../../../../../../../libs/shared/src/lib/components/modals/bulk-upload-modal/bulk-upload-modal.component";
+import {
+  EnvironmentService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/common/environment.service";
+import { CourseEventsBulkUploads } from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-course-events-bulk',

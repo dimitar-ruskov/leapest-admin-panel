@@ -1,19 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
+import { Select, Store } from "@ngxs/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+import { SpCourseCreateState } from "./state/sp-course-create.state";
+import { GetPreSelfPacedCourse } from "./state/sp-course-create.actions";
+
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
+  PreSelfPacedCourse,
   SPCourseCreationStep,
   SPCourseCreationSteps,
-  SPCourseCreationStepsList,
-} from './models/sp-course-create-step.model';
-import { SpCourseCreateState } from './state/sp-course-create.state';
-import { GetPreSelfPacedCourse } from './state/sp-course-create.actions';
-
-import { PreSelfPacedCourse } from '../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
+  SPCourseCreationStepsList
+} from "../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-sp-course-create',

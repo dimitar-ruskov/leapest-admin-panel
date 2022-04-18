@@ -1,5 +1,4 @@
-import { ILTCourseCreationStepType } from '../models/ilt-course-create-step.model';
-import {PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { ILTCourseCreationStepType, PreILTCourse } from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetPreILTCourse {
   static readonly type = '[AP ILT Courses] Get Draft ILT Course Details';

@@ -1,18 +1,20 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { tap } from "rxjs/operators";
 
 import {
-  ChangeSelfPacedCoursesListTab, CreatePreSelfPacedCourse, GetFullLanguageDictionary
-} from './sp-courses-list.actions';
-import { ActiveSpCoursesListState } from './active-sp-courses-list/active-sp-courses-list.state';
-import { DraftSpCoursesListState } from './draft-sp-courses-list/draft-sp-courses-list.state';
-import { SpCoursesService } from '../../../services/sp-courses.service';
-
-import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {IKeyValuePair} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+  ChangeSelfPacedCoursesListTab,
+  CreatePreSelfPacedCourse,
+  GetFullLanguageDictionary
+} from "./sp-courses-list.actions";
+import {
+  SpCoursesService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service";
+import { IKeyValuePair, PreSelfPacedCourse } from "../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DraftSpCoursesListState } from "../draft-sp-courses-list/state/draft-sp-courses-list.state";
+import { ActiveSpCoursesListState } from "../active-sp-courses-list/state/active-sp-courses-list.state";
 
 
 export class SpCoursesListStateModel {

@@ -11,8 +11,8 @@ import {
   BulkAttendanceTrackingCompletionTypeKeys,
   IKeyValuePair, IltEventAttendanceStatusKeys,
   IltEventAttendanceStatusValues
-} from "../../../models/interfaces";
-import {AdminCoursesService} from "../../../utils/services";
+} from "../../../models";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-bulk-attendance-tracking-selection-modal',

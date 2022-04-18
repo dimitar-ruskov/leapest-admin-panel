@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import {IltEventsDetailsComponent} from "./ilt-events-details.component";
+import { IltEventsDetailsComponent } from "./ilt-events-details.component";
 import {
   IltEventNotificationDetailsComponent
 } from "./containers/ilt-event-notifications/ilt-event-notification-details/ilt-event-notification-details.component";

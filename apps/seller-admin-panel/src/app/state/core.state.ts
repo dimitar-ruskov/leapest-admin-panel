@@ -7,7 +7,7 @@ import { OktaAuthStateService } from '@okta/okta-angular';
 import {NzTableFilterList} from "ng-zorro-antd/table";
 
 import {DeferredResource} from "../../../../../libs/shared/src/lib/utils/common";
-import {CoreService} from "../../../../../libs/shared/src/lib/utils/services/common";
+import {CoreService} from "../../../../../libs/shared/src/lib/services/common";
 import {AdminCoursesService} from "../../../../../libs/shared/src/lib/utils/services";
 import {
   ConferencingTool, ICauseType,
@@ -15,7 +15,7 @@ import {
   IDomainData,
   IKeyValuePair,
   ILTEventCustomAttendanceLight, IProfile
-} from "../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../libs/shared/src/lib/models";
 import {
   GetLearnerProfile,
   SetDomainData,
@@ -30,7 +30,7 @@ import {
   GetUnenrollmentCauseTypeDictionary,
   GetEnrollmentCauseTypeDictionary, FetchTimezones,
 } from './core.actions';
-import {TimezoneService} from "../../../../../libs/shared/src/lib/utils/services/common/timezone.service";
+import {TimezoneService} from "../../../../../libs/shared/src/lib/services/common/timezone.service";
 
 export class CoreStateModel {
   profile: IProfile;

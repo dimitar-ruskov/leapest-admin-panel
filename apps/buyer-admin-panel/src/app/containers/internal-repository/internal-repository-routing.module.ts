@@ -1,8 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { InternalRepositoryDetailsComponent } from './containers/internal-repository-details/internal-repository-details.component';
-import { InternalRepositoryListComponent } from './containers/internal-repository-list/internal-repository-list.component';
-import { InternalRepositoryComponent } from './internal-repository.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import {
+  InternalRepositoryDetailsComponent
+} from "./containers/internal-repository-details/internal-repository-details.component";
+import {
+  InternalRepositoryListComponent
+} from "./containers/internal-repository-list/internal-repository-list.component";
+import { InternalRepositoryComponent } from "./internal-repository.component";
 
 const routes: Routes = [
   {

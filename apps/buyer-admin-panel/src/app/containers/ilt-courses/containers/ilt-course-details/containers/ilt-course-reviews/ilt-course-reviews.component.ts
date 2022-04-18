@@ -1,24 +1,24 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import * as moment from 'moment';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import * as moment from "moment";
 
-import { IltCourseReviewsState } from './state/ilt-course-reviews.state';
+import { IltCourseReviewsState } from "./state/ilt-course-reviews.state";
 import {
-  ResetCourseReviewsListState,
-  GetCourseReviews,
   ChangeCourseReviewsPaginationParams,
   DeleteCourseReview,
-} from './state/ilt-course-reviews.action';
+  GetCourseReviews,
+  ResetCourseReviewsListState
+} from "./state/ilt-course-reviews.action";
 
-import {EventReview} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { EventReview } from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   DangerActionModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/danger-action-modal/danger-action-modal.component";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 
 const NO_REVIEWS_TEXT = 'There are no reviews for this course';
 

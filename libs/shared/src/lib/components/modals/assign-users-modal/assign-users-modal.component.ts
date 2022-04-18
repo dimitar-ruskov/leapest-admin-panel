@@ -1,15 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Observable } from "rxjs";
+import { distinctUntilChanged, switchMap } from "rxjs/operators";
 
-import {IKeyValuePair, ILTEvent, ILTEventLearner, TFormControlConfigOption} from "../../../models/interfaces";
-import {SPCourseLanguageVariant} from "../../../models/interfaces/sp-courses/sp-course.model";
-import {EnvironmentService, UploadService} from "../../../utils/services/common";
 import {
-  SPCourseLanguageVariantLearner
-} from "../../../models/interfaces/sp-courses/sp-course-language-variant-learner.model";
-import {AdminCoursesService, LxpUsersService} from "../../../utils/services";
+  IKeyValuePair,
+  ILTEvent,
+  ILTEventLearner,
+  SPCourseLanguageVariant,
+  SPCourseLanguageVariantLearner,
+  TFormControlConfigOption
+} from "../../../models";
+import { UploadService } from "../../../services/common/upload.service";
+import { LxpUsersService } from "../../../services/publishing/lxp-users.service";
+import { EnvironmentService } from "../../../services/common/environment.service";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
+
 
 @Component({
   selector: 'leap-assign-users-modal',

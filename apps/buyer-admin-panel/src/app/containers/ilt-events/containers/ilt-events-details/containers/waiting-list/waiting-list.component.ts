@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { iif, combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { combineLatest, iif, Observable, of } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
 import {
   AddWaitingListLearners,
@@ -13,26 +13,30 @@ import {
   GetWaitingList,
   PromoteWaitingListLearner,
   RemoveWaitingListLearners,
-  ResetWaitingListState,
-} from './state/waiting-list.actions';
-import { WaitingListState } from './state/waiting-list.state';
-import { WaitingListService } from '../../../../services/waiting-list.service';
-import { EventInfoEditHandlerService } from '../../../../services/event-info-edit-handler.service';
+  ResetWaitingListState
+} from "./state/waiting-list.actions";
+import { WaitingListState } from "./state/waiting-list.state";
+import {
+  WaitingListService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/waiting-list.service";
+import { EventInfoEditHandlerService } from "../../../../services/event-info-edit-handler.service";
 
 import {
   EnrollmentPolicyKeys,
   IKeyValuePair,
   ILTEvent,
   ILTEventLearner
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   RemoveWaitingListModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/remove-waiting-list-modal/remove-waiting-list-modal.component";
-import {createPageableFromTableQueryParams} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { createPageableFromTableQueryParams } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   AssignUsersModalComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/modals/assign-users-modal/assign-users-modal.component";
-import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
+import {
+  AdminCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 const NO_LEARNERS_TEXT = 'There are no learners enrolled in the waiting list';
 const REMAINING_SEATS_EXIST = 'There are available seats for this Course Event.';

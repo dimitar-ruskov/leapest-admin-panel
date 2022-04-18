@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, ContentChild, TemplateRef } from '@angular/core';
 import { GeneralInfoThumbnailBoxComponent } from './general-info-thumbnail-box/general-info-thumbnail-box.component';
 import { GeneralInfoFieldComponent } from './general-info-field/general-info-field.component';
-import {GeneralInfoField, MaterialsInfoField} from "../../../models/interfaces";
+import {GeneralInfoField, MaterialsInfoField} from "../../../models";
 
 @Component({
   selector: 'leap-general-info',

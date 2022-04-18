@@ -1,5 +1,4 @@
-import { SPCourseCreationStep } from '../models/sp-course-create-step.model';
-import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
+import { PreSelfPacedCourse, SPCourseCreationStep } from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class GetPreSelfPacedCourse {
   static readonly type = '[AP Self-paced Courses] Get Draft Self-paced Course Details';

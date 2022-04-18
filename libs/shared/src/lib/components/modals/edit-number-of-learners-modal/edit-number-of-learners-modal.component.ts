@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {COURSE_WAITING_LIST_LIMIT} from "../../../models/constants";
+
+import { COURSE_WAITING_LIST_LIMIT } from "../../../models";
 
 @Component({
   selector: 'leap-edit-number-of-learners-modal',

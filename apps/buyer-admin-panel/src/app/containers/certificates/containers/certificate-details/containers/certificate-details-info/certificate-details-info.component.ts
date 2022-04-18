@@ -1,20 +1,23 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Select } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { filter, map } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
-import { CertificateDetailsState } from '../../state/certificate-details.state';
-import { CertificateEditInfoHandlerService } from '../../../../service/certificate-edit-info-handler.service';
+import { CertificateDetailsState } from "../../state/certificate-details.state";
+import {
+  CertificateEditInfoHandlerService
+} from "../../../../service/certificate-edit-info-handler.service";
 
-import { Certificate } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/certificates/certificate.model';
-import {DeferredResource} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { Certificate, GeneralInfoField } from "../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   CertificatePreviewComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.component";
-import {GeneralInfoField} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DownloadSphinxService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {
+  DownloadSphinxService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 @Component({
   selector: 'leap-certificate-details-info',

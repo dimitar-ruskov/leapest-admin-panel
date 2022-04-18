@@ -1,41 +1,33 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-  ChangeDetectorRef,
-  ViewChild,
-} from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Draft, produce } from 'immer';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Draft, produce } from "immer";
+import { NzModalService } from "ng-zorro-antd/modal";
 
-import { ILTEventCreationStep } from '../../models/ilt-event-create-step.model';
-import { GoToEventCreationStep, UpdateILTEventDetails } from '../../state/ilt-events-create.actions';
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { GoToEventCreationStep, UpdateILTEventDetails } from "../../state/ilt-events-create.actions";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
 import {
   IConfigCertificatesDictionary,
   ILTEvent,
+  ILTEventCreationStep,
   InternalRepositoryMaterial
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditCourseCertificateComponent
 } from "../../../../../../../../../../libs/shared/src/lib/components/feature/edit-course-certificate/edit-course-certificate.component";
 import {
   MaterialDtoHandlerService
-} from "../../../../../../../../../../libs/shared/src/lib/utils/services/material-dto-handler.service";
+} from "../../../../../../../../../../libs/shared/src/lib/services/materials/material-dto-handler.service";
 
 @Component({
   selector: 'leap-ilt-event-create-materials-step',
   templateUrl: './ilt-event-create-materials-step.component.html',
   styleUrls: ['./ilt-event-create-materials-step.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MaterialDtoHandlerService],
 })
 @UntilDestroy()
 export class IltEventCreateMaterialsStepComponent implements OnInit {

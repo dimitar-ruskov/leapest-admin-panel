@@ -1,43 +1,49 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
-import { Select, Store } from '@ngxs/store';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzTabsCanDeactivateFn } from 'ng-zorro-antd/tabs';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import produce, { Draft } from 'immer';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { map, switchMap, take } from "rxjs/operators";
+import { Select, Store } from "@ngxs/store";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { NzTabsCanDeactivateFn } from "ng-zorro-antd/tabs";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import produce, { Draft } from "immer";
 
-import { ScheduleCourseEventHandlerService } from '../../services/schedule-course-event-handler.service';
-import { IltCourseDetailsState } from './state/ilt-course-details.state';
+import {
+  ScheduleCourseEventHandlerService
+} from "../../service/schedule-course-event-handler.service";
+import { IltCourseDetailsState } from "./state/ilt-course-details.state";
 import {
   ChangeILTCourseDetailsTab,
   DeleteCourse,
-  PublishToLxp,
-  GetILTCourse,
   DiscardILTCourseAgendaChanges,
   DiscardILTCourseMaterialsChanges,
+  GetILTCourse,
+  PublishToLxp,
   UpdateILTCourseAgenda,
-  UpdateILTCourseMaterials,
-} from './state/ilt-course-details.actions';
+  UpdateILTCourseMaterials
+} from "./state/ilt-course-details.actions";
 
 import {
-  ILTCourseAgenda, InternalRepositories,
-  InternalRepositoryMaterial, PublishedILTCourse
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
+  ILTCourseAgenda,
+  InternalRepositories,
+  InternalRepositoryMaterial,
+  PublishedILTCourse
+} from "../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  CourseAgendaController, CourseAgendaUnsavedChangesGuard, CourseMaterialsController,
+  CourseAgendaController,
+  CourseAgendaUnsavedChangesGuard,
+  CourseMaterialsController,
   CourseMaterialsUnsavedChangesGuard
 } from "../../../../../../../../libs/shared/src/lib/utils/guards";
 import {
   DeleteCourseConfirmModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/delete-course-confirm-modal/delete-course-confirm-modal.component";
-import {EnvironmentService} from "../../../../../../../../libs/shared/src/lib/utils/services/common";
-import {ButtonState} from "./containers/ilt-course-materials/ilt-course-materials.component";
+import { ButtonState } from "./containers/ilt-course-materials/ilt-course-materials.component";
 import {
   PublishToLxpModalComponent
 } from "../../../../../../../../libs/shared/src/lib/components/modals/publish-to-lxp-modal/publish-to-lxp-modal.component";
+import { EnvironmentService } from "../../../../../../../../libs/shared/src/lib/services/common/environment.service";
 
 
 @Component({

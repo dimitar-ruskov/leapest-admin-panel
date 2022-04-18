@@ -3,8 +3,8 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-import {IKeyValuePair} from "../../../models/interfaces";
-import {AdminCoursesService} from "../../../utils/services";
+import {IKeyValuePair} from "../../../models";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-keywords-input-modal',

@@ -1,22 +1,24 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { tap } from "rxjs/operators";
 
-import {
-  SPCourseCreationStep,
-  SPCourseCreationSteps,
-  SPCourseCreationStepsList
-} from '../models/sp-course-create-step.model';
 import {
   CancelSPCourseCreation,
   GetPreSelfPacedCourse,
   GoToSPCourseCreationStep,
   UpdatePreSelfPacedCourse
-} from './sp-course-create.actions';
-import { SpCoursesService } from '../../../services/sp-courses.service';
-import { PreSelfPacedCourse } from '../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
+} from "./sp-course-create.actions";
+import {
+  SpCoursesService
+} from "../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-courses.service";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  PreSelfPacedCourse,
+  SPCourseCreationStep,
+  SPCourseCreationSteps,
+  SPCourseCreationStepsList
+} from "../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class SpCourseCreateStateModel {

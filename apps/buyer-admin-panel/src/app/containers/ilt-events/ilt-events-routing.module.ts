@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { IltEventsComponent } from './ilt-events.component';
-import {EventAgendaUnsavedChangesGuard} from "../../../../../../libs/shared/src/lib/utils/guards";
+import { IltEventsComponent } from "./ilt-events.component";
+import { EventAgendaUnsavedChangesGuard } from "../../../../../../libs/shared/src/lib/utils/guards";
 
 const routes: Routes = [
   {

@@ -1,23 +1,23 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  SimpleChanges,
-  OnChanges,
+  Component,
   Input,
-} from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NzMessageService } from 'ng-zorro-antd/message';
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from "@angular/core";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 import {
   GenerateILTCourseThumbnail,
   UpdateILTCourseAttribute,
-  UploadILTCourseThumbnail,
-} from '../../../state/ilt-course-details.actions';
+  UploadILTCourseThumbnail
+} from "../../../state/ilt-course-details.actions";
 
 import {
   EditLevelModalComponent
@@ -25,28 +25,30 @@ import {
 import {
   CertificateInfo,
   CourseCategory,
-  EnrollmentPolicyKeys, GeneralInfoField, IKeyValuePair,
-  PublishedILTCourse, S3BucketData
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+  DEFAULT_QUILL_EDITOR_CONFIG,
+  EnrollmentPolicyKeys,
+  GeneralInfoField,
+  IKeyValuePair,
+  PublishedILTCourse,
+  S3BucketData,
+  Certificate
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   EditCourseNameModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-course-name-modal/edit-course-name-modal.component";
-import {DEFAULT_QUILL_EDITOR_CONFIG} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
 import {
   EditExternalSKUModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-external-sku-modal/edit-external-sku-modal.component";
 import {
   CourseCategoryAndSubcategoryHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-category-and-subcategory-handler.service";
-import {DownloadSphinxService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-category-and-subcategory-handler.service";
 import {
   CourseThumbnailHandlerService
-} from "../../../../../../../../../../../libs/shared/src/lib/utils/services/course-thumbnail-handler.service";
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 import {
   CertificatePreviewComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/feature/certificate-preview/certificate-preview.component";
-import {LmsCategoriesService} from "../../../../../../../../../../../libs/shared/src/lib/utils/services";
 import {
   KeywordsInputModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/keywords-input-modal/keywords-input-modal.component";
@@ -59,6 +61,12 @@ import {
 import {
   EditEnrollPolicyModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/edit-enroll-policy-modal/edit-enroll-policy-modal.component";
+import {
+  LmsCategoriesService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/courses/lms-categories.service";
+import {
+  DownloadSphinxService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/common/download-sphinx.service";
 
 
 @Component({
@@ -490,10 +498,10 @@ export class IltCourseGeneralDetailsComponent implements OnInit, OnChanges {
           type: 'primary',
           disabled: (d) => !d.form.valid || d.form.pristine,
           onClick: async (data) => {
-            const certificateId = data.form.getRawValue().certificate;
+            const certificateId: string = data.form.getRawValue().certificate;
             const updatedCourse = {
               ...course,
-              participationCertificate: { id: certificateId },
+              participationCertificate: {id: certificateId} as Certificate,
             };
 
             return this.store

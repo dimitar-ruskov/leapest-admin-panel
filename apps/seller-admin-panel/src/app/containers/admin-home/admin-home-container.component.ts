@@ -4,8 +4,8 @@ import {Select, Store} from '@ngxs/store';
 import {Observable} from "rxjs";
 import { OktaAuthStateService } from '@okta/okta-angular';
 
-import {EnvironmentService} from "../../../../../../libs/shared/src/lib/utils/services/common";
-import {IDomainData, IProfile, TMenuInputModel} from "../../../../../../libs/shared/src/lib/models/interfaces";
+import {EnvironmentService} from "../../../../../../libs/shared/src/lib/services/common";
+import {IDomainData, IProfile, TMenuInputModel} from "../../../../../../libs/shared/src/lib/models";
 import {
   FetchTimezones,
   GetCertificatesDictionary, GetConferencingToolsDictionary,

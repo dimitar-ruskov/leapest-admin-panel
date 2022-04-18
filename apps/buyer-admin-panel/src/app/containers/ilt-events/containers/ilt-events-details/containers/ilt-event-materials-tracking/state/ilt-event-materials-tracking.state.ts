@@ -1,21 +1,23 @@
-import {Injectable} from '@angular/core';
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
-import {IltEventsService} from '../../../../../services/ilt-events.service';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import { tap } from "rxjs/operators";
+import {
+  IltEventsService
+} from "../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-events.service";
 
 import {
   ChangeILTEventMaterialTrackingFilterSKU,
   ChangeILTEventMaterialTrackingListPaginationParams,
   GetILTEventMaterialTrackingList,
   ResetILTEventMaterialTrackingListState
-} from './ilt-event-materials-tracking.actions';
+} from "./ilt-event-materials-tracking.actions";
 
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {DEFAULT_INITIAL_PAGINATION_PARAMS} from "../../../../../../../../../../../libs/shared/src/lib/models/constants";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
   IPageable,
   MaterialCompletionReport
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 
 export class IltEventMaterialsTrackingStateModel {
   filterSku: string;

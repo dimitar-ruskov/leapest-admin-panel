@@ -11,8 +11,8 @@ import { debounceTime, distinctUntilChanged, map, skipUntil, switchMap, take } f
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
-import {IPageable, MasterInternalRepository} from "../../../models/interfaces";
-import {AdminCoursesService} from "../../../utils/services";
+import {IPageable, MasterInternalRepository} from "../../../models";
+import { AdminCoursesService } from "../../../services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-add-course-material-modal',

@@ -1,21 +1,25 @@
-import { Component, OnInit, ChangeDetectionStrategy, TrackByFunction } from '@angular/core';
-import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from "@angular/core";
+import { Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
 
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 
 import {
   ChangeInstructorsPaginationParams,
   GetInstructors,
-  ResetInstructorsState,
-} from './state/instructors-list.actions';
-import { InstructorsListState } from './state/instructors-list.state';
-import { InstructorCreateModalComponent } from '../../components/instructor-create-modal/instructor-create-modal.component';
-import { InstructorsService } from '../../service/instructors.service';
+  ResetInstructorsState
+} from "./state/instructors-list.actions";
+import { InstructorsListState } from "./state/instructors-list.state";
+import {
+  InstructorCreateModalComponent
+} from "../../../../../../../../libs/shared/src/lib/components/modals/instructor-create-modal/instructor-create-modal.component";
+import {
+  InstructorsService
+} from "../../../../../../../../libs/shared/src/lib/services/instructors/instructors.service";
 
-import { InstructorLite } from '../../../../../../../../libs/shared/src/lib/models/interfaces/instructors/instructor.model';
+import { InstructorLite } from "../../../../../../../../libs/shared/src/lib/models";
 import {
   createPageableFromTableQueryParams,
   DeferredResource

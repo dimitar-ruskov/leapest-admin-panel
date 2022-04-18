@@ -1,15 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngxs/store';
-import { catchError, filter, finalize } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Store } from "@ngxs/store";
+import { catchError, filter, finalize } from "rxjs/operators";
+import { of } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { GoToEventCreationStep, UpdateILTEventDetails } from "../../state/ilt-events-create.actions";
 
-import { ILTEventCreationStep } from '../../models/ilt-event-create-step.model';
-import { GoToEventCreationStep, UpdateILTEventDetails } from '../../state/ilt-events-create.actions';
-
-import {ILTEvent, InternalRepositoryDTO} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {NotificationService} from "../../../../../../../../../../libs/shared/src/lib/utils/services/common";
+import {
+  ILTEvent,
+  ILTEventCreationStep,
+  InternalRepositoryDTO
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import {
+  NotificationService
+} from "../../../../../../../../../../libs/shared/src/lib/services/common/notification.service";
 
 @Component({
   selector: 'leap-ilt-event-create-summary-step',

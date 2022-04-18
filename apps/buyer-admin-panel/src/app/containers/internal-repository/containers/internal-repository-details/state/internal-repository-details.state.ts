@@ -1,34 +1,42 @@
-import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import produce from 'immer';
-import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import produce from "immer";
+import { tap } from "rxjs/operators";
+import { Observable } from "rxjs";
 
-import { InternalRepositoryService } from '../../../service/internal-repository.service';
-import { InternalRepositoryCoursesState } from './internal-repository-courses.state';
+import {
+  InternalRepositoryCoursesState
+} from "../containers/internal-repository-details-courses/state/internal-repository-courses.state";
 import {
   GetInternalRepositoryDetails,
   UpdateAssessmentDetails,
-  UpdateParentInternalRepository,
-} from './internal-repository-details.actions';
-import { InternalRepositoryVariantsState } from './internal-repository-variants.state';
+  UpdateParentInternalRepository
+} from "./internal-repository-details.actions";
+import {
+  InternalRepositoryVariantsState
+} from "../containers/internal-repository-details-variants/state/internal-repository-variants.state";
 
-import {DeferredResource} from "../../../../../../../../../libs/shared/src/lib/utils/common";
-import {InternalRepository} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import { DeferredResource } from "../../../../../../../../../libs/shared/src/lib/utils/common";
+import { InternalRepository } from "../../../../../../../../../libs/shared/src/lib/models";
+import {
+  InternalRepositoryService
+} from "../../../../../../../../../libs/shared/src/lib/services/materials/internal-repo/internal-repository.service";
 
 export class InternalRepositoryDetailsStateModel {
   internalRepository: DeferredResource<InternalRepository> | null;
 }
+
 @State<InternalRepositoryDetailsStateModel>({
-  name: 'internalRepositoryDetails',
+  name: "internalRepositoryDetails",
   defaults: {
-    internalRepository: null,
+    internalRepository: null
   },
-  children: [InternalRepositoryVariantsState, InternalRepositoryCoursesState],
+  children: [InternalRepositoryVariantsState, InternalRepositoryCoursesState]
 })
 @Injectable()
 export class InternalRepositoryDetailsState {
-  constructor(private readonly service: InternalRepositoryService) {}
+  constructor(private readonly service: InternalRepositoryService) {
+  }
 
   @Selector([InternalRepositoryDetailsState])
   static internalRepository(state: InternalRepositoryDetailsStateModel) {
@@ -38,21 +46,21 @@ export class InternalRepositoryDetailsState {
   @Action(GetInternalRepositoryDetails)
   getActiveSelfPacedCourse(
     { patchState }: StateContext<InternalRepositoryDetailsStateModel>,
-    action: GetInternalRepositoryDetails,
+    action: GetInternalRepositoryDetails
   ) {
     const sku = action.payload;
 
     return this.service.getInternalRepositoryDetails(sku).pipe(
       tap((internalRepository: DeferredResource<InternalRepository>) => {
         patchState({ internalRepository });
-      }),
+      })
     );
   }
 
   @Action(UpdateParentInternalRepository)
   updateParentInternalRepository(
     { patchState, getState }: StateContext<InternalRepositoryDetailsStateModel>,
-    action: UpdateParentInternalRepository,
+    action: UpdateParentInternalRepository
   ): Observable<DeferredResource<InternalRepository>> {
     const { internalRepository } = getState();
     const updatedInternalRepository = action.payload.internalRepository;
@@ -65,14 +73,14 @@ export class InternalRepositoryDetailsState {
           });
           patchState({ internalRepository: DeferredResource.success(newIR) });
         }
-      }),
+      })
     );
   }
 
   @Action(UpdateAssessmentDetails)
   updateAssessmentDetails(
     { patchState, getState }: StateContext<InternalRepositoryDetailsStateModel>,
-    action: UpdateAssessmentDetails,
+    action: UpdateAssessmentDetails
   ): Observable<DeferredResource<InternalRepository>> {
     const { internalRepository } = getState();
     const updatedInternalRepository = action.payload.internalRepository;
@@ -85,7 +93,7 @@ export class InternalRepositoryDetailsState {
           });
           patchState({ internalRepository: DeferredResource.success(newIR) });
         }
-      }),
+      })
     );
   }
 }

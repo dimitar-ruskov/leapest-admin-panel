@@ -1,16 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
-import { PublishingState } from '../../state/publishing.state';
-import { EditTabValue, GetIRSettings, GetGeneralSettings } from '../../state/publishing.actions';
-import {IGlobalStateModel} from "../../../../state/state.model";
+import { PublishingState } from "../../state/publishing.state";
+import { EditTabValue, GetGeneralSettings, GetIRSettings } from "../../state/publishing.actions";
+import { IGlobalStateModel } from "../../../../state/state.model";
 
-import {IKeyValuePair} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {
-  IPublishingSettings
-} from "../../../../../../../../libs/shared/src/lib/models/interfaces/publishing/publishing.model";
+import { IKeyValuePair, IPublishingSettings } from "../../../../../../../../libs/shared/src/lib/models";
+
 
 @Component({
   selector: 'leap-publishing-list',

@@ -1,0 +1,76 @@
+@import (reference) "../../../styles/reference";
+
+.top-label {
+  font-family: Open Sans;
+  font-size: 14px;
+  color: @leap-grey-text;
+  margin-bottom: 20px;
+}
+
+.sub-label {
+  height: 22px;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 8px;
+
+  span {
+    font-family: Open Sans;
+    font-size: 14px;
+    color: @leap-grey-text;
+  }
+
+  &.upload-label {
+    height: 47px;
+    margin-bottom: 6px;
+  }
+
+  &.upload-info {
+    height: 75px;
+    margin: 0;
+
+    ul {
+      font-size: 14px;
+      color: @leap-grey-text;
+      padding: 0 0 0 20px;
+    }
+  }
+}
+
+&.upload-label {
+  display: inline;
+}
+
+.bulk-learners-file {
+  width: 100%;
+  margin: 5px 0;
+  display: inline-block;
+
+  .uploaded {
+    width: 151px;
+    height: 22px;
+    font-family: Open Sans;
+    font-size: 16px;
+    color: #26273b;
+    text-decoration: none solid rgb(38, 39, 59);
+  }
+
+  .delete-icon {
+    margin-left: 5px;
+    color: #8e8fa6;
+
+    i {
+      font-size: 21px;
+    }
+
+    &:hover {
+      color: #f1736a;
+      cursor: pointer;
+    }
+  }
+}
+
+.upload-button {
+  margin-top: 10px;
+  width: 242px;
+  height: 40px;
+}

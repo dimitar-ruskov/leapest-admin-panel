@@ -1,5 +1,5 @@
 import { NzTableQueryParams, NzTableSortOrder } from 'ng-zorro-antd/table';
-import {IFilterSelectedDates, IKeyValuePair, IPageable, Venue} from "../../models/interfaces";
+import {IFilterSelectedDates, IKeyValuePair, IPageable, Venue} from "../../models";
 
 
 export function formatDate(date: Date, time: Date): string {

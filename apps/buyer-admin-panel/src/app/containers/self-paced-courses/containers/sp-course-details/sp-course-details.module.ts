@@ -1,26 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import {NzLayoutModule} from "ng-zorro-antd/layout";
-import {NzTableModule} from "ng-zorro-antd/table";
+import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
+import { NzSpinModule } from "ng-zorro-antd/spin";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { NzMessageModule } from "ng-zorro-antd/message";
+import { NzLayoutModule } from "ng-zorro-antd/layout";
+import { NzTableModule } from "ng-zorro-antd/table";
 
-import {SpCourseDetailsRoutingModule} from "./sp-course-details-routing.module";
-import {SpCourseDetailsComponent} from "./sp-course-details.component";
-import {SpCourseGeneralInfoComponent} from "./containers/sp-course-general-info/sp-course-general-info.component";
-import {SpCourseVariantsComponent} from "./containers/sp-course-variants/sp-course-variants.component";
+import { SpCourseDetailsRoutingModule } from "./sp-course-details-routing.module";
+import { SpCourseDetailsComponent } from "./sp-course-details.component";
+import { SpCourseGeneralInfoComponent } from "./containers/sp-course-general-info/sp-course-general-info.component";
+import { SpCourseVariantsComponent } from "./containers/sp-course-variants/sp-course-variants.component";
 import {
   SpCourseGeneralDetailsComponent
 } from "./containers/sp-course-general-info/sp-course-general-details/sp-course-general-details.component";
-import {
-  SpCourseMaterialsComponent
-} from "./containers/sp-course-materials/sp-course-materials.component";
+import { SpCourseMaterialsComponent } from "./containers/sp-course-materials/sp-course-materials.component";
 
 import {
   MasterInternalRepoTileModule
@@ -31,7 +29,7 @@ import {
 import {
   GeneralInfoModule
 } from "../../../../../../../../libs/shared/src/lib/components/common/general-info/general-info.module";
-import {TGridModule} from "../../../../../../../../libs/shared/src/lib/components/common/t-grid/t-grid.module";
+import { TGridModule } from "../../../../../../../../libs/shared/src/lib/components/common/t-grid/t-grid.module";
 import {
   TableGridModule
 } from "../../../../../../../../libs/shared/src/lib/components/common/table-grid/table-grid.module";

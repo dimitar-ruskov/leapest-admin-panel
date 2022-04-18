@@ -1,4 +1,4 @@
-import {ILTEventBase, PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models/interfaces";
+import {ILTEventBase, PreILTCourse} from "../../../../../../../../../libs/shared/src/lib/models";
 
 export class ChangeILTCoursesListTab {
   static readonly type = '[AP ILT Courses] Change ILT Courses List Tab';

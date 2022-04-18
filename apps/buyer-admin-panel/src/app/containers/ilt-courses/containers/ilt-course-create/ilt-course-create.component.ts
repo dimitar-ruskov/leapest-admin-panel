@@ -1,19 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { ActivatedRoute } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Observable } from "rxjs";
 
+import { ILTCourseCreateState } from "./state/ilt-course-create.state";
+import { GetPreILTCourse } from "./state/ilt-course-create.actions";
+
+import { DeferredResource } from "../../../../../../../../libs/shared/src/lib/utils/common";
 import {
   ILT_COURSE_CREATION_STEPS_LIST,
   ILTCourseCreationStep,
   ILTCourseCreationStepType,
-} from './models/ilt-course-create-step.model';
-import { ILTCourseCreateState } from './state/ilt-course-create.state';
-import { GetPreILTCourse } from './state/ilt-course-create.actions';
-
-import {DeferredResource} from "../../../../../../../../libs/shared/src/lib/utils/common";
-import {PreILTCourse} from "../../../../../../../../libs/shared/src/lib/models/interfaces";
+  PreILTCourse
+} from "../../../../../../../../libs/shared/src/lib/models";
 
 @Component({
   selector: 'leap-ilt-course-create',

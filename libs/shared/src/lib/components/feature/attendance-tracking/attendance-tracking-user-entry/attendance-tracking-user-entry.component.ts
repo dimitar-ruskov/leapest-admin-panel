@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import {ILTEventLearner} from "../../../../models/interfaces";
+import {ILTEventLearner} from "../../../../models";
 
 const NO_DATA_PLACEHOLDER_TEXT = 'N/A';
 

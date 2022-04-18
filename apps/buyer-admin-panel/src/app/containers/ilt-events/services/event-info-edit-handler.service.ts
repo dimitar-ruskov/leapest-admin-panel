@@ -1,26 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
-import produce, { Draft } from 'immer';
-import * as moment from 'moment';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { switchMap, take, takeUntil } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Store } from "@ngxs/store";
+import produce, { Draft } from "immer";
+import * as moment from "moment";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { switchMap, take, takeUntil } from "rxjs/operators";
 
 import {
   DisableWaitingList,
   EnableWaitingList,
   GenerateEventThumbnail,
   UpdateILTEventAttribute,
-  UploadEventThumbnail,
-} from '../containers/ilt-events-details/state/ilt-event-details.actions';
+  UploadEventThumbnail
+} from "../containers/ilt-events-details/state/ilt-event-details.actions";
 
 import {
   ConferencingTool,
   IKeyValuePair,
   ILTCourseAgendaDay,
   ILTEvent,
-  ILTInstructor, S3BucketData
-} from "../../../../../../../libs/shared/src/lib/models/interfaces";
-import {formatDate} from "../../../../../../../libs/shared/src/lib/utils/common";
+  ILTInstructor,
+  S3BucketData
+} from "../../../../../../../libs/shared/src/lib/models";
+import { formatDate } from "../../../../../../../libs/shared/src/lib/utils/common";
+import { AdminCoursesService } from "../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
+
+
 import {
   EditTrainingManagerModalComponent
 } from "../../../../../../../libs/shared/src/lib/components/modals/edit-training-manager-modal/edit-training-manager-modal.component";
@@ -35,7 +39,7 @@ import {
 } from "../../../../../../../libs/shared/src/lib/components/modals/edit-conference-link-modal/edit-conference-link-modal.component";
 import {
   CourseThumbnailHandlerService
-} from "../../../../../../../libs/shared/src/lib/utils/services/course-thumbnail-handler.service";
+} from "../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail-handler.service";
 import {
   EditAttendanceTrackingSettingsModalComponent
 } from "../../../../../../../libs/shared/src/lib/components/modals/edit-attendance-tracking-settings-modal/edit-attendance-tracking-settings-modal.component";
@@ -66,7 +70,6 @@ import {
 import {
   AddAddressModalComponent
 } from "../../../../../../../libs/shared/src/lib/components/modals/add-address-modal/add-address-modal.component";
-import {AdminCoursesService} from "../../../../../../../libs/shared/src/lib/utils/services";
 import {
   EditVirtualMeetingsModalComponent
 } from "../../../../../../../libs/shared/src/lib/components/modals/edit-virtual-meetings-modal/edit-virtual-meetings-modal.component";

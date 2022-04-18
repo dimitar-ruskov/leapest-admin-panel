@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import produce, { Draft } from 'immer';
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
+import produce, { Draft } from "immer";
 
 import {
   ApproveSPCourseLanguageVariantLearnerRegistrationRequest,
@@ -13,22 +13,35 @@ import {
   RemoveSPCourseLanguageVariantLearner,
   UpdateSPCourseLanguageVariantAttribute,
   UploadLearnersFromCSVToLanguageVariant,
-  UploadSPCourseLanguageVariantThumbnail,
-} from './sp-course-variant-details.actions';
-import { SpCourseLanguageVariantsService } from '../../../../../../services/sp-course-language-variants.service';
-import { SpCourseVariantExamsState } from './sp-course-variant-exams/sp-course-variant-exams.state';
-import { SpCourseVariantMaterialsTrackingState } from './sp-course-variant-materials-tracking/sp-course-variant-materials-tracking.state';
-import { SpCourseVariantLearnersEnrolledState } from './sp-course-variant-learners/sp-course-variant-learners-enrolled.state';
-import { SpliceSPCourseLanguageVariantLearnersEnrolled } from './sp-course-variant-learners/sp-course-variant-learners-enrolled.actions';
-import { SpliceSPCourseLanguageVariantLearnersPending } from './sp-course-variant-learners/sp-course-variant-learners-pending.actions';
-import { SpCourseVariantLearnersPendingState } from './sp-course-variant-learners/sp-course-variant-learners-pending.state';
-
-import { SPCourseLanguageVariant } from '../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
-import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
-import {CourseThumbnailService} from "../../../../../../../../../../../../libs/shared/src/lib/utils/services";
+  UploadSPCourseLanguageVariantThumbnail
+} from "./sp-course-variant-details.actions";
 import {
-  PLACEHOLDER_COURSE_THUMBNAIL_URL
-} from "../../../../../../../../../../../../libs/shared/src/lib/models/constants";
+  SpCourseLanguageVariantsService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/courses/sp-courses/sp-course-language-variants.service";
+import {
+  PLACEHOLDER_COURSE_THUMBNAIL_URL,
+  SPCourseLanguageVariant
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
+import { DeferredResource } from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import {
+  SpCourseVariantLearnersEnrolledState
+} from "../containers/sp-course-variant-learners/state/sp-course-variant-learners-enrolled.state";
+import {
+  SpCourseVariantMaterialsTrackingState
+} from "../containers/sp-course-variant-materials-tracking/state/sp-course-variant-materials-tracking.state";
+import {
+  SpliceSPCourseLanguageVariantLearnersEnrolled
+} from "../containers/sp-course-variant-learners/state/sp-course-variant-learners-enrolled.actions";
+import { SpCourseVariantExamsState } from "../containers/sp-course-variant-exams/state/sp-course-variant-exams.state";
+import {
+  CourseThumbnailService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/courses/course-thumbnail.service";
+import {
+  SpliceSPCourseLanguageVariantLearnersPending
+} from "../containers/sp-course-variant-learners/state/sp-course-variant-learners-pending.actions";
+import {
+  SpCourseVariantLearnersPendingState
+} from "../containers/sp-course-variant-learners/state/sp-course-variant-learners-pending.state";
 
 
 export class SpCourseVariantDetailsStateModel {

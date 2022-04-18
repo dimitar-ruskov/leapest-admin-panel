@@ -1,36 +1,39 @@
-import { Title } from '@angular/platform-browser';
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
-import {forkJoin} from "rxjs";
-import {map, tap, filter} from 'rxjs/operators';
-import { OktaAuthStateService } from '@okta/okta-angular';
-import {NzTableFilterList} from "ng-zorro-antd/table";
+import { Title } from "@angular/platform-browser";
+import { Injectable } from "@angular/core";
+import { Action, NgxsOnInit, State, StateContext } from "@ngxs/store";
+import { forkJoin } from "rxjs";
+import { filter, map, tap } from "rxjs/operators";
+import { OktaAuthStateService } from "@okta/okta-angular";
+import { NzTableFilterList } from "ng-zorro-antd/table";
 
-import {DeferredResource} from "../../../../../libs/shared/src/lib/utils/common";
-import {CoreService} from "../../../../../libs/shared/src/lib/utils/services/common";
-import {AdminCoursesService} from "../../../../../libs/shared/src/lib/utils/services";
+import { DeferredResource } from "../../../../../libs/shared/src/lib/utils/common";
 import {
-  ConferencingTool, ICauseType,
+  ConferencingTool,
+  ICauseType,
   IConfigCertificatesDictionary,
   IDomainData,
   IKeyValuePair,
-  ILTEventCustomAttendanceLight, IProfile
-} from "../../../../../libs/shared/src/lib/models/interfaces";
+  ILTEventCustomAttendanceLight,
+  IProfile
+} from "../../../../../libs/shared/src/lib/models";
 import {
-  GetLearnerProfile,
-  SetDomainData,
-  GetCourseLevelDictionary,
-  GetCustomAttendanceDictionary,
-  GetILTLanguageDictionary,
-  GetIRLanguageDictionary,
-  GetMaterialTypes,
+  FetchTimezones,
   GetCertificatesDictionary,
   GetConferencingToolsDictionary,
+  GetCourseLevelDictionary,
+  GetCustomAttendanceDictionary,
+  GetEnrollmentCauseTypeDictionary,
+  GetILTLanguageDictionary,
+  GetIRLanguageDictionary,
   GetIRTypeList,
+  GetLearnerProfile,
+  GetMaterialTypes,
   GetUnenrollmentCauseTypeDictionary,
-  GetEnrollmentCauseTypeDictionary, FetchTimezones,
-} from './core.actions';
-import {TimezoneService} from "../../../../../libs/shared/src/lib/utils/services/common/timezone.service";
+  SetDomainData
+} from "./core.actions";
+import { TimezoneService } from "../../../../../libs/shared/src/lib/services/common/timezone.service";
+import { CoreService } from "../../../../../libs/shared/src/lib/services/common/core.service";
+import { AdminCoursesService } from "../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 export class CoreStateModel {
   profile: IProfile;

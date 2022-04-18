@@ -2,11 +2,11 @@ import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
-import {IKeyValuePair} from "../../../models/interfaces";
+import {IKeyValuePair} from "../../../models";
 import {
   REGISTRATION_APPROVAL_OPTIONS_MAP,
   REGISTRATION_PERIOD_OPTIONS_MAP, SELF_REGISTRATION_OPTIONS_MAP
-} from "../../../models/constants/registration-options";
+} from "../../../models/events/registration-options";
 import {getOptionsFromMap} from "../../../utils/common";
 
 @Component({

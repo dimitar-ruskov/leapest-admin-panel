@@ -1,22 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { Injectable } from "@angular/core";
+import { Store } from "@ngxs/store";
+import * as moment from "moment";
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+
 import {
   UpdateAssessmentDetails,
-  UpdateParentInternalRepository,
-} from '../containers/internal-repository-details/state/internal-repository-details.actions';
-import * as moment from 'moment';
+  UpdateParentInternalRepository
+} from "../containers/internal-repository-details/state/internal-repository-details.actions";
 import {
   EditPassRateModalComponent
 } from "../../../../../../../libs/shared/src/lib/components/modals/edit-pass-rate-modal/edit-pass-rate-modal.component";
-import {GeneralInfoField, InternalRepository} from "../../../../../../../libs/shared/src/lib/models/interfaces";
 import {
-  EditInternalRepoNameModalComponent
-} from "../../../../../../../libs/shared/src/lib/components/modals/edit-internal-repo-name-modal/edit-internal-repo-name-modal.component";
-import {DEFAULT_QUILL_EDITOR_CONFIG} from "../../../../../../../libs/shared/src/lib/models/constants";
+  DEFAULT_QUILL_EDITOR_CONFIG,
+  GeneralInfoField,
+  InternalRepository
+} from "../../../../../../../libs/shared/src/lib/models";
 import {
   QuillInputModalComponent
 } from "../../../../../../../libs/shared/src/lib/components/modals/quill-input-modal/quill-input-modal.component";
+import {
+  EditInternalRepoNameModalComponent
+} from "../../../../../../../libs/shared/src/lib/components/modals/edit-internal-repo-name-modal/edit-internal-repo-name-modal.component";
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Action, Selector, State, StateContext, Store } from "@ngxs/store";
+import { Injectable } from "@angular/core";
+import { tap } from "rxjs/operators";
 
 import {
   ChangeEventUploadsPaginationParams,
@@ -11,18 +11,21 @@ import {
   CourseEventsBulkUploadsValidationReport,
   CourseEventsCsvUploadsList,
   ResetCourseEventsCsvUploadsListState,
-  ResetSchedulingReportState,
-} from './ilt-course-events-bulk.actions';
+  ResetSchedulingReportState
+} from "./ilt-course-events-bulk.actions";
 
-import {DeferredResource} from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  BulkUploadsSchedulingSummary, BulkUploadsValidationReport, CourseEventsBulkUploads, PublishingReportByStatus
-} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces/courses/ilt-course-events-bulk";
+  IltCourseEventsBulkService
+} from "../../../../../../../../../../../../libs/shared/src/lib/services/events/ilt-course-events-bulk.service";
 import {
-  DEFAULT_INITIAL_PAGINATION_PARAMS
-} from "../../../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {IltCourseEventsBulkService} from "../service/ilt-course-events-bulk.service";
-import {IPageable} from "../../../../../../../../../../../../libs/shared/src/lib/models/interfaces";
+  BulkUploadsSchedulingSummary,
+  BulkUploadsValidationReport,
+  CourseEventsBulkUploads,
+  DEFAULT_INITIAL_PAGINATION_PARAMS,
+  IPageable,
+  PublishingReportByStatus
+} from "../../../../../../../../../../../../libs/shared/src/lib/models";
 
 
 export class IltCourseEventsBulkUploadsStateModel {

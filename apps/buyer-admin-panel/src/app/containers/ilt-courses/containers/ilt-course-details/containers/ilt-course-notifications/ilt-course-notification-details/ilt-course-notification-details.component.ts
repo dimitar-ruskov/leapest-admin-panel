@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { OktaAuthStateService } from '@okta/okta-angular';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { OktaAuthStateService } from "@okta/okta-angular";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Observable } from "rxjs";
+import { filter } from "rxjs/operators";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { NzModalService } from "ng-zorro-antd/modal";
 
 import {
   ClearNotificationDetails,
@@ -16,25 +16,25 @@ import {
   PreviewNotificationTemplate,
   ResetNotificationTemplate,
   TestEmail,
-  UpdateNotificationTemplate,
-} from '../state/ilt-course-details-notifications.actions';
+  UpdateNotificationTemplate
+} from "../state/ilt-course-details-notifications.actions";
 
-import {IGlobalStateModel} from "../../../../../../../state/state.model";
+import { IGlobalStateModel } from "../../../../../../../state/state.model";
 
 import {
   NotificationPreviewModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-preview-modal/notification-preview-modal.component";
-import {DeferredResource} from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
+import { DeferredResource } from "../../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  NotificationModel, NotificationPayloadModel, NotificationResetLevel,
-  ReportingDomainsMap
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/notifications.model";
+  NotificationModel,
+  NotificationPayloadModel,
+  NotificationResetLevel,
+  ReportingDomainsMap,
+  TemplateComposerModel
+} from "../../../../../../../../../../../libs/shared/src/lib/models";
 import {
   NotificationChangeModalComponent
 } from "../../../../../../../../../../../libs/shared/src/lib/components/modals/notification-change-modal/notification-change-modal.component";
-import {
-  TemplateComposerModel
-} from "../../../../../../../../../../../libs/shared/src/lib/models/interfaces/notifications/template-composer.model";
 
 @Component({
   selector: 'leap-ilt-course-notification-details',

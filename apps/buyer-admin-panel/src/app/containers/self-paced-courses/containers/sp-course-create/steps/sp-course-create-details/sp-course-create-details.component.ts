@@ -1,27 +1,29 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { interval, Observable, of } from 'rxjs';
-import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import produce, { Draft } from 'immer';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { Select, Store } from "@ngxs/store";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { interval, Observable, of } from "rxjs";
+import { distinctUntilChanged, map, switchMap } from "rxjs/operators";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import produce, { Draft } from "immer";
 
-import { GoToSPCourseCreationStep, UpdatePreSelfPacedCourse } from '../../state/sp-course-create.actions';
-import { SPCourseCreationSteps } from '../../models/sp-course-create-step.model';
-import {IGlobalStateModel} from "../../../../../../state/state.model";
+import { GoToSPCourseCreationStep, UpdatePreSelfPacedCourse } from "../../state/sp-course-create.actions";
+import { IGlobalStateModel } from "../../../../../../state/state.model";
 
-import { PreSelfPacedCourse } from '../../../../../../../../../../libs/shared/src/lib/models/interfaces/sp-courses/sp-course.model';
 import {
-  CourseCategory, CourseSubCategory,
+  CourseCategory,
+  CourseSubCategory,
+  DEFAULT_QUILL_EDITOR_CONFIG,
   IKeyValuePair,
-  ITrainingManager
-} from "../../../../../../../../../../libs/shared/src/lib/models/interfaces";
-import {DEFAULT_QUILL_EDITOR_CONFIG} from "../../../../../../../../../../libs/shared/src/lib/models/constants";
-import {getOptionsFromMap} from "../../../../../../../../../../libs/shared/src/lib/utils/common";
+  ITrainingManager,
+  PreSelfPacedCourse,
+  REGISTRATION_APPROVAL_OPTIONS_MAP,
+  SELF_REGISTRATION_OPTIONS_MAP,
+  SPCourseCreationSteps
+} from "../../../../../../../../../../libs/shared/src/lib/models";
+import { getOptionsFromMap } from "../../../../../../../../../../libs/shared/src/lib/utils/common";
 import {
-  REGISTRATION_APPROVAL_OPTIONS_MAP, SELF_REGISTRATION_OPTIONS_MAP
-} from "../../../../../../../../../../libs/shared/src/lib/models/constants/registration-options";
-import {AdminCoursesService} from "../../../../../../../../../../libs/shared/src/lib/utils/services";
+  AdminCoursesService
+} from "../../../../../../../../../../libs/shared/src/lib/services/events/admin-courses.service";
 
 @Component({
   selector: 'leap-sp-course-create-details',
