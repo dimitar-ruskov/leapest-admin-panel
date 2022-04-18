@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input, TrackByFunction, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Observable } from 'rxjs';
-import { filter, tap } from "rxjs/operators";
+import { filter } from "rxjs/operators";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
@@ -28,7 +28,10 @@ export class NotificationRecipientsModalComponent implements OnInit {
 
   trackByFn: TrackByFunction<NotificationRecipientModel> = (index, item) => item.userName;
 
-  constructor(private readonly eventNotificationsService: IltEventNotificationsService) {}
+  constructor(
+    private readonly eventNotificationsService: IltEventNotificationsService,
+    private readonly cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.recipients$
@@ -48,16 +51,17 @@ export class NotificationRecipientsModalComponent implements OnInit {
   }
 
   getRecipientsList(eventId: string, trigger: string, recipient: string, pageable: IPageable): void {
-    this.eventNotificationsService.getRecipients(eventId, trigger, recipient, pageable).pipe(
-      untilDestroyed(this),
-      tap((data: DeferredResource<NotificationRecipientsListModel>) => {
-        this.recipientsLoading = true;
-        if (data.isSuccess) {
+    this.recipientsLoading = true;
+    this.eventNotificationsService.getRecipients(eventId, trigger, recipient, pageable)
+      .pipe(
+        untilDestroyed(this),
+        filter((data: DeferredResource<NotificationRecipientsListModel>) => data.isSuccess)
+      )
+      .subscribe((data: DeferredResource<NotificationRecipientsListModel>) => {
           this.recipientsLoading = false;
           this.recipients = data.response;
-        }
+          this.cdr.detectChanges();
       })
-    )
   }
 
   onSearchChange(search: string): void {
